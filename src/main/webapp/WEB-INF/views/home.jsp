@@ -128,7 +128,7 @@
 		          	 <li>
 		              <a href="#">
 		                <div class="img_wrap">
-		               	  <img style="width : 500px" src = "./images/${row.img_id }"alt="상품리스트">
+		               	  <img style="width : 500px" src = "./images/productList/${row.img_id }"alt="상품리스트">
 		                  <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
 		                  <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
 		                </div>
@@ -170,7 +170,7 @@
                       <div class="swiper-slide">
                         <a href="#">
                           <div class="img_wrap">
-                            <img style="width : 500px" src = "./images/${row.img_id }"alt="상품리스트">
+                            <img style="width : 500px" src = "./images/productList/${row.img_id }"alt="상품리스트">
                           </div>
                           <div class="txt_wrap">
                             <strong>
