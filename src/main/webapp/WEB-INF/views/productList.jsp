@@ -82,7 +82,7 @@
               var listArrayValue = $('#list_array').val();
 
               $.ajax({
-                url: 'productListContent.jsp',
+                url: 'productListContent.do',
                 type: 'GET',
                 data: {
                   typeMenu: typeMenuValue,

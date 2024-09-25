@@ -103,8 +103,16 @@ public class MainController {
 	// Q&A 게시판
 
 	// 상품
+
+	// 상품 목록
 	@GetMapping("/productList.do")
 	public String ProductList() {
 		return "productList";
+	}
+
+	// 상품 목록 업데이트
+	@GetMapping("/productListContent.do")
+	public String ProductListContent() {
+		return "productListContent";
 	}
 }
