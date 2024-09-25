@@ -35,7 +35,8 @@
             <h2>SHOP</h2>
           </div>
           <ul class="type_menu">
-            <li><a href="#">토이/인형</a></li>
+            <!-- a태그누를 시 페이지 전환이 아닌 ajax로 파라미터 전달 -->
+            <li><a href="">토이/인형</a></li>
             <li><a href="#">키링</a></li>
             <li><a href="#">노트북/태블릿 파우치</a></li>
             <li><a href="#">패브릭/생활</a></li>

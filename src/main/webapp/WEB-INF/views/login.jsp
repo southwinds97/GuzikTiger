@@ -42,7 +42,7 @@
                   <li><a href="#">아이디</a></li>
                   <li><a href="#">비밀번호 찾기</a></li>
                 </ul>
-                <input type="submit" class="login_btn" value="로그인" />
+                <button type="submit" class="login_btn">로그인</button>
               </fieldset>
             </form>
           </div>

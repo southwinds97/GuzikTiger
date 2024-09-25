@@ -8,6 +8,7 @@
 }
 
 .membership {
+  padding-top: 150px;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -254,8 +255,9 @@ input[type='number'] {
   font-size: 11px;
   line-height: 1.5;
   color: #8c8c8c;
-  height: 200px;
+  max-height: 200px;
   overflow: auto;
   border: 1px solid #e5e5e5;
   padding: 10px;
+  margin-bottom: 10px;
 }
