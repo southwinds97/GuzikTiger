@@ -2,6 +2,44 @@
 
   <!DOCTYPE html>
   <html>
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var modal = $('#loginModal');
+      var modalContent = $('#modal-body');
+
+      $('#login').click(function (event) {
+        event.preventDefault();
+        $.ajax({
+          url: '/login.do',
+          type: 'GET',
+          success: function (data) {
+            modalContent.html(data);
+            modal.show();
+          },
+          error: function () {
+            alert('로그인 페이지를 불러오는 데 실패했습니다.');
+          }
+        });
+      });
+
+      $('.close').click(function () {
+        modal.hide();
+      });
+
+      $(window).click(function (event) {
+        if ($(event.target).is(modal)) {
+          modal.hide();
+        }
+      });
+    });
+  </script>
 
   <header id="header">
     <div class="inner">
