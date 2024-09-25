@@ -5,7 +5,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.edu.springboot.product.IProductService">
-	
+	 <!-- 수량체크 -->
 	<select id="getTotalCount" resultType="int"
 	parameterType="com.edu.springboot.ParameterDTO">
 	select count(*) from product
@@ -15,7 +15,8 @@
 		</if>
 	</select>
 			 
-	<select id="getProductList"
+	 <!--all상품 -->		 
+	<select id="getAllSelect"
 		resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="com.edu.springboot.ParameterDTO">
 		<!-- select * from (
@@ -30,7 +31,7 @@
 		)
 		where rNum<![CDATA[>=]]>#{start}
 		and rNum<![CDATA[<=]]>#{end} -->
-		select distinct a.product_id,
+		select  a.product_id,
 		    a.product_name as product_name, 
 		    a.product_content as product_content , 
 		    b.stock as stock,
@@ -40,10 +41,11 @@
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
-		order by product_name 
+		order by a.product_name 
 		
 	</select>
 	
+	 <!-- new상품 -->
 	<select id="getProductNewList"
 		resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="com.edu.springboot.ParameterDTO">
@@ -59,7 +61,8 @@
 		)
 		where rNum<![CDATA[>=]]>#{start}
 		and rNum<![CDATA[<=]]>#{end} -->
-		select  a.product_id,
+		select 
+			a.product_id,
 			c.elapsed_date,
 			    a.product_name as product_name, 
 			    a.product_content as product_content , 
@@ -70,16 +73,17 @@
 			(select t.product_id,rownum num , t.elapsed_date elapsed_date from 
 			(select product_id, to_date(sysdate, 'yyyy/mm/dd') - to_date(regidate, 'yyyy/mm/dd') elapsed_date 
 			    from product_dtl where idx=1  order by elapsed_date ) t )c
-			where 1=1
-			
-			and b.idx = 1
-			and a.product_id = b.product_id
-			and b.product_id = c.product_id
-			and c.num <![CDATA[<]]>30
-			order by c.elapsed_date 
+		where 1=1
+		
+		and b.idx = 1
+		and a.product_id = b.product_id
+		and b.product_id = c.product_id
+		and c.num <![CDATA[<=]]>30
+		order by c.elapsed_date  
 
 	</select>
 	
+	 <!-- best상품 -->
 	<select id="getProductBestList"
 		resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="com.edu.springboot.ParameterDTO">
@@ -95,7 +99,8 @@
 		)
 		where rNum<![CDATA[>=]]>#{start}
 		and rNum<![CDATA[<=]]>#{end} -->
-		select  a.product_id,
+		select 
+			a.product_id,
 		    a.product_name as product_name, 
 		    a.product_content as product_content , 
 		    b.stock as stock,
@@ -113,7 +118,6 @@
 		and a.product_id = b.product_id
 		and b.product_id = c.product_id
 		order by  c.sell_count desc
-
 	</select>
 	
 	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >

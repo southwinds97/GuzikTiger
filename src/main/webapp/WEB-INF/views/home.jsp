@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <!DOCTYPE html>
   <html>
-
+ <%@ taglib prefix="c" uri="jakarta.tags.core" %>    
   <head>
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
@@ -124,177 +124,25 @@
                   <p>인기 폭발 뚱랑이를 만나보랑구</p>
                 </div>
                 <ul class="list">
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST1.jpg" alt="무직타이거 부끄부끄 미니 인형 키링 6종">
-                        <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
-                        <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
-                      </div>
-                    </a>
-                    <a href="#">
-                      <div class="txt_wrap">
-                        <strong>
-                          무직타이거 부끄부끄 미니 인형 키링 6종
-                          <br /> 8,900원
-                        </strong>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST2.jpg" alt="도넛 타이거 노트북 아이패드 파우치">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          도넛 타이거 노트북 아이패드 파우치
-                          <br /> 42,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST3.jpg" alt="잇츠 오케이 노트북 아이패드 파우치">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          잇츠 오케이 노트북 아이패드 파우치
-                          <br /> 36,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST4.jpg" alt="무직 타이거 복조리 파우치 6종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          무직 타이거 복조리 파우치 6종
-                          <br /> 17,500원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST5.jpg" alt="시팅 타이거 노트북 아이패드 스트랩 파우치 블랙">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          시팅 타이거 노트북 아이패드 스트랩 파우치 블랙
-                          <br /> 41,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST6.jpg" alt="뚱랑이 얼굴 미니러그 2종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          뚱랑이 얼굴 미니러그 2종
-                          <br /> 36,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST7.jpg" alt="레이지 타이거 노트북 아이패드 파우치">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          레이지 타이거 노트북 아이패드 파우치
-                          <br /> 42,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST8.jpg" alt="뚱랑이 스트레스볼 3종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          뚱랑이 스트레스볼 3종
-                          <br /> 15,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST9.jpg" alt="뚱랑이 모니터 인형 2종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          뚱랑이 모니터 인형 2종
-                          <br /> 13,800원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST10.jpg" alt="무직타이거 납작 인형 키링 4종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          무직타이거 납작 인형 키링 4종
-                          <br /> 11,500원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST11.jpg" alt="무직타이거 쫀득쫀득 모찌 인형 6종">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          무직타이거 쫀득쫀득 모찌 인형 6종
-                          <br /> 17,000원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="img_wrap">
-                        <img src="images/BEST12.jpg" alt="배낭 여행 뚱랑이 네임택">
-                      </div>
-                      <div class="txt_wrap">
-                        <strong>
-                          배낭 여행 뚱랑이 네임택
-                          <br /> 7,500원
-                        </strong>
-                      </div>
-                    </a>
-
-                  </li>
+                  <c:forEach items="${bestLists }" var="row" varStatus="loop">
+		          	 <li>
+		              <a href="#">
+		                <div class="img_wrap">
+		               	  <img style="width : 500px" src = "./images/${row.img_id }"alt="상품리스트">
+		                  <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
+		                  <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
+		                </div>
+		              </a>
+		              <a href="#">
+		                <div class="txt_wrap">
+		                  <strong>
+		                    ${row.product_name }
+		                    <br /> ${row.price }원
+		                  </strong>
+		                </div>
+		              </a>
+		            </li>		          
+		          </c:forEach>
                 </ul>
 
                 <button class="move_btn">more +</button>
@@ -317,110 +165,25 @@
                 <div class="new_slider">
                   <div class="swiper">
                     <div class="swiper-wrapper">
+                    
+                    <c:forEach items="${newLists }" var="row" varStatus="loop">
                       <div class="swiper-slide">
                         <a href="#">
                           <div class="img_wrap">
-                            <img src="images/new1.jpg" alt="new1">
+                            <img style="width : 500px" src = "./images/${row.img_id }"alt="상품리스트">
                           </div>
                           <div class="txt_wrap">
                             <strong>
-                              무직타이거 뚱랑이 농구공 키링
-                              <br /> 7,000원
+                                ${row.product_name }
+		                    <br /> ${row.price }원
                             </strong>
                           </div>
                         </a>
                       </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new2.jpg" alt="new2">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 뚱랑이 야구공 키링
-                              <br /> 6,300원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new3.jpg" alt="new3">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 뚱랑이 테니스공 키링
-                              <br /> 7,000원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new4.jpg" alt="new4">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 사자 야구 와펜 3종
-                              <br /> 3,510원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new5.jpg" alt="new5">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 뚱랑이 야구 와펜 3종
-                              <br /> 3,510원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new6.jpg" alt="new6">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 복조리 파우치 6종
-                              <br /> 15,750원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new7.jpg" alt="new7">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              무직타이거 사자 페이스 모찌 쿠션
-                              <br /> 37,620원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="swiper-slide">
-                        <a href="#">
-                          <div class="img_wrap">
-                            <img src="images/new8.jpg" alt="new8">
-                          </div>
-                          <div class="txt_wrap">
-                            <strong>
-                              뚱랑이 얼굴 키링 3종
-                              <br /> 3,600원
-                            </strong>
-                          </div>
-                        </a>
-                      </div>
+                    </c:forEach>
+                      
+                     
+                      
                     </div>
                     <div class="swiper-button-prev arrow_btn"></div>
                     <div class="swiper-button-next arrow_btn"></div>
