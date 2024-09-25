@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.product.IProductService">
+	
+	<select id="getTotalCount" resultType="int"
+	parameterType="com.edu.springboot.ParameterDTO">
+	select count(*) from product
+	<if test="searchKeyword!=null
+		and !searchKeyword.equals('')" >
+		where ${searchField} like '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+			 
+	<select id="getProductList"
+		resultType = "com.edu.springboot.product.ProductDTO"
+		parameterType="com.edu.springboot.ParameterDTO">
+		<!-- select * from (
+			select tb.*, rownum rNum from(
+				select * from product
+				<if test="searchKeyword!=null
+					and !searchKeyword.equals('')" >
+			where ${searchField} like '%'||#{searchKeyword}||'%'
+		</if>
+		order by product_id desc
+			)Tb
+		)
+		where rNum<![CDATA[>=]]>#{start}
+		and rNum<![CDATA[<=]]>#{end} -->
+		select distinct a.product_id,
+		    a.product_name as product_name, 
+		    a.product_content as product_content , 
+		    b.stock as stock,
+		    b.img_id as img_id,
+		    b.price as price
+		from product a, product_dtl b 
+		where 1=1
+		and b.idx = 1
+		and a.product_id = b.product_id
+		order by product_name 
+		
+	</select>
+	
+	<select id="getProductNewList"
+		resultType = "com.edu.springboot.product.ProductDTO"
+		parameterType="com.edu.springboot.ParameterDTO">
+		<!-- select * from (
+			select tb.*, rownum rNum from(
+				select * from product
+				<if test="searchKeyword!=null
+					and !searchKeyword.equals('')" >
+			where ${searchField} like '%'||#{searchKeyword}||'%'
+		</if>
+		order by product_id desc
+			)Tb
+		)
+		where rNum<![CDATA[>=]]>#{start}
+		and rNum<![CDATA[<=]]>#{end} -->
+		select  a.product_id,
+			c.elapsed_date,
+			    a.product_name as product_name, 
+			    a.product_content as product_content , 
+			    b.stock as stock,
+			    b.img_id as img_id,
+			    b.price as price
+			from product a, product_dtl b ,
+			(select t.product_id,rownum num , t.elapsed_date elapsed_date from 
+			(select product_id, to_date(sysdate, 'yyyy/mm/dd') - to_date(regidate, 'yyyy/mm/dd') elapsed_date 
+			    from product_dtl where idx=1  order by elapsed_date ) t )c
+			where 1=1
+			
+			and b.idx = 1
+			and a.product_id = b.product_id
+			and b.product_id = c.product_id
+			and c.num <![CDATA[<]]>30
+			order by c.elapsed_date 
+
+	</select>
+	
+	<select id="getProductBestList"
+		resultType = "com.edu.springboot.product.ProductDTO"
+		parameterType="com.edu.springboot.ParameterDTO">
+		<!-- select * from (
+			select tb.*, rownum rNum from(
+				select * from product
+				<if test="searchKeyword!=null
+					and !searchKeyword.equals('')" >
+			where ${searchField} like '%'||#{searchKeyword}||'%'
+		</if>
+		order by product_id desc
+			)Tb
+		)
+		where rNum<![CDATA[>=]]>#{start}
+		and rNum<![CDATA[<=]]>#{end} -->
+		select  a.product_id,
+		    a.product_name as product_name, 
+		    a.product_content as product_content , 
+		    b.stock as stock,
+		    b.img_id as img_id,
+		    b.price as price,
+		    c.stock,
+		    c.sell_count
+		from product a, product_dtl b ,
+		(select product_id, sum(stock) stock,sum(sell_count) sell_count from product_dtl
+		group by product_id
+		order by product_id)c
+		where 1=1
+		and rowNum <![CDATA[<]]>31
+		and b.idx = 1
+		and a.product_id = b.product_id
+		and b.product_id = c.product_id
+		order by  c.sell_count desc
+
+	</select>
+	
+	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
+		select cd_name  from code_list where category = 'mainCate'
+	</select>
+	<select id="subCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
+		select cd_name  from code_list where category = 'subCate'
+	</select>
+		
+<!-- 	<insert id="write">
+		insert into myboard (idx, name, title, content)
+		values
+		(seq_board_num.nextval, #{_name}, #{_title}, #{_content})
+	</insert>
+	<select id="view" resultType = "com.edu.springboot.jdbc.BoardDTO"
+		parameterType="com.edu.springboot.jdbc.BoardDTO">
+		select * from myboard where idx=#{idx}
+	 </select>
+	 <update id="edit" parameterType="com.edu.springboot.jdbc.ParameterDTO">
+	 	update myboard set
+	 	name=#{name}, title=#{title}, content=#{content}
+	 	where idx = #{idx}
+ 	</update>
+ 	
+ 	<delete id="delete">
+ 		delete from myboard where idx = #{param1}
+	</delete>
+	
+	<update id="visitCntPlus" >
+		update myboard set visitcount = visitcount +1
+		where idx = #{idx}
+	</update> -->
+</mapper>
