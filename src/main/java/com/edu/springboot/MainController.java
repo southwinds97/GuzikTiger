@@ -60,8 +60,5 @@ public class MainController {
 		return "home";
 	}
 
-	@RequestMapping("/myPage.do")
-	public String myPage() {
-		return "myPage";
-	}
+
 }
