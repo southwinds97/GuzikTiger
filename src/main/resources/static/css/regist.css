@@ -1,0 +1,261 @@
+.join_wrap {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  min-height: 300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.membership {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.membership h2 {
+  color: #222222;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.membership label {
+  display: block;
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 12px;
+}
+
+.membership span {
+  color: #ef441f
+}
+
+
+
+.membership span.txt {
+  display: inline-block;
+  margin-bottom: 21px;
+  color: #868686;
+  font-size: 12px;
+}
+
+.membership input {
+  margin-bottom: 12px;
+}
+
+.membership .hint {
+  width: 100%;
+  height: 45px;
+  padding: 0 30px 0 10px;
+  font-size: 12px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  background: #fff url(/images/icon_arrow_down.svg) no-repeat right 10px center;
+  background-size: 11px auto;
+  margin-bottom: 21px;
+}
+
+.membership input[type='text'],
+input[type='password'],
+input[type='number'] {
+  line-height: 23px;
+  width: 100%;
+  height: 45px;
+  padding: 10px 15px;
+}
+
+.register_id {
+  display: flex;
+}
+
+.register_id .check_btn {
+  display: block;
+  width: 99px;
+  height: 45px;
+  color: #fff;
+  background-color: #222222;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.register_id .check_btn:hover {
+  background-color: #444444;
+  transform: translateY(-2px);
+}
+
+.register_id .check_btn:active {
+  background-color: #111111;
+  transform: translateY(0);
+}
+
+.join_wrap .register_id input {
+  width: calc(100% - 109px);
+  background-color: rgba(175, 175, 175, 0.05);
+}
+
+.register_tel {
+  display: flex;
+  gap: 8px;
+}
+
+.register_tel input {
+  width: 30%;
+}
+
+.register_tel span {
+  display: block;
+  line-height: 45px;
+  font-size: 17px;
+}
+
+.register_tel .phn {
+  width: 100%;
+  height: 45px;
+  background: #fff url(/images/icon_arrow_down.svg) no-repeat right 10px center;
+  padding: 0 30px 0 10px;
+  font-size: 12px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.register_tel .mobile {
+  width: 100%;
+  height: 45px;
+  background: #fff url(/images/icon_arrow_down.svg) no-repeat right 10px center;
+  padding: 0 30px 0 10px;
+  font-size: 12px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.register_addr {
+  display: flex;
+}
+
+.register_addr .search_btn {
+  display: block;
+  width: 99px;
+  height: 45px;
+  color: #fff;
+  background-color: #222222;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.register_addr .search_btn:hover {
+  background-color: #444444;
+  transform: translateY(-2px);
+}
+
+.register_addr .search_btn:active {
+  background-color: #111111;
+  transform: translateY(0);
+}
+
+.join_wrap .register_addr input {
+  width: calc(100% - 109px);
+  background-color: rgba(175, 175, 175, 0.05);
+}
+
+.information {
+  margin: 50px 0 20px;
+  text-align: left;
+}
+
+.information h3 {
+  font-size: 16px;
+}
+
+.more label {
+  display: block;
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.register_date {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 14px 0;
+}
+
+.register_date input {
+  width: 30%;
+}
+
+.register_date span {
+  display: block;
+  line-height: 45px;
+  font-size: 17px;
+}
+
+.register_agree {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 25px;
+}
+
+.register_agree p {
+  margin-top: 10px;
+}
+
+.register_inner {
+  display: flex;
+  position: relative;
+
+}
+
+
+.register_inner label {
+  display: inline-block;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.register_btn input[type="submit"] {
+  width: 100%;
+  height: 52px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: #000;
+  margin-top: 30px;
+}
+
+.register_inner span {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.register_view {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #8c8c8c;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+}

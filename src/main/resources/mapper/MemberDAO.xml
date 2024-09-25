@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.member.IMemberService">
+    <!-- 로그인처리 -->
+    <select id="login" resultType="com.edu.springboot.member.MemberDTO"
+        parameterType="com.edu.springboot.member.MemberDTO">
+        SELECT * FROM member WHERE id=#{id} AND pass=#{pass}
+    </select>
+
+    <!-- Id 중복체크 -->
+    <select id="idCheck" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM member WHERE id=#{value}
+    </select>
+
+    <!-- 회원가입 처리 -->
+    <insert id="insertMember" parameterType="com.edu.springboot.member.MemberDTO">
+        INSERT INTO member (id, name, pass, hint, hintas, tel, email, postcode, addr, detailaddr, gen, birth, calendar)
+        VALUES (#{id}, #{name}, #{pass}, #{hint}, #{hintas}, #{tel}, #{email}, #{postcode}, #{addr}, #{detailaddr}, #{gen}, #{birth}, #{calendar})
+    </insert>
+
+    <!-- 회원정보수정 처리 -->
+    
+    <!-- 회원탈퇴 처리 -->
+    <delete id="deleteMember" parameterType="String">
+        DELETE FROM member WHERE id=#{value}
+    </delete>
+
+</mapper>
