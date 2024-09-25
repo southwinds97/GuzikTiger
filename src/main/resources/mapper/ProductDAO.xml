@@ -150,4 +150,5 @@
 		update myboard set visitcount = visitcount +1
 		where idx = #{idx}
 	</update> -->
+
 </mapper>

@@ -53,193 +53,103 @@
               <a href="#">NEW</a>
             </li>
             <li>
-              <a href="productList.do">SHOP</a>
+              <a href="productList.do?category=mainCate">SHOP</a>
               <ul class="depth2">
                 <li>
-                  <a href="#">토이/인형</a>
+                  <a href="productList.do?category=토이/인형">토이/인형</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">피규어</a>
-                    </li>
-                    <li>
-                      <a href="#">인형</a>
-                    </li>
-                    <li>
-                      <a href="#">인형쿠션</a>
-                    </li>
+                    <li><a href="productList.do?category=피규어">피규어</a></li>
+                    <li><a href="productList.do?category=인형">인형</a></li>
+                    <li><a href="productList.do?category=인형쿠션">인형쿠션</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">키링</a>
+                  <a href="productList.do?category=키링">키링</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">아크릴 키링</a>
-                    </li>
-                    <li>
-                      <a href="#">인형 키링</a>
-                    </li>
-                    <li>
-                      <a href="#">파우치 키링</a>
-                    </li>
+                    <li><a href="productList.do?category=아크릴 키링">아크릴 키링</a></li>
+                    <li><a href="productList.do?category=인형 키링">인형 키링</a></li>
+                    <li><a href="productList.do?category=파우치 키링">파우치 키링</a></li>
+                  </ul>
+                </li>
+                <li><a href="productList.do?category=노트북/태블릿 파우치">노트북/태블릿 파우치</a></li>
+                <li>
+                  <a href="productList.do?category=패브릭/생활">패브릭/생활</a>
+                  <ul class="depth3">
+                    <li><a href="productList.do?category=패브릭소품">패브릭소품</a></li>
+                    <li><a href="productList.do?category=카페트/러그">카페트/러그</a></li>
+                    <li><a href="productList.do?category=쿠션">쿠션</a></li>
+                    <li><a href="productList.do?category=생활용품">생활용품</a></li>
+                    <li><a href="productList.do?category=마스크">마스크</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">노트북/태블릿 파우치</a>
-                </li>
-                <li>
-                  <a href="#">패브릭/생활</a>
+                  <a href="productList.do?category=키친">키친</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">패브릭소품</a>
-                    </li>
-                    <li>
-                      <a href="#">카페트/러그</a>
-                    </li>
-                    <li>
-                      <a href="#">쿠션</a>
-                    </li>
-                    <li>
-                      <a href="#">생활용품</a>
-                    </li>
-                    <li>
-                      <a href="#">마스크</a>
-                    </li>
+                    <li><a href="productList.do?category=텀블러">텀블러</a></li>
+                    <li><a href="productList.do?category=컵">컵</a></li>
+                    <li><a href="productList.do?category=주방잡화">주방잡화</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">키친</a>
+                  <a href="productList.do?category=패션잡화">패션잡화</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">텀블러</a>
-                    </li>
-                    <li>
-                      <a href="#">컵</a>
-                    </li>
-                    <li>
-                      <a href="#">주방잡화</a>
-                    </li>
+                    <li><a href="productList.do?category=지갑/파우치">지갑/파우치</a></li>
+                    <li><a href="productList.do?category=가방">가방</a></li>
+                    <li><a href="productList.do?category=슬리퍼">슬리퍼</a></li>
+                    <li><a href="productList.do?category=슈즈악세사리">슈즈악세사리</a></li>
+                    <li><a href="productList.do?category=양말">양말</a></li>
+                    <li><a href="productList.do?category=뱃지">뱃지</a></li>
+                  </ul>
+                </li>
+                <li><a href="productList.do?category=여행/캠핑">여행/캠핑</a></li>
+                <li>
+                  <a href="productList.do?category=문구류">문구류</a>
+                  <ul class="depth3">
+                    <li><a href="productList.do?category=PVC마우스패드">PVC마우스패드</a></li>
+                    <li><a href="productList.do?category=극세사마우스패드">극세사마우스패드</a></li>
+                    <li><a href="productList.do?category=메모지">메모지</a></li>
+                    <li><a href="productList.do?category=노트">노트</a></li>
+                    <li><a href="productList.do?category=필기구">필기구</a></li>
+                    <li><a href="productList.do?category=필통">필통</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">패션잡화</a>
+                  <a href="productList.do?category=스티커/마스킹테이프">스티커/마스킹테이프</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">지갑/파우치</a>
-                    </li>
-                    <li>
-                      <a href="#">가방</a>
-                    </li>
-                    <li>
-                      <a href="#">슬리퍼</a>
-                    </li>
-                    <li>
-                      <a href="#">슈즈악세사리</a>
-                    </li>
-                    <li>
-                      <a href="#">양말</a>
-                    </li>
-                    <li>
-                      <a href="#">뱃지</a>
-                    </li>
+                    <li><a href="productList.do?category=리무버블 스티커">리무버블 스티커</a></li>
+                    <li><a href="productList.do?category=조각 스티커">조각 스티커</a></li>
+                    <li><a href="productList.do?category=씰 스티커">씰 스티커</a></li>
+                    <li><a href="productList.do?category=타투 스티커">타투 스티커</a></li>
+                    <li><a href="productList.do?category=마스킹테이프">마스킹테이프</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">여행/캠핑</a>
-                </li>
-                <li>
-                  <a href="#">문구류</a>
+                  <a href="productList.do?category=엽서/카드/포스터">엽서/카드/포스터</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">PVC마우스패드</a>
-                    </li>
-                    <li>
-                      <a href="#">극세사마우스패드</a>
-                    </li>
-                    <li>
-                      <a href="#">메모지</a>
-                    </li>
-                    <li>
-                      <a href="#">노트</a>
-                    </li>
-                    <li>
-                      <a href="#">필기구</a>
-                    </li>
-                    <li>
-                      <a href="#">필통</a>
-                    </li>
+                    <li><a href="productList.do?category=엽서">엽서</a></li>
+                    <li><a href="productList.do?category=카드">카드</a></li>
+                    <li><a href="productList.do?category=포스터">포스터</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">스티커/마스킹테이프</a>
+                  <a href="productList.do?category=폰케이스/스마트톡/스트랩">폰케이스/스마트톡/스트랩</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">리무버블 스티커</a>
-                    </li>
-                    <li>
-                      <a href="#">조각 스티커</a>
-                    </li>
-                    <li>
-                      <a href="#">씰 스티커</a>
-                    </li>
-                    <li>
-                      <a href="#">타투 스티커</a>
-                    </li>
-                    <li>
-                      <a href="#">마스킹테이프</a>
-                    </li>
+                    <li><a href="productList.do?category=폰케이스">폰케이스</a></li>
+                    <li><a href="productList.do?category=모양톡">모양톡</a></li>
+                    <li><a href="productList.do?category=스트랩">스트랩</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="#">엽서/카드/포스터</a>
+                  <a href="productList.do?category=에어팟/버즈 케이스">에어팟/버즈 케이스</a>
                   <ul class="depth3">
-                    <li>
-                      <a href="#">엽서</a>
-                    </li>
-                    <li>
-                      <a href="#">카드</a>
-                    </li>
-                    <li>
-                      <a href="#">포스터</a>
-                    </li>
+                    <li><a href="productList.do?category=에어팟 케이스">에어팟 케이스</a></li>
+                    <li><a href="productList.do?category=에어팟 프로 케이스">에어팟 프로 케이스</a></li>
+                    <li><a href="productList.do?category=에어팟3 케이스">에어팟3 케이스</a></li>
+                    <li><a href="productList.do?category=에어팟 맥스 케이스">에어팟 맥스 케이스</a></li>
+                    <li><a href="productList.do?category=버즈 케이스">버즈 케이스</a></li>
                   </ul>
                 </li>
-                <li>
-                  <a href="#">폰케이스/스마트톡/스트랩</a>
-                  <ul class="depth3">
-                    <li>
-                      <a href="#">폰케이스</a>
-                    </li>
-                    <li>
-                      <a href="#">모양톡</a>
-                    </li>
-                    <li>
-                      <a href="#">스트랩</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">에어팟/버즈 케이스</a>
-                  <ul class="depth3">
-                    <li>
-                      <a href="#">에어팟 케이스</a>
-                    </li>
-                    <li>
-                      <a href="#">에어팟 프로 케이스</a>
-                    </li>
-                    <li>
-                      <a href="#">에어팟3 케이스</a>
-                    </li>
-                    <li>
-                      <a href="#">에어팟 맥스 케이스</a>
-                    </li>
-                    <li>
-                      <a href="#">버즈 케이스</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">선물세트추천</a>
-                </li>
+                <li><a href="productList.do?category=선물세트추천">선물세트추천</a></li>
               </ul>
             </li>
             <li>
