@@ -121,7 +121,7 @@
               <div class="main_top">
                 <div class="tit_wrap">
                   <h2>BEST</h2>
-                  <p>인기 폭발 뚱랑이를 만나보랑구</p>
+                  <p>인기 폭발 뚱랑이를 만나보랑구asdfasdfadfasdff</p>
                 </div>
                 <ul class="list">
                   <li>
