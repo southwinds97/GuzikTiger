@@ -246,7 +246,7 @@
             </li>
           </ul>
         </nav>
-        <h1 class="logo"><a href="index.html"><img src="/images/logo.png" alt="무직타이거"></a></h1>
+        <h1 class="logo"><a href="/"><img src="/images/logo.png" alt="무직타이거"></a></h1>
       </div>
       <div class="header_right">
         <!-- 섹션에 id값이 없는 경우 -->

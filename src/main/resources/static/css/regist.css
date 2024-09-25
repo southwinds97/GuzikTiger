@@ -217,7 +217,7 @@ input[type='number'] {
 .register_inner {
   display: flex;
   position: relative;
-
+  flex-wrap: wrap;
 }
 
 
@@ -239,7 +239,7 @@ input[type='number'] {
   margin-top: 30px;
 }
 
-.register_inner span {
+.register_inner .agree_toggle {
   position: absolute;
   right: 0;
   top: 10px;
@@ -251,7 +251,14 @@ input[type='number'] {
   cursor: pointer;
 }
 
-.register_view {
+/* register_inner에 js로 on클래스 추가시 transform 180도 회전 */
+.register_inner.on .agree_toggle {
+  top: 3px;
+  transform: rotate(225deg);
+}
+
+.register_inner .register_view {
+  display: none;
   font-size: 11px;
   line-height: 1.5;
   color: #8c8c8c;
@@ -260,4 +267,8 @@ input[type='number'] {
   border: 1px solid #e5e5e5;
   padding: 10px;
   margin-bottom: 10px;
+}
+
+.register_inner.on .register_view.on {
+  display: block;
 }

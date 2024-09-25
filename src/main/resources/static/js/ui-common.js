@@ -13,52 +13,87 @@ $(function () {
       });
   });
 
-  // 헤더메뉴 고정
-  $(window)
-    .on('resize', function () {
+  $(document).ready(function () {
+    $('#header').addClass('on');
+    $('#header').on('mouseleave', function () {
+      $('#header').removeClass('on');
+    });
+
+    // 헤더메뉴 고정
+    $(window).on('resize', function () {
       let w = $(this).outerWidth();
 
       if (w < 1201) {
-        $(window)
-          .off('scroll')
-          .on('scroll', function () {});
+        $(window).off('scroll').on('scroll', function () { });
       } else {
         if (!!$('#header').offset()) {
-          let gnbTop = $('.main_best').offset().top;
-          $(window).on('scroll', function () {
-            let windowTop = $(window).scrollTop();
-            if (gnbTop < windowTop) {
-              if (!searchActive) {
-                scrollActive = !scrollActive;
-                $('#header').css({
-                  position: 'fixed',
-                  top: 0,
-                  left: 0,
-                  'z-index': 9999,
-                  background: 'white',
-                  'border-bottom': '1px solid #ebebeb',
-                  width: '100%',
-                  'box-shadow': 'rgba(0, 0, 0, 0.5)',
-                });
+          // .main_best 요소가 존재하는지 확인
+          if ($('.main_best').length > 0) {
+            let gnbTop = $('.main_best').offset().top;
+            $(window).on('scroll', function () {
+              let windowTop = $(window).scrollTop();
+              if (gnbTop < windowTop) {
+                if (!searchActive) {
+                  scrollActive = true;
+                  $('#header').css({
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    'z-index': 9999,
+                    background: 'white',
+                    'border-bottom': '1px solid #ebebeb',
+                    width: '100%',
+                    'box-shadow': 'rgba(0, 0, 0, 0.5)',
+                  });
+                }
+              } else {
+                if (!searchActive) {
+                  scrollActive = false;
+                  $('#header').css({
+                    position: 'fixed',
+                    background: 'none',
+                    'border-bottom': 'none',
+                    'box-shadow': 'none',
+                  });
+                }
               }
-            } else {
-              if (!searchActive) {
-                scrollActive = !scrollActive;
-                $('#header').css({
-                  position: 'fixed',
-                  background: 'none',
-                  border: 'none',
-                });
+            });
+          } else {
+            // .main_best 요소가 없을 때 기본 동작 설정
+            $(window).on('scroll', function () {
+              let windowTop = $(window).scrollTop();
+              if (windowTop > 0) {
+                if (!searchActive) {
+                  scrollActive = true;
+                  $('#header').css({
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    'z-index': 9999,
+                    background: 'white',
+                    'border-bottom': '1px solid #ebebeb',
+                    width: '100%',
+                    'box-shadow': 'rgba(0, 0, 0, 0.5)',
+                  });
+                }
+              } else {
+                if (!searchActive) {
+                  scrollActive = false;
+                  $('#header').css({
+                    position: 'fixed',
+                    background: 'none',
+                    'border-bottom': 'none',
+                    'box-shadow': 'none',
+                  });
+                }
               }
-            }
-          });
+            });
+          }
         }
       }
-    })
-    .trigger('resize');
+    });
 
-  // 검색창 토글
-  $(function () {
+    // 검색창 토글
     $('.search').on('click', function () {
       searchActive = !searchActive;
 
@@ -71,18 +106,23 @@ $(function () {
         background: 'white',
       });
     });
-  });
-  $(function () {
+
     $('.close_btn').on('click', function () {
       searchActive = !searchActive;
 
-      let gnbTop = $('.main_best').offset().top;
-      let windowTop = $(window).scrollTop();
-      if (windowTop > gnbTop) {
-        // 기준으로 설정한 스크롤 위치
-        scrollActive = true; // 스크롤 활성화
+      // .main_best 요소가 존재하는지 확인
+      if ($('.main_best').length > 0) {
+        let gnbTop = $('.main_best').offset().top;
+        let windowTop = $(window).scrollTop();
+        if (windowTop > gnbTop) {
+          // 기준으로 설정한 스크롤 위치
+          scrollActive = true; // 스크롤 활성화
+        } else {
+          scrollActive = false; // 스크롤 비활성화
+        }
       } else {
-        scrollActive = false; // 스크롤 비활성화
+        // .main_best 요소가 없을 때 기본값 설정
+        scrollActive = false;
       }
 
       $('.header_bottom').removeClass('on');
@@ -124,18 +164,18 @@ $(function () {
       // 클릭된 위치가 닫기 버튼의 영역 내인지 확인
       const withinCloseButtonX =
         e.pageX >
-          $(this).offset().left +
-            $(this).outerWidth() -
-            closeButtonPosition.right -
-            closeButtonSize &&
+        $(this).offset().left +
+        $(this).outerWidth() -
+        closeButtonPosition.right -
+        closeButtonSize &&
         e.pageX <
-          $(this).offset().left +
-            $(this).outerWidth() -
-            closeButtonPosition.right;
+        $(this).offset().left +
+        $(this).outerWidth() -
+        closeButtonPosition.right;
       const withinCloseButtonY =
         e.pageY > $(this).offset().top + closeButtonPosition.top &&
         e.pageY <
-          $(this).offset().top + closeButtonPosition.top + closeButtonSize;
+        $(this).offset().top + closeButtonPosition.top + closeButtonSize;
 
       if (withinCloseButtonX && withinCloseButtonY) {
         // 여기에 닫기 버튼 클릭 시 실행할 코드를 작성
@@ -204,4 +244,14 @@ $(function () {
   $('.sub_tab2 .tab_btn ').on('click', function () {
     $(this).parent().toggleClass('on');
   });
+});
+
+// 회원가입 페이지
+// register_inner 토글
+$(function () {
+  $('.register_inner').on('click', function () {
+    $(this).toggleClass('on');
+    $('.register_view').addClass('on');
+  });
+
 });
