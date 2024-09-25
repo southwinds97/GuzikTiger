@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class CodeListDTO {
 	private String category;
-	private String cdName;
+	private String cd_name;
 	private String code;
-	private String upCode;
+	private String up_code;
 }
 
