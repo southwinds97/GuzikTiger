@@ -43,9 +43,20 @@
               </c:if>
             </div>
             <ul class="type_menu">
-              <c:forEach var="category" items="${categories}">
-                <li><a href="#">${category.cd_name}</a></li>
-              </c:forEach>
+              <c:if test="${param.category == 'mainCate'}">
+                <c:forEach var="category" items="${categories}">
+                  <li>
+                    <a href="productList.do?category=${category.cd_name}">${category.cd_name}</a>
+                  </li>
+                </c:forEach>
+              </c:if>
+              <c:if test="${param.category != 'mainCate'}">
+                <c:forEach var="upCodeCategory" items="${upCodeCategories}">
+                  <li>
+                    <a href="productList.do?category=${upCodeCategory.cd_name}">${upCodeCategory.cd_name}</a>
+                  </li>
+                </c:forEach>
+              </c:if>
             </ul>
             <div class="list_package">
               <div class="list_count">

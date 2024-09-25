@@ -120,12 +120,12 @@
 		order by  c.sell_count desc
 	</select>
 	
-	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
+	<!-- <select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
 		select cd_name  from code_list where category = 'mainCate'
-	</select>
-	<select id="subCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
+	</select> -->
+	<!-- <select id="subCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
 		select cd_name  from code_list where category = 'subCate'
-	</select>
+	</select> -->
 		
 <!-- 	<insert id="write">
 		insert into myboard (idx, name, title, content)
@@ -151,4 +151,21 @@
 		where idx = #{idx}
 	</update> -->
 
+	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
+		select cd_name  from code_list where category = 'mainCate'
+	</select>
+
+	<select id="subCategoryList" parameterType="String" resultType="com.edu.springboot.product.CodeListDTO">
+        SELECT cd_name FROM code_list WHERE category = #{category}
+    </select>
+
+	<!-- cd_name으로 code 가져오기 -->
+    <select id="getCodeByCdName" parameterType="String" resultType="String">
+        SELECT code FROM code_list WHERE cd_name = #{cd_name}
+    </select>
+
+	<!-- up_code로 cd_name 리스트 조회 -->
+    <select id="getCategoriesByUpCode" parameterType="String" resultType="com.edu.springboot.product.CodeListDTO">
+        SELECT cd_name FROM code_list WHERE up_code = #{up_code}
+    </select>
 </mapper>
