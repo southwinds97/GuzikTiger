@@ -3,7 +3,7 @@
 
 참고 사이트 - https://www.muziktiger.com/
 
-<br />
+설명
 ========================================
 <br />
 <img src="https://muziktiger.com/mztg/brand_page_1.jpg">
