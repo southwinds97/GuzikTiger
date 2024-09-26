@@ -37,17 +37,16 @@ Q&A(구현중)
 장바구니(구현중)
 
 결제창(구현중)
-<br />
+
+필요 DataBase (SQL)  <br />
 ====================================================
 <br />
 
-필요 DataBase (SQL)  <br />
 GuzikTiger(테이블 정의서) - https://drive.google.com/file/d/1sloKGaz1jTCmRrAR9I0-loUOYRSrWAW1/view?usp=drive_link  <br/>
 GuzikTiger(상품 Insert) - https://drive.google.com/file/d/1vdv7kHDbqJSb39cAaxSq3zmT8Ww_5fCg/view?usp=drive_link  <br /> 
 
-====================================================
-<br />
 사용 프로그램
+====================================================
 <br />
 VS Code <br />
 Spring Boot <br />
