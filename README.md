@@ -17,6 +17,8 @@
 메인
 
 로그인 & 회원가입
+  - 로그인
+  - 회원가입
 
 마이페이지(구현중)
   - 메인
@@ -45,7 +47,7 @@ DataBase (SQL)  <br />
 ====================================================
 <a href="https://code.visualstudio.com/">VS Code</a> <br />
 <a href="https://spring.io/tools">Spring Boot</a> <br />
-<a href="https://www.oracle.com/database/technologies/xe-downloads.html">orecle 21c</a> <br />
+<a href="https://www.oracle.com/database/technologies/xe-downloads.html">Orecle 21c</a> <br />
 <a href="https://www.oracle.com/database/sqldeveloper/technologies/download"/>Sql Delveloper</a> <br />
 
 기타
