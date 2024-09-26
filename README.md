@@ -51,4 +51,4 @@ DataBase (SQL)  <br />
 기타
 ===================================================
 
-<img src="https://muziktiger.com/mztg/brand_page.gif">
+<img src="https://muziktiger.com/mztg/character_page_1.jpg">
