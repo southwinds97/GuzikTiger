@@ -47,3 +47,8 @@ DataBase (SQL)  <br />
 <a href="https://spring.io/tools">Spring Boot</a> <br />
 <a href="https://www.oracle.com/database/technologies/xe-downloads.html">orecle 21c</a> <br />
 <a href="https://www.oracle.com/database/sqldeveloper/technologies/download"/>Sql Delveloper</a> <br />
+
+기타
+===================================================
+
+<img src="https://muziktiger.com/mztg/brand_page.gif">
