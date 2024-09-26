@@ -2,6 +2,11 @@
 
 참고 사이트 - https://www.muziktiger.com/
 
+--------------------------------------------
+
+<img src="https://muziktiger.com/mztg/brand_page_1.jpg">
+
+
 -----------------------------------------
 
 필요 sql
