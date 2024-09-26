@@ -1,6 +1,8 @@
 package com.edu.springboot.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,25 +75,46 @@ public class ProductController {
 
 	@RequestMapping("/productListContent.do")
 	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO,
-			@RequestParam(value = "code", required = false) String code) {
+			@RequestParam(value = "code", required = false) String code,
+			@RequestParam(value = "offset", defaultValue = "0") int offset,
+			@RequestParam(value = "limit", defaultValue = "20") int limit) {
 		ArrayList<ProductDTO> lists;
-		System.out.println("code : " + code);
+
+		int count = 0;
+
+		// System.out.println("code : " + code);
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("code", code);
+		params.put("offset", offset);
+		params.put("limit", limit);
 
 		if (code == null || code.isEmpty()) {
+			count = dao.getMainCategoryCount();
 			// code 값이 null이거나 비어있는 경우
-			lists = dao.getAllSelect(parameterDTO);
+			lists = dao.getAllSelect(params);
 		} else if (code.startsWith("A")) {
+			count = dao.getSelectByCodeMainCount(code);
 			// code 값이 'A'로 시작하는 경우
-			lists = dao.getSelectByCodeMain(code);
+			lists = dao.getSelectByCodeMain(params);
 		} else if (code.startsWith("B")) {
+			count = dao.getSelectByCodeSubCount(code);
 			// code 값이 'B'로 시작하는 경우
-			lists = dao.getSelectByCodeSub(code);
+			lists = dao.getSelectByCodeSub(params);
 		} else {
+			count = dao.getMainCategoryCount();
 			// 그 외의 경우
-			lists = dao.getAllSelect(parameterDTO);
+			lists = dao.getAllSelect(params);
 		}
 
+		if (lists.isEmpty()) {
+			return "";
+		}
+
+		System.out.println(count);
+
 		model.addAttribute("allLists", lists);
+		model.addAttribute("totalCount", count);
 		return "productListContent";
 	}
 

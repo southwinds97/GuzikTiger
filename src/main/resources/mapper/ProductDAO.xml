@@ -18,7 +18,7 @@
 	 <!--all상품 -->		 
 	<select id="getAllSelect"
 		resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="com.edu.springboot.ParameterDTO">
+		parameterType="map">
 		<!-- select * from (
 			select tb.*, rownum rNum from(
 				select * from product
@@ -36,13 +36,13 @@
 		    a.product_content as product_content , 
 		    b.stock as stock,
 		    b.img_id as img_id,
-		    b.price as price
+		    TO_CHAR(b.price, 'FM999,999,999,999') as price
 		from product a, product_dtl b 
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
 		order by a.product_name 
-		
+		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
 	</select>
 	
 	 <!-- new상품 -->
@@ -68,7 +68,7 @@
 			    a.product_content as product_content , 
 			    b.stock as stock,
 			    b.img_id as img_id,
-			    b.price as price
+			    TO_CHAR(b.price, 'FM999,999,999,999') as price
 			from product a, product_dtl b ,
 			(select t.product_id,rownum num , t.elapsed_date elapsed_date from 
 			(select product_id, to_date(sysdate, 'yyyy/mm/dd') - to_date(regidate, 'yyyy/mm/dd') elapsed_date 
@@ -105,7 +105,7 @@
 		    a.product_content as product_content , 
 		    b.stock as stock,
 		    b.img_id as img_id,
-		    b.price as price,
+		    TO_CHAR(b.price, 'FM999,999,999,999') as price,
 		    c.stock,
 		    c.sell_count
 		from product a, product_dtl b ,
@@ -118,6 +118,7 @@
 		and a.product_id = b.product_id
 		and b.product_id = c.product_id
 		order by  c.sell_count desc
+		OFFSET 0 ROWS FETCH NEXT 8 ROWS ONLY
 	</select>
 	
 	<!-- <select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
@@ -175,20 +176,22 @@
     </select>
 
 	<!-- 코드를 이용해서 mainCate 상품 검색 -->
-	<select id="getSelectByCodeMain" parameterType="String" resultType="com.edu.springboot.product.ProductDTO">
+	<select id="getSelectByCodeMain" parameterType="map" resultType="com.edu.springboot.product.ProductDTO">
 		select  a.product_id,
 			a.product_name as product_name, 
 			a.product_content as product_content , 
 			b.stock as stock,
 			b.img_id as img_id,
-			b.price as price
+			TO_CHAR(b.price, 'FM999,999,999,999') as price
 		from product a, product_dtl b , code_list c
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.up_code = #{code}
-		order by a.product_name 
+		order by a.product_name
+		<!-- OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY -->
+		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
 	</select>
 
 
@@ -205,13 +208,13 @@
 	</select>
 
 	<!-- 코드검색 subCate 상품 검색  -->
-    <select id="getSelectByCodeSub" parameterType="String" resultType="com.edu.springboot.product.ProductDTO">
+    <select id="getSelectByCodeSub" parameterType="map" resultType="com.edu.springboot.product.ProductDTO">
         select  a.product_id,
 			a.product_name as product_name, 
 			a.product_content as product_content , 
 			b.stock as stock,
 			b.img_id as img_id,
-			b.price as price
+			TO_CHAR(b.price, 'FM999,999,999,999') as price
 		from product a, product_dtl b , code_list c
 		where 1=1
 		and b.idx = 1
@@ -219,6 +222,7 @@
 		and a.sub_cate like '%'||c.code||'%'
 		and c.code = #{code}
 		order by a.product_name 
+		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
     </select>
 
     <!-- 코드검색 subCate 상품 카운트 -->
@@ -230,7 +234,7 @@
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.code = #{code}
-		order by a.product_name 
+		order by a.product_name
     </select>
 	
 	<select id="getMainCategoryCount" resultType="int">

@@ -1,6 +1,7 @@
 package com.edu.springboot.product;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +14,7 @@ public interface IProductService {
 	public int getTotalCount(ParameterDTO parameterDTO);
 
 	// 메인 조회
-	public ArrayList<ProductDTO> getAllSelect(ParameterDTO parameterDTO);
+	public ArrayList<ProductDTO> getAllSelect(Map<String, Object> param);
 
 	// new상품리스트 조회
 	public ArrayList<ProductDTO> getProductNewList(ParameterDTO parameterDTO);
@@ -36,13 +37,13 @@ public interface IProductService {
 	public ArrayList<CodeListDTO> getCategoriesByUpCode(@Param("up_code") String up_code);
 
 	// code로 mainCate상품리스트 조회
-	ArrayList<ProductDTO> getSelectByCodeMain(@Param("code") String code);
+	ArrayList<ProductDTO> getSelectByCodeMain(Map<String, Object> param);
 
 	// code로 mainCate상품 검색한 수
 	int getSelectByCodeMainCount(@Param("code") String code);
 
 	// code로 subCate상품리스트 조회
-	ArrayList<ProductDTO> getSelectByCodeSub(@Param("code") String code);
+	ArrayList<ProductDTO> getSelectByCodeSub(Map<String, Object> param);
 
 	// code로 subCate상품 검색한 수
 	int getSelectByCodeSubCount(@Param("code") String code);

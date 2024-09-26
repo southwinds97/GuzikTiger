@@ -9,6 +9,7 @@
         </head>
 
         <body>
+            <input type="hidden" id="totalCount" value="${totalCount}">
             <section class="list">
                 <div class="inner">
                     <c:forEach items="${allLists}" var="row" varStatus="loop">
@@ -19,16 +20,16 @@
                                 </div>
                                 <div class="item_info">
                                     <strong class="item_name">${row.product_name }</strong>
-                                    <span class="item_price">${row.price }</span>
+                                    <span class="item_price">${row.price }원</span>
                                 </div>
                             </a>
                         </div>
                     </c:forEach>
                 </div>
-                <div class="btr_wrap">
-                    <a href="#" class="btn_more">more&nbsp;&nbsp;&nbsp;+</a>
-                </div>
+
             </section>
+
+
         </body>
 
     </html>

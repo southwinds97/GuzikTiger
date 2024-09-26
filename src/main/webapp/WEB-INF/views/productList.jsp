@@ -8,12 +8,15 @@
       <title>Insert title here</title>
       <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
       <link rel="stylesheet" href="css/jquery-ui.min.css">
+      <link rel="stylesheet" href="css/swiper-bundle.min.css" />
       <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="css/productList.css?v=<?php echo time(); ?>">
       <script src="js/jquery-3.7.1.min.js"></script>
+      <script src="js/swiper-bundle.min.js"></script>
       <script src="js/jquery-ui.min.js"></script>
       <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
+
     </head>
 
     <body>
@@ -78,38 +81,65 @@
             <div id="productListContent"></div>
 
             <script>
+              var offset = 0;
+              var limit = 20;
+              var totalCount = 0;
+
               $(document).ready(function () {
                 // 초기 페이지 로딩 시 productListContent를 가져오기 위한 ajax 호출
                 loadProductListContent();
 
                 // type_menu나 list_array를 변경할 때마다 productListContent를 업데이트하기 위한 이벤트 핸들러 등록
-                $('.type_menu, #list_array').change(function () {
+                $('.type_menu a, #list_array').change(function () {
+                  offset = 0;
+                  $('#productListContent').empty();
+                  loadProductListContent();
+                });
+
+                // more 버튼 클릭 시 추가 제품 로드
+                $('.btn_more').click(function () {
                   loadProductListContent();
                 });
               });
 
               function loadProductListContent() {
-                var typeMenuValue = $('.type_menu').val();
+                var typeMenuValue = $('.type_menu a.active').data('value');
                 var listArrayValue = $('#list_array').val();
                 var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
 
                 $.ajax({
-                  url: 'productListContent.do',
+                  url: '${pageContext.request.contextPath}/productListContent.do',
                   type: 'GET',
                   data: {
                     typeMenu: typeMenuValue,
                     listArray: listArrayValue,
-                    code: codeValue // AJAX 요청에 code 값을 포함
+                    code: codeValue, // AJAX 요청에 code 값을 포함
+                    offset: offset,
+                    limit: limit
                   },
                   success: function (response) {
-                    $('#productListContent').html(response);
+                    $('#productListContent').append(response);
+
+                    // 서버에서 totalCount 값을 가져와서 설정
+                    totalCount = parseInt($('#totalCount').val());
+                    console.log(offset, totalCount);
+                    offset += limit;
+
+                    if (offset >= totalCount) {
+                      $('.btn_more').hide();
+                    }
                   },
                   error: function (xhr, status, error) {
+                    $('.btn_more').hide(); // 에러 발생 시 버튼 숨기기
                     console.log(error);
                   }
                 });
               }
             </script>
+
+            <div class="btr_wrap">
+              <button type="button" class="btn_more">more&nbsp;&nbsp;&nbsp;+</button>
+            </div>
           </main>
           <!-- 푸터 -->
           <%@ include file="footer.jsp" %>

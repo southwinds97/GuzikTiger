@@ -66,9 +66,9 @@
                 <li>
                   <a href="productList.do?category=키링">키링</a>
                   <ul class="depth3">
-                    <li><a href="productList.do?category=아크릴 키링">아크릴 키링</a></li>
-                    <li><a href="productList.do?category=인형 키링">인형 키링</a></li>
-                    <li><a href="productList.do?category=파우치 키링">파우치 키링</a></li>
+                    <li><a href="productList.do?category=아크릴키링">아크릴 키링</a></li>
+                    <li><a href="productList.do?category=인형키링">인형 키링</a></li>
+                    <li><a href="productList.do?category=파우치키링">파우치 키링</a></li>
                   </ul>
                 </li>
                 <li><a href="productList.do?category=노트북/태블릿 파우치">노트북/태블릿 파우치</a></li>
