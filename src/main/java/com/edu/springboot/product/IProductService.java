@@ -34,4 +34,19 @@ public interface IProductService {
 
 	// up_code로 cd_name 리스트 조회
 	public ArrayList<CodeListDTO> getCategoriesByUpCode(@Param("up_code") String up_code);
+
+	// code로 mainCate상품리스트 조회
+	ArrayList<ProductDTO> getSelectByCodeMain(@Param("code") String code);
+
+	// code로 mainCate상품 검색한 수
+	int getSelectByCodeMainCount(@Param("code") String code);
+
+	// code로 subCate상품리스트 조회
+	ArrayList<ProductDTO> getSelectByCodeSub(@Param("code") String code);
+
+	// code로 subCate상품 검색한 수
+	int getSelectByCodeSubCount(@Param("code") String code);
+
+	// 상품 전체 검색 수
+	int getMainCategoryCount();
 }

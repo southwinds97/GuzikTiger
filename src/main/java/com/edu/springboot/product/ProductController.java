@@ -49,14 +49,48 @@ public class ProductController {
 			// upCodeCategories를 모델에 추가
 			model.addAttribute("upCodeCategories", upCodeCategories);
 
+			// code 값을 모델에 추가
+			model.addAttribute("code", code);
+
+			// code 값을 이용하여 결과 카운트 조회
+			int productCount = 0;
+			// int productCount = dao.getSelectByCodeMainCount(code);
+			if (code.startsWith("A")) {
+				productCount = dao.getSelectByCodeMainCount(code);
+			} else if (code.startsWith("B")) {
+				productCount = dao.getSelectByCodeSubCount(code);
+			}
+			model.addAttribute("productCount", productCount);
+
 			model.addAttribute("selectedCategory", category);
+		} else {
+			// category가 'mainCate'인 경우 메인 카테고리의 전체 카운트 조회
+			int mainCategoryCount = dao.getMainCategoryCount();
+			model.addAttribute("productCount", mainCategoryCount);
 		}
 		return "productList";
 	}
 
 	@RequestMapping("/productListContent.do")
-	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
-		ArrayList<ProductDTO> lists = dao.getAllSelect(parameterDTO);
+	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO,
+			@RequestParam(value = "code", required = false) String code) {
+		ArrayList<ProductDTO> lists;
+		System.out.println("code : " + code);
+
+		if (code == null || code.isEmpty()) {
+			// code 값이 null이거나 비어있는 경우
+			lists = dao.getAllSelect(parameterDTO);
+		} else if (code.startsWith("A")) {
+			// code 값이 'A'로 시작하는 경우
+			lists = dao.getSelectByCodeMain(code);
+		} else if (code.startsWith("B")) {
+			// code 값이 'B'로 시작하는 경우
+			lists = dao.getSelectByCodeSub(code);
+		} else {
+			// 그 외의 경우
+			lists = dao.getAllSelect(parameterDTO);
+		}
+
 		model.addAttribute("allLists", lists);
 		return "productListContent";
 	}

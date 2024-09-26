@@ -25,12 +25,14 @@
         <%@ include file="header.jsp" %>
           <main id="container">
             <div class="location">
-              <a href="index.html">HOME</a>
-              <a href="list.html">SHOP</a>
+              <a href="/">HOME</a>
+              <a href="productList.do?category=mainCate">SHOP</a>
               <!-- codelist테이블의 CateGORY가 mainCate의 CD_Name -->
-              <a href="#">키링</a>
-              <!-- codelist테이블의 CateGORY가 subCate의 CD_Name -->
-              <a href="#">인형 키링</a>
+              <c:if test="${param.category != 'mainCate'}">
+                <c:forEach var="category" items="${subCategories}">
+                  <a href="productList.do?category=${category.cd_name}">${category.cd_name}</a>
+                </c:forEach>
+              </c:if>
             </div>
             <div class="list_d">
               <!-- category=mainCate라는 파라미터를 받았을 때 -->
@@ -60,7 +62,7 @@
             </ul>
             <div class="list_package">
               <div class="list_count">
-                <strong class="count">593</strong>&nbsp;itmes
+                <strong class="count">${productCount}</strong>&nbsp;itmes
               </div>
               <div class="function" id="function">
                 <select id="list_array">
@@ -89,13 +91,15 @@
               function loadProductListContent() {
                 var typeMenuValue = $('.type_menu').val();
                 var listArrayValue = $('#list_array').val();
+                var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
 
                 $.ajax({
                   url: 'productListContent.do',
                   type: 'GET',
                   data: {
                     typeMenu: typeMenuValue,
-                    listArray: listArrayValue
+                    listArray: listArrayValue,
+                    code: codeValue // AJAX 요청에 code 값을 포함
                   },
                   success: function (response) {
                     $('#productListContent').html(response);
@@ -106,7 +110,6 @@
                 });
               }
             </script>
-
           </main>
           <!-- 푸터 -->
           <%@ include file="footer.jsp" %>
