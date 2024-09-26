@@ -29,6 +29,9 @@ public interface IProductService {
 	// cd_name으로 code 가져오기
 	public String getCodeByCdName(@Param("cd_name") String cd_name);
 
+	// cd_name으로 up_code 리스트 조회 메서드 추가
+	ArrayList<CodeListDTO> getCategoriesByCdName(String cdName);
+
 	// up_code로 cd_name 리스트 조회
 	public ArrayList<CodeListDTO> getCategoriesByUpCode(@Param("up_code") String up_code);
 }

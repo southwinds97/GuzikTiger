@@ -36,12 +36,21 @@ public class ProductController {
 				return "productList"; // 에러 페이지로 이동
 			}
 
-			ArrayList<CodeListDTO> upCodeCategories = dao.getCategoriesByUpCode(code);
-			// code를 up_code로 사용하여 일치하는 cd_name 리스트 조회
+			ArrayList<CodeListDTO> upCodeCategories;
+			// code가 'A'로 시작하는 경우에만 up_code로 변환
+			if (code.startsWith("A")) {
+				upCodeCategories = dao.getCategoriesByUpCode(code);
+			} else {
+				// code가 'A'로 시작하지 않는 경우, category를 사용하여 up_code 조회
+				String upCode = dao.getCategoriesByCdName(category).get(0).getUp_code();
+				// 조회된 up_code를 사용하여 일치하는 cd_name 리스트 조회
+				upCodeCategories = dao.getCategoriesByUpCode(upCode);
+			}
+			// upCodeCategories를 모델에 추가
 			model.addAttribute("upCodeCategories", upCodeCategories);
-		}
 
-		model.addAttribute("selectedCategory", category);
+			model.addAttribute("selectedCategory", category);
+		}
 		return "productList";
 	}
 
