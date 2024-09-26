@@ -8,8 +8,6 @@
 <br />
 <img src="https://muziktiger.com/mztg/brand_page_1.jpg">
 
-구직타이거
-
 무직타이거 홈페이지를 모방하여 팀프로젝트를 진행했습니다.
 
 쇼핑몰 페이지 구현
