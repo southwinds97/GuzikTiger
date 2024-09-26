@@ -67,7 +67,7 @@ public class ProductController {
 			model.addAttribute("selectedCategory", category);
 		} else {
 			// category가 'mainCate'인 경우 메인 카테고리의 전체 카운트 조회
-			int mainCategoryCount = dao.getMainCategoryCount();
+			int mainCategoryCount = dao.getSelectByCodeAllCount();
 			model.addAttribute("productCount", mainCategoryCount);
 		}
 		return "productList";
@@ -90,9 +90,9 @@ public class ProductController {
 		params.put("limit", limit);
 
 		if (code == null || code.isEmpty()) {
-			count = dao.getMainCategoryCount();
+			count = dao.getSelectByCodeAllCount();
 			// code 값이 null이거나 비어있는 경우
-			lists = dao.getAllSelect(params);
+			lists = dao.getSelectByCodeAll(params);
 		} else if (code.startsWith("A")) {
 			count = dao.getSelectByCodeMainCount(code);
 			// code 값이 'A'로 시작하는 경우
@@ -102,9 +102,9 @@ public class ProductController {
 			// code 값이 'B'로 시작하는 경우
 			lists = dao.getSelectByCodeSub(params);
 		} else {
-			count = dao.getMainCategoryCount();
+			count = dao.getSelectByCodeAllCount();
 			// 그 외의 경우
-			lists = dao.getAllSelect(params);
+			lists = dao.getSelectByCodeAll(params);
 		}
 
 		if (lists.isEmpty()) {

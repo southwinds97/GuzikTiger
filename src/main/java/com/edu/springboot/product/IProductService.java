@@ -14,7 +14,7 @@ public interface IProductService {
 	public int getTotalCount(ParameterDTO parameterDTO);
 
 	// 메인 조회
-	public ArrayList<ProductDTO> getAllSelect(Map<String, Object> param);
+	public ArrayList<ProductDTO> getAllSelect(ParameterDTO parameterDTO);
 
 	// new상품리스트 조회
 	public ArrayList<ProductDTO> getProductNewList(ParameterDTO parameterDTO);
@@ -48,6 +48,9 @@ public interface IProductService {
 	// code로 subCate상품 검색한 수
 	int getSelectByCodeSubCount(@Param("code") String code);
 
+	// 상품 전체 검색
+	public ArrayList<ProductDTO> getSelectByCodeAll(Map<String, Object> param);
+
 	// 상품 전체 검색 수
-	int getMainCategoryCount();
+	int getSelectByCodeAllCount();
 }
