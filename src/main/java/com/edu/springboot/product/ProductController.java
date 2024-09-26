@@ -111,8 +111,6 @@ public class ProductController {
 			return "";
 		}
 
-		System.out.println(count);
-
 		model.addAttribute("allLists", lists);
 		model.addAttribute("totalCount", count);
 		return "productListContent";

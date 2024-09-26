@@ -60,6 +60,9 @@ $(function () {
             });
           } else {
             // .main_best 요소가 없을 때 기본 동작 설정
+            $('#header').css({
+              background: 'white', // 배경을 white로 설정
+            });
             $(window).on('scroll', function () {
               let windowTop = $(window).scrollTop();
               if (windowTop > 0) {
@@ -81,7 +84,7 @@ $(function () {
                   scrollActive = false;
                   $('#header').css({
                     position: 'fixed',
-                    background: 'none',
+                    background: 'white', // 배경을 white로 설정
                     'border-bottom': 'none',
                     'box-shadow': 'none',
                   });
@@ -136,7 +139,7 @@ $(function () {
         });
       } else {
         $('#header').css({
-          background: 'none',
+          background: 'white', // 배경을 white로 설정
         });
         $('.header_bottom').css({
           'border-top': 'none',
@@ -219,6 +222,7 @@ $(function () {
   });
 
   // 메뉴슬라이더
+
   // 좌우화살표를 .swiper밖으로 뺄 경우 부모이름을 적어야함
   let newSlider = new Swiper('.new_slider .swiper', {
     loop: true,
