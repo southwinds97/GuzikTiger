@@ -40,11 +40,12 @@ Q&A(구현중)
 
 DataBase (SQL)  <br />
 ====================================================
-GuzikTiger(테이블 정의서) - https://drive.google.com/file/d/1sloKGaz1jTCmRrAR9I0-loUOYRSrWAW1/view?usp=drive_link  <br/>
-GuzikTiger(상품 Insert) - https://drive.google.com/file/d/1vdv7kHDbqJSb39cAaxSq3zmT8Ww_5fCg/view?usp=drive_link  <br /> 
+<a href="https://drive.google.com/file/d/1sloKGaz1jTCmRrAR9I0-loUOYRSrWAW1/view?usp=drive_link">GuzikTiger(테이블 정의서)</a>  <br/>
+<a href="https://drive.google.com/file/d/1vdv7kHDbqJSb39cAaxSq3zmT8Ww_5fCg/view?usp=drive_link">GuzikTiger(상품 Insert)</a>  <br /> 
 
 사용 프로그램
 ====================================================
-VS Code <br />
-Spring Boot <br />
-Sql Delveloper <br />
+<a href="https://code.visualstudio.com/">VS Code</a> <br />
+<a href="https://spring.io/tools">Spring Boot</a> <br />
+<a href="https://www.oracle.com/database/technologies/xe-downloads.html">orecle 21c</a> <br />
+<a href="https://www.oracle.com/database/sqldeveloper/technologies/download"/>Sql Delveloper</a> <br />
