@@ -79,6 +79,7 @@ public class ProductController {
 	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO,
 			@RequestParam(value = "code", required = false) String code,
 			@RequestParam(value = "category", required = false) String category,
+			@RequestParam(value = "list_array", required = false) String listArray,
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
 			@RequestParam(value = "limit", defaultValue = "20") int limit) {
 		ArrayList<ProductDTO> lists;
@@ -86,10 +87,12 @@ public class ProductController {
 		int count = 0;
 
 		// System.out.println("code : " + code);
-		System.out.println("category : " + category);
+		// System.out.println("category : " + category);
+		System.out.println("list_array : " + listArray);
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
+		params.put("list_array", String.valueOf(listArray));
 		params.put("offset", offset);
 		params.put("limit", limit);
 

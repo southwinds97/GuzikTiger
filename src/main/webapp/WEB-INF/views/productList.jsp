@@ -75,19 +75,22 @@
                 </c:if>
 
               </div>
-              <div class="function" id="function">
-                <select id="list_array">
-                  <option value="1">신상품</option>
-                  <option value="2">상품명</option>
-                  <option value="3">낮은가격</option>
-                  <option value="4">높은가격</option>
-                  <option value="4">인기상품</option>
-                </select>
-              </div>
+              <c:if test="${param.category != 'BEST' && param.category != 'NEW'}">
+                <div class="function" id="function">
+                  <select id="list_array" name="list_array">
+                    <option value="1">신상품</option>
+                    <option value="2">상품명</option>
+                    <option value="3">낮은가격</option>
+                    <option value="4">높은가격</option>
+                    <option value="4">인기상품</option>
+                  </select>
+                </div>
+              </c:if>
             </div>
+
             <!-- ajax로 productListConent.jsp 내용 가져오기 typemenu나 list_array를 누를 때마다 파라미터 전달로 내용 변환이 필요 -->
             <div id="productListContent"></div>
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script>
               var offset = 0;
               var limit = 20;
@@ -98,9 +101,13 @@
                 loadProductListContent();
 
                 // type_menu나 list_array를 변경할 때마다 productListContent를 업데이트하기 위한 이벤트 핸들러 등록
-                $('.type_menu a, #list_array').change(function () {
+                $('.type_menu a').click(function () {
                   offset = 0;
-                  $('#productListContent').empty();
+                  loadProductListContent();
+                });
+
+                $('#list_array').change(function () {
+                  offset = 0;
                   loadProductListContent();
                 });
 
@@ -114,20 +121,21 @@
                 var typeMenuValue = $('.type_menu a.active').data('value');
                 var listArrayValue = $('#list_array').val();
                 var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
-                var categoryValue = '${param.category}';
+                var categoryValue = '${param.category}'; // JSP에서 category 값을 JavaScript 변수로 설정
 
                 $.ajax({
                   url: '${pageContext.request.contextPath}/productListContent.do',
                   type: 'GET',
                   data: {
                     typeMenu: typeMenuValue,
-                    listArray: listArrayValue,
+                    list_array: listArrayValue, // AJAX 요청에 list_array 값을 포함
                     code: codeValue, // AJAX 요청에 code 값을 포함
-                    category: categoryValue,
+                    category: categoryValue, // AJAX 요청에 category 값을 포함
                     offset: offset,
                     limit: limit
                   },
                   success: function (response) {
+                    $('#productListContent').empty();
                     $('#productListContent').append(response);
 
                     // 서버에서 totalCount 값을 가져와서 설정

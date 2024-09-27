@@ -189,7 +189,26 @@
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.up_code = #{code}
-		order by a.product_name
+		<choose>
+			<when test="list_array == 1">
+				order by a.product_name
+			</when>
+			<when test="list_array == 2">
+				order by a.product_name
+			</when>
+			<when test="list_array == 3">
+				order by b.price
+			</when>
+			<when test="list_array == 4">
+				order by b.price desc
+			</when>
+			<when test="list_array == 5">
+				order by a.popularity
+			</when>
+			<otherwise>
+				order by b.price
+			</otherwise>
+		</choose>
 		<!-- OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY -->
 		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -204,7 +223,7 @@
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.up_code = #{code}
-		order by a.product_name 
+		<!-- order by a.product_name  -->
 	</select>
 
 	<!-- 코드검색 subCate 상품 검색  -->
@@ -221,7 +240,26 @@
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.code = #{code}
-		order by a.product_name 
+		<choose>
+			<when test="list_array == 1">
+				order by a.product_name
+			</when>
+			<when test="list_array == 2">
+				order by a.product_name
+			</when>
+			<when test="list_array == 3">
+				order by b.price
+			</when>
+			<when test="list_array == 4">
+				order by b.price desc
+			</when>
+			<when test="list_array == 5">
+				order by a.popularity
+			</when>
+			<otherwise>
+				order by b.price
+			</otherwise>
+		</choose>
 		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
     </select>
 
@@ -234,24 +272,45 @@
 		and a.product_id = b.product_id
 		and a.sub_cate like '%'||c.code||'%'
 		and c.code = #{code}
-		order by a.product_name
+		<!-- order by a.product_name -->
     </select>
 
 	<select id="getSelectByCodeAll"
-		resultType = "com.edu.springboot.product.ProductDTO"
+		resultType="com.edu.springboot.product.ProductDTO"
 		parameterType="map">
 		
 		select  a.product_id,
-		    a.product_name as product_name, 
-		    a.product_content as product_content , 
-		    b.stock as stock,
-		    b.img_id as img_id,
-		    TO_CHAR(b.price, 'FM999,999,999,999') as price
+			a.product_name as product_name, 
+			a.product_content as product_content , 
+			b.stock as stock,
+			b.img_id as img_id,
+			TO_CHAR(b.price, 'FM999,999,999,999') as price
 		from product a, product_dtl b 
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
-		order by a.product_name 
+		
+		<choose>
+			<when test="list_array == 1">
+				order by a.product_name
+			</when>
+			<when test="list_array == 2">
+				order by a.product_name
+			</when>
+			<when test="list_array == 3">
+				order by b.price
+			</when>
+			<when test="list_array == 4">
+				order by b.price desc
+			</when>
+			<when test="list_array == 5">
+				order by a.popularity
+			</when>
+			<otherwise>
+				order by b.price
+			</otherwise>
+		</choose>
+		
 		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
 	</select>
 	
