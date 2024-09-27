@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>MUZIKTIGER 무직타이거</title>
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
