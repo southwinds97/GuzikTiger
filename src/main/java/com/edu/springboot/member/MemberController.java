@@ -107,4 +107,10 @@ public class MemberController {
     public String RegistEdit(HttpServletRequest req, MemberDTO memberDTO) {
         return "registEdit";
     }
+
+    // 아이디 찾기
+    @GetMapping("/idFinder.do")
+    public String idFinder() {
+        return "idFinder";
+    }
 }

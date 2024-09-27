@@ -23,8 +23,51 @@
             <p>1초 회원가입으로 쿠폰도 받고<br>
               간편하게 로그인 하랑구!</p>
             <div class="btn_wrap">
-              <a class="kakao_btn" href="#">카카오 1초 로그인</a>
-              <a class="naver_btn" href="#">네이버 1초 로그인</a>
+              <div class="kakao">
+                <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+                  integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+                  crossorigin="anonymous"></script>
+                <script>
+                  Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
+                </script>
+
+                <a id="kakao-login-btn" class="kakao_btn" href="javascript:loginWithKakao()">카카오 1초 로그인</a>
+                <p id="token-result"></p>
+                <script>
+                  function loginWithKakao() {
+                    Kakao.Auth.authorize({
+                      redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+                    });
+                  }
+
+                  // 아래는 데모를 위한 UI 코드입니다.
+                  displayToken()
+                  function displayToken() {
+                    var token = getCookie('authorize-access-token');
+
+                    if (token) {
+                      Kakao.Auth.setAccessToken(token);
+                      Kakao.Auth.getStatusInfo()
+                        .then(function (res) {
+                          if (res.status === 'connected') {
+                            document.getElementById('token-result').innerText
+                              = 'login success, token: ' + Kakao.Auth.getAccessToken();
+                          }
+                        })
+                        .catch(function (err) {
+                          Kakao.Auth.setAccessToken(null);
+                        });
+                    }
+                  }
+
+                  function getCookie(name) {
+                    var parts = document.cookie.split(name + '=');
+                    if (parts.length === 2) { return parts[1].split(';')[0]; }
+                  }
+                </script>
+
+              </div>
+              <a class=" naver_btn" href="#">네이버 1초 로그인</a>
             </div>
             <!-- input값이 null인지 폼 전송전에 확인 -->
             <!-- 로그인 실패 메시지 표시 -->
@@ -80,7 +123,7 @@
                 </div>
                 <ul class="link_wrap">
                   <li><a href="#">회원가입</a></li>
-                  <li><a href="/idFinder.do">아이디</a></li>
+                  <li><a href="idFinder.do">아이디</a></li>
                   <li><a href="#">비밀번호 찾기</a></li>
                 </ul>
                 <button type="submit" class="login_btn">로그인</button>
