@@ -490,9 +490,6 @@
               </li>
             </ul>  
           </div>
-          
-          
-
         <div class="paginate">
           <a href="#" class="first">첫 페이지</a>
           <a href="#">이전페이지</a>
@@ -519,13 +516,13 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">최근 본 상품</a>
+              <a href="recentView.do">최근 본 상품</a>
             </li>
             <li>
-              <a href="#">나의 위시리스트</a>
+              <a href="wishlist.do">나의 위시리스트</a>
             </li>
             <li>
-              <a href="#">나의 게시글</a>
+              <a href="myPost.do">나의 게시글</a>
             </li>
           </ul>
           <div class="subTitle">

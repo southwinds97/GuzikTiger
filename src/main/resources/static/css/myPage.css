@@ -486,6 +486,8 @@
 
 .myinfo_Main h2 {
   font-size: 18px;
+  font-weight: 600;
+  color: #000
 }
 
 .myinfo_Main .subTitle {
