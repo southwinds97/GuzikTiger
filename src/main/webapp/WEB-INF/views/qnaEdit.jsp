@@ -2,6 +2,7 @@
   <!DOCTYPE html>
   <html>
   <head>
+  
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
