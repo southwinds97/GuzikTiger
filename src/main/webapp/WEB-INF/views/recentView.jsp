@@ -28,7 +28,7 @@
         <span>현재위치</span>
         <ol>
           <li><a href="/">홈</a></li>
-          <li title="현재위치" class="on">최근 본 상품<</li>
+          <li title="현재위치" class="on">최근 본 상품</li>
         </ol>
       </div>
       <main id="contents">
