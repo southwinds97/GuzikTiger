@@ -107,6 +107,7 @@
                 });
 
                 $('#list_array').change(function () {
+                  $('#productListContent').empty();
                   offset = 0;
                   loadProductListContent();
                 });
@@ -135,7 +136,6 @@
                     limit: limit
                   },
                   success: function (response) {
-                    $('#productListContent').empty();
                     $('#productListContent').append(response);
 
                     // 서버에서 totalCount 값을 가져와서 설정
