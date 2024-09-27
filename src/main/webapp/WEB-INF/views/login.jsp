@@ -80,7 +80,7 @@
                 </div>
                 <ul class="link_wrap">
                   <li><a href="#">회원가입</a></li>
-                  <li><a href="#">아이디</a></li>
+                  <li><a href="/idFinder.do">아이디</a></li>
                   <li><a href="#">비밀번호 찾기</a></li>
                 </ul>
                 <button type="submit" class="login_btn">로그인</button>
