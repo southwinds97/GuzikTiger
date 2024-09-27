@@ -33,15 +33,11 @@
   <div id="skip_navi">
     <a href="#container">Skip to content</a>
   </div>
+ 
   <%@ include file="header.jsp" %>
+ 
   <div id="wrap">
     <div id="container">
-    <!--
-      <div class="location">
-        <a href="/">Home</a>
-        <a href="#" class="disabled-link">마이 쇼핑</a>
-      </div>
-	-->
 	  <div class="location">
         <span>현재위치</span>
         <ol>
@@ -175,7 +171,7 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">최근 본 상품</a>
+              <a href="recentView.do">최근 본 상품</a>
             </li>
             <li>
               <a href="wishlist.do">나의 위시리스트</a>
