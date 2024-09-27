@@ -82,4 +82,10 @@ public class MemberController {
             return "regist";
         }
     }
+
+    // 회원정보 수정
+    @GetMapping("/registEdit.do")
+    public String RegistEdit(HttpServletRequest req, MemberDTO memberDTO) {
+        return "registEdit";
+    }
 }
