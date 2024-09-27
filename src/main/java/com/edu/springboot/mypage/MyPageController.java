@@ -18,4 +18,8 @@ public class MyPageController {
         return "wishlist";
     }
 
+    @RequestMapping("/recentView.do")
+    public String recentView() {
+        return "recentView";
+    }
 }
