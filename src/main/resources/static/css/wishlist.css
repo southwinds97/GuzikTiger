@@ -13,7 +13,7 @@
   max-width: 1920px;
   min-height: 800px;
   margin: 120px 0 0;
-  padding: 0 0 0 210px;
+  padding: 0 0 0 210px;	
   position: relative;
   clear: both;
 }
@@ -22,6 +22,12 @@
 .mypage_main {
   width: 100%;
   height: 100%;
+}
+
+.mypage_main h2 {
+  margin-bottom: 18px;
+  font-size: 16px;
+  font-weight: normal;
 }
 
 
@@ -54,312 +60,165 @@
   font-size: 10px;
   vertical-align: middle;
 }
+.mylist {
+ border-top: 1px solid #000;	
+
+}
 
 
 .mypage_top {
-  border-top: 1px solid #000;
   border-bottom: 1px solid #e5e5e5;
   position: relative;
-  justify-content: space-around;
-  padding: 28px 0 27px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.mypage_top::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1px;
-  height: 30%;
-  background-color: #e5e5e5;
-  transform: translate(-50%, -50%);
-}
-
-
-/* .mypage_main ul {
-  display: flex;
-  flex-wrap: wrap;
-} */
-
-.mypage_main h2 {
-  font-size: 15px;
-  line-height: 30px;
-  font-weight: 500;
-}
-
-.mypage_main p {
-  display: block;
-  font-weight: 400;
-  color: #6d6d6d;
-  box-sizing: border-box;
-  margin: 2px 0 0;
-  font-size: 13px;
-}
-
-.mypage_main .price {
-  font-size: 15px;
-  line-height: 30px;
-  font-weight: 700;
-}
-
-.mypage_main .ph, .ph2 {
-  font-size: 15px;
-  line-height: 30px;
-  font-weight: 700;
-}
-
-.mypage_main .count {
-  font-size: 15px;
-  line-height: 30px;
-  font-weight: 700;
-}
-
-.mypage_main .title {
-  display: block;
-  color: #6d6d6d;
-  font-size: 13px;
-}
-
-/* .mypage_main span:nth-of-type(5) {
-  display: block;
-  font-weight: 400;
-  color: #6d6d6d;
-  box-sizing: border-box;
-  font-size: 13px;
-  margin-top: -10px;
-} */
-
-
-
-.mypage_main li {
-  /* position: relative; */
-  text-align: center;
-  vertical-align: top;
-  box-sizing: border-box;
-  /* padding: 28px 0 27px; */
-  /* justify-content: center; */
-  height: 100%;
-}
-
-.mypage_main li img {
-  width: 50%;
-  height: 50%;
-  border-radius: 50%;
-}
-
-.titlearea {
-  margin: 50px 0 20px;
-  text-align: left;
+  padding: 16px 0 ;
+  justify-content: flex-start;
   display: flex;
   align-items: center;
+  left:0;
+  top:-6px;
 }
 
-.titlearea h3 {
-  font-size: 16px;
-  font-weight: 700;
-} 
-.titlearea .desc {
-  font-size: 13px;
-  color: #6d6d6d
+.mypage_top li:first-child {
+  margin-right: auto;
 }
 
-.titlearea span {
-  font-size: 13px;
-  color: #000000;
-}
-
-.Orderstatus {
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #e5e5e5;
+.mypage_top .wish_idx {
   position: relative;
-}
-
-.Orderstatus ul {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Orderstatus li {
-  position: relative;
-  width: 25%;
-  padding: 35px 0 33px;
-  text-align: center;
-}
-
-.Orderstatus li:not(:last-child):after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 13px;
-  height: 13px;
-  margin: -10px auto 0;
-  border-left: 1px solid #dfdfdf;
-  border-bottom: 1px solid #dfdfdf;
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-
-.Orderstatus .od_count {
-  font-size: 30px;
-}
-
-.Orderstatus .label {
-  display: block;
-  margin: 10px 0 7px;
-  font-size: 13px;
-}
-
-.title_area2 {
-  margin: 50px 0 20px;
-  text-align: left;
-}
-
-.title_area2 h3 {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.odder_list {
-  /* height: 285px; */
-  width: 100%;
-  /* height: 100%; */
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #e5e5e5;
-  position: relative;
-}
-
-.odder_list .odder_date {
-  overflow: hidden;
-  padding: 20px 0 20px 15px;
-  font-size: 13px;
-  background-color: #f6f6f6;
-}
-
-.odder_date .date {
-  font-weight: 700;
-  color: #000000;
-}
-
-.odder_date .number a {
-  color:#000000;
-}
-
-.order_listwrap {
-  position: relative;
-  border-bottom: 1px solid #ddd;
-  box-sizing: border-box;
+  top:-25px;
+  opacity: 1;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #000;
   background: #fff;
+  outline: 0;
+  
 }
 
-.odder_info {
+.mypage_top .thumbnail {
+  margin-right: 20px; 
   position: relative;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 25px 0;
-  display: flex;
-  align-items: center; 
 }
 
-.odder_img {
-  overflow: hidden;
+.mypage_top .thumbnail img {
   width: 83px;
   height: 83px;
-  margin: 0 15px 0 0;
-  border: 1px solid #d5d5d5;
-  box-sizing: border-box;
+  margin-top: 18px;
+  margin-left: 20px;
+  border: 1px solid #ddd;
 }
 
-.odder_info img {
-  width: 100%;
+.description {
+  margin: -27px	 250px 0 0;
+  flex:1;
 }
 
-.odder_detail {
-  margin-top: -40px;
-  flex: 1;
-  line-height: 18px;
-}
-
-.odder_detail .odder_name {
-  color: #000;
-  display: block;
+.description .proname {
   margin: 0 0 3px;
-  font-weight: normal;
-  font-size: 13px;
-  font-weight: 500;
 }
 
-.odder_detail .odder_price {
-  font-size: 13px;
-  color: #000;
-  line-height: 20px;
-}
+.btngroup {
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  width: 300px;
+  text-align: right;
+}	
 
-.odder_cancel {
-  padding: 18px 0;
-  justify-content: flex-end;
-}
-
-
-.cancel_left {
-  line-height: 32px;
-}
-
-.cancel_left .cancel {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.cancel_left .btnText {
-  color: #000;
-  font-weight: 400;
-  font-size: 13px;
-  display: inline-block;
-  line-height: 18px;
-  text-decoration: underline;
-}
-
-.odder_cancel:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-.odder_right .btnnormal {
-  display: inline-block;
-  padding: 12px 20px;
-  height: 40px;
+.btngroup .btnnormal {
+  padding: 10px 20px;
+  height: 32px;
   font-size: 12px;
-  box-sizing: border-box;
   border: 1px solid #bcbcbc;
   line-height: 1;
   font-weight: normal;
-  text-decoration: none;
   vertical-align: middle;
-  word-spacing: -0.5px;
-  letter-spacing: 0;
   text-align: center;
-  white-space: nowrap;
   color: #000;
   background-color: #fff;
-  -webkit-transition: border-color 0.3s ease-in-out;
-  transition: border-color 0.3s ease-in-out;
-  margin-top: -55px;
 }
 
-.odder_right {
-  display: flex;
-  justify-content: flex-end;
+
+.btngroup .btnorder {
+  padding: 10px 20px;
+  height: 32px;
+  font-size: 12px;
+  border: 1px solid transparent;
+  line-height: 1;
+  font-weight: bold;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
 }
 
-.displaynone {
-  display: none;
+.btngroup2 {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.btngroup2 .btnall, .btnchoose {
+  padding: 10px 20px;
+  height: 32px;
+  font-size: 12px;
+  border: 1px solid #bcbcbc;
+  line-height: 1;
+  font-weight: normal;
+  color: #000;
+  background-color: #fff;
+}
+
+.btngroup3 {
+  margin: 50px 0 0;
+  text-align: center;
+}
+
+.btngroup3 .btnallorder {
+  min-width: 135px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid transparent;
+  line-height: 1;
+  font-weight: bold;
+  height:40px;
+  color: #fff;
+  background-color: #000;
+}
+
+.mylist .btndelete {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: -5px;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
+  white-space: nowrap;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mylist .btndelete::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  width: 1px;
+  height: 21px;
+  background: #b5b5b5;
+}
+.mylist .btndelete::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 4px;
+  width: 21px;
+  height: 1px;
+  background: #b5b5b5;
 }
 
 .paginate {
@@ -463,6 +322,7 @@
 
 .myinfo_Main h2 {
   font-size: 18px;
+  
 }
 
 .myinfo_Main .subTitle {
