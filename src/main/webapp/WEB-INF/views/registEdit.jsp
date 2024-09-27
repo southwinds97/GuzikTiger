@@ -19,6 +19,8 @@
   </head>
 
   <body>
+      <!-- 헤더 -->
+      <%@ include file="header.jsp" %>
     <div class="edit_wrap">
       <div class="path">
         <ol>
@@ -30,8 +32,6 @@
           </li>
         </ol>
       </div>
-      <!-- 헤더 -->
-      <%@ include file="header.jsp" %>
         <!-- 회원정보수정 시작 -->
         <div class="title">
           <h2>회원 정보 수정</h2>
@@ -189,9 +189,9 @@
           <button type="button" class="cancel_btn" onclick="">취소</button>
           <button type="button" class="edit_btn" onclick="">회원정보수정</button>
         </div>
+    </div>
         <!-- 푸터 -->
         <%@ include file="footer.jsp" %>
-    </div>
   </body>
 
   </html>

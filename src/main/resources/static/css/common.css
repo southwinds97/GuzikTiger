@@ -117,7 +117,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  table-layout: fixed;
 }
 
 /* 굵기 빼고 폰트크기를 body 폰트크기와 일치시킴 */
@@ -281,10 +280,13 @@ input[type='text'],
 input[type='search'],
 input[type='password'],
 input[type='number'] {
-  border: 1px solid #333;
+  border: 1px solid #e0e0e0;
   height: 40px;
   padding: 0 10px;
+  width: 290px;
 }
+
+
 
 /* 체크박스 */
 .checkbox_wrap {
