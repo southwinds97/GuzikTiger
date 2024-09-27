@@ -34,10 +34,17 @@
                 <a id="kakao-login-btn" class="kakao_btn" href="javascript:loginWithKakao()">카카오 1초 로그인</a>
                 <p id="token-result"></p>
                 <script>
+                  // function loginWithKakao() {
+                  //   Kakao.Auth.authorize({
+                  //     redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+                  //   });
+                  // }
                   function loginWithKakao() {
-                    Kakao.Auth.authorize({
-                      redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
-                    });
+                    var redirectUri = 'https://developers.kakao.com/tool/demo/oauth'; // 실제 리디렉션 URI로 변경
+                    var kakaoAuthUrl = 'https://kauth.kakao.com/oauth/authorize?client_id=c089c8172def97eb00c07217cae17495&redirect_uri=' + encodeURIComponent(redirectUri) + '&response_type=code';
+
+                    // 새 창으로 열기
+                    window.open(kakaoAuthUrl, '_blank', 'width=500,height=600');
                   }
 
                   // 아래는 데모를 위한 UI 코드입니다.
@@ -67,7 +74,9 @@
                 </script>
 
               </div>
-              <a class=" naver_btn" href="#">네이버 1초 로그인</a>
+              <div class="naver">
+                <a class=" naver_btn" href="#">네이버 1초 로그인</a>
+              </div>
             </div>
             <!-- input값이 null인지 폼 전송전에 확인 -->
             <!-- 로그인 실패 메시지 표시 -->
@@ -122,9 +131,9 @@
                   <input type="password" name="pass" />
                 </div>
                 <ul class="link_wrap">
-                  <li><a href="#">회원가입</a></li>
+                  <li><a href="regist.do">회원가입</a></li>
                   <li><a href="idFinder.do">아이디</a></li>
-                  <li><a href="#">비밀번호 찾기</a></li>
+                  <li><a href="passFinder.do">비밀번호 찾기</a></li>
                 </ul>
                 <button type="submit" class="login_btn">로그인</button>
               </fieldset>
