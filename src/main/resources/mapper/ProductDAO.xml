@@ -190,25 +190,25 @@
 		and a.sub_cate like '%'||c.code||'%'
 		and c.up_code = #{code}
 		<choose>
-			<when test="list_array == '1'">
-				order by a.product_name
-			</when>
-			<when test="list_array == '2'">
-				order by a.product_name
-			</when>
-			<when test="list_array == '3'">
+			<when test="list_array == 1">
 				order by b.price
 			</when>
-			<when test="list_array == '4'">
+			<when test="list_array == 2">
+				order by a.product_name
+			</when>
+			<when test="list_array == 3">
+				order by b.price
+			</when>
+			<when test="list_array == 4">
 				order by b.price desc
 			</when>
-			<when test="list_array == '5'">
-				order by a.popularity
+			<when test="list_array == 5">
+				order by a.product_name
 			</when>
 			<otherwise>
-				order by a.product_name
+				order by b.price
 			</otherwise>
-		</choose> 
+		</choose>
 		<!-- OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY -->
 		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
 	</select>
@@ -242,7 +242,7 @@
 		and c.code = #{code}
 		<choose>
 			<when test="list_array == 1">
-				order by a.product_name
+				order by b.price
 			</when>
 			<when test="list_array == 2">
 				order by a.product_name
@@ -254,7 +254,7 @@
 				order by b.price desc
 			</when>
 			<when test="list_array == 5">
-				order by a.popularity
+				order by a.product_name
 			</when>
 			<otherwise>
 				order by b.price
@@ -292,7 +292,7 @@
 		
 		<choose>
 			<when test="list_array == 1">
-				order by a.product_name
+				order by b.price
 			</when>
 			<when test="list_array == 2">
 				order by a.product_name
@@ -304,7 +304,7 @@
 				order by b.price desc
 			</when>
 			<when test="list_array == 5">
-				order by a.popularity
+				order by a.product_name
 			</when>
 			<otherwise>
 				order by b.price

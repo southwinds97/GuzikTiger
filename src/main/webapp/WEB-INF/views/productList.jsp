@@ -82,7 +82,7 @@
                     <option value="2">상품명</option>
                     <option value="3">낮은가격</option>
                     <option value="4">높은가격</option>
-                    <option value="4">인기상품</option>
+                    <option value="5">인기상품</option>
                   </select>
                 </div>
               </c:if>
