@@ -65,7 +65,15 @@
             </ul>
             <div class="list_package">
               <div class="list_count">
-                <strong class="count">${productCount}</strong>&nbsp;itmes
+                <!-- 카테고리 파라미터가 BEST와 NEW가 아닐 때 -->
+                <c:if test="${param.category != 'BEST' && param.category != 'NEW'}">
+                  <strong class="count">${productCount}</strong>&nbsp;itmes
+                </c:if>
+                <!-- BEST 거나 NEW 일 때 -->
+                <c:if test="${param.category == 'BEST' || param.category == 'NEW'}">
+                  <strong class="count">30</strong>&nbsp;itmes
+                </c:if>
+
               </div>
               <div class="function" id="function">
                 <select id="list_array">
@@ -106,6 +114,7 @@
                 var typeMenuValue = $('.type_menu a.active').data('value');
                 var listArrayValue = $('#list_array').val();
                 var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
+                var categoryValue = '${param.category}';
 
                 $.ajax({
                   url: '${pageContext.request.contextPath}/productListContent.do',
@@ -114,6 +123,7 @@
                     typeMenu: typeMenuValue,
                     listArray: listArrayValue,
                     code: codeValue, // AJAX 요청에 code 값을 포함
+                    category: categoryValue,
                     offset: offset,
                     limit: limit
                   },

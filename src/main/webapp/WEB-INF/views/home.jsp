@@ -111,6 +111,14 @@
                   </ul>
 
                   <button class="move_btn">more +</button>
+                  <!-- 이동 -->
+                  <script>
+                    $(document).ready(function () {
+                      $(".move_btn").click(function () {
+                        location.href = "productList.do?category=BEST";
+                      });
+                    });
+                  </script>
                 </div>
               </div>
             </section>

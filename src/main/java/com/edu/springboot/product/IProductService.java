@@ -53,4 +53,11 @@ public interface IProductService {
 
 	// 상품 전체 검색 수
 	int getSelectByCodeAllCount();
+
+	// 상품 Best 조회
+	public ArrayList<ProductDTO> getSelectByCodeBest(Map<String, Object> param);
+
+	// 상품 New 조회
+	public ArrayList<ProductDTO> getSelectByCodeNew(Map<String, Object> param);
+
 }
