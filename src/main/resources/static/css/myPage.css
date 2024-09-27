@@ -170,9 +170,9 @@
   display: flex;
   align-items: center;
   -webkit-animation: fadeInTitle 0.6s ease forwards;
-  animation: fadeInTitle 1.3s ease forwards;
+  animation: fadeInTitle 0.6s ease forwards;
   -webkit-animation-delay: 0.3s;
-  animation-delay: 1.3s;
+  animation-delay: 0.6s;
 }
 
 
@@ -237,9 +237,9 @@
   margin: 50px 0 20px;
   text-align: left;
   -webkit-animation: fadeInTitle 0.6s ease forwards;
-  animation: fadeInTitle 1.3s ease forwards;
+  animation: fadeInTitle 0.6s ease forwards;
   -webkit-animation-delay: 0.3s;
-  animation-delay: 1.3s;
+  animation-delay: 0.6s;
 }
 
 .titlearea2 h3 {
