@@ -162,7 +162,7 @@
                   <a href="#">언론보도</a>
                 </li>
                 <li>
-                  <a href="#">Q&A</a>
+                  <a href="qnaList.do">Q&A</a>
                 </li>
                 <li>
                   <a href="#">배경화면</a>

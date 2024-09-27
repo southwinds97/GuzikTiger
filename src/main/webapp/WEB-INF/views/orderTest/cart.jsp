@@ -52,7 +52,7 @@ function paymentGo(){
     <a href="#container">Skip to content</a>
   </div>
   <div id="wrap">
-  <%@ include file="header.jsp" %>
+  <%@ include file="../header.jsp" %>
     <div id="container">
       <div class="location">
         <a href="index.html">Home</a>
@@ -170,7 +170,7 @@ function paymentGo(){
         </div>
       </main>
     </div>
-  <%@ include file="footer.jsp" %>
+  <%@ include file="../footer.jsp" %>
   </div>
 </body>
 </html>
