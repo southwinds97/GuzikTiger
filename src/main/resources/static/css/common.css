@@ -312,6 +312,8 @@ input[type='checkbox']:checked + label::before {
 }
 
 
+
+
 /* radio 공통 */
 .radio_wrap {
   display: inline-block;

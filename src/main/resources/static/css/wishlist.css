@@ -82,16 +82,21 @@
 }
 
 .mypage_top .wish_idx {
-  position: relative;
-  top:-25px;
-  opacity: 1;
-  cursor: pointer;
   width: 15px;
   height: 15px;
+  background: #fff; /* Default background color */
   border: 1px solid #000;
-  background: #fff;
-  outline: 0;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  top:-25px;
   
+}
+
+.mypage_top .wish_idx:checked {
+  background-image: url('../images/common/bg_checkbox_checked.png'); 
+  background-size: contain;
+  border: 1px solid #000;
 }
 
 .mypage_top .thumbnail {
