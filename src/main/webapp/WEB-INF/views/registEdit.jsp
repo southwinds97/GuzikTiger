@@ -13,7 +13,7 @@
         content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
         <link rel="icon" href="images/common/favicon.png">
         <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
-      <title>KUZIK TIGER 구직타이거</title>
+      <title>GUZIK TIGER 구직타이거</title>
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/swiper-bundle.min.css">

@@ -99,7 +99,7 @@ public class MemberController {
 
         if (result > 0) {
             // 회원가입 성공 메세지
-            JSFunction.alertLocation(resp, "회원가입이 완료되었습니다.", "login.do");
+            JSFunction.alertLocation(resp, "회원가입이 완료되었습니다.", "/");
             return null;
         } else {
             // 회원가입 실패
@@ -175,5 +175,43 @@ public class MemberController {
     @GetMapping("/passFinder.do")
     public String passFinder() {
         return "passFinder";
+    }
+
+    
+
+    // 회원탈퇴
+    @GetMapping("/deleteMember.do")
+    public String deleteMember(HttpServletRequest req, HttpServletResponse resp, Model model) {
+        // 로그인 확인
+        if (req.getSession().getAttribute("id") == null) {
+            return "redirect:/login.do";
+        }
+        model.addAttribute("id", req.getSession().getAttribute("id"));
+        return "deleteMember";
+    }
+
+    // 회원탈퇴 처리
+    @PostMapping("/deleteMember.do")
+    public String deleteMemberProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDTO) {
+        String id = (String) req.getSession().getAttribute("id");
+        // 비밀번호 확인
+        String pass = req.getParameter("pass");
+        if (dao.login(id, pass) == null) {
+            // 비밀번호가 일치하지 않을 때
+            JSFunction.alertBack(resp, "비밀번호가 일치하지 않습니다.");
+            return null;
+        }
+        int result = dao.deleteMember(id);
+
+        if (result > 0) {
+            // 회원탈퇴 성공
+            req.getSession().invalidate();
+            JSFunction.alertLocation(resp, "회원탈퇴가 완료되었습니다.", "/");
+            return null;
+        } else {
+            // 회원탈퇴 실패
+            JSFunction.alertBack(resp, "회원탈퇴에 실패했습니다.");
+            return null;
+        }
     }
 }
