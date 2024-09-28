@@ -113,4 +113,10 @@ public class MemberController {
     public String idFinder() {
         return "idFinder";
     }
+
+    // 비밀번호 찾기
+    @GetMapping("/passFinder.do")
+    public String passFinder() {
+        return "passFinder";
+    }
 }
