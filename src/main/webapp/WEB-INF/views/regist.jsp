@@ -206,9 +206,9 @@
 
                         <div class="more">
                             <label for="sex"> 성별 </label><br>
-                            <input type="radio" id="man" name="gen" value="남자" checked />
+                            <input type="radio" id="man" name="gen" value="남" checked />
                             <label for="man">남자</label>
-                            <input type="radio" id="woman" name="gen" value="여자" />
+                            <input type="radio" id="woman" name="gen" value="여" />
                             <label for="woman">여자</label>
 
                             <label for="birth">생년월일</label>

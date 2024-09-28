@@ -14,6 +14,9 @@ public interface IMemberService {
     // 아이디 중복 체크 메서드
     int idCheck(String id);
 
+    // 회원 정보 상세 조회 메서드
+    MemberDTO viewMember(String id);
+    
     // 회원 정보 수정 처리 메서드
     int updateMember(MemberDTO memberDTO);
 

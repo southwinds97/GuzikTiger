@@ -21,7 +21,16 @@
         VALUES (#{id}, #{name}, #{pass}, #{hint}, #{hintas}, #{tel}, #{email}, #{postcode}, #{addr}, #{detailaddr}, #{gen}, #{birth}, #{calendar})
     </insert>
 
+    <!-- 회원정보 조회 처리 -->
+    <select id="viewMember" resultType="com.edu.springboot.member.MemberDTO" parameterType="String">
+        SELECT * FROM member WHERE id=#{value}
+    </select>
+
     <!-- 회원정보수정 처리 -->
+    <update id="updateMember" parameterType="com.edu.springboot.member.MemberDTO">
+        UPDATE member SET name=#{name}, pass=#{pass}, hint=#{hint}, hintas=#{hintas}, tel=#{tel}, email=#{email}, postcode=#{postcode}, addr=#{addr}, detailaddr=#{detailaddr}, gen=#{gen}, birth=#{birth}, calendar=#{calendar}
+        WHERE id=#{id}
+    </update>
     
     <!-- 회원탈퇴 처리 -->
     <delete id="deleteMember" parameterType="String">
