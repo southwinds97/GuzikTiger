@@ -28,9 +28,10 @@
 }
 
 .title h2 {
-  padding: 90px 0 10px;
+  padding: 90px 0 50px;
   text-align: center;
   font-size: 25px;
+  font-weight: 500;
 }
 
 .find_box {
@@ -38,26 +39,6 @@
   margin: 0 auto 0;
 }
 
-.title_help {
-  margin: 50px 0 20px;
-  line-height: 18px;
-}
-
-.title_help li {
-  padding: 0 0 0 10px;
-  margin-bottom: 6px;
-}
-
-.title_help li:before {
-  content: "";
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  margin: 7px 9px 0 -12px;
-  vertical-align: top;
-  border-radius: 50%;
-  background: #6d6d6d;
-}
 
 .base_box {
   border-width: 1px;

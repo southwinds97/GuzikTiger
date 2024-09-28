@@ -31,18 +31,6 @@
      <div class="title">
        <h2>아이디 찾기</h2>
      </div>
-    <div class="find_box">
-     <div class="title_help">
-       <ul>
-       	 <li>
-       	 	가입하신 방법에 따라 아이디 찾기가 가능합니다.
-       	 </li>
-       	 <li>
-       	 	법인사업자 회원 또는 외국인 회원의 경우 법인명과 법인번호 또는 이름과 등록번호를 입력해 주세요.
-       	 </li>
-       </ul>
-     </div>
-    </div>
     <div class="base_box">
      <fieldset class="content">
      	<legend>아이디 찾기</legend>
