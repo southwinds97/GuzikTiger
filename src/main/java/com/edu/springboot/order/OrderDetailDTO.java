@@ -3,7 +3,7 @@ package com.edu.springboot.order;
 import lombok.Data;
 
 @Data
-public class Order_detailDTO {
+public class OrderDetailDTO {
 	private String member_id;
 	private int order_id;
 	private String product_id;
@@ -12,4 +12,5 @@ public class Order_detailDTO {
 	private int quantity;
 	private String  cart_dtl_id;
 	private String img_id;
+	
 }

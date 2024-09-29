@@ -40,11 +40,18 @@ function paymentGo(){
 	$('input:checkbox[name=cart_dtl_id]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
 	    array.push(this.value);
 	});
-				
-	$("#arrayParam").val(array);
 		
-	$("#form").attr("action", "/cartOrder.do");  
-	$("#form").submit();
+	$.ajax({
+	    url: '/cartOrderPage.do',
+	    method: 'POST',
+	    data: {
+	    	data :array
+	    },
+	    dataType : 'json',
+	    success: (result) => {
+	        console.log(result);
+	    }
+	});
 }	
 	
 </script>
@@ -89,7 +96,7 @@ function paymentGo(){
 		           <div class="description">
 					<a href="" class="proname">${ row.product_name }</a>
 				   <ul class="price">
-				   	<li>${ row.quantity }원</li>
+				   	<li>${ row.price }원</li>
 				   </ul>
 				   <div class="name">
 		             <span class="optionStr">[옵션: 01. ${ row.option_id }]</span>

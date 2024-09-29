@@ -209,11 +209,11 @@
             <% } %>
               <button class="search"><span class="blind">검색</span></button>
               <button class="wish"><span class="blind">위시리스트</span></button>
-              <button class="cart"><span class="blind">장바구니</span></button>
+              <button class="cart" id="cart"><span class="blind" >장바구니</span></button>
               <!-- cart버튼 페이지 이동 -->
               <script>
-                $('.cart').click(function () {
-                  location.href = 'orderList.do';
+                $('#cart').click(function () {
+                  location.href = 'cartList.do';
                 });
               </script>
       </div>

@@ -19,5 +19,5 @@ public class OrderDTO {
 	private String order_prog;
 	private String deliv_prog;
 	
-	private List<Order_detailDTO> list ;
+	private List<OrderDetailDTO> order_list ;
 }
