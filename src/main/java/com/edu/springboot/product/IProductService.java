@@ -1,6 +1,7 @@
 package com.edu.springboot.product;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -53,4 +54,12 @@ public interface IProductService {
 
 	// 상품 전체 검색 수
 	int getSelectByCodeAllCount();
+
+	// 상품 Best 조회
+	public ArrayList<ProductDTO> getSelectByCodeBest(Map<String, Object> param);
+
+	// 상품 New 조회
+	public ArrayList<ProductDTO> getSelectByCodeNew(Map<String, Object> param);
+
+
 }

@@ -29,8 +29,8 @@ public class ProductController {
 		ArrayList<CodeListDTO> subCategories = dao.subCategoryList(category);
 		model.addAttribute("subCategories", subCategories);
 
-		// category가 'mainCate'가 아닌 경우에만 code 조회
-		if (!"mainCate".equals(category)) {
+		// category가 'mainCate', 'BEST', 'NEW' 가 아닌 경우에만 code 조회
+		if (!"mainCate".equals(category) && !"BEST".equals(category) && !"NEW".equals(category)) {
 			// category를 cd_name으로 사용하여 code 찾기
 			String code = dao.getCodeByCdName(category);
 			if (code == null) {
@@ -48,6 +48,7 @@ public class ProductController {
 				// 조회된 up_code를 사용하여 일치하는 cd_name 리스트 조회
 				upCodeCategories = dao.getCategoriesByUpCode(upCode);
 			}
+
 			// upCodeCategories를 모델에 추가
 			model.addAttribute("upCodeCategories", upCodeCategories);
 
@@ -65,17 +66,20 @@ public class ProductController {
 			model.addAttribute("productCount", productCount);
 
 			model.addAttribute("selectedCategory", category);
-		} else {
+		} else if ("mainCate".equals(category)) {
 			// category가 'mainCate'인 경우 메인 카테고리의 전체 카운트 조회
 			int mainCategoryCount = dao.getSelectByCodeAllCount();
 			model.addAttribute("productCount", mainCategoryCount);
 		}
+
 		return "productList";
 	}
 
 	@RequestMapping("/productListContent.do")
 	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO,
 			@RequestParam(value = "code", required = false) String code,
+			@RequestParam(value = "category", required = false) String category,
+			@RequestParam(value = "list_array", required = false) String listArray,
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
 			@RequestParam(value = "limit", defaultValue = "20") int limit) {
 		ArrayList<ProductDTO> lists;
@@ -83,16 +87,27 @@ public class ProductController {
 		int count = 0;
 
 		// System.out.println("code : " + code);
+		// System.out.println("category : " + category);
+		System.out.println("list_array : " + listArray);
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
+		params.put("list_array", String.valueOf(listArray));
 		params.put("offset", offset);
 		params.put("limit", limit);
 
 		if (code == null || code.isEmpty()) {
-			count = dao.getSelectByCodeAllCount();
-			// code 값이 null이거나 비어있는 경우
-			lists = dao.getSelectByCodeAll(params);
+			if ("BEST".equals(category)) {
+				lists = dao.getSelectByCodeBest(params);
+			} else if ("NEW".equals(category)) {
+				lists = dao.getSelectByCodeNew(params);
+			} else {
+				count = dao.getSelectByCodeAllCount();
+				lists = dao.getSelectByCodeAll(params);
+			}
+			// count = dao.getSelectByCodeAllCount();
+			// // code 값이 null이거나 비어있는 경우
+			// lists = dao.getSelectByCodeAll(params);
 		} else if (code.startsWith("A")) {
 			count = dao.getSelectByCodeMainCount(code);
 			// code 값이 'A'로 시작하는 경우
@@ -102,12 +117,23 @@ public class ProductController {
 			// code 값이 'B'로 시작하는 경우
 			lists = dao.getSelectByCodeSub(params);
 		} else {
+			// } else if (category == "BEST") {
+			// count = 0;
+			// lists = dao.getSelectByCodeBest(params);
+			// System.out.println("BESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBEST");
+			// } else if (category == "NEW") {
+			// count = 0;
+			// lists = dao.getSelectByCodeNew(params);
+			// } else {
+
 			count = dao.getSelectByCodeAllCount();
 			// 그 외의 경우
 			lists = dao.getSelectByCodeAll(params);
 		}
 
-		if (lists.isEmpty()) {
+		if (lists.isEmpty())
+
+		{
 			return "";
 		}
 

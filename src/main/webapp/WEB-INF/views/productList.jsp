@@ -5,7 +5,16 @@
 
     <head>
       <meta charset="UTF-8">
-      <title>Insert title here</title>
+      <meta name="format-detection" content="telephone=no">
+      <meta name="description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="구직타이거">
+      <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
+      <meta property="og:image"
+        content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
+        <link rel="icon" href="images/common/favicon.png">
+        <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
+      <title>GUZIK TIGER 구직타이거</title>
       <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
       <link rel="stylesheet" href="css/jquery-ui.min.css">
       <link rel="stylesheet" href="css/swiper-bundle.min.css" />
@@ -65,21 +74,32 @@
             </ul>
             <div class="list_package">
               <div class="list_count">
-                <strong class="count">${productCount}</strong>&nbsp;itmes
+                <!-- 카테고리 파라미터가 BEST와 NEW가 아닐 때 -->
+                <c:if test="${param.category != 'BEST' && param.category != 'NEW'}">
+                  <strong class="count">${productCount}</strong>&nbsp;itmes
+                </c:if>
+                <!-- BEST 거나 NEW 일 때 -->
+                <c:if test="${param.category == 'BEST' || param.category == 'NEW'}">
+                  <strong class="count">30</strong>&nbsp;itmes
+                </c:if>
+
               </div>
-              <div class="function" id="function">
-                <select id="list_array">
-                  <option value="1">신상품</option>
-                  <option value="2">상품명</option>
-                  <option value="3">낮은가격</option>
-                  <option value="4">높은가격</option>
-                  <option value="4">인기상품</option>
-                </select>
-              </div>
+              <c:if test="${param.category != 'BEST' && param.category != 'NEW'}">
+                <div class="function" id="function">
+                  <select id="list_array" name="list_array">
+                    <option value="1">신상품</option>
+                    <option value="2">상품명</option>
+                    <option value="3">낮은가격</option>
+                    <option value="4">높은가격</option>
+                    <option value="5">인기상품</option>
+                  </select>
+                </div>
+              </c:if>
             </div>
+
             <!-- ajax로 productListConent.jsp 내용 가져오기 typemenu나 list_array를 누를 때마다 파라미터 전달로 내용 변환이 필요 -->
             <div id="productListContent"></div>
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script>
               var offset = 0;
               var limit = 20;
@@ -90,9 +110,14 @@
                 loadProductListContent();
 
                 // type_menu나 list_array를 변경할 때마다 productListContent를 업데이트하기 위한 이벤트 핸들러 등록
-                $('.type_menu a, #list_array').change(function () {
+                $('.type_menu a').click(function () {
                   offset = 0;
+                  loadProductListContent();
+                });
+
+                $('#list_array').change(function () {
                   $('#productListContent').empty();
+                  offset = 0;
                   loadProductListContent();
                 });
 
@@ -106,14 +131,16 @@
                 var typeMenuValue = $('.type_menu a.active').data('value');
                 var listArrayValue = $('#list_array').val();
                 var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
+                var categoryValue = '${param.category}'; // JSP에서 category 값을 JavaScript 변수로 설정
 
                 $.ajax({
                   url: '${pageContext.request.contextPath}/productListContent.do',
                   type: 'GET',
                   data: {
                     typeMenu: typeMenuValue,
-                    listArray: listArrayValue,
+                    list_array: listArrayValue, // AJAX 요청에 list_array 값을 포함
                     code: codeValue, // AJAX 요청에 code 값을 포함
+                    category: categoryValue, // AJAX 요청에 category 값을 포함
                     offset: offset,
                     limit: limit
                   },

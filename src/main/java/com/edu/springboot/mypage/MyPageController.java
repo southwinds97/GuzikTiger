@@ -22,4 +22,9 @@ public class MyPageController {
     public String recentView() {
         return "recentView";
     }
+    
+    @RequestMapping("/myPost.do")
+    public String myPost() {
+        return "myPost";
+    }
 }
