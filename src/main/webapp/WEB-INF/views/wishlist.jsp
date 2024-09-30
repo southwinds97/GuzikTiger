@@ -135,7 +135,7 @@
               <a href="pay.do">최근 본 상품</a>
             </li>
             <li>
-              <a href="#">나의 위시리스트</a>
+              <a href="wishlist.do">나의 위시리스트</a>
             </li>
             <li>
               <a href="#">나의 게시글</a>
@@ -146,7 +146,7 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">회원정보 수정</a>
+              <a href="registEdit.do">회원정보 수정</a>
             </li>
             <li>
               <a href="#">회원탈퇴</a>
