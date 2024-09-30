@@ -132,7 +132,7 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">최근 본 상품</a>
+              <a href="pay.do">최근 본 상품</a>
             </li>
             <li>
               <a href="#">나의 위시리스트</a>
