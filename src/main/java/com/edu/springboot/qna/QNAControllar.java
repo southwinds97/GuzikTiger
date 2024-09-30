@@ -79,7 +79,7 @@ public class QNAControllar {
     		String partHeader = part.getHeader("content-disposition");
     		String[] phArr = partHeader.split("filename=");
     		String originalFileName = phArr[1].trim().replace("\"", "");
-    		-
+    		
     		    		if(!originalFileName.isEmpty()) {
     			part.write(uploadDir + File.separator + originalFileName);
     		}
