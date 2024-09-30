@@ -326,6 +326,7 @@ input[type='radio'] + label {
   position: relative;
   display: inline-block;
 }
+
 input[type='radio'] + label:before {
   content: '';
   display: inline-block;
@@ -336,19 +337,18 @@ input[type='radio'] + label:before {
   vertical-align: middle;
   margin-right: 6px;
 }
+
 input[type='radio']:checked + label:after {
   content: '';
   position: absolute;
-  left: 5px;
+  left: 10px;
   top: 50%;
-  transform: translateY(-50%);
-  margin-top: 1px;
+  transform: translate(-50%, -50%);
   width: 10px;
   height: 10px;
   background: #333;
   border-radius: 50%;
 }
-
 /* select 공통 */
 /* 익스 화살표 제거 */
 sselect::-ms-expand {

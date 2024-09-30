@@ -1,1 +1,151 @@
-@charset "UTF-8";
+#find_wrap {
+  max-width: 1920px;
+  min-height: 800px;
+  padding: 100px 80px 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.path ol {
+    float: right;
+    display: flex;
+}
+
+.path li:first-child a::before {
+    content: 'Home';
+    color: currentColor;
+    font-size: 12px;
+}
+
+.path li:not(:first-child):before {
+    content: "/";
+    display: inline-block;
+    margin: 0 4px 0 2px;
+    color: #7d7d7d;
+    font-size: 10px;
+    vertical-align: middle;
+
+}
+
+.title h2 {
+  padding: 90px 0 50px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.find_box {
+  max-width: 898px;
+  margin: 0 auto 0;
+}
+
+
+.base_box {
+  border-width: 1px;
+  padding: 76px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #e0e0e0;
+  width: 898px;
+  height: 520px;
+}
+
+.base_box .content {
+  width: 470px;
+  margin: 0 auto;
+}
+.base_desc .check_blank {
+  color: #000000;
+}
+
+.base_desc .check_blank label {
+  margin-right: 50px;
+}
+
+.base_desc .id_view {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.base_desc .id_view strong {
+  font-weight: bold;
+  color: #000000;
+}
+
+.base_desc .id_view input {
+  margin: 10px 0 20px;
+  width: 98%;
+  border: 1px solid #e0e0e0;
+}
+
+.base_desc .name_view {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.base_desc .name_view strong {
+  font-weight: bold;
+  color: #000000;
+}
+
+.base_desc .name_view input {
+  margin: 10px 0 20px;
+  width: 98%;
+  border: 1px solid #e0e0e0;
+}
+
+.base_desc .email_view {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10px;
+  
+}
+
+.base_desc .email_view strong {
+  font-weight: bold;
+  color: #000000;
+  
+}
+
+.base_desc .email_view input {
+  margin: 10px 0 20px;
+  width: 98%;
+  border: 1px solid #e0e0e0;
+}
+
+
+
+.base_desc .mobile_view {
+  padding-top: 29px;
+  padding-bottom: 11px;
+  text-align: left;
+}
+
+.base_desc .mobile_view strong {
+  color: #000000;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.base_desc .mobile_view input {
+  width: 28%;  
+  margin: 10px 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.bottom_btn {
+  margin: 100px 0;
+  text-align: center;
+}
+
+.bottom_btn .confirm_btn {
+  min-width: 135px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 40px;
+  color: #fff;
+  background-color: #000;
+  font-weight: bold;
+}
