@@ -34,7 +34,7 @@
     
     <!-- 회원탈퇴 처리 -->
     <delete id="deleteMember" parameterType="String">
-        DELETE FROM member WHERE id=#{value}
+        DELETE FROM member WHERE id=#{memberId}
     </delete>
 
 </mapper>
