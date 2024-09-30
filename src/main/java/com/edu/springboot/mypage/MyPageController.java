@@ -2,6 +2,7 @@ package com.edu.springboot.mypage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,8 +22,9 @@ public class MyPageController {
         return "myPage";
     }
 
+    // 위시리스트 조회
     @GetMapping("/wishList.do")
-    public String wishList(HttpServletRequest req, HttpServletResponse res) {
+    public String wishList(HttpServletRequest req, HttpServletResponse res, Model model, WishListDTO wishListDTO) {
         String memberId = (String) req.getSession().getAttribute("id");
 
         if (memberId == null) {
@@ -31,11 +33,18 @@ public class MyPageController {
 
         List<Map<String, Object>> wishListData = dao.wishListSelect(memberId);
 
-        req.setAttribute("wishListData", wishListData);
+        model.addAttribute("wishListData", wishListData);
 
         System.out.println(wishListData);
 
         return "wishList";
+    }
+
+    // 위시리스트 추가
+    @RequestMapping("/wishListInsert.do")
+    public String wishListInsert(HttpServletRequest req, HttpServletResponse res, WishListDTO wishListDTO) {
+
+        return "redirect:/wishList.do";
     }
 
     @RequestMapping("/recentView.do")

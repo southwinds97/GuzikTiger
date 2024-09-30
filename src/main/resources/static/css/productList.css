@@ -122,6 +122,37 @@ select {
   /* 텍스트 가운데 정렬 */
 }
 
+.list .list_img {
+  transition: all 0.2s;
+}
+
+.list .list_img a:hover .add_btn {
+  opacity: 1;
+}
+
+.list .list_img .add_btn {
+  transition: all 0.5s;
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+  bottom: 50px;
+  width: 35px;
+  height: 35px;
+  background: #fff url(/images/cart.svg) no-repeat center center;
+  background-size: 17px auto;
+  border-radius: 50%;
+  border: none;
+}
+
+.list .list_img .wish_add_btn {
+  bottom: 10px;
+  background-image: url(/images/wishlist.svg);
+}
+
+.list .list_img .img_wrap .wish_add_btn:hover {
+  background-image: url(/images/heart_fill.svg);
+}
+
 .inner .item_info {
   margin: 13px 20px 0 0;
   padding: 0;

@@ -27,7 +27,7 @@
       <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
       <link rel="stylesheet" href="css/sub.css?v=<?php echo time(); ?>">
-      <link rel="stylesheet" href="css/wishlist.css?v=<?php echo time(); ?>">
+      <link rel="stylesheet" href="css/wishList.css?v=<?php echo time(); ?>">
       <script src="js/jquery-3.7.1.min.js"></script>
       <script src="js/jquery-ui.min.js"></script>
       <script src="js/swiper-bundle.min.js"></script>
