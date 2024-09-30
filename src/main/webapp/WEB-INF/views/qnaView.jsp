@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <!DOCTYPE html>
   <html>
 
@@ -28,29 +29,33 @@
 	            <a href="index.html">Home</a> / <span>Q&A</span>
 	          </div>
 	          <h2>Q&A</h2>
-	          <div class="product_sel">
-	            <img src="images/noimg.gif" onerror="this.src='url';">
-	            <div class="product_info">
-	              <div class="txt_wrap">
-	                <a href="#">무직타이거 뚱랑이 테니스공 키링</a>
-	                <span>7,000원</span>
-	              </div>
-	            </div>
-	          </div>
+			  <c:choose>
+				<c:when test="${not empty qnaDTO.product}">
+		          <div class="product_sel">
+		            <img src="images/noimg.gif" onerror="this.src='url';">
+		            <div class="product_info">
+		              <div class="txt_wrap">
+		                <a href="#">${qnaDTO.product}</a>
+		                <span>7,000원</span>
+		              </div>
+		            </div>
+		          </div>
+				</c:when>
+			</c:choose>
 	          <div class="qna_view_wrap">
 	            <div class="tit_wrap">
-	              <h3>{dto.title}</h3>
-	              <p>{dto.user} <span>{dto.postdate}</span></p>
+	              <h3>${qnaDTO.title}</h3>
+	              <p>${qnaDTO.name} <span>${qnaDTO.postdate}</span></p>
 	            </div>
 	            <div class="content_wrap">
-	              {dto.content}
+	              ${qnaDTO.content}
 	            </div>
 	            <div class="btn_wrap">
 	              <div class="view_btn_wrap">
-	              <a href="qnalist.html">삭제</a>
-	              <a href="qnaedit.html">수정</a>
+	              <a href="qnaList.do">삭제</a>
+	              <a href="qnaEdit.do?idx=${qnaDTO.idx}">수정</a>
 	              </div>
-	              <a href="qnalist.html">목록</a>
+	              <a href="qnaList.do">목록</a>
 	            </div>
 	          </div>
 	          <div class="comment_wrap">
