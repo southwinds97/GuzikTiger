@@ -16,7 +16,7 @@ public interface IMemberService {
 
     // 회원 정보 상세 조회 메서드
     MemberDTO viewMember(String id);
-    
+
     // 회원 정보 수정 처리 메서드
     int updateMember(MemberDTO memberDTO);
 

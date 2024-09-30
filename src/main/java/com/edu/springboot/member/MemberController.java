@@ -43,7 +43,7 @@ public class MemberController {
         if (dto != null) {
             // 로그인 성공
             req.getSession().setAttribute("id", dto.getId());
-            req.getSession().setAttribute("name", dto.getName());
+            // req.getSession().setAttribute("name", dto.getName());
             return "redirect:/";
         }
         // 로그인 실패
@@ -110,7 +110,7 @@ public class MemberController {
 
     // 회원정보 수정(정보 가져오기)
     @GetMapping("/registEdit.do")
-    public String RegistEdit(HttpServletRequest req, MemberDTO memberDTO , Model model) {
+    public String RegistEdit(HttpServletRequest req, MemberDTO memberDTO, Model model) {
         // 로그인 확인
         if (req.getSession().getAttribute("id") == null) {
             return "redirect:/login.do";
@@ -120,27 +120,27 @@ public class MemberController {
         MemberDTO dto = dao.viewMember(id);
 
         // 전화번호 나누기
-    if (dto.getTel() != null) {
-        String[] telParts = dto.getTel().split("-");
-        if (telParts.length == 3) {
-            model.addAttribute("tel1", telParts[0]);
-            model.addAttribute("tel2", telParts[1]);
-            model.addAttribute("tel3", telParts[2]);
+        if (dto.getTel() != null) {
+            String[] telParts = dto.getTel().split("-");
+            if (telParts.length == 3) {
+                model.addAttribute("tel1", telParts[0]);
+                model.addAttribute("tel2", telParts[1]);
+                model.addAttribute("tel3", telParts[2]);
+            }
         }
-    }
 
-    // 생년월일 나누기
-    if (dto.getBirth() != null) {
-        String[] birthParts = dto.getBirth().split("-");
-        if (birthParts.length == 3) {
-            model.addAttribute("year", birthParts[0]);
-            model.addAttribute("month", birthParts[1]);
-            model.addAttribute("day", birthParts[2]);
+        // 생년월일 나누기
+        if (dto.getBirth() != null) {
+            String[] birthParts = dto.getBirth().split("-");
+            if (birthParts.length == 3) {
+                model.addAttribute("year", birthParts[0]);
+                model.addAttribute("month", birthParts[1]);
+                model.addAttribute("day", birthParts[2]);
+            }
         }
-    }
 
-    model.addAttribute("member", dto);
-    return "registEdit";
+        model.addAttribute("member", dto);
+        return "registEdit";
     }
 
     // 회원정보 수정 처리
@@ -156,7 +156,7 @@ public class MemberController {
 
         if (result > 0) {
             // 회원정보 수정 성공
-            JSFunction.alertLocation(resp,"회원정보가 수정되었습니다.", "myPage.do");
+            JSFunction.alertLocation(resp, "회원정보가 수정되었습니다.", "myPage.do");
             return null;
         } else {
             // 회원정보 수정 실패
@@ -176,8 +176,6 @@ public class MemberController {
     public String passFinder() {
         return "passFinder";
     }
-
-    
 
     // 회원탈퇴
     @GetMapping("/deleteMember.do")

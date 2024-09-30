@@ -570,7 +570,7 @@
                     <a href="recentView.do">최근 본 상품</a>
                   </li>
                   <li>
-                    <a href="wishlist.do">나의 위시리스트</a>
+                    <a href="wishList.do">나의 위시리스트</a>
                   </li>
                   <li>
                     <a href="myPost.do">나의 게시글</a>
