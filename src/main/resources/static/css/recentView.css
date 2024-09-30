@@ -78,7 +78,7 @@
 .top_titlearea {
   margin: 50px 0 20px;
   -webkit-animation: fadeInTitle 0.6s ease forwards;
-  animation: fadeInTitle 0.6s ease forwards;
+  animation: fadeInTitle 3s ease forwards;
   -webkit-animation-delay: 0.3s;
   animation-delay: 0.6s;
 }
