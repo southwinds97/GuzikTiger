@@ -40,8 +40,8 @@
   <%@ include file="header.jsp" %>
     <div id="container">
       <div class="location">
-        <a href="index.do">Home</a>
-        <a href="mypage.do">마이 쇼핑</a>
+        <a href="/">Home</a>
+        <a href="myPage.do">마이 쇼핑</a>
         <a>나의 위시리스트</a>
       </div>
       <main id="contents">  
@@ -132,13 +132,13 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">최근 본 상품</a>
+              <a href="recentView.do">최근 본 상품</a>
             </li>
             <li>
               <a href="wishlist.do">나의 위시리스트</a>
             </li>
             <li>
-              <a href="#">나의 게시글</a>
+              <a href="myPost.do">나의 게시글</a>
             </li>
           </ul>
           <div class="subTitle">
@@ -149,7 +149,7 @@
               <a href="registEdit.do">회원정보 수정</a>
             </li>
             <li>
-              <a href="#">회원탈퇴</a>
+              <a href="deleteMember.do">회원탈퇴</a>
             </li>
           </ul>
         </div>

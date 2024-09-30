@@ -163,10 +163,10 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">회원정보 수정</a>
+              <a href="registEdit.do">회원정보 수정</a>
             </li>
             <li>
-              <a href="#">회원탈퇴</a>
+              <a href="deleteMember.do">회원탈퇴</a>
             </li>
         </div>
       </main>
