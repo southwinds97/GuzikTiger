@@ -47,10 +47,10 @@
         <nav class="gnb_wrap">
           <ul class="gnb">
             <li>
-              <a href="#">BEST</a>
+              <a href="productList.do?category=BEST">BEST</a>
             </li>
             <li>
-              <a href="#">NEW</a>
+              <a href="productList.do?category=NEW">NEW</a>
             </li>
             <li>
               <a href="productList.do?category=mainCate">SHOP</a>
@@ -162,7 +162,7 @@
                   <a href="#">언론보도</a>
                 </li>
                 <li>
-                  <a href="#">Q&A</a>
+                  <a href="qnaList.do">Q&A</a>
                 </li>
                 <li>
                   <a href="#">배경화면</a>
