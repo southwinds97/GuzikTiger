@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>MUZIK TIGER  무직타이거</title>
+  <meta name="format-detection" content="telephone=no">
+      <meta name="description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="구직타이거">
+      <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
+      <meta property="og:image"
+        content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
+        <link rel="icon" href="images/common/favicon.png">
+        <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
+      <title>GUZIK TIGER 구직타이거</title>
   <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
   <link rel="stylesheet" href="css/jquery-ui.min.css">
   <link rel="stylesheet" href="css/swiper-bundle.min.css">
@@ -20,15 +30,14 @@
   <div id="skip_navi">
     <a href="#container"></a>
   </div>
+     <%@ include file="header.jsp" %>
   <div id="wrap">
-  	<!-- 헤더 -->
-  	<%@ include file="header.jsp" %>
     <div id="container">
       <div class="location">
         <span>현재위치</span>
         <ol>
           <li><a href="/">홈</a></li>
-          <li title="현재위치" class="on">최근 본 상품<</li>
+          <li title="현재위치" class="on">최근 본 상품</li>
         </ol>
       </div>
       <main id="contents">
@@ -492,7 +501,7 @@
           </div>
           
           
-
+<!--페이지 -->
         <div class="paginate">
           <a href="#" class="first">첫 페이지</a>
           <a href="#">이전페이지</a>
@@ -504,6 +513,7 @@
           <a href="#">다음페이지</a>
           <a href="#" class="last">마지막페이지</a>
         </div>
+<!-- 왼쪽메뉴 -->
         <div class="myinfo_Main">
           <h2>My Account</h2>
           <div class="subTitle">
@@ -519,13 +529,13 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">최근 본 상품</a>
+              <a href="recentView.do">최근 본 상품</a>
             </li>
             <li>
-              <a href="#">나의 위시리스트</a>
+              <a href="wishList.do">나의 위시리스트</a>
             </li>
             <li>
-              <a href="#">나의 게시글</a>
+              <a href="myPost.do">나의 게시글</a>
             </li>
           </ul>
           <div class="subTitle">
@@ -533,16 +543,16 @@
           </div>
           <ul class="menu">
             <li>
-              <a href="#">회원정보 수정</a>
+              <a href="registEdit.do">회원정보 수정</a>
             </li>
             <li>
-              <a href="#">회원탈퇴</a>
+              <a href="deleteMember">회원탈퇴</a>
             </li>
         </div>
       </main>
     </div>
-      <!-- 푸터 -->
-    <%@ include file="footer.jsp" %>
   </div>
+   <%@ include file="footer.jsp" %>
 </body>
-</html>	
+
+ </html>
