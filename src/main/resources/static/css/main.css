@@ -171,6 +171,14 @@
   margin-left: 20px;
 }
 
+.header_right .admin {
+  width: 18px;
+  -webkit-mask: url(../images/admin.svg) no-repeat 0 0 / 100%;
+  mask: url(../images/admin.svg) no-repeat 0 0 / 100%;
+  background: #222;
+  margin-left: 20px;
+}
+
 .header_bottom {
   opacity: 0;
   visibility: hidden;
