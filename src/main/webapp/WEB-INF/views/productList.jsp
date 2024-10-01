@@ -12,8 +12,8 @@
       <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
       <meta property="og:image"
         content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
-        <link rel="icon" href="images/common/favicon.png">
-        <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
+      <link rel="icon" href="images/common/favicon.png">
+      <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
       <title>GUZIK TIGER 구직타이거</title>
       <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
       <link rel="stylesheet" href="css/jquery-ui.min.css">
@@ -38,7 +38,12 @@
           <main id="container">
             <div class="location">
               <a href="/">HOME</a>
-              <a href="productList.do?category=mainCate">SHOP</a>
+              <c:if test="${param.category != 'Go'}">
+                <a href="productList.do?category=mainCate">SHOP</a>
+              </c:if>
+              <c:if test="${param.category == 'Go'}">
+                <a href="productList.do?category=Go">오늘출발🚛</a>
+              </c:if>
               <!-- codelist테이블의 CateGORY가 mainCate의 CD_Name -->
               <c:if test="${param.category != 'mainCate'}">
                 <c:forEach var="category" items="${subCategories}">
@@ -52,8 +57,11 @@
                 <h2>SHOP</h2>
               </c:if>
               <!-- 그 외엔 다른 타입 메뉴이름으로 -->
-              <c:if test="${param.category != 'mainCate'}">
+              <c:if test="${param.category != 'mainCate' && param.category != 'Go'}">
                 <h2>${param.category}</h2>
+              </c:if>
+              <c:if test="${param.category == 'Go'}">
+                <img src="./images/오늘출발.png" alt="오늘출발" style="border: none; display: block; margin: 0 auto;">
               </c:if>
             </div>
             <ul class="type_menu">

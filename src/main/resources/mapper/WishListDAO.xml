@@ -6,7 +6,8 @@
 <mapper namespace="com.edu.springboot.mypage.IMyPageService">
     <!-- 위시리스트 조회 -->
     <select id="wishListSelect" resultType="map" parameterType="String">
-        SELECT 
+        SELECT DISTINCT
+            w.idx AS idx,
             p.product_name AS productName,
             TO_CHAR(pd.price, 'FM999,999,999,999') AS price,
             pd.img_id AS imgId
@@ -18,5 +19,45 @@
             product_dtl pd ON p.product_id = pd.product_id
         WHERE 
             w.member_id = #{memberId}
+        ORDER BY w.idx desc
     </select>
+
+    <!-- 위시리스트 중복 확인 -->
+    <select id="wishListCheck" parameterType="com.edu.springboot.mypage.WishListDTO" resultType="int">
+        SELECT COUNT(*)
+        FROM wish_list
+        WHERE member_id = #{member_id} AND product_id = #{product_id}
+    </select>
+
+    <!-- 위시리스트 추가 -->
+    <insert id="wishListAdd" parameterType="com.edu.springboot.mypage.WishListDTO">
+        INSERT INTO 
+            wish_list (idx, member_id, product_id)
+        VALUES (
+            wish_list_seq.NEXTVAL,
+            #{member_id},
+            #{product_id}
+        )
+    </insert>
+
+    <!-- 위시리스트 삭제 -->
+    <delete id="wishListDelete" parameterType="int">
+        DELETE FROM wish_list
+        WHERE idx = #{idx}
+    </delete>
+
+    <!-- 위시리스트 선택 삭제 -->
+    <delete id="wishListSelectDelete" parameterType="list">
+        DELETE FROM wish_list
+        WHERE idx IN
+        <foreach item="idx" collection="list" open="(" separator="," close=")">
+            #{idx}
+        </foreach>
+    </delete>
+
+    <!-- 위시리스트 전체 삭제 -->
+    <delete id="wishListDeleteAll" parameterType="String">
+        DELETE FROM wish_list
+        WHERE member_id = #{memberId}
+    </delete>
 </mapper>

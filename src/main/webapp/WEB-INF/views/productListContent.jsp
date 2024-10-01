@@ -16,6 +16,7 @@
                         <div class="list_item">
                             <a href="#">
                                 <div class="item_img">
+                                    <input type="hidden" name="product_id" value="${row.product_id}" />
                                     <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                                     <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
                                     <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
@@ -28,7 +29,31 @@
                         </div>
                     </c:forEach>
                 </div>
-
+                <!-- 위시리스트 추가 ajax -->
+                <script>
+                    $(document).ready(function () {
+                        $(".wish_add_btn").click(function () {
+                            // a 기본 이벤트 막기
+                            event.preventDefault();
+                            var product_id = $(this).siblings("input[name='product_id']").val();
+                            $.ajax({
+                                url: "wishListAdd.do",
+                                type: "post",
+                                data: {
+                                    product_id: product_id
+                                },
+                                success: function (data) {
+                                    if (data.redirect) {
+                                        alert(data.message);
+                                        window.location.href = data.redirect;
+                                    } else {
+                                        alert(data.message);
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
             </section>
 
 

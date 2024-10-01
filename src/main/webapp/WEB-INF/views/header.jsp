@@ -156,19 +156,19 @@
               <a href="#">COMMUNITY</a>
               <ul class="depth2">
                 <li>
-                  <a href="#">공지사항</a>
+                  <a href="https://www.muziktiger.com/board/free/list.html?board_no=1">공지사항</a>
                 </li>
                 <li>
-                  <a href="#">언론보도</a>
+                  <a href="https://www.muziktiger.com/board/free/list.html?board_no=2">언론보도</a>
                 </li>
                 <li>
                   <a href="qnaList.do">Q&A</a>
                 </li>
                 <li>
-                  <a href="#">배경화면</a>
+                  <a href="https://www.muziktiger.com/board/gallery/list.html?board_no=8">배경화면</a>
                 </li>
                 <li>
-                  <a href="#">베스트리뷰어</a>
+                  <a href="https://www.muziktiger.com/board/free/list.html?board_no=5">베스트리뷰어</a>
                 </li>
               </ul>
             </li>
@@ -176,21 +176,21 @@
               <a href="#">ABOUT</a>
               <ul class="depth2">
                 <li>
-                  <a href="#">브랜드</a>
+                  <a href="https://www.muziktiger.com/brand.html">브랜드</a>
                 </li>
                 <li>
-                  <a href="#">캐릭터</a>
+                  <a href="https://www.muziktiger.com/character.html">캐릭터</a>
                 </li>
                 <li>
-                  <a href="#">콜라보레이션</a>
+                  <a href="https://www.muziktiger.com/board/free/list.html?board_no=1002">콜라보레이션</a>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="https://www.muziktiger.com/contact.html">Contact</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">오늘출발🚛</a>
+              <a href="productList.do?category=Go">오늘출발🚛</a>
             </li>
           </ul>
         </nav>
@@ -209,12 +209,12 @@
             <% } %>
               <button class="search"><span class="blind">검색</span></button>
               <button class="wish" id="wish"><span class="blind">위시리스트</span></button>
-              	 <script>
+              <script>
                 $('#wish').click(function () {
-                  location.href = 'wishlist.do';
+                  location.href = 'wishList.do';
                 });
               </script>
-              <button class="cart" id="cart"><span class="blind" >장바구니</span></button>
+              <button class="cart" id="cart"><span class="blind">장바구니</span></button>
               <!-- cart버튼 페이지 이동 -->
               <script>
                 $('#cart').click(function () {

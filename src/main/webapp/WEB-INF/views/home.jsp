@@ -96,6 +96,7 @@
                         <a href="#">
                           <div class="img_wrap">
                             <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
+                            <input type="hidden" name="product_id" value="${row.product_id}" />
                             <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
                             <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
                           </div>
@@ -115,7 +116,9 @@
                   <script>
                     $(document).ready(function () {
                       $(".wish_add_btn").click(function () {
-                        var product_id = '';
+                        // a 기본 이벤트 막기
+                        event.preventDefault();
+                        var product_id = $(this).siblings("input[name='product_id']").val();
                         $.ajax({
                           url: "wishListAdd.do",
                           type: "post",
@@ -123,7 +126,12 @@
                             product_id: product_id
                           },
                           success: function (data) {
-                            alert("위시리스트에 추가되었습니다.");
+                            if (data.redirect) {
+                              alert(data.message);
+                              window.location.href = data.redirect;
+                            } else {
+                              alert(data.message);
+                            }
                           }
                         });
                       });

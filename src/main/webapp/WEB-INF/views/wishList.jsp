@@ -93,7 +93,7 @@
                   <c:forEach var="item" items="${wishListData}">
                     <ul class="mypage_top">
                       <li>
-                        <input type="checkbox" class="wish_idx" />
+                        <input type="checkbox" class="wish_idx" value="${item.IDX}" />
                       </li>
                       <li class="thumbnail">
                         <a href="">
@@ -115,6 +115,31 @@
                       </div>
                     </ul>
                   </c:forEach>
+                  <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
+                  <script>
+                    $(document).ready(function () {
+                      $('.btndelete').click(function () {
+                        var idx = $(this).parent().parent().find('.wish_idx').val();
+                        $.ajax({
+                          url: '/deleteWishList.do',
+                          type: 'POST',
+                          data: {
+                            idx: idx
+                          },
+                          success: function (data) {
+                            console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
+                            alert(data.message); // 서버로부터 받은 메시지를 alert로 표시
+                            location.reload();
+                          },
+                          error: function (xhr, status, error) {
+                            console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
+                            alert(xhr.responseJSON.message); // 서버로부터 받은 에러 메시지를 alert로 표시
+                          }
+                        });
+                      });
+                    });
+                  </script>
+
                 </div>
                 <div class="btngroup2">
                   <div class="base_btn">
@@ -122,6 +147,58 @@
                     <button type="button" onclick="" class="btnchoose">선택삭제</button>
                   </div>
                 </div>
+                <!-- 선택삭제 -->
+                <script>
+                  $(document).ready(function () {
+                    $('.btnchoose').click(function () {
+                      var idxs = [];
+                      $('.wish_idx:checked').each(function () {
+                        idxs.push($(this).val());
+                      });
+                      if (idxs.length === 0) {
+                        alert('삭제할 상품을 선택해주세요.');
+                        return;
+                      }
+                      $.ajax({
+                        url: '/deleteWishListSelected.do',
+                        type: 'POST',
+                        data: {
+                          idxs: idxs
+                        },
+                        success: function (data) {
+                          console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
+                          alert(data.message); // 서버로부터 받은 메시지를 alert로 표시
+                          location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                          console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
+                          alert(xhr.responseJSON.message); // 서버로부터 받은 에러 메시지를 alert로 표시
+                        }
+                      });
+                    });
+                  });
+                </script>
+
+                <!-- 전체삭제 -->
+                <script>
+                  $(document).ready(function () {
+                    $('.btnall').click(function () {
+                      $.ajax({
+                        url: '/deleteWishListAll.do',
+                        type: 'POST',
+                        success: function (data) {
+                          console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
+                          alert(data.message); // 서버로부터 받은 메시지를 alert로 표시
+                          location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                          console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
+                          alert(xhr.responseJSON.message); // 서버로부터 받은 에러 메시지를 alert로 표시
+                        }
+                      });
+                    });
+                  });
+                </script>
                 <div class="btngroup3">
                   <div class="bottom_btn">
                     <button type="button" onclick="" class="btnallorder">전체상품주문</button>
