@@ -264,7 +264,7 @@
 								</ul>
 								<div class="subTitle">
 									<h3>채팅</h3>
-								</div>
+								</div> 
 								<ul class="menu">
 									<li>
 										<a href="#" onclick="listChk(listId.D)">채팅 관리자</a>
