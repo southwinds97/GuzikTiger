@@ -62,9 +62,10 @@ public class MainController {
 
 		return "home";
 	}
-	
+
 	@RequestMapping("/admin.do")
-	public String adminPage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, OrderDTO orderDTO, MemberDTO memberDTO) {
+	public String adminPage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, OrderDTO orderDTO,
+			MemberDTO memberDTO) {
 		int totalCount = dao.getTotalCount(parameterDTO);
 		model.addAttribute("totalCount", totalCount);
 		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
@@ -82,20 +83,25 @@ public class MainController {
 		model.addAttribute("maps", maps);
 		ArrayList<ProductDTO> productList = dao.adminProductSelect(parameterDTO);
 		model.addAttribute("productList", productList);
-		System.out.println("############"+productList);
-		
+		System.out.println("############" + productList);
+
 		ArrayList<OrderDTO> orderList = dao.adminOrderSelect(orderDTO);
 		model.addAttribute("orderList", orderList);
-		System.out.println("############"+orderList);
-		
+		System.out.println("############" + orderList);
+
 		ArrayList<MemberDTO> memberList = dao.adminMemberSelect(memberDTO);
 		model.addAttribute("memberList", memberList);
-		System.out.println("############"+memberList);
-		
+		System.out.println("############" + memberList);
+
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum,
 				req.getContextPath() + "/productList.do?");
 		model.addAttribute("pagingImg", pagingImg);
 		return "administraor/admin";
+	}
+
+	@RequestMapping("/chat")
+	public String chat() {
+		return "forward:/reactChat/index.html";
 	}
 
 }
