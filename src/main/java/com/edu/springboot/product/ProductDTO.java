@@ -15,5 +15,13 @@ public class ProductDTO {
 	private String img_id;
 	private Date regidate;
 	private String option_id;
+	private String member_id;
+	private String option_cate;
+	private int idx;
+	private int sell_count;
+	
+	//장바구니/주문 관련
+	private String  cart_dtl_id;
+	private int quantity;
 
 }

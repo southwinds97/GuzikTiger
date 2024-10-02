@@ -13,7 +13,6 @@ import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.order.OrderDTO;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
-import com.edu.springboot.product.ProductDtlDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
@@ -82,7 +81,7 @@ public class MainController {
 		maps.put("pageNum", pageNum);
 		model.addAttribute("maps", maps);
 
-		ArrayList<ProductDtlDTO> productList = dao.adminProductSelect(parameterDTO);
+		ArrayList<ProductDTO> productList = dao.adminProductSelect(parameterDTO);
 		model.addAttribute("productList", productList);
 		System.out.println("############"+productList);
 		

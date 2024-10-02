@@ -65,7 +65,7 @@ public interface IProductService {
 
 	/*-----------admin--------------*/
 	// 모든상품 조회
-	public ArrayList<ProductDtlDTO> adminProductSelect(ParameterDTO parameterDTO);
+	public ArrayList<ProductDTO> adminProductSelect(ParameterDTO parameterDTO);
 	// 모든주문 조회
 	public ArrayList<OrderDTO> adminOrderSelect(OrderDTO orderDTO);
 	// 모든회원 조회

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.springboot.product.IProductService;
-import com.edu.springboot.product.ProductDtlDTO;
+import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class OrderController {
 	@Autowired
 	IProductService iProductService;
 	
-	ProductDtlDTO productDtlDTO = new ProductDtlDTO();
+	ProductDTO productDTO = new ProductDTO();
 	OrderDTO orderDTO = new OrderDTO()	;
 	
 	/**************** 장바구니 ***********************/
@@ -36,15 +36,15 @@ public class OrderController {
 	@GetMapping("/cartList.do")
 	public String cartList(Model model, HttpServletRequest req) {
 		String member_id  =(String)req.getSession().getAttribute("id");
-		ArrayList<ProductDtlDTO> lists = orderService.selectCart(member_id);
+		ArrayList<ProductDTO> lists = orderService.selectCart(member_id);
 		model.addAttribute("lists", lists);
 		return "orderTest/cart2";
 	}
 	 // 장바구니 등록 처리
    @PostMapping("/cartInsert.do")
-   public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDtlDTO productDtlDTO, Model model) {
+   public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
        
-   	ArrayList<ProductDtlDTO> list = new ArrayList<ProductDtlDTO>();
+   	ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
    	
        int result = orderService.insertCart(list);
 
@@ -61,26 +61,26 @@ public class OrderController {
 	// 장바구니페이지 수량변경
 	@GetMapping("/cartUpdate.do")
 	public String cartUpdate(Model model, HttpServletRequest req) {
-		ProductDtlDTO productDtlDTO = new ProductDtlDTO();
+		ProductDTO productDTO = new ProductDTO();
 		String member_id = req.getParameter("member_id");
 		String cart_dtl_id = req.getParameter("cart_dtl_id");
 		int quantity = Integer.parseInt(req.getParameter("quantity"));
-		productDtlDTO.setMember_id(member_id);
-		productDtlDTO.setCart_dtl_id(cart_dtl_id);
-		productDtlDTO.setQuantity(quantity);
-		int result = orderService.updateCart(productDtlDTO);
+		productDTO.setMember_id(member_id);
+		productDTO.setCart_dtl_id(cart_dtl_id);
+		productDTO.setQuantity(quantity);
+		int result = orderService.updateCart(productDTO);
 		return "orderTest/cart2";
 	}
 		
 	// 장바구니페이지 품목삭제
 	@GetMapping("/cartDelete.do")
 	public String cartDelete(Model model, HttpServletRequest req) {
-		ProductDtlDTO productDtlDTO = new ProductDtlDTO();
+		ProductDTO productDTO = new ProductDTO();
 		String member_id = req.getParameter("member_id");
 		String cart_dtl_id = req.getParameter("cart_dtl_id");
-		productDtlDTO.setMember_id(member_id);
-		productDtlDTO.setCart_dtl_id(cart_dtl_id);
-		int result = orderService.deleteCart(productDtlDTO);
+		productDTO.setMember_id(member_id);
+		productDTO.setCart_dtl_id(cart_dtl_id);
+		int result = orderService.deleteCart(productDTO);
 		return "orderTest/cart2";
 	}	
 
@@ -93,12 +93,12 @@ public class OrderController {
 		System.out.println("***********"+list);
 		String member_id  =(String)req.getSession().getAttribute("id");
 		//String member_id = "inee1945";	
-		List<ProductDtlDTO> cartlist=new ArrayList<>();
+		List<ProductDTO> cartlist=new ArrayList<>();
 			for(String str: list) {
-				ProductDtlDTO productDtlDTO = new ProductDtlDTO();
-				productDtlDTO.setCart_dtl_id(str);
-				productDtlDTO.setMember_id(member_id);
-				cartlist.add(orderService.selectCartPayment(productDtlDTO));
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setCart_dtl_id(str);
+				productDTO.setMember_id(member_id);
+				cartlist.add(orderService.selectCartPayment(productDTO));
 			}
 			System.out.println(cartlist);
 			
@@ -115,10 +115,10 @@ public class OrderController {
 	// 상세페이지에서 결제 페이지로 진행
 	@PostMapping("/productOrderPage.do")
 	public String productOrderPage(Model model, HttpServletRequest req) {
-		//req.....productDtlDTOList  상품상세 리스트로 받아오기 
+		//req.....productDTOList  상품상세 리스트로 받아오기 
 	
 		
-	//	model.addAttribute("lists", productDtlDTOList); 다시 결제페이지로 넘기기
+	//	model.addAttribute("lists", productDTOList); 다시 결제페이지로 넘기기
 		return "payment";
 	}
 

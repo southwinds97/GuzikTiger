@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.ui.Model;
 
-import com.edu.springboot.product.ProductDtlDTO;
+import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,18 +27,18 @@ public interface IOrderService {
 	public String orderProc(Model model, HttpServletRequest req);
 	
 	//장바구니에서 선택한 항목 셀렉트 (결제창에 뿌리기)
-	//public ProductDtlDTO selectCartPayment(ProductDtlDTO productDtlDTO);
-	public ProductDtlDTO selectCartPayment (ProductDtlDTO productDtlDTO);
+	//public ProductDTO selectCartPayment(ProductDTO productDTO);
+	public ProductDTO selectCartPayment (ProductDTO productDTO);
 	
 	
 			/* 장바구니 */
 	//장바구니 조회
-	public ArrayList<ProductDtlDTO> selectCart(String member_id);
+	public ArrayList<ProductDTO> selectCart(String member_id);
 	//장바구니 등록
-	public int insertCart(List<ProductDtlDTO> productDtlDTOList);
+	public int insertCart(List<ProductDTO> productDTOList);
 	//장바구니 수정
-	public int updateCart(ProductDtlDTO productDtlDTO);
+	public int updateCart(ProductDTO productDTO);
 	//장바구니 삭제
-	public int deleteCart(ProductDtlDTO productDtlDTO);
+	public int deleteCart(ProductDTO productDTO);
 	
 }
