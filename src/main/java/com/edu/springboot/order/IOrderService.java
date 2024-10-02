@@ -18,7 +18,7 @@ public interface IOrderService {
 	// 주문 등록
 	public int insertOrder(OrderDTO orderDTO );
 	// 주문 상세등록
-	public int  insertOrderDtl(List<OrderDetailDTO> orderDetailDTOList);
+	public int  insertOrderDtl(List<OrderDTO> orderDTOList);
 	
 	
 	

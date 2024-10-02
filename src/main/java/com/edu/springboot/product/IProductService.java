@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.edu.springboot.ParameterDTO;
+import com.edu.springboot.member.MemberDTO;
+import com.edu.springboot.order.OrderDTO;
 
 @Mapper
 public interface IProductService {
@@ -61,5 +63,12 @@ public interface IProductService {
 	// 상품 New 조회
 	public ArrayList<ProductDTO> getSelectByCodeNew(Map<String, Object> param);
 
+	/*-----------admin--------------*/
+	// 모든상품 조회
+	public ArrayList<ProductDtlDTO> adminProductSelect(ParameterDTO parameterDTO);
+	// 모든주문 조회
+	public ArrayList<OrderDTO> adminOrderSelect(OrderDTO orderDTO);
+	// 모든회원 조회
+	public ArrayList<MemberDTO> adminMemberSelect(MemberDTO memberDTO);
 
 }

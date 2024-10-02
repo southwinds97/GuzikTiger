@@ -29,7 +29,7 @@ public class OrderController {
 	IProductService iProductService;
 	
 	ProductDtlDTO productDtlDTO = new ProductDtlDTO();
-	OrderDetailDTO orderDetailDTO = new OrderDetailDTO()	;
+	OrderDTO orderDTO = new OrderDTO()	;
 	
 	/**************** 장바구니 ***********************/
 	// 장바구니페이지 조회
@@ -129,12 +129,12 @@ public class OrderController {
 		String product_id = req.getParameter("product_id");
 		String option_id = req.getParameter("option_id");
 		int quantity = Integer.parseInt(req.getParameter("quantity"));
-		OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
-		orderDetailDTO.setProduct_id(product_id);
-		orderDetailDTO.setOption_id(option_id);
-		orderDetailDTO.setQuantity(quantity);
-		ArrayList<OrderDetailDTO> lists = new ArrayList<OrderDetailDTO>();
-		lists.add(orderDetailDTO);
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setProduct_id(product_id);
+		orderDTO.setOption_id(option_id);
+		orderDTO.setQuantity(quantity);
+		ArrayList<OrderDTO> lists = new ArrayList<OrderDTO>();
+		lists.add(orderDTO);
 		model.addAttribute("lists", lists);
 		return "paymentComplet";
 	}

@@ -1,5 +1,7 @@
 package com.edu.springboot.product;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -11,5 +13,7 @@ public class ProductDTO {
 	private int stock;
 	private String price;
 	private String img_id;
+	private Date regidate;
+	private String option_id;
 
 }

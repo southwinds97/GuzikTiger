@@ -1,7 +1,6 @@
 package com.edu.springboot.product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -19,6 +18,7 @@ public class ProductDtlDTO {
 	private String sub_cate;
 	private String product_name;
 	private String product_content;
+	private Date regidate;
 
 	
 	//장바구니/주문 관련
