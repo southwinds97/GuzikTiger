@@ -80,7 +80,6 @@ public class MainController {
 		maps.put("pageSize", pageSize);
 		maps.put("pageNum", pageNum);
 		model.addAttribute("maps", maps);
-
 		ArrayList<ProductDTO> productList = dao.adminProductSelect(parameterDTO);
 		model.addAttribute("productList", productList);
 		System.out.println("############"+productList);

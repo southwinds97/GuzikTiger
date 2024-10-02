@@ -1,6 +1,7 @@
 package com.edu.springboot.product;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class ProductDTO {
 	private String option_cate;
 	private int idx;
 	private int sell_count;
+	private List<String>option_list;
 	
 	//장바구니/주문 관련
 	private String  cart_dtl_id;

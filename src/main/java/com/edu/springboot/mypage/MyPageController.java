@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.product.ProductDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import utils.JSFunction;
@@ -166,9 +168,31 @@ public class MyPageController {
     }
 
     @RequestMapping("/recentView.do")
-    public String recentView() {
+    public String selectRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO  ) {
+        String memberId = (String) req.getSession().getAttribute("id");
+
+        if (memberId == null) {
+            return "redirect:/login.do";
+        }
+
+        List<ProductDTO> recentViewList = dao.recentViewSelect(memberId);
+
+        model.addAttribute("recentViewList", recentViewList);
+
+        System.out.println(recentViewList);
+
         return "recentView";
     }
+    
+    @RequestMapping("/recentViewInsert.do")
+    public String insertRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO) {
+    	 
+    	dao.recentViewInsert(productDTO);
+    	  return "recentView";
+    }
+      
+    
+    
 
     @RequestMapping("/myPost.do")
     public String myPost() {

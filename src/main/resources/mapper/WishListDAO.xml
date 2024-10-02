@@ -60,4 +60,15 @@
         DELETE FROM wish_list
         WHERE member_id = #{memberId}
     </delete>
+    
+    <!-- 최근본 상품 조회  -->
+    <select id="recentViewSelect"  resultType="com.edu.springboot.product.ProductDTO">
+    	  DELETE FROM wish_list
+    </select >
+    
+     <!-- 최근본 상품 등록  -->
+    <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
+      DELETE FROM wish_list
+    </insert>
+    
 </mapper>
