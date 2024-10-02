@@ -35,10 +35,10 @@ public class OrderController {
 	// 장바구니페이지 조회
 	@GetMapping("/cartList.do")
 	public String cartList(Model model, HttpServletRequest req) {
-		String member_id  =(String)req.getSession().getAttribute("id");
-		ArrayList<ProductDTO> lists = orderService.selectCart(member_id);
-		model.addAttribute("lists", lists);
-		return "orderTest/cart2";
+//		String member_id  =(String)req.getSession().getAttribute("id");
+//		ArrayList<ProductDTO> lists = orderService.selectCart(member_id);
+//		model.addAttribute("lists", lists);
+		return "cartList";
 	}
 	 // 장바구니 등록 처리
    @PostMapping("/cartInsert.do")
