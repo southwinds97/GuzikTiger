@@ -210,7 +210,7 @@
 							</div>
 							<!-- -----------------------------------  3서브메뉴 변경 끝---------------------------->
 							<!-- 4서브메뉴 변경 시작 -->
-							<div id="chatList" style="display:none; height: 100px;">
+							<div id="chatList" style="display:none; height: 1000px">
 								<iframe id="chatFrame" src="" style="width:100%; height:100%; border:none;"></iframe>
 							</div>
 							<!-- 4서브메뉴 끝 -->
