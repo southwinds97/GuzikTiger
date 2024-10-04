@@ -108,7 +108,7 @@ public String adminPage(Model model, HttpServletRequest req, ParameterDTO parame
     int startSeq = (pageNum - 1) * pageSize;
     model.addAttribute("startSeq", startSeq);
     
-    return "administraor/admin"; // 경로 수정
+    return "administrator/admin"; // 경로 수정
 }
 
 	@RequestMapping("/chat")
