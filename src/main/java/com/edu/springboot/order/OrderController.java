@@ -38,7 +38,7 @@ public class OrderController {
 //		String member_id  =(String)req.getSession().getAttribute("id");
 //		ArrayList<ProductDTO> lists = orderService.selectCart(member_id);
 //		model.addAttribute("lists", lists);
-		return "cartList";
+		return "order/cartList";
 	}
 	 // 장바구니 등록 처리
    @PostMapping("/cartInsert.do")
@@ -139,14 +139,10 @@ public class OrderController {
 		return "paymentComplet";
 	}
 
-	@RequestMapping("/orderList.do")
-	public String orderList(Model model, HttpServletRequest req) {
-		return "orderList";
-	}
 	
 	@GetMapping("/pay.do")
 	public String pay(Model model, HttpServletRequest req) {
-		return "pay";
+		return "order/pay";
 	}
 
 }

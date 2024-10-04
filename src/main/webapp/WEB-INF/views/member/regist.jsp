@@ -32,7 +32,7 @@
 
     <body>
         <div class="join_wrap">
-            <%@ include file="header.jsp" %>
+            <%@ include file="../header.jsp" %>
                 <div class="membership">
                     <h2>회원 가입</h2>
                     <form action="/regist.do" method="post" onsubmit="return checked();">
@@ -1165,7 +1165,7 @@
                     </form>
                 </div>
         </div>
-        <%@ include file="footer.jsp" %>
+        <%@ include file="../footer.jsp" %>
             <!-- 최종 스크립트 -->
             <script>
                 $(document).ready(function () {

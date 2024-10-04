@@ -30,7 +30,7 @@
     </div>
     <div id="wrap">
       <!-- 헤더 -->
-      <%@ include file="header.jsp" %>
+      <%@ include file="../header.jsp" %>
 	  <main id="container" class="qna_page sub_container">
 	        <div class="inner">
 	          <div class="path">
@@ -120,7 +120,7 @@
 	        </div>
 	      </main>
         <!-- 푸터 -->
-        <%@ include file="footer.jsp" %>
+        <%@ include file="../footer.jsp" %>
     </div>
   </body>
 

@@ -32,7 +32,7 @@
     <div id="skip_navi">
       <a href="#container"></a>
     </div>
-    <%@ include file="header.jsp" %>
+    <%@ include file="../header.jsp" %>
       <div id="deleteMemberModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
@@ -594,7 +594,7 @@
           </main>
         </div>
       </div>
-      <%@ include file="footer.jsp" %>
+      <%@ include file="../footer.jsp" %>
   </body>
 
   </html>

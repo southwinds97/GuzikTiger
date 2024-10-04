@@ -56,7 +56,7 @@
 <body>
   <div id="find_wrap">
     <!-- 헤더 -->
-    <%@ include file="header.jsp" %>
+    <%@ include file="../header.jsp" %>
     
     <div class="path">
       <ol>

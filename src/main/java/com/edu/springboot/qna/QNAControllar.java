@@ -55,7 +55,7 @@ public class QNAControllar {
 				req.getContextPath() + "/qnaList.do?");
 		model.addAttribute("pagingImg", pagingImg);
 
-		return "qnaList";
+		return "qna/qnaList";
 	}
 
 	@RequestMapping("/qnaView.do")
@@ -65,7 +65,7 @@ public class QNAControllar {
 		model.addAttribute("qnaDTO", qnaDTO);
 		model.addAttribute("board_idx", qnaDTO.getIdx());
 
-		return "qnaView";
+		return "qna/qnaView";
 	}
 
 	@GetMapping("/qnaWrite.do")
@@ -79,7 +79,7 @@ public class QNAControllar {
 
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
-		return "qnaWrite";
+		return "qna/qnaWrite";
 	}
 
 	@PostMapping("/qnaWrite.do")
@@ -117,7 +117,7 @@ public class QNAControllar {
 	public String qnaEditGet(Model model, QNABoardDTO qnaDTO) {
 		qnaDTO = dao.view(qnaDTO);
 		model.addAttribute("qnaDTO", qnaDTO);
-		return "qnaEdit";
+		return "qna/qnaEdit";
 	}
 
 	@PostMapping("/qnaEdit.do")

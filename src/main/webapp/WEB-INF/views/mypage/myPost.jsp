@@ -33,7 +33,7 @@
       <a href="#container"></a>
     </div>
     <!-- 헤더 -->
-    <%@ include file="header.jsp" %>
+    <%@ include file="../header.jsp" %>
       <div id="wrap">
         <div id="deleteMemberModal" class="modal">
           <div class="modal-content">
@@ -216,7 +216,7 @@
         </div>
       </div>
       <!-- 푸터 -->
-      <%@ include file="footer.jsp" %>
+      <%@ include file="../footer.jsp" %>
   </body>
 
   </html>

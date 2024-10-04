@@ -34,7 +34,7 @@
     <div id="wrap">
 
       <!-- 헤더 -->
-      <%@ include file="header.jsp" %>
+      <%@ include file="../header.jsp" %>
         <div id="container">
           <div class="location">
             <span>현재위치</span>
@@ -458,7 +458,7 @@
         </div>
     </div>
     <!-- 푸터 -->
-    <%@ include file="footer.jsp" %>
+    <%@ include file="../footer.jsp" %>
   </body>
 
   </html>

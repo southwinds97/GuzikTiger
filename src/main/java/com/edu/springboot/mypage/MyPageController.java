@@ -28,7 +28,7 @@ public class MyPageController {
 
     @RequestMapping("/myPage.do")
     public String myPage() {
-        return "myPage";
+        return "mypage/myPage";
     }
 
     // 위시리스트 조회
@@ -46,7 +46,7 @@ public class MyPageController {
 
         System.out.println(wishListData);
 
-        return "wishList";
+        return "mypage/wishList";
     }
 
     // 위시리스트 추가
@@ -181,14 +181,14 @@ public class MyPageController {
 
         System.out.println(recentViewList);
 
-        return "recentView";
+        return "mypage/recentView";
     }
     
     @RequestMapping("/recentViewInsert.do")
     public String insertRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO) {
     	 
     	dao.recentViewInsert(productDTO);
-    	  return "recentView";
+    	  return "mypage/recentView";
     }
       
     
@@ -196,6 +196,6 @@ public class MyPageController {
 
     @RequestMapping("/myPost.do")
     public String myPost() {
-        return "myPost";
+        return "mypage/myPost";
     }
 }

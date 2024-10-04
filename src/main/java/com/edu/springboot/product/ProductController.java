@@ -35,7 +35,7 @@ public class ProductController {
 			String code = dao.getCodeByCdName(category);
 			if (code == null) {
 				// code가 null인 경우 처리
-				return "productList"; // 에러 페이지로 이동
+				return "product/productList"; // 에러 페이지로 이동
 			}
 
 			ArrayList<CodeListDTO> upCodeCategories;
@@ -72,7 +72,7 @@ public class ProductController {
 			model.addAttribute("productCount", mainCategoryCount);
 		}
 
-		return "productList";
+		return "product/productList";
 	}
 
 	@RequestMapping("/productListContent.do")
@@ -139,7 +139,7 @@ public class ProductController {
 
 		model.addAttribute("allLists", lists);
 		model.addAttribute("totalCount", count);
-		return "productListContent";
+		return "product/productListContent";
 	}
 
 }

@@ -30,7 +30,7 @@
 
   <body>
       <!-- 헤더 -->
-      <%@ include file="header.jsp" %>
+      <%@ include file="../header.jsp" %>
     <div class="edit_wrap">
       <div class="path">
         <ol>
@@ -384,7 +384,7 @@
         </script>
     </div>
         <!-- 푸터 -->
-        <%@ include file="footer.jsp" %>
+        <%@ include file="../footer.jsp" %>
   </body>
 
   </html>

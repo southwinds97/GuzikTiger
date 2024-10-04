@@ -29,7 +29,7 @@ public class MemberController {
             // 이미 로그인 된 상태
             return "redirect:/";
         }
-        return "login";
+        return "member/login";
     }
 
     // 로그인 처리
@@ -47,7 +47,7 @@ public class MemberController {
             return "redirect:/";
         }
         // 로그인 실패
-        return "login";
+        return "member/login";
     }
 
     @PostMapping("/loginCheck.do")
@@ -75,7 +75,7 @@ public class MemberController {
     // 회원가입
     @GetMapping("/regist.do")
     public String Regist() {
-        return "regist";
+        return "member/regist";
     }
 
     // 아이디 중복 체크
@@ -140,7 +140,7 @@ public class MemberController {
         }
 
         model.addAttribute("member", dto);
-        return "registEdit";
+        return "member/registEdit";
     }
 
     // 회원정보 수정 처리
@@ -168,13 +168,13 @@ public class MemberController {
     // 아이디 찾기
     @GetMapping("/idFinder.do")
     public String idFinder() {
-        return "idFinder";
+        return "member/idFinder";
     }
 
     // 비밀번호 찾기
     @GetMapping("/passFinder.do")
     public String passFinder() {
-        return "passFinder";
+        return "member/passFinder";
     }
 
     // 회원탈퇴
@@ -185,7 +185,7 @@ public class MemberController {
             return "redirect:/login.do";
         }
         model.addAttribute("id", req.getSession().getAttribute("id"));
-        return "deleteMember";
+        return "member/deleteMember";
     }
 
     // 회원탈퇴 처리
