@@ -180,10 +180,10 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                       <td>${dto.id}</td>
                       <td>${dto.name}</td>
                       <td>${dto.pass}</td>
-                      <td>${dto.hint}</td>
+                      <td>${dto.hint} / ${dto.hintas}</td>
                       <td>${dto.tel}</td>
                       <td>${dto.email}</td>
-                      <td>${dto.addr}</td>
+                      <td>${dto.addr} ${dto.detailaddr}</td>
                       <td>${dto.points}</td>
                       <td>${dto.regdate}</td>
                       <td>${dto.user_level}</td>

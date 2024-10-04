@@ -92,7 +92,8 @@
 		)
 		where rNum<![CDATA[>=]]>#{start}
 		and rNum<![CDATA[<=]]>#{end} -->
-		 select 
+		select * from member
+		 <!-- select 
 			ID,
 			NAME,
 			PASS,
@@ -102,7 +103,7 @@
 			ADDR,
 			POINTS,
 			REGDATE,
-			USER_LEVEL from member
+			USER_LEVEL from member -->
 			order by regdate desc
 		
 		<!-- OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY -->
