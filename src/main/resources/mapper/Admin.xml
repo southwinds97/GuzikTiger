@@ -17,39 +17,30 @@
 			 
 	 <!--all상품 -->		 
 	<select id="adminProductSelect"
-		resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="com.edu.springboot.ParameterDTO">
-		<!-- select * from (
-			select tb.*, rownum rNum from(
-				select * from product
-				<if test="searchKeyword!=null
-					and !searchKeyword.equals('')" >
-			where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
-		order by product_id desc
-			)Tb
-		)
-		where rNum<![CDATA[>=]]>#{start}
-		and rNum<![CDATA[<=]]>#{end} -->
-		select  a.product_id as product_id ,
-		   a.product_name as product_name, 
-		   b.option_id as option_id,
-		   b.price as price,
-		   <!-- TO_CHAR(b.price, 'FM999,999,999,999') as price, -->
-		   
-           b.stock as stock,
-           b.sub_cate as sub_cate,
-           b.regidate as regidate,
-           a.product_content as product_content , 
-		   b.img_id as img_id
-		    
-		from product a, product_dtl b 
-		where 1=1
-		and a.product_id = b.product_id
-		and a.product_id = 'P10697'
-		order by a.product_name 
-		<!-- OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY -->
-	</select>
+        resultType="com.edu.springboot.product.ProductDTO"
+        parameterType="com.edu.springboot.ParameterDTO">
+    select * from (
+        select tb.*, rownum rNum from (
+            select a.product_id as product_id,
+                   a.product_name as product_name,
+                   b.option_id as option_id,
+                   b.price as price,
+                   b.stock as stock,
+                   b.sub_cate as sub_cate,
+                   b.regidate as regidate,
+                   a.product_content as product_content,
+                   b.img_id as img_id
+            from product a, product_dtl b
+            where a.product_id = b.product_id
+            <if test="searchKeyword != null and !searchKeyword.equals('')">
+                and ${searchField} like '%' || #{searchKeyword} || '%'
+            </if>
+            order by a.product_name
+        ) tb
+    )
+    where rNum <![CDATA[>=]]> #{start}
+      and rNum <![CDATA[<=]]> #{end}
+</select>
 	
 	 <!--all주문 -->		 
 	<select id="adminOrderSelect"

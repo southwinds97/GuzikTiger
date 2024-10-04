@@ -19,6 +19,7 @@
 			<link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
 			<link rel="stylesheet" href="css/sub.css?v=<?php echo time(); ?>">
 			<link rel="stylesheet" href="css/recentView.css?v=<?php echo time(); ?>">
+			<link rel="stylesheet" href="css/admin.css?v=<?php echo time(); ?>">
 			<script src="js/jquery-3.7.1.min.js"></script>
 			<script src="js/jquery-ui.min.js"></script>
 			<script src="js/swiper-bundle.min.js"></script>
@@ -52,14 +53,14 @@
 								<div class="recentView">
 									<table border=1>
 										<colgroup>
-											<col width="3%" />
+											<col width="5%" />
 											<col width="5%" />
 											<col width="20%" />
-											<col width="20%" />
+											<col width="10%" />
 											<col width="5%" />
-											<col width="3%" />
-											<col width="4%" />
-											<col width="20%" />
+											<col width="5%" />
+											<col width="5%" />
+											<col width="10%" />
 											<col width="10%" />
 											<col width="10%" />
 										</colgroup>
@@ -80,7 +81,7 @@
 										<tbody>
 											<c:forEach items="${productList}" var="dto" varStatus="loop">
 												<tr>
-													<td>${loop.count}</td>
+													<td>${startSeq + loop.index + 1}</td> <!-- 순번 표시 -->
 													<td>${dto.product_id}</td>
 													<td>${dto.product_name}</td>
 													<td>${dto.option_id}</td>
@@ -89,7 +90,7 @@
 													<td>${dto.sub_cate}</td>
 													<td>${dto.product_content}</td>
 													<td>${dto.regidate} </td>
-													<td><img style="width : 100px"
+													<td style="text-align: center;"><img style="width : 80%; "
 															src="./images/productList/${dto.img_id }" alt="상품리스트"></td>
 												</tr>
 											</c:forEach>
@@ -161,7 +162,7 @@
 								<div class="top_titlearea">
 									<h2>회원 정보</h2>
 								</div>
-								<div class="recentView">
+								<div class="recentView" t>
 									<table border=1>
 										<colgroup>
 											<col width="5%" />
@@ -217,15 +218,7 @@
 
 							<!-- -----------------------------------  페이지네이션 ---------------------------->
 							<div class="paginate">
-								<a href="#" class="first">첫 페이지</a>
-								<a href="#">이전페이지</a>
-								<ol>
-									<li class="xans-record">
-										<a href="#" class="this">1</a>
-									</li>
-								</ol>
-								<a href="#">다음페이지</a>
-								<a href="#" class="last">마지막페이지</a>
+								${pagingImg}
 							</div>
 
 
