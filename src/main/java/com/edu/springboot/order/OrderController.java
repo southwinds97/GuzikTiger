@@ -139,6 +139,10 @@ public class OrderController {
 		return "paymentComplet";
 	}
 
+	@RequestMapping("/orderList.do")
+	public String orderList(Model model, HttpServletRequest req) {
+		return "order/orderList";
+	}
 	
 	@GetMapping("/pay.do")
 	public String pay(Model model, HttpServletRequest req) {
