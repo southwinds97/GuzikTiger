@@ -42,7 +42,7 @@
         </span>
         <a href="#none" onclick="" class="person"></a>    
       </div>
-    </div>
+    </div> 
     <div class="title_area">
       <h2>주문/결제</h2>
     </div>
