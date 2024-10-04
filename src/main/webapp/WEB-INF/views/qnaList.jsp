@@ -25,6 +25,39 @@
     <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
   </head>
 
+  <script>
+	function checkSec(name, idx) {
+		 var userId = '<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>';
+		 var userName = '<%= session.getAttribute("name") != null ? session.getAttribute("name") : "" %>';
+		
+		if (!userId) {
+			alert("회원에게만 읽기 권한이 있습니다.");
+		}
+		else {
+			if(userName == name) {
+				var href = "qnaView.do?idx=" + idx;
+				document.getElementById('qnaLink').href = href; // href 설정
+				window.location.href = href; // 페이지 이동
+			}
+			else {
+				alert('비밀글은 작성자와 관리자만 열람할 수 있습니다.');
+			}
+				
+		}
+	}
+	function checkLogin(idx) {
+		var userId = '<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>';
+		
+		if (!userId) {
+			alert("회원에게만 읽기 권한이 있습니다.");
+		}
+		else {
+			var href = "qnaView.do?idx=" + idx;
+			document.getElementById('qnaLink').href = href; // href 설정
+			window.location.href = href; // 페이지 이동
+		}
+	}
+  </script>
   <body>
     <div id="skip_navi">
       <a href="#container">본문바로가기</a>
@@ -98,7 +131,15 @@
 											${row.product}<br>
 											</c:when>
 										</c:choose>
-					                      <a href="./qnaView.do?idx=${row.idx}">${row.title}</a></td>
+										<c:choose>
+											<c:when test="${row.secretYN == 'y'}">
+												<img src="/images/lock.gif" alt="비밀글">&nbsp;
+					                      		<a id="qnaLink" onclick="checkSec('${row.name}', '${row.idx}')" href="#">${row.title}</a></td>
+											</c:when>
+											<c:otherwise>
+												<a id="qnaLink" onclick="checkLogin('${row.idx}')" href="#">${row.title}</a></td>
+											</c:otherwise>
+										</c:choose>
 					                    <td>${row.category}</td>
 					                    <td>${row.name}</td>
 					                    <td>${row.postdate}</td>
@@ -126,13 +167,11 @@
 	                        <option value="title">제목</option>
 	                        <option value="content">내용</option>
 	                        <option value="name">글쓴이</option>
-	                        <option value="id">아이디</option>
-	                        <option value="name">별명</option>
 	                        <option value="product">상품정보</option>
 	                      </select>
 	                    </div>
 	                    <div class="search_btn_wrap">
-	                      <input class="search" type="text" name="searchKeyword">
+	                      <input class="search_qna" type="text" name="searchKeyword">
 	                      <button class="search_btn" type="submit">찾기</button>
 	                    </div>
 	                  </div>
@@ -141,13 +180,7 @@
 	           </div>
 	           <a class="qna_write_btn" href="qnaWrite.do">글쓰기</a>
 	            <div class="board_pagination">
-	              <a class="page_btn prev" href="#"><span class="blind">이전 페이지</span></a>
-	              <span class="num active">1</span>
-	              <a class="num" href="#">2</a>
-	              <a class="num" href="#">3</a>
-	              <a class="num" href="#">4</a>
-	              <a class="num" href="#">5</a>
-	              <a class="page_btn next" href="#"><span class="blind">다음 페이지</span></a>
+	              ${pagingImg}
 	            </div>
 	          </div>
 	        </div>

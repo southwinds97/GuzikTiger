@@ -5,7 +5,6 @@
   <head>
   
     <meta charset="UTF-8">
-<<<<<<< HEAD
 	<meta name="format-detection" content="telephone=no">
 	      <meta name="description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
 	      <meta property="og:type" content="website">
@@ -16,18 +15,6 @@
 	        <link rel="icon" href="images/common/favicon.png">
 	        <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
 	      <title>GUZIK TIGER 구직타이거</title>
-=======
-    <meta name="format-detection" content="telephone=no">
-      <meta name="description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
-      <meta property="og:type" content="website">
-      <meta property="og:title" content="구직타이거">
-      <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
-      <meta property="og:image"
-        content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
-        <link rel="icon" href="images/common/favicon.png">
-        <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
-      <title>GUZIK TIGER 구직타이거</title>
->>>>>>> branch 'main' of https://github.com/southwinds97/GuzikTiger
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
@@ -51,7 +38,8 @@
 	            <a href="index.html">Home</a> / <span>Q&A</span>
 	          </div>
 	          <h2>Q&A</h2>
-			  <form name="writeFrm" method="post" action="./qnaEdit.do" onsubmit="return validateForm(this);">
+			  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaEdit.do" onsubmit="return validateForm(this);">
+				<input type="hidden" name="idx" value="${qnaDTO.idx}">
 		          <div class="product_sel">
 		            <img src="images/noimg.gif" onerror="this.src='url';">
 		            <div class="product_info">
@@ -72,50 +60,50 @@
 		                  <th>제목</th>
 		                  <td>
 		                    <div class="select_wrap">
-		                      <select value="${qnaDTO.category}">
-		                        <option>상품문의</option>
-		                        <option>주문/결제</option>
-		                        <option>배송문의</option>
-		                        <option>교환/반품</option>
-		                        <option>기타문의</option>
+		                      <select value=${qnaDTO.category} name="category">
+		                        <option name="category">상품문의</option>
+		                        <option name="category">주문/결제</option>
+		                        <option name="category">배송문의</option>
+		                        <option name="category">교환/반품</option>
+		                        <option name="category">기타문의</option>
 		                      </select>
 		                    </div>
 		                    <div class="select_wrap sel_tit">
-		                      <select>
-		                        <option>문의드려요 :)</option>
+		                      <select name="title">
+		                        <option name="title">문의드려요 :)</option>
 		                      </select>
 		                    </div>
 		                  </td>
 		                </tr>
 		                <tr>
 		                  <th>본문</th>
-		                  <td><textarea>${qnaDTO.content}</textarea></td>
+		                  <td><textarea name="content">${qnaDTO.content}</textarea></td>
 		                </tr>
 		                <tr>
 		                  <th>UCC URL</th>
 		                  <td>
-		                    <input type="text"> 
+		                    <input type="text" name="uccURL" value="${qnaDTO.uccURL}"> 
 		                  </td>
 		                </tr>
 		                <tr>
 		                  <th>첨부파일</th>
 		                  <td>
-		                    <input type="file">
+		                    <input type="file" name="ofile" value="${qnaDTO.ofile}">
 		                  </td>
 		                </tr>
 		                <tr>
 		                  <th>비밀번호</th>
 		                  <td>
-		                    <input type="text" value="${qnaDTO.password}">
+		                    <input type="text" value="${qnaDTO.password}" name="password">
 		                  </td>
 		                </tr>
 		                <tr>
 		                  <th>비밀글설정</th>
 		                  <td>
 		                    <form action="">
-		                      <input type="radio" name="passyn" value="passn" id="passn" checked>
+		                      <input type="radio" name="secretYN" value="n" id="passn" checked>
 		                      <label for="passn">공개글</label>
-		                      <input type="radio" name="passyn" value="passy" id="passy">
+		                      <input type="radio" name="secretYN" value="${qnaDTO.secretYN}" id="passy">
 		                      <label for="passy">비밀글</label>
 		                    </form>
 		                  </td>
@@ -124,9 +112,9 @@
 		              </tbody>
 		            </table>
 		            <div class="btn_wrap">
-		              <a href="qnalist.html">목록</a>
+		              <button onclick="location.href='qnaList.do';">목록</button>
 		              <div class="write_btn_wrap">
-		                <a href="qnaView.do?idx=${qnaDTO.idx}">취소</a>
+		                <button onclick="location.href='qnaView.do?idx=${qnaDTO.idx}';">취소</button>
 		                <button class="write_btn" type="submit">수정완료</button>
 		              </div>
 		            </div>
