@@ -118,3 +118,8 @@ td {
   font-weight: bold;
   border: 1px solid #ffce32;
 }
+
+#orderList,
+#memberList {
+	min-height: 600px;
+}
