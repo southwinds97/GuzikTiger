@@ -43,7 +43,7 @@ public class MemberController {
         if (dto != null) {
             // 로그인 성공
             req.getSession().setAttribute("id", dto.getId());
-            // req.getSession().setAttribute("name", dto.getName());
+            req.getSession().setAttribute("name", dto.getName());
             return "redirect:/";
         }
         // 로그인 실패
