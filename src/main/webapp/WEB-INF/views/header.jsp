@@ -16,6 +16,7 @@
 
       $('#login').click(function (event) {
         event.preventDefault();
+        console.log('login');
         $.ajax({
           url: '/login.do',
           type: 'GET',
@@ -221,15 +222,17 @@
                   location.href = 'cartList.do';
                 });
               </script>
-
-              <button class="admin" id="admin"><span class="blind">관리자</span></button>
-
               <!-- 관리자 버튼 페이지 이동 -->
-              <script>
-                $('#admin').click(function () {
-                  location.href = 'admin.do';
-                });
-              </script>
+              <% if ("admin".equals(session.getAttribute("id"))) { %>
+                <button class="admin" id="admin"><span class="blind">관리자</span></button>
+                <script>
+                  $(document).ready(function () {
+                    $('#admin').click(function () {
+                      location.href = 'admin.do';
+                    });
+                  });
+                </script>
+                <% } %>
       </div>
     </div>
     <div class="header_bottom">

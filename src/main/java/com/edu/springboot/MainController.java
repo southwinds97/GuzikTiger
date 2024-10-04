@@ -33,6 +33,8 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String productList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
+		String id = (String) req.getSession().getAttribute("id");
+
 		int totalCount = dao.getTotalCount(parameterDTO);
 		model.addAttribute("totalCount", totalCount);
 		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
@@ -60,6 +62,7 @@ public class MainController {
 
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum,
 				req.getContextPath() + "/productList.do?");
+		model.addAttribute("id", id);
 		model.addAttribute("pagingImg", pagingImg);
 
 		return "home";
@@ -73,6 +76,8 @@ public class MainController {
 		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
 				? 1
 				: Integer.parseInt(req.getParameter("pageNum"));
+		int pageSize = 10; // 페이지당 항목 수
+		int blockPage = 5; // 페이지 블록 수
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
 		parameterDTO.setStart(start);
@@ -98,7 +103,7 @@ public class MainController {
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum,
 				req.getContextPath() + "/productList.do?");
 		model.addAttribute("pagingImg", pagingImg);
-		return "administraor/admin";
+		return "administraor/admin"; // 경로 수정
 	}
 
 	@RequestMapping("/chat")
@@ -111,13 +116,7 @@ public class MainController {
 			@RequestParam("roomId") String roomId, @RequestParam("userId") String userId) {
 		String id = (String) req.getSession().getAttribute("id");
 
-		if (roomId == null && userId == null) {
-			roomId = id;
-			userId = id;
-			model.addAttribute("roomId", roomId);
-			model.addAttribute("userId", userId);
-		}
-
+		model.addAttribute("id", id);
 		return "forward:/reactChat/index.html";
 	}
 

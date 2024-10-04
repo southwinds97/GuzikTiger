@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html>
+
+
     <footer id="footer">
         <div class="footer_wrap">
             <div class="footer_left">
@@ -74,11 +76,60 @@
             </div>
             <!-- 푸터 챗 아이콘(Fix) -->
             <div class="footer_chat">
-                <a href="#" class="chat_btn">
-                    <img src="images/chat_icon.png" alt="챗 아이콘">
-                </a>
+                <c:choose>
+                    <c:when test="${sessionScope.id != null}">
+                        <a href="#" class="chatting_btn" id="chattingId_btn">
+                            <img src="images/chaticon.png" alt="챗 아이콘" style="max-width: 150%;">
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#" class="chatting_btn" id="chattingNId_btn">
+                            <img src="images/chaticon.png" alt="챗 아이콘" style="max-width: 150%;">
+                        </a>
+                    </c:otherwise>
+                </c:choose>
             </div>
+
         </div>
+        <!-- 채팅창 모달창으로 띄우기(chat_btn 클릭시) -->
+        <div class="chat_modal" style="display: none; width: 500px; height: 700px;">
+            <iframe id="chat_iframe" src="#" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#chattingId_btn").click(function (event) {
+                    event.preventDefault();
+                    $(".chat_modal").show();
+                    var roomId = '<%= session.getAttribute("id") %>';
+                    var userId = '<%= session.getAttribute("id") %>';
+
+                    $("#chat_iframe").attr("src", "chat/talk?roomId=" + roomId + "&userId=" + userId);
+                });
+
+                // 모달 창을 클릭하면 닫기
+                $(".chat_modal").click(function () {
+                    $(".chat_modal").hide();
+                    $("#chat_iframe").attr("src", ""); // iframe src 초기화
+                });
+
+                // iframe 내부에서 부모 창으로 메시지를 보내면 모달 창을 닫기
+                window.addEventListener("message", function (event) {
+                    if (event.data === "closeModal") {
+                        $(".chat_modal").hide();
+                        $("#chat_iframe").attr("src", ""); // iframe src 초기화
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            // chattingId_btn 이 버튼 클릭시 alert로 로그인 해주세요 띄우기
+            $("#chattingNId_btn").click(function () {
+                alert("로그인 후 이용해주세요.");
+            });
+
+        </script>
+
     </footer>
 
     </html>

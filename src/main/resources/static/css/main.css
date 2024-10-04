@@ -744,271 +744,30 @@ body {
   cursor: pointer;
 }
 
-
-/* 분기점1 */
-@media (max-width: 1020px) {
-  #header {
-    max-width: 960px;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-
-
-
-
-
-
-
-
+/* 푸터 탑버튼 */
+#footer .chatting_btn {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  z-index: 9999;
 }
 
-
-
-
-
-
-
-
-/* 분기점2 */
-@media (max-width:640px) {
-  #header {
-    padding: 16px 0 0 0;
-  }
-
-  #header .inner {
-    height: 50px;
-  }
-
-  #header .logo .pc_logo {
-    display: none;
-  }
-
-  #header .gnb {
-    display: none;
-  }
-
-  #header .m_logo {
-    position: relative;
-    width: 75%;
-    display: block;
-    margin-top: -15px;
-    margin-left: 15px;
-  }
-
-  #header .logo {
-    margin: 0 auto;
-  }
-
-  #header::after {
-    display: none;
-  }
-
-  #header .m_gnb_btn {
-    width: 8px;
-    height: 17px;
-    border: 1px solid #fff;
-    background: none;
-    margin-left: -60px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    gap: 3px 0;
-    margin-top: -15px;
-  }
-
-  #header .m_gnb_btn i {
-    background: url(../images/btn_gnb.png);
-    width: 20px;
-    height: 30px;
-    transition: all 0.5s;
-    position: relative;
-    border: 1px solid #000;
-  }
-
-  #header .btn_wrap {
-    display: none;
-  }
-
-
-
-
-
-
-  #header .cart {
-    align-items: center !important;
-    /* 아이템을 수직 중앙 정렬 */
-    display: flex !important;
-    /* .cart 보이게 설정 */
-  }
-
-  #header .cart a {
-    justify-content: center;
-    display: flex !important;
-    /* 카트 아이콘을 보이게 설정 */
-    width: 100px !important;
-    height: 24px !important;
-    font-size: 18px !important;
-  }
-
-
-
-
-
-
-
-  /*하는중*/
-
-  #header .m_gnb_wrap::before {
-    content: "";
-    display: flex;
-    /* Flexbox 레이아웃을 적용합니다. */
-    justify-content: center;
-    /* 수평 방향으로 가운데 정렬합니다. */
-    align-items: center;
-    /* 수직 방향으로 가운데 정렬합니다. */
-    width: 100%;
-    height: 80px;
-    background-size: 30% 30%;
-    /* 이미지가 가상 요소를 완전히 덮도록 설정합니다. */
-    background-position: center;
-    /* 배경 이미지를 가운데로 정렬합니다. */
-    background-repeat: no-repeat;
-    /* 이미지가 반복되지 않도록 설정합니다. */
-    padding: 15px 0 12px;
-
-  }
-
-  #header .m_gnb_wrap::after {
-    content: "✖";
-    /* 닫기 버튼의 텍스트 또는 아이콘 */
-    position: absolute;
-    /* 부모 요소인 .m_gnb_wrap에 대해 절대 위치 지정 */
-    top: 10px;
-    /* 상단에서의 위치 */
-    right: 20px;
-    /* 우측에서의 위치 */
-    font-size: 30px;
-    /* 아이콘 크기 */
-    cursor: pointer;
-    /* 마우스 오버 시 커서 변경 */
-    color: #fff;
-    /* 아이콘 색상 */
-  }
-
-
-  #header .m_gnb_wrap {
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 46%;
-    background: #fff;
-    height: 100%;
-    transition: all 0.5s;
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-
-  #header .m_gnb_wrap:hover {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  #header .m_gnb>li>a {
-    display: block;
-    line-height: 60px;
-    position: relative;
-    padding: 0 15px;
-    font-size: 15px;
-    color: var(--gray-600);
-    font-weight: 500;
-  }
-
-  #header .m_gnb>li>a::before {
-    content: "";
-    position: absolute;
-    background: url() no-repeat 95% center;
-    right: 15px;
-    top: 20px;
-    display: block;
-    width: 15px;
-    height: 10px;
-    background-size: 100%;
-    transition-duration: 0.5s;
-  }
-
-  #header .m_gnb>li:hover>a {
-    color: #ed1c24;
-  }
-
-  #header .m_gnb .depth2 li:hover>a {
-    color: #ed1c24;
-  }
-
-  #header .m_gnb>li:hover>a::before {
-    transform: rotate(180deg);
-  }
-
-  #header .m_gnb>li:hover .depth2 {
-    max-height: 240px;
-    padding: 17px 20px;
-    border-top: 1px solid #dedede;
-  }
-
-  #header .m_gnb .depth2 {
-    padding: 0 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.5s;
-    background: #f3f3f3;
-    border-bottom: 1px solid #dedede;
-  }
-
-  #header .m_gnb .depth2 a {
-    color: #444444;
-    display: block;
-    position: relative;
-    padding: 5px 7px;
-    font-size: 14px;
-  }
-
-  #header .m_gnb .depth2 a::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 4px;
-    height: 4px;
-    margin-top: -2px;
-    background: #999;
-    border-radius: 50%;
-  }
-
-  #container {
-    padding-bottom: 100px;
-  }
-
-  /* 모바일 슬라이드 */
-  .swiper-slide .pc_img {
-    display: none;
-  }
-
-  .main_slider .swiper .swiper-slide {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .main_slider .swiper .swiper-slide .m_img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-
-
+.chat_modal {
+  position: fixed;
+  top: 108px;
+  right: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  border: 1px solid --point-color1;
+  border-radius: 25px;
 }

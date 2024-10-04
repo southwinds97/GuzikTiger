@@ -259,13 +259,13 @@ $(function () {
   });
 
   //장바구니 아코디언
-	$('.ec-base-fold > .title').on('click', function (e) {
-	  e.preventDefault();
-	
-	  $(this).parent().toggleClass('on');
-	  $(this).parent().siblings().removeClass('on');
-	});
+  $('.ec-base-fold > .title').on('click', function (e) {
+    e.preventDefault();
 
-  
-  
+    $(this).parent().toggleClass('on');
+    $(this).parent().siblings().removeClass('on');
+  });
+
+
+
 });
