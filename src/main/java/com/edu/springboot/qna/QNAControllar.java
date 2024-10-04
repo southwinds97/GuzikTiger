@@ -3,6 +3,7 @@ package com.edu.springboot.qna;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,14 @@ public class QNAControllar {
 	
 	@Autowired
 	IQNAService dao;
+	ICommentService comDao;
 
     @RequestMapping("/qnaList.do")
     public String qnaList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
     	
     	int totalCount = dao.getTotalCount(parameterDTO);
     	int pageSize = 2;
-    	int blockPage = 2;
+    	int blockPage = 10;
     	int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
     			? 1 : Integer.parseInt(req.getParameter("pageNum"));
     	int start = (pageNum-1) * pageSize + 1;
@@ -56,10 +58,11 @@ public class QNAControllar {
     }
 
     @RequestMapping("/qnaView.do")
-    public String qnaView(Model model, QNABoardDTO qnaDTO) {
+    public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO) {
     	qnaDTO = dao.view(qnaDTO);
     	qnaDTO.setContent(qnaDTO.getContent().replace("\r\n", "<br/>"));
     	model.addAttribute("qnaDTO", qnaDTO);
+    	model.addAttribute("board_idx", qnaDTO.getIdx());
     	
         return "qnaView";
     }
@@ -69,18 +72,21 @@ public class QNAControllar {
         return "qnaWrite";
     }
     
+    
     @PostMapping("/qnaWrite.do")
     public String qnaWritePost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {
     	 	
     	try {
     		String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+    		System.out.println("물리적경로:" + uploadDir);
     		
     		Part part = req.getPart("ofile");
     		String partHeader = part.getHeader("content-disposition");
+    		System.out.println("partHeader=" + partHeader);
     		String[] phArr = partHeader.split("filename=");
     		String originalFileName = phArr[1].trim().replace("\"", "");
     		
-    		    		if(!originalFileName.isEmpty()) {
+    		if(!originalFileName.isEmpty()) {
     			part.write(uploadDir + File.separator + originalFileName);
     		}
     		
@@ -88,12 +94,14 @@ public class QNAControllar {
     		
     		qnaDTO.setOfile(originalFileName);
     		qnaDTO.setSfile(savedFileName);
-    		int result = dao.write(qnaDTO);
+    		System.out.println(qnaDTO);
+    		dao.write(qnaDTO);
     	} catch (Exception e) {
     		System.out.println("업로드 실패");
+    		e.printStackTrace();
     	}
     	
-        return "redirect:qnaWrite.do";
+        return "redirect:qnaList.do";
     }
     
     @GetMapping("/qnaEdit.do")
@@ -104,9 +112,39 @@ public class QNAControllar {
     }
     
     @PostMapping("/qnaEdit.do")
-    public String qnaEditPost(QNABoardDTO qnaDTO) {
-    	int result = dao.edit(qnaDTO);
+    public String qnaEditPost(QNABoardDTO qnaDTO, HttpServletRequest req) {
+    	try {
+    		String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+    		System.out.println("물리적경로:" + uploadDir);
+    		
+    		Part part = req.getPart("ofile");
+    		String partHeader = part.getHeader("content-disposition");
+    		System.out.println("partHeader=" + partHeader);
+    		String[] phArr = partHeader.split("filename=");
+    		String originalFileName = phArr[1].trim().replace("\"", "");
+    		
+    		if(!originalFileName.isEmpty()) {
+    			part.write(uploadDir + File.separator + originalFileName);
+    		}
+    		
+    		String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
+    		
+    		qnaDTO.setOfile(originalFileName);
+    		qnaDTO.setSfile(savedFileName);
+    		System.out.println(qnaDTO);
+    		dao.edit(qnaDTO);
+    	} catch (Exception e) {
+    		System.out.println("업로드 실패");
+    		e.printStackTrace();
+    	}
     	return "redirect:qnaView.do?idx="+ qnaDTO.getIdx();
+    }
+    
+    @PostMapping("/delete.do")
+    public String qnaDeletePost(HttpServletRequest req) {
+    	int result = dao.delete(req.getParameter("idx"));
+    	
+    	return "redirect:qnaList.do";
     }
 }
 

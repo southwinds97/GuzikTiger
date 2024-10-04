@@ -24,7 +24,28 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
   </head>
+  <script>
+  function deletePost(idx) {
+  	var confirmed = confirm("정말로 삭제하시겠습니까?");
+  	if(confirmed) {
+  		var form = document.writeFrm;
+  		form.method = "post";
+  		form.action = "delete.do";
+  		form.submit();
+  	}
+  }
+  
+  window.onload = function() {
+         var userName = '<%= session.getAttribute("name") != null ? session.getAttribute("name") : "" %>';
+         var postAuthorName = '${qnaDTO.name}'; // 작성자의 아이디를 가져옵니다.
 
+         if (userName && userName === postAuthorName) {
+             document.getElementById('viewBtnWrap').style.display = 'block'; // div 보이기
+         }
+		document.getElementById('userIdInput').value = userName;
+     };
+
+  </script>
   <body>
     <div id="skip_navi">
       <a href="#container">본문바로가기</a>
@@ -52,6 +73,9 @@
 				</c:when>
 			</c:choose>
 	          <div class="qna_view_wrap">
+				<form name="writeFrm">
+					<input type="hidden" name="idx" value="${qnaDTO.idx}">
+				</form>
 	            <div class="tit_wrap">
 	              <h3>${qnaDTO.title}</h3>
 	              <p>${qnaDTO.name} <span>${qnaDTO.postdate}</span></p>
@@ -60,47 +84,92 @@
 	              ${qnaDTO.content}
 	            </div>
 	            <div class="btn_wrap">
-	              <div class="view_btn_wrap">
-	              <a href="qnaList.do">삭제</a>
-	              <a href="qnaEdit.do?idx=${qnaDTO.idx}">수정</a>
+	              <div id="viewBtnWrap" class="view_btn_wrap" style="display:none;">
+	              <button type="button" onclick="deletePost(${param.idx});">삭제</button>
+	              <button type="button" onclick="location.href='qnaEdit.do?idx=${param.idx}';">수정</button>
 	              </div>
-	              <a href="qnaList.do">목록</a>
+	              <button type="button" onclick="location.href='qnaList.do';" style="margin:0 0 0 auto">목록</button>
 	            </div>
 	          </div>
 	          <div class="comment_wrap">
 	            <h3>댓글달기</h3>
-	            <div class="comment_box">
-	              <textarea></textarea>
-	              <div class="comment_user">
-	                <div class="com_user_info">
-	                  <div class="name_wrap info_wrap">
-	                    <p>이름</p>
-	                    <input type="text">
-	                  </div>
-	                  <div class="pass_wrap info_wrap">
-	                    <p>비밀번호</p>
-	                    <input type="password">
-	                  </div>
-	                </div>
-	                <div class="pass_com">
-	                  <input type="checkbox">
-	                  <label for="checkbox">비밀댓글</label>
-	                  (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-	                  <button class="com_btn">등록</button>
-	                </div>
-	              </div>
-	            </div>
+				<form name="commentFrm" method="post" action="comWrite.do" onsubmit="return checkFrm(this);">
+					<input type="hidden" value="${qnaDTO.idx}" name="board_idx">
+		            <div class="comment_box">
+		              <textarea name="comments"></textarea>
+		              <div class="comment_user">
+		                <div class="com_user_info">
+		                  <div class="name_wrap info_wrap">
+		                    <p>이름</p>
+		                    <input type="text" id="userIdInput" value="" name="name">
+		                  </div>
+		                  <div class="pass_wrap info_wrap">
+		                    <p>비밀번호</p>
+		                    <input type="password" name="password">
+		                  </div>
+		                </div>
+		                <div class="pass_com">
+		                  <input type="checkbox" name="secretYN" id="checkbox">
+		                  <label for="checkbox">비밀댓글</label>
+		                  (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
+		                  <button class="com_btn" type="submit">등록</button>
+		                </div>
+		              </div>
+		            </div>
+				</form>
 	            <div class="com_list">
-	              <div class="comment">
-	                <span class="com_user">신제헌</span><span>2024-09-25 11:02:33</span>
-	                <div class="com_content">
-	                  <p>메롱</p>
-	                </div>
-	                <div class="com_edit">
-	                  <button>수정</button>
-	                  <button>삭제</button>
-	                </div>
-	              </div>
+					<c:forEach items="${commentLists}" var="row" varStatus="loop">
+					          <div style="width:890px; display:flex; gap:10px; border:1px solid black; margin-bottom:20px;">
+					            <div style="width:15%; text-align:center; padding:10px">${row.name}</div>
+					            <div style="width:75%; padding:10px;">${row.comments}</div>
+					            <c:if test="${ UserId eq row.id }">
+					              <button type="button" id="commentEdit${row.idx}" style="width:5%; background:black; color:white;">수정</button>
+					              <button
+					                type="button" 
+					                onclick="CommentDelete('${row.idx}', '${board_idx}')"
+					              	style="width:5%; margin-right:-1px; background:black; color:white;"
+					              >
+					                삭제
+					              </button>
+					            </c:if>
+					          </div>
+					            <div id="comment_edit_form${row.idx}" style="margin-bottom:20px;">
+					              <script
+					                src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+					              ></script>
+					              <script>
+					                $("#commentEdit${row.idx}").click(function () {
+					                  var idx = ${row.idx}; // Add this line
+					                  $.ajax({
+					                    url: "./commentEdit.do",
+					                    type: "GET",
+					                    data: {
+					                      idx: "${row.idx}",
+					                      board_idx: "${param.board_idx}",
+					                      id: "${row.id}",
+					                      name: "${row.name}",
+					                      comments: "${row.comments}",
+					                    },
+					                    success: function (response) {
+					                      $("#comment_edit_form" + idx).html(response);
+					                    },
+					                  });
+					                });
+					              </script>
+					            </div>
+					        </c:forEach>
+						<c:forEach items="${comlists}" var="row" varStatus="loop">
+							<div class="comment">
+				                <span class="com_user">${row.name} </span><span>${row.postdate}</span>
+				                <div class="com_content">
+				                  <p>${row.comments}</p>
+				                </div>
+				                <div class="com_edit">
+				                  <button>수정</button>
+				                  <button>삭제</button>
+				                </div>
+				              </div>
+						</c:forEach>
 	              <div class="comment">
 	                <span class="com_user">신제헌</span><span>2024-09-25 11:01:20</span>
 	                <div class="com_content">

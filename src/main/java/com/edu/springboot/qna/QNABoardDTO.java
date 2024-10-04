@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class QNABoardDTO {
-	private int idx;
+	private String idx;
 	private String product;
 	private String category;
 	private String title;
@@ -14,6 +14,6 @@ public class QNABoardDTO {
 	private Object ofile;
 	private String sfile;
 	private String password;
-	private String postdate;
+	private java.sql.Date postdate;
 	private String uccURL;
 }

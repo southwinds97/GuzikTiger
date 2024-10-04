@@ -211,7 +211,7 @@
   display: flex;
   justify-content: space-between;
 }
-.btn_wrap a {
+.btn_wrap button {
   display: inline-block;
   text-align: center;
   min-width: 135px;
@@ -223,7 +223,7 @@
   background: none;
   transition: all 0.4s;
 }
-.btn_wrap a:hover {
+.btn_wrap button:hover {
   border: 1px solid black;
 }
 .btn_wrap .write_btn {
