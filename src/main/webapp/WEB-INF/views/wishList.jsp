@@ -231,7 +231,7 @@
                 </div>
                 <ul class="menu">
                   <li>
-                    <a href="pay.do">최근 본 상품</a>
+                    <a href="recentView.do">최근 본 상품</a>
                   </li>
                   <li>
                     <a href="wishList.do">나의 위시리스트</a>

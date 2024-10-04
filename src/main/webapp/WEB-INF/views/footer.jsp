@@ -72,6 +72,12 @@
                     </ul>
                 </div>
             </div>
+            <!-- 푸터 챗 아이콘(Fix) -->
+            <div class="footer_chat">
+                <a href="#" class="chat_btn">
+                    <img src="images/chat_icon.png" alt="챗 아이콘">
+                </a>
+            </div>
         </div>
     </footer>
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.order.OrderDTO;
@@ -15,6 +16,7 @@ import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import utils.PagingUtil;
 
 @Controller
@@ -101,6 +103,21 @@ public class MainController {
 
 	@RequestMapping("/chat")
 	public String chat() {
+		return "forward:/reactChat/index.html";
+	}
+
+	@RequestMapping("/chat/talk")
+	public String talk(HttpServletRequest req, HttpServletResponse resp, Model model,
+			@RequestParam("roomId") String roomId, @RequestParam("userId") String userId) {
+		String id = (String) req.getSession().getAttribute("id");
+
+		if (roomId == null && userId == null) {
+			roomId = id;
+			userId = id;
+			model.addAttribute("roomId", roomId);
+			model.addAttribute("userId", userId);
+		}
+
 		return "forward:/reactChat/index.html";
 	}
 
