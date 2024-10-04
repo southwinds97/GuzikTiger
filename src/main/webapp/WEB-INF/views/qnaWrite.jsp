@@ -38,7 +38,7 @@
 	          </div>
 	          <h2>Q&A</h2>
 				  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaWrite.do" onsubmit="return validateForm(this);">
-					<input type="text" value="<%= session.getAttribute("name") %>" name="name">
+					<input type="text" value='<%= session.getAttribute("name") %>' name="name">
 		          	<div class="product_sel">
 		            <img src="images/noimg.gif" onerror="this.src='url';">
 		            <div class="product_info">
