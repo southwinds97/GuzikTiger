@@ -1,4 +1,4 @@
-package com.edu.springboot.admin;
+package com.edu.springboot.administrator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
