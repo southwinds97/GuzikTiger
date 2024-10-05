@@ -1,5 +1,6 @@
 package com.edu.springboot.mypage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public interface IMyPageService {
     int wishListDeleteAll(String memberId);
     
     // 최근 본 상품 조회 
-    List<ProductDTO> recentViewSelect(String memberId);
+    ArrayList<ProductDTO> recentViewSelect(String memberId);
     
     // 최근 본 상품 등록
     int recentViewInsert(ProductDTO productDTO);

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import utils.JSFunction;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -167,6 +168,7 @@ public class MyPageController {
         return resultMap;
     }
 
+    //최근 본 상품 내역
     @RequestMapping("/recentView.do")
     public String selectRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO  ) {
         String memberId = (String) req.getSession().getAttribute("id");
@@ -175,11 +177,12 @@ public class MyPageController {
             return "redirect:/login.do";
         }
 
-        List<ProductDTO> recentViewList = dao.recentViewSelect(memberId);
-
+        ArrayList<ProductDTO> recentViewList = dao.recentViewSelect(memberId);
+        for(ProductDTO dto : recentViewList) {
+			String[] str =  (dto.getOption_id_list().split(";"));
+			dto.setOption_list( Arrays.asList(str));
+		}
         model.addAttribute("recentViewList", recentViewList);
-
-        System.out.println(recentViewList);
 
         return "mypage/recentView";
     }

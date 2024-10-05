@@ -19,6 +19,7 @@
             product_dtl pd ON p.product_id = pd.product_id
         WHERE 
             w.member_id = #{memberId}
+            and pd.idx=1
         ORDER BY w.idx desc
     </select>
 
@@ -63,12 +64,33 @@
     
     <!-- 최근본 상품 조회  -->
     <select id="recentViewSelect"  resultType="com.edu.springboot.product.ProductDTO">
-    	  DELETE FROM wish_list
+    	 select a.product_id, a.product_name, b.price, a.img_id, b.idx, d.cd_name,
+			         x.option_id_list 
+			  from product a , product_dtl b, recent_view_product c ,code_list d,
+			  (
+			    select product_id , LISTAGG(option_id,';') within group(order by product_id, idx) as option_id_list 
+			      from   product_dtl 
+			      where 1=1
+			      group by product_id
+			  )x
+			  where 1=1
+			  and a.product_id = b.product_id
+			  and a.product_id = x.product_id
+              and a.product_id = c.product_id
+              and b.option_cate = d.code(+)
+			  order by c.view_date desc, a.product_id,b.idx
     </select >
     
      <!-- 최근본 상품 등록  -->
     <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
-      DELETE FROM wish_list
+      MERGE INTO recent_view_product 
+		USING  dual 
+		    ON (product_id = #{member_id})
+		WHEN MATCHED THEN
+		    UPDATE SET view_date = sysdate
+		WHEN NOT MATCHED THEN
+		INSERT (member_id, product_id, view_date) VALUES (#{member_id}, #{product_id},sysdate)
+
     </insert>
     
 </mapper>

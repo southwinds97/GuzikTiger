@@ -20,8 +20,9 @@ public class ProductDTO {
 	private String option_cate;
 	private int idx;
 	private int sell_count;
+	private String option_id_list;
 	private List<String>option_list;
-	
+	private String cd_name;
 	//장바구니/주문 관련
 	private String  cart_dtl_id;
 	private int quantity;

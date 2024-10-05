@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+ <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+ <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
   <!DOCTYPE html>
   <html>
 
@@ -72,6 +73,34 @@
             }
           });
         });
+        
+        //최근 리스트 스크립트에서 변환 , 
+        let arr = new Array();
+        <c:forEach items="${recentViewList}" var="item">
+        arr.push({product_id : "${item.product_id}"
+        	, option_id : "${item.option_id}"
+            , product_name : "${item.product_name}"
+            ,price : "${item.price}" 
+            ,idx : "${item.idx}" 
+        	,option_List :"${item.option_list}"});
+        </c:forEach>
+        
+        //옵션 및 옵션가격 조회
+        $(function(){
+        
+        	$(".optionNum").change(function(){
+        	var idx =	(this.value);
+        	var product_id = $(this).parent().attr('id');
+        	let option_price = arr.filter((e)=>{
+        		return idx===e.idx && product_id===e.product_id
+        	});
+        	
+        	var out = document.getElementById(product_id+"p");
+        	out.innerHTML = option_price[0].price+'원';
+        	//$('#priceTest').text(option_price[0].price);
+        	});
+        });
+        
       </script>
       <div id="wrap">
         <div id="container">
@@ -89,19 +118,22 @@
               </div>
               <div class="recentView">
                 <ul class="productList">
+                
+                <c:forEach items="${recentViewList}" var="row" varStatus="loop">
+                  <c:if test="${row.idx eq 1}">     
                   <li class="list_Wrap">
                     <div class="prdlist">
                       <div class="prdBox">
                         <div class="thumbnail">
                           <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
+                            <img src="../images/productList/${row.img_id }" alt="상품리스트"> 
                           </a>
                         </div>
                         <div class="description">
                           <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
+                            <a href="#"> ${row.product_name }</a>
                           </strong>
-                          <strong class="price">10,000원</strong>
+                           <div id="${row.product_id }${'p'}"><strong class="price">${row.price }원</strong></div>
                           <ul class="Savings">
                             <li class="mileage">
                               <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
@@ -115,430 +147,28 @@
                           </span>
                         </div>
                       </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
+	                     <c:if test="${fn:length(row.option_list) gt 1 }">
+	                      <ul class="options">
+	                        <li class="optionsWrap">
+	                          <div class="name" id="${row.product_id}">
+	                            <span class="optionName">${row.cd_name}</span>
+	                            
+	                            <select class="optionNum" >
+	                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
+	                              <option value="**" disabled>-------------------</option>
+	                             <c:forEach items="${row.option_list}" var="dto" varStatus="loop">
+		                              	  <option value="${loop.count}">0${loop.count}. ${dto}</option>
+						           </c:forEach> 
+	                            </select>
+	                          </div>
+	                        </li>
+	                      </ul>
+                      	</c:if>
                       <button type="button" class="btn_Delete" href="#none">삭제</button>
                     </div>
                   </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
-                  <li class="list_Wrap">
-                    <div class="prdlist">
-                      <div class="prdBox">
-                        <div class="thumbnail">
-                          <a href="#">
-                            <img src="images/recentView.jpg" alt="상품명">
-                          </a>
-                        </div>
-                        <div class="description">
-                          <strong class="prdName">
-                            <a href="#">무직타이거 납작 인형 키링4종</a>
-                          </strong>
-                          <strong class="price">10,000원</strong>
-                          <ul class="Savings">
-                            <li class="mileage">
-                              <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="buttonGroup">
-                          <span class="gRight">
-                            <button type="button" class="btn_cart">장바구니</button>
-                            <button type="button" class="btn_buy">주문하기</button>
-                          </span>
-                        </div>
-                      </div>
-                      <ul class="options">
-                        <li class="optionsWrap">
-                          <div class="name">
-                            <span class="optionName">디자인</span>
-                            <select class="optionNum">
-                              <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                              <option value="**" disabled>-------------------</option>
-                              <option value="1">01. 적호 뚱랑이[품절]</option>
-                              <option value="2">02. 백호 뚱랑이[품절]</option>
-                              <option value="3">03. 흑호 뚱랑이[품절]</option>
-                              <option value="4">04. 포르미</option>
-                              <option value="4">05. 4종 세트 (5% OFF)</option>
-                            </select>
-                          </div>
-                        </li>
-                      </ul>
-                      <button type="button" class="btn_Delete" href="#none">삭제</button>
-                    </div>
-                  </li>
+               	  </c:if>
+    			</c:forEach> 
                 </ul>
               </div>
 
