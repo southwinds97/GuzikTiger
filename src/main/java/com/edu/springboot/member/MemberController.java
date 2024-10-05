@@ -171,10 +171,67 @@ public class MemberController {
         return "member/idFinder";
     }
 
+    @PostMapping("/idFinder.do")
+    public String idFinderProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDTO) {
+        String name = req.getParameter("name");
+        String tel = req.getParameter("tel");
+        String id = dao.idFinder(name, tel);
+
+        if (id != null) {
+            // 아이디 찾기 성공
+            JSFunction.alertLocation(resp, "아이디는 " + id + " 입니다.", "/login.do");
+            return null;
+        } else {
+            // 아이디 찾기 실패
+            JSFunction.alertBack(resp, "입력하신 정보와 일치하는 아이디가 없습니다.");
+            return null;
+        }
+    }
+
     // 비밀번호 찾기
     @GetMapping("/passFinder.do")
     public String passFinder() {
         return "member/passFinder";
+    }
+
+    @PostMapping("/passFinder.do")
+    public String passFinderProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDTO) {
+        String id = req.getParameter("id");
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String tel = req.getParameter("tel");
+
+        System.out.println("email : " + email);
+        System.out.println("tel : " + tel);
+
+        if (email != null && !email.equals("")) {
+            // 이메일로 비밀번호 찾기
+            String pass = dao.passFinderEmail(id, name, email);
+
+            if (pass != null) {
+                // 비밀번호 찾기 성공
+                JSFunction.alertLocation(resp, "비밀번호는 " + pass + " 입니다.", "/login.do");
+                return null;
+            } else {
+                // 비밀번호 찾기 실패
+                JSFunction.alertBack(resp, "입력하신 정보와 일치하는 비밀번호가 없습니다.");
+                return null;
+            }
+        } else {
+            // 휴대폰 번호로 비밀번호 찾기
+            String pass = dao.passFinderTel(id, name, tel);
+
+            if (pass != null) {
+                // 비밀번호 찾기 성공
+                JSFunction.alertLocation(resp, "비밀번호는 " + pass + " 입니다.", "/login.do");
+                return null;
+            } else {
+                // 비밀번호 찾기 실패
+                JSFunction.alertBack(resp, "입력하신 정보와 일치하는 비밀번호가 없습니다.");
+                return null;
+            }
+        }
+
     }
 
     // 회원탈퇴

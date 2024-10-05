@@ -7,24 +7,23 @@
 }
 
 .path ol {
-    float: right;
-    display: flex;
+  float: right;
+  display: flex;
 }
 
 .path li:first-child a::before {
-    content: 'Home';
-    color: currentColor;
-    font-size: 12px;
+  content: "Home";
+  color: currentColor;
+  font-size: 12px;
 }
 
 .path li:not(:first-child):before {
-    content: "/";
-    display: inline-block;
-    margin: 0 4px 0 2px;
-    color: #7d7d7d;
-    font-size: 10px;
-    vertical-align: middle;
-
+  content: "/";
+  display: inline-block;
+  margin: 0 4px 0 2px;
+  color: #7d7d7d;
+  font-size: 10px;
+  vertical-align: middle;
 }
 
 .title h2 {
@@ -39,10 +38,9 @@
   margin: 0 auto 0;
 }
 
-
 .base_box {
   border-width: 1px;
-  padding: 76px;
+  padding: 75px;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #e0e0e0;
@@ -51,7 +49,6 @@
 }
 
 .base_box .content {
-  width: 470px;
   margin: 0 auto;
 }
 .base_desc .check_blank {
@@ -75,7 +72,7 @@
 
 .base_desc .id_view input {
   margin: 10px 0 20px;
-  width: 98%;
+  width: 100%;
   border: 1px solid #e0e0e0;
 }
 
@@ -100,13 +97,11 @@
   text-align: left;
   margin-top: 30px;
   margin-left: 10px;
-  
 }
 
 .base_desc .email_view strong {
   font-weight: bold;
   color: #000000;
-  
 }
 
 .base_desc .email_view input {
@@ -114,8 +109,6 @@
   width: 98%;
   border: 1px solid #e0e0e0;
 }
-
-
 
 .base_desc .mobile_view {
   padding-top: 29px;
@@ -130,8 +123,8 @@
 }
 
 .base_desc .mobile_view input {
-  width: 28%;  
-  margin: 10px 10px;
+  width: 220px;
+  margin: 10px;
   border: 1px solid #e0e0e0;
 }
 

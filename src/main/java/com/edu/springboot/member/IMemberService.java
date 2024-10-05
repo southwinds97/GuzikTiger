@@ -22,4 +22,12 @@ public interface IMemberService {
 
     // 회원 탈퇴 처리 메서드
     int deleteMember(String id);
+
+    // 아이디 찾기 메서드
+    String idFinder(@Param("name") String name, @Param("tel") String tel);
+
+    // 비밀번호 찾기 메서드
+    String passFinderEmail(@Param("id") String id, @Param("name") String name, @Param("email") String email);
+
+    String passFinderTel(@Param("id") String id, @Param("name") String name, @Param("tel") String tel);
 }

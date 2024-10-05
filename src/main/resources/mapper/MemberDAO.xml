@@ -37,4 +37,18 @@
         DELETE FROM member WHERE id=#{memberId}
     </delete>
 
+    <!-- 아이디 찾기 -->
+    <select id="idFinder" resultType="String" parameterType="com.edu.springboot.member.MemberDTO">
+        SELECT id FROM member WHERE name=#{name} AND tel=#{tel}
+    </select>
+
+    <!-- 비밀번호 찾기 -->
+    <select id="passFinderTel" resultType="String" parameterType="com.edu.springboot.member.MemberDTO">
+        SELECT pass FROM member WHERE id=#{id} AND name=#{name} AND tel=#{tel}
+    </select>
+
+    <select id="passFinderEmail" resultType="String" parameterType="com.edu.springboot.member.MemberDTO">
+        SELECT pass FROM member WHERE id=#{id} AND name=#{name} AND email=#{email}
+    </select>
+
 </mapper>
