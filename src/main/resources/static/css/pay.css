@@ -125,15 +125,20 @@
   height: 12px;
 }
 
+
 .shop_title {
   width: 900px;
   margin: 0 auto;
-  height: 675px;
+  height: 722px;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position: relative; 
-  overflow: visible;
+  
+}
+
+
+.shop_title .delivery.active:after {
+  transform: rotate(-135deg);
 }
 
 .shop_title  .delivery {
@@ -157,6 +162,16 @@
    transform: rotate(45deg);
    cursor:pointer;
    transition: transform 0.3s ease;
+}
+
+
+
+.shop_title .delivery.active + .base_table {
+  display: none;
+}
+
+.shop_title .delivery.active:after {
+  transform: rotate(-135deg);
 }
 
 .shop_title  .delivery h2 {
@@ -380,9 +395,6 @@
   border: 1px solid #C5C5C5;
 }
 
-.save_addr {
-  padding: 0 8px 30px;
-}
 
 .save_addr input[type='checkbox']{
   margin: 0;
@@ -392,7 +404,7 @@
   cursor: pointer;
   background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox.png) no-repeat 0 0;
   background-size: 20px 20px;
-  margin-bottom: 1px;
+  margin-top: 16px;
 }
 
 .save_addr input[type='checkbox']:checked:after {
@@ -404,15 +416,16 @@
   background-size: cover;
 } 
 
+
 .save_addr label {
   font-size: 15px;
-  margin: 0 16px 0 6px;
+  padding: 0;
+  margin-top: 15px;
 }
 
 .more_title {
   width: 900px;
   margin: 0 auto;
-  height: 304px;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
@@ -434,6 +447,9 @@
   cursor:pointer;
   transition: transform 0.3s ease;
 }
+.more_title.active:after {
+  transform: rotate(-135deg);
+}
 
 .more_title h2 {
   margin: 0 10px 0 0;
@@ -445,8 +461,15 @@
   padding: 20px 16px;
 }
 
+.more_table.hidden-content {
+  display: none;
+}
+
+
+
+
 .more_title .gift {
-  padding: 0 16px 0;
+  padding: 0 16px 30px;
   display:flex;
 }
 
@@ -470,7 +493,6 @@
 .order_form {
   width: 900px;
   margin: 0 auto;
-  height: 390px;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
@@ -493,6 +515,11 @@
   transition: transform 0.3s ease;
 }
 
+.order_form.active:after {
+  transform: rotate(-135deg);
+}
+
+
 .order_form h2 {
   margin: 0 10px 0 0;
   font-size: 15px;
@@ -502,6 +529,11 @@
   cursor:pointer;
   padding: 20px 16px;
 }
+
+.buy_table.hidden-content {
+  display: none;
+}
+
 
 .probox {
   display: flex;
@@ -687,7 +719,6 @@
 .discount {
   width: 900px;
   margin: 0 auto;
-  height: 470px;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
@@ -710,6 +741,18 @@
   cursor:pointer;
   transition: transform 0.3s ease;
 }
+
+.discount.active:after {
+  transform: rotate(-135deg);
+}
+
+
+
+.dis_table.hidden-content {
+  display: none;
+}
+
+
 
 .discount h2 {
   margin: 0 10px 0 0;
@@ -905,7 +948,6 @@
 .payinfo {
   width: 900px;
   margin: 0 auto;
-  height: 290px;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
@@ -928,6 +970,18 @@
   cursor:pointer;
   transition: transform 0.3s ease;
 }
+
+.payinfo.active:after {
+  transform: rotate(-135deg);
+}
+
+
+
+.info_table.hidden-content {
+  display: none;
+}
+
+
 
 .payinfo h2 {
   margin: 0 10px 0 0;
@@ -979,7 +1033,7 @@
 .dis_basic i {
   background-image: url(../images/common/ico_auto.png);
   position: absolute;
-  top: 60%;
+  top: 173px;
   left: 20px;
   background-repeat: no-repeat;
   width: 24px;
@@ -1017,7 +1071,6 @@
 }
 
 .paymethod {
-  height: 622px;
   margin: 0 auto;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
@@ -1042,6 +1095,26 @@
   transition: transform 0.3s ease;
 }
 
+.paymethod h2 {
+  margin: 0 10px 0 0;
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  padding: 20px 16px;
+}
+
+.paymethod.active:after {
+  transform: rotate(-135deg);
+}
+
+
+
+.mt_table.hidden-content {
+  /* display: none; */
+}
+
 .paychoice h3 { 
   font-size: 15px;
   display: inline-block;
@@ -1053,23 +1126,21 @@
 
 .payinner {
   width: 866px;
-  height: 156px;
   border: 1px solid #EBEBEB;
   margin-left: 15px;
   cursor: pointer;
 }
 
 .payinner .cardpay {
-  height: 78px;
   border-bottom: 1px solid #EBEBEB;
   padding: 17px 25px 16px;
 }
 
-.payinner .cardpay.active {
+.payinner .cardpay.pay_active {
   border: 1px solid #3971FF;
 }
 
-.payinner .deposit.active {
+.payinner .deposit.pay_active {
   border: 1px solid #3971FF;
 }
 
@@ -1078,8 +1149,8 @@
   opacity: 1;
  }
  
-.payinner .cardpay.active img, 
-.payinner .deposit.active img { 
+.payinner .cardpay.pay_active img, 
+.payinner .deposit.pay_active img { 
   filter: grayscale(0);
 }
 .payinner .deposit {
@@ -1096,6 +1167,7 @@
   background-color: #FAFAFD;
   border: 1px solid #EAEAEA;
   gap: 25px;
+  margin-bottom: 60px;
 }
 
 .paycard label {
@@ -1316,6 +1388,27 @@ input[type='radio']:checked + label:after {
 	margin-left: 0;
 }
 
+
+.paybank .deposit4  .nextuse input[type='checkbox']{
+  margin-top: 11px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  cursor: pointer;
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox.png) no-repeat 0 0;
+  background-size: 20px 20px;
+  margin-bottom: 1px;
+}
+
+.paybank .deposit4  .nextuse input[type='checkbox']:checked:after {
+  background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
+  content: ""; /* 필수: content 속성 추가 */
+  display: inline-block; /* 필수: inline-block 설정 */
+  width: 22px; /* 체크된 이미지의 너비 */
+  height: 22px;
+  background-size: cover;
+}  
+
 .nextuse {
 	line-height: 2px;
 }
@@ -1324,12 +1417,42 @@ input[type='radio']:checked + label:after {
 	padding: unset;
 }
 
+.nextuse input[type='checkbox']{
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  cursor: pointer;
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox.png) no-repeat 0 0;
+  background-size: 20px 20px;
+  margin-bottom: 1px;
+}
+
+.nextuse input[type='checkbox']:checked:after {
+  background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
+  content: ""; /* 필수: content 속성 추가 */
+  display: inline-block; /* 필수: inline-block 설정 */
+  width: 22px; /* 체크된 이미지의 너비 */
+  height: 22px;
+  background-size: cover;
+}  
+
+
 
 .earn {
-  height: 170px;
   position: relative;
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5; 
+}
+
+.earn h2 {
+   margin: 0 10px 0 0;
+   font-size: 15px;
+   color: #000;
+   font-weight: 500;
+   line-height: 27px;
+   cursor: pointer;
+   padding: 20px 16px;
 }
 
 .earn h2:after {
@@ -1348,9 +1471,33 @@ input[type='radio']:checked + label:after {
    transition: transform 0.3s ease;
 }
 
+.earn .sagment {
+  height: 30px;
+  padding: 0 16px 20px;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+
+.earn .sagment h3 {
+  font-size: 16px;
+  color: #383838;
+}
+
+.earn .sagment .order_price {
+  font-weight: 700;
+  color: #383838;
+  font-size: 16px;
+}
+
 .earn .sagment .more_price {
   color:#383838;
 }
+
+.earn.active:after {
+  transform: rotate(-135deg);
+}
+
 
 .totalpay2 {
    height:50px;

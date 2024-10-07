@@ -52,6 +52,8 @@
     <div class="delivery">
       <h2>배송지</h2>
     </div>
+   <div class="base_table hidden-content">
+   <div class=inform>
     <ul>
       <li class="recent_addr">
         <a href="#none">최근 배송지</a>
@@ -124,22 +126,49 @@
 		<option value="oMessage-5">택배함에 보관해 주세요.</option>
 		<option value="oMessage-input">직접 입력</option>
 	</select>
-    </div>
-    <div class="save_addr">
+	 <div class="save_addr">
      <input type="checkbox" id="save">
      <label for="save">기본 배송지로 저장</label>
     </div>
+    </div>
+    </div>
+    </div>
     <div class="order_bord"></div>
+    <script>
+    $(document).ready(function() {
+    	  $('.shop_title .delivery').click(function() {
+    	    // 중간 내용들을 숨기거나 보이게 하는 코드
+    	    $(this).toggleClass('active'); // 'active' 클래스 토글
+    	    // 모든 중간 요소들을 숨기거나 보이게 처리
+    	    $('.shop_title .base_table').toggleClass('hidden-content');
+    	  });
+    	});
+  </script>
     <div class="more_title">
       <h2>추가입력</h2>
+    <div class="more_table">
+     <div>
       <div class="gift">
       	<h3>선물하기</h3>
       	 <textarea class="more_msg"></textarea> 
       </div>
     </div>
+    </div>
+    </div>
     <div class="order_bord"></div>
+    <script>
+    $(document).ready(function() {
+    	  $('.more_title').click(function() {
+    	    // 'active' 클래스 토글
+    	    $(this).toggleClass('active'); 
+    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
+    	    $('.more_table').toggleClass('hidden-content');
+    	  });
+    	});
+  	</script>
     <div class="order_form">
 	 <h2>주문상품</h2>
+    <div class="buy_table">
 	<div class="probox">
      <div class="thumbnail">
        <a href="">
@@ -187,9 +216,21 @@
      </span>
     </div>
     </div>
+    </div>
    <div class="order_bord"></div>
+   <script>
+    $(document).ready(function() {
+    	  $('.order_form').click(function() {
+    	    // 'active' 클래스 토글
+    	    $(this).toggleClass('active'); 
+    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
+    	    $('.buy_table').toggleClass('hidden-content');
+    	  });
+    	});
+  </script>
    <div class="discount">
     <h2>할인/부가결제</h2>
+  <div class="dis_table">
    <div class=dis_detail>
    	<h3>자동&nbsp할인</h3>
    	<span class="dis_price">
@@ -224,10 +265,22 @@
   	<h3>적용금액</h3>
   	<div class="txtem">-890원</div>
   </div>
+  </div>
   <div class="order_bord"></div>
+  <script>
+    $(document).ready(function() {
+    	  $('.discount').click(function() {
+    	    // 'active' 클래스 토글
+    	    $(this).toggleClass('active'); 
+    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
+    	    $('.dis_table').toggleClass('hidden-content');
+    	  });
+    	});
+  </script>
   </div>
   <div class="payinfo">
   	<h2>결제정보</h2>
+   <div class="info_table">
   	<div class="sagment">
   	 <h3>주문상품</h3>
   	 <span class="order_price">
@@ -257,10 +310,23 @@
   	<span class="order_price">
   	 26,010원
   	</span>
+  </div>	
   </div>
   <div class="order_bord"></div>
+  <script>
+    $(document).ready(function() {
+    	  $('.payinfo').click(function() {
+    	    // 'active' 클래스 토글
+    	    $(this).toggleClass('active'); 
+    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
+    	    $('.info_table').toggleClass('hidden-content');
+    	  });
+    	});
+  </script>
+  </div>
    <div class="paymethod">
     <h2>결제수단</h2>
+  <div class="mt_table">
    <div class="paychoice">
     <h3>결제수단 선택</h3>  
    </div>
@@ -360,29 +426,41 @@
 
     // 카드 결제 버튼 클릭 시
     cardpayButton.addEventListener('click', function() {
-        depositButton.classList.remove('active');
-        cardpayButton.classList.add('active');
+        depositButton.classList.remove('pay_active');
+        cardpayButton.classList.add('pay_active');
         paycard.style.display = 'flex';
         paybank.style.display = 'none';
     });
 
     // 계좌 이체 버튼 클릭 시
     depositButton.addEventListener('click', function() {
-        cardpayButton.classList.remove('active');
-        depositButton.classList.add('active');
+        cardpayButton.classList.remove('pay_active');
+        depositButton.classList.add('pay_active');
         paybank.style.display = 'flex';
         paycard.style.display = 'none';
     });
 
     // 페이지 로드 시 cardpay 버튼 클릭 상태로 설정
     window.onload = function() {
-        cardpayButton.classList.add('active'); // 카드 결제 버튼 활성화
+        cardpayButton.classList.add('pay_active'); // 카드 결제 버튼 활성화
         paycard.style.display = 'flex'; // paycard 보이게
         paybank.style.display = 'none'; // paybank 숨기기
     };
 </script>
   </div>
+  </div>
   <div class="order_bord"></div>
+  <script>
+  $(document).ready(function() {
+	    $('.paymethod').click(function() {
+	        // 'active' 클래스 토글
+	        $(this).toggleClass('active');
+	        
+	        // 클릭된 .paymethod의 다음 형제 중 .mt_table만 숨기거나 보이게 처리
+	        $('.mt_table').toggleClass('hidden-content');
+	    });
+	});
+  </script>
   <div class="earn">
    <h2>적립 혜택</h2>
    	<div class="sagment">
@@ -399,7 +477,7 @@
   	</div>
   	<div class="sagment">
   	 <h3>쿠폰 적립금</h3>
-  	 <span class="more_price">
+  	 <span class="order_price">
   	 0원
   	 </span>
   	</div>
