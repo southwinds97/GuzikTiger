@@ -32,12 +32,52 @@
   <body>
   
   <script>
-        function changeQuantity(){
-        	 $('#cart').click(function () {
-                 location.href = 'cartList.do';
-               });
-        };
-  </script>
+  $(document).ready(function () {
+ 	 //최근 리스트 스크립트에서 변환 , 
+     let arr = new Array();
+     <c:forEach items="${cartList}" var="item">
+     arr.push({product_id : "${item.product_id}"
+     	, option_id : "${item.option_id}"
+         , product_name : "${item.product_name}"
+         ,price : "${item.price}" 
+         ,idx : "${item.idx}" 
+         ,quantity : "${item.quantity}" 
+     	,option_List :"${item.option_list}"});
+     </c:forEach>
+     console.log('#####',arr);
+     
+     function quantitySet(obj){
+    	 alert('성공');
+    	 
+     }
+     
+  
+     //옵션 및 옵션가격 조회
+     $(function(){
+     
+     	$(".optionNum").change(function(){
+     	var idx =	(this.value);
+     	var product_id = $(this).parent().attr('id');
+     	let option_price = arr.filter((e)=>{
+     		return idx===e.idx && product_id===e.product_id
+     	});
+     	
+     	var out = document.getElementById(product_id+"p");
+     	out.innerHTML = option_price[0].price+'원';
+     	//$('#priceTest').text(option_price[0].price);
+     	});
+     });
+     
+     
+ });
+  function fnchek(obj){
+  	 alert('성공');
+  	var quantity = $('#'+obj.name).val();
+  	var cart_dtl_id = obj.name;
+    location.href = 'cartUpdate.do?quantity='+quantity+'&cart_dtl_id='+cart_dtl_id ;
+   }
+  
+</script>
     <div id="skip_navi">
       <a href="#container"></a>
     </div>
@@ -154,13 +194,13 @@
                               <span class="label displaynone">수량</span>
                               <div>
                                 <span class="qty">
-                                  <input id="${row.cart_dtl_id}" name="quantity" size="2" value="${row.quantity}" type="text">
+                                  <input  id="${row.cart_dtl_id}" size="2" value="${row.quantity}" type="text">
                                   <a href="javascript:;" class="btn_plus"
                                     onclick="Basket.addQuantityShortcut('${row.cart_dtl_id}');">수량증가</a>
                                   <a href="javascript:;" class="btn_minus"
                                     onclick="Basket.outQuantityShortcut('${row.cart_dtl_id}');">수량감소</a>
                                 </span>
-                                <a href="/cartUpdate.do?quantity=${row.cart_dtl_id}&cart_dtl_id=${row.cart_dtl_id}" class="btnNormal btn_edit" >변경</a>
+                                <button type="button" name="${row.cart_dtl_id}"  class="btnNormal btn_edit" onclick="fnchek(this)" >변경</button>
                               </div>
                               <div class="displaynone">2</div>
                             </div>

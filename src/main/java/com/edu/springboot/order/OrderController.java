@@ -61,16 +61,16 @@ public class OrderController {
 	// 장바구니페이지 수량변경
 	@GetMapping("/cartUpdate.do")
 	public String cartUpdate(Model model, HttpServletRequest req, ProductDTO productDTO) {
-		String member_id = "inee1945";
+		 String member_id = (String) req.getSession().getAttribute("id");
 	     String cart_dtl_id = req.getParameter("cart_dtl_id");
 	     String quantityStr = req.getParameter("quantity");
-	     int  quantity = 14;
+	     int  quantity = Integer.parseInt(quantityStr);
 	     productDTO.setMember_id(member_id);
 	     productDTO.setCart_dtl_id(cart_dtl_id);
 	     productDTO.setQuantity(quantity);
-	   orderService.updateCart(productDTO);
-	  //  System.out.println(result);
-		return "redirect:/order/cartList";
+	  int result = orderService.updateCart(productDTO);
+	    System.out.println(result);
+		return "redirect:/cartList.do";
 	}
 		
 	// 장바구니페이지 품목삭제

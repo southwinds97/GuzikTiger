@@ -43,64 +43,34 @@
 
       <script>
         $(document).ready(function () {
-          var modal = $('#deleteMemberModal');
-          var modalContent = $('#modal-body-member');
-
-          $('#deleteMember').click(function (event) {
-            event.preventDefault();
-            $.ajax({
-              url: '/deleteMember.do',
-              type: 'GET',
-              success: function (data) {
-                console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
-                modalContent.html(data);
-                modal.show();
-              },
-              error: function (xhr, status, error) {
-                console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
-                alert('회원탈퇴 페이지를 불러오는 데 실패했습니다.');
-              }
+        	 //최근 리스트 스크립트에서 변환 , 
+            let arr = new Array();
+            <c:forEach items="${recentViewList}" var="item">
+            arr.push({product_id : "${item.product_id}"
+            	, option_id : "${item.option_id}"
+                , product_name : "${item.product_name}"
+                ,price : "${item.price}" 
+                ,idx : "${item.idx}" 
+            	,option_List :"${item.option_list}"});
+            </c:forEach>
+            
+            //옵션 및 옵션가격 조회
+            $(function(){
+            
+            	$(".optionNum").change(function(){
+            	var idx =	(this.value);
+            	var product_id = $(this).parent().attr('id');
+            	let option_price = arr.filter((e)=>{
+            		return idx===e.idx && product_id===e.product_id
+            	});
+            	
+            	var out = document.getElementById(product_id+"p");
+            	out.innerHTML = option_price[0].price+'원';
+            	//$('#priceTest').text(option_price[0].price);
+            	});
             });
-          });
-
-          $('.close').click(function () {
-            modal.hide();
-          });
-
-          $(window).click(function (event) {
-            if ($(event.target).is(modal)) {
-              modal.hide();
-            }
-          });
         });
-        
-        //최근 리스트 스크립트에서 변환 , 
-        let arr = new Array();
-        <c:forEach items="${recentViewList}" var="item">
-        arr.push({product_id : "${item.product_id}"
-        	, option_id : "${item.option_id}"
-            , product_name : "${item.product_name}"
-            ,price : "${item.price}" 
-            ,idx : "${item.idx}" 
-        	,option_List :"${item.option_list}"});
-        </c:forEach>
-        
-        //옵션 및 옵션가격 조회
-        $(function(){
-        
-        	$(".optionNum").change(function(){
-        	var idx =	(this.value);
-        	var product_id = $(this).parent().attr('id');
-        	let option_price = arr.filter((e)=>{
-        		return idx===e.idx && product_id===e.product_id
-        	});
-        	
-        	var out = document.getElementById(product_id+"p");
-        	out.innerHTML = option_price[0].price+'원';
-        	//$('#priceTest').text(option_price[0].price);
-        	});
-        });
-        
+              
       </script>
       <div id="wrap">
         <div id="container">

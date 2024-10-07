@@ -14,31 +14,31 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface IOrderService {
 	
 	// 주문 목록 조회
-	public OrderDTO selectOrder(String member_id);
+	 OrderDTO selectOrder(String member_id);
 	// 주문 등록
-	public int insertOrder(OrderDTO orderDTO );
+	 int insertOrder(OrderDTO orderDTO );
 	// 주문 상세등록
-	public int  insertOrderDtl(List<OrderDTO> orderDTOList);
+	 int  insertOrderDtl(List<OrderDTO> orderDTOList);
 	
 	
 	
 			/* 결제 */
 	//상세페이지에서 선택한 항목 결제창에 뿌리기
-	public String orderProc(Model model, HttpServletRequest req);
+	 String orderProc(Model model, HttpServletRequest req);
 	
 	//장바구니에서 선택한 항목 셀렉트 (결제창에 뿌리기)
 	//public ProductDTO selectCartPayment(ProductDTO productDTO);
-	public ProductDTO selectCartPayment (ProductDTO productDTO);
+	 ProductDTO selectCartPayment (ProductDTO productDTO);
 	
 	
 			/* 장바구니 */
 	//장바구니 조회
-	public ArrayList<ProductDTO> selectCart(String member_id);
+	 ArrayList<ProductDTO> selectCart(String member_id);
 	//장바구니 등록
-	public int insertCart(List<ProductDTO> productDTOList);
+	 int insertCart(List<ProductDTO> productDTOList);
 	//장바구니 수정
-	public int updateCart(ProductDTO productDTO);
+	 int updateCart(ProductDTO productDTO);
 	//장바구니 삭제
-	public int deleteCart(ProductDTO productDTO);
+	 int deleteCart(ProductDTO productDTO);
 	
 }
