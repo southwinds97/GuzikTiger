@@ -26,5 +26,6 @@ public class OrderDTO {
 	private int quantity;
 	private String  cart_dtl_id;
 	private String img_id;
+	private String option_yn;
 	
 }

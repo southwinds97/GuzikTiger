@@ -47,6 +47,7 @@
 		  a.option_id as option_id,
 		  a.quantity as quantity,
 		  b.product_name as product_name,
+		  c.price,
 		  c.img_id as img_id
 
 		from cart a, product b, product_dtl c

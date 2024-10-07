@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <!DOCTYPE html>
   <html>
 
@@ -68,6 +69,10 @@
                     </div>
                     <div class="cart_wrap">
                       <div class="cart_list">
+                      
+                     <!--  -------------------------아이템 시작--------------------------------------------------------- -->
+                     
+                     <c:forEach items="${cartList}" var="row" varStatus="loop">
                         <div class="cart_item">
                           <div class="cart_box">
                             <input type="checkbox" id="cart_check1" class="cart_check"> &nbsp;
@@ -78,11 +83,11 @@
                             </div>
                             <div class="description">
                               <strong class="prdName" title="상품명" id="prod_id">
-                                <a href="#">잇츠 오케이 노트북 아이패드 파우치</a>
+                                <a href="#">${row.product_name}</a>
                               </strong>
                               <ul class="price">
                                 <li class="id">
-                                  <strong>43,000</strong>원
+                                  <strong>${row.price}</strong>원
                                   <span class="displaynone">
                                     <span></span>
                                   </span>
@@ -162,194 +167,10 @@
                           </div>
                           <a href="#none" onclick="Basket.deleteBasketItem(0);" class="btn_delete">삭제</a>
                         </div>
-                        <div class="cart_item">
-                          <div class="cart_box">
-                            <input type="checkbox" id="cart_check1" class="cart_check"> &nbsp;
-                            <div class="thumbnail">
-                              <a href="#">
-                                <img src="images/image4.jpg" alt="상품명">
-                              </a>
-                            </div>
-                            <div class="description">
-                              <strong class="prdName" title="상품명" id="prod_id">
-                                <a href="#">잇츠 오케이 노트북 아이패드 파우치</a>
-                              </strong>
-                              <ul class="price">
-                                <li class="id">
-                                  <strong>43,000</strong>원
-                                  <span class="displaynone">
-                                    <span></span>
-                                  </span>
-                                </li>
-                                <!-- <li>
-                              <span class="txtSecondary">
-                                43,000원 
-                                <span class="displaynone"></span>
-                              </span>
-                            </li>
-                            <li class="id">
-                              <span class="txtSecondary">-0</span>
-                              원
-                              <span class="displaynone">
-                                <span></span>
-                              </span>
-                            </li> -->
-                              </ul>
-                              <ul class="info">
-                                <li>배송 :
-                                  <span class="displaynone">
-                                    0원
-                                    <span class="refer displaynone"></span>
-                                  </span>
-                                  [무료] / 기본배송
-                                </li>
-                                <li class="displaynone">
-                                  배송주기
-                                  <span class="txtEm"></span>
-                                </li>
-                                <li title="적립금" id="prod_mileage" class="mileage">
-                                  <input id="" name="prod_mileage_all" value="" type="hidden">
-                                  <img src="/images/ico_product_point.gif">
-                                  2,150원
-                                </li>
-                              </ul>
-                              <ul class="optionGroup">
-                                <li class="xans-record-">
-                                  <div class="name">
-                                    <span class="product displaynone">잇츠 오케이 노트북 아이패드 파우치</span>
-                                    <span class="optionStr">[옵션: 02. 12~14inch(+7,000)]</span>
-                                    <span class="displaynone">(2개)</span>
-                                    <span class>
-                                      <a href="#none"
-                                        onclick="Basket.showOptionChangeLayer('option_modify_layer_0', $(this))"
-                                        class="btnText displaynone">변경</a>
-                                    </span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="quantity">
-                              <span class="label displaynone">수량</span>
-                              <div>
-                                <span class="qty">
-                                  <input id="quantity" name="quantity" size="2" value="1" type="text">
-                                  <a href="javascript:;" class="btn_plus"
-                                    onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">수량증가</a>
-                                  <a href="javascript:;" class="btn_minus"
-                                    onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">수량감소</a>
-                                </span>
-                                <a href="javascript:;" class="btnNormal btnNormal btn_edit"
-                                  onclick="Basket.modifyQuantity()">변경</a>
-                              </div>
-                              <div class="displaynone">2</div>
-                            </div>
-                            <div class="sumPrice displaynone">
-                              <span class="label">주문금액</span>
-                              <strong>86,000</strong>
-                              원
-                              <span class="displaynone"></span>
-                            </div>
-                            <div class="buttonGroup">
-                              <a href="#none" onclick="BasketNew.moveWish(0);" class="btnNormal sizeM">관심상품</a>
-                              <a href="#none" onclick="Basket.orderBasketItem(0);" class="btnSubmit sizeM">주문하기</a>
-                            </div>
-                          </div>
-                          <a href="#none" onclick="Basket.deleteBasketItem(0);" class="btn_delete">삭제</a>
-                        </div>
-                        <div class="cart_item">
-                          <div class="cart_box">
-                            <input type="checkbox" id="cart_check1" class="cart_check"> &nbsp;
-                            <div class="thumbnail">
-                              <a href="#">
-                                <img src="images/keyring.jpg" alt="상품명">
-                              </a>
-                            </div>
-                            <div class="description">
-                              <strong class="prdName" title="상품명" id="prod_id">
-                                <a href="#">잇츠 오케이 노트북 아이패드 파우치</a>
-                              </strong>
-                              <ul class="price">
-                                <li class="id">
-                                  <strong>43,000</strong>원
-                                  <span class="displaynone">
-                                    <span></span>
-                                  </span>
-                                </li>
-                                <!-- <li>
-                              <span class="txtSecondary">
-                                43,000원 
-                                <span class="displaynone"></span>
-                              </span>
-                            </li>
-                            <li class="id">
-                              <span class="txtSecondary">-0</span>
-                              원
-                              <span class="displaynone">
-                                <span></span>
-                              </span>
-                            </li> -->
-                              </ul>
-                              <ul class="info">
-                                <li>배송 :
-                                  <span class="displaynone">
-                                    0원
-                                    <span class="refer displaynone"></span>
-                                  </span>
-                                  [무료] / 기본배송
-                                </li>
-                                <li class="displaynone">
-                                  배송주기
-                                  <span class="txtEm"></span>
-                                </li>
-                                <li title="적립금" id="prod_mileage" class="mileage">
-                                  <input id="" name="prod_mileage_all" value="" type="hidden">
-                                  <img src="/images/ico_product_point.gif">
-                                  2,150원
-                                </li>
-                              </ul>
-                              <ul class="optionGroup">
-                                <li class="xans-record-">
-                                  <div class="name">
-                                    <span class="product displaynone">잇츠 오케이 노트북 아이패드 파우치</span>
-                                    <span class="optionStr">[옵션: 02. 12~14inch(+7,000)]</span>
-                                    <span class="displaynone">(2개)</span>
-                                    <span class>
-                                      <a href="#none"
-                                        onclick="Basket.showOptionChangeLayer('option_modify_layer_0', $(this))"
-                                        class="btnText displaynone">변경</a>
-                                    </span>
-                                  </div>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="quantity">
-                              <span class="label displaynone">수량</span>
-                              <div>
-                                <span class="qty">
-                                  <input id="quantity_id_0" name="quantity" size="2" value="1" type="text">
-                                  <a href="javascript:;" class="btn_plus"
-                                    onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">수량증가</a>
-                                  <a href="javascript:;" class="btn_minus"
-                                    onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">수량감소</a>
-                                </span>
-                                <a href="javascript:;" class="btnNormal btn_edit"
-                                  onclick="Basket.modifyQuantity()">변경</a>
-                              </div>
-                              <div class="displaynone">2</div>
-                            </div>
-                            <div class="sumPrice displaynone">
-                              <span class="label">주문금액</span>
-                              <strong>86,000</strong>
-                              원
-                              <span class="displaynone"></span>
-                            </div>
-                            <div class="buttonGroup">
-                              <a href="#none" onclick="BasketNew.moveWish(0);" class="btnNormal sizeM">관심상품</a>
-                              <a href="#none" onclick="Basket.orderBasketItem(0);" class="btnSubmit sizeM">주문하기</a>
-                            </div>
-                          </div>
-                          <a href="#none" onclick="Basket.deleteBasketItem(0);" class="btn_delete">삭제</a>
-                        </div>
+                    </c:forEach> 
+         <!--  -------------------------아이템 끝--------------------------------------------------------- -->
+                        
+                        
                         <div class="summary">
                           <div class="title">
                             <h5>[기본배송]</h5>

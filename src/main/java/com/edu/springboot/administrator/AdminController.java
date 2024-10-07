@@ -74,6 +74,10 @@ public class AdminController {
 		return "administrator/productList_admin"; // JSP 페이지 경로 반환
 	}
 
+	@RequestMapping("/productReg.do")
+	public String productReg() {
+		return "administrator/productReg"; 
+	}
 	@RequestMapping("/chat")
 	public String chat() {
 		return "forward:/reactChat/index.html";
