@@ -45,13 +45,7 @@
      	,option_List :"${item.option_list}"});
      </c:forEach>
      console.log('#####',arr);
-     
-     function quantitySet(obj){
-    	 alert('성공');
-    	 
-     }
-     
-  
+       
      //옵션 및 옵션가격 조회
      $(function(){
      
@@ -71,7 +65,6 @@
      
  });
   function fnchek(obj){
-  	 alert('성공');
   	var quantity = $('#'+obj.name).val();
   	var cart_dtl_id = obj.name;
     location.href = 'cartUpdate.do?quantity='+quantity+'&cart_dtl_id='+cart_dtl_id ;
