@@ -62,6 +62,10 @@ public interface IProductService {
 
 	// 상품 New 조회
 	public ArrayList<ProductDTO> getSelectByCodeNew(Map<String, Object> param);
+	
+	// 상품 상세 조회(임시)
+	public ProductDTO getProductDtl(String id);
+	
 
 	/*-----------admin--------------*/
 	// 모든상품 조회

@@ -141,5 +141,17 @@ public class ProductController {
 		model.addAttribute("totalCount", count);
 		return "product/productListContent";
 	}
+	
+	///상품상세 페이지 (임시)
+	@RequestMapping("/product_review.do")
+	public String productReview(HttpServletRequest req, Model model, ProductDTO productDTO) {
+		
+		String id = "P10856";
+		productDTO = dao.getProductDtl(id);
+			
+		model.addAttribute("product_dtl", productDTO) ;
+		
+		return "/product_review"; 
+	}
 
 }

@@ -95,7 +95,7 @@
                       <li>
                         <a href="#">
                           <div class="img_wrap">
-                            <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
+                           <a href="product_review.do"><img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트"></a> 
                             <input type="hidden" name="product_id" value="${row.product_id}" />
                             <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
                             <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>

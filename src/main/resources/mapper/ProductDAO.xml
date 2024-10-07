@@ -379,6 +379,15 @@
 		FETCH NEXT 30 ROWS ONLY
 	</select>
 
+	<!-- 상품 상세 (임시) -->
+	<select id="getProductDtl" resultType = "com.edu.springboot.product.ProductDTO">
+		select 
+		 a.product_name , b.price, a.option_yn
+		 from product a, product_dtl b
+		where 1=1
+		and a.product_id = b.product_id
+        and a.product_id = #{product_id}
+	</select>
 
 
 
