@@ -26,9 +26,18 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
     <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
+    <script src="js/main.js"></script>
   </head>
 
   <body>
+  
+  <script>
+        function changeQuantity(){
+        	 $('#cart').click(function () {
+                 location.href = 'cartList.do';
+               });
+        };
+  </script>
     <div id="skip_navi">
       <a href="#container"></a>
     </div>
@@ -127,8 +136,10 @@
                               <ul class="optionGroup">
                                 <li class="xans-record-">
                                   <div class="name">
-                                    <span class="product displaynone">잇츠 오케이 노트북 아이패드 파우치</span>
-                                    <span class="optionStr">[옵션: 02. 12~14inch(+7,000)]</span>
+                                    <span class="product displaynone">${row.product_name}</span>
+                                    <c:if test="${row.option_yn=='Y'}">
+                                    <span class="optionStr">[옵션: 0${row.idx}. ${row.option_id}]</span>
+                                    </c:if>
                                     <span class="displaynone">(2개)</span>
                                     <span class>
                                       <a href="#none"
@@ -143,14 +154,13 @@
                               <span class="label displaynone">수량</span>
                               <div>
                                 <span class="qty">
-                                  <input id="quantity" name="quantity" size="2" value="1" type="text">
+                                  <input id="${row.cart_dtl_id}" name="quantity" size="2" value="${row.quantity}" type="text">
                                   <a href="javascript:;" class="btn_plus"
-                                    onclick="Basket.addQuantityShortcut('quantity_id_0', 0);">수량증가</a>
+                                    onclick="Basket.addQuantityShortcut('${row.cart_dtl_id}');">수량증가</a>
                                   <a href="javascript:;" class="btn_minus"
-                                    onclick="Basket.outQuantityShortcut('quantity_id_0', 0);">수량감소</a>
+                                    onclick="Basket.outQuantityShortcut('${row.cart_dtl_id}');">수량감소</a>
                                 </span>
-                                <a href="javascript:;" class="btnNormal btn_edit"
-                                  onclick="Basket.modifyQuantity()">변경</a>
+                                <a href="/cartUpdate.do?quantity=${row.cart_dtl_id}&cart_dtl_id=${row.cart_dtl_id}" class="btnNormal btn_edit" >변경</a>
                               </div>
                               <div class="displaynone">2</div>
                             </div>
