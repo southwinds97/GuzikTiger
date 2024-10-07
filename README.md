@@ -42,8 +42,8 @@ Q&A(구현중)
 
 DataBase (SQL)  <br />
 ====================================================
-<a href="https://drive.google.com/file/d/1sloKGaz1jTCmRrAR9I0-loUOYRSrWAW1/view?usp=drive_link">GuzikTiger(테이블 정의서)</a>  <br/>
-<a href="https://drive.google.com/file/d/1vdv7kHDbqJSb39cAaxSq3zmT8Ww_5fCg/view?usp=drive_link">GuzikTiger(상품 Insert)</a>  <br /> 
+<a href="https://drive.google.com/file/d/1VH9bTVknD-hAx-TwzyKQ4UZ-nN9dxBUz/view?usp=sharing">GuzikTiger(테이블 정의서)</a>  <br/>
+<a href="https://drive.google.com/file/d/1Ffc-tdObH8qu-JM1b2BRESuJAXYY_22K/view?usp=sharing">GuzikTiger(상품 Insert)</a>  <br /> 
 
 사용 프로그램
 ====================================================
