@@ -94,15 +94,16 @@ public class QNAControllar {
 			System.out.println("partHeader=" + partHeader);
 			String[] phArr = partHeader.split("filename=");
 			String originalFileName = phArr[1].trim().replace("\"", "");
-
+			String savedFileName = null;
+			
 			if (!originalFileName.isEmpty()) {
 				part.write(uploadDir + File.separator + originalFileName);
+				savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 			}
-
-			String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 
 			qnaDTO.setOfile(originalFileName);
 			qnaDTO.setSfile(savedFileName);
+			
 			System.out.println(qnaDTO);
 			dao.write(qnaDTO);
 		} catch (Exception e) {
@@ -131,12 +132,13 @@ public class QNAControllar {
 			System.out.println("partHeader=" + partHeader);
 			String[] phArr = partHeader.split("filename=");
 			String originalFileName = phArr[1].trim().replace("\"", "");
-
+			String savedFileName = null;
+			
 			if (!originalFileName.isEmpty()) {
 				part.write(uploadDir + File.separator + originalFileName);
+				savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 			}
 
-			String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 
 			qnaDTO.setOfile(originalFileName);
 			qnaDTO.setSfile(savedFileName);

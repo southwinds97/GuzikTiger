@@ -43,6 +43,10 @@
              document.getElementById('viewBtnWrap').style.display = 'block'; // div 보이기
          }
 		document.getElementById('userIdInput').value = userName;
+		
+		if (userName == "관리자") {
+			document.getElementById('reviewBtn').style.display = 'block';
+		}
      };
 
   </script>
@@ -88,6 +92,7 @@
 	              <button type="button" onclick="deletePost(${param.idx});">삭제</button>
 	              <button type="button" onclick="location.href='qnaEdit.do?idx=${param.idx}';">수정</button>
 	              </div>
+				  <button type="button" id="reviewBtn" style="display:none;" onclick="location.href='qnaEdit.do?idx=${param.idx}';">답변</button>
 	              <button type="button" onclick="location.href='qnaList.do';" style="margin:0 0 0 auto">목록</button>
 	            </div>
 	          </div>

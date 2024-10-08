@@ -45,8 +45,6 @@
 							<form method="get">
 								<div class="search_input_wrap">
 									<div class="search_input">
-										<input type="text" value="<%= request.getParameter(" searchword") !=null ?
-											request.getParameter("searchword") : "" %>">
 										<input type="text" placeholder="검색어를 입력해주세요" name="searchKeyword">
 										<button type="submit"><span class="blind">검색</span></button>
 									</div>
@@ -64,7 +62,7 @@
 								</div>
 							</form>
 							<div class="search_result" style="display: flex; justify-content: space-between;">
-								<span>상품 검색 결과</span><strong>${totalCount}</strong>
+								<span>상품 검색 결과</span><strong>${productCount}</strong>
 								<div class="function" id="function" style="padding-top: 40px;">
 									<select id="list_array" name="list_array">
 										<option value="1">신상품</option>

@@ -34,7 +34,7 @@
 			alert("회원에게만 읽기 권한이 있습니다.");
 		}
 		else {
-			if(userName == name) {
+			if(userName == name || userName == "관리자") {
 				var href = "qnaView.do?idx=" + idx;
 				document.getElementById('qnaLink').href = href; // href 설정
 				window.location.href = href; // 페이지 이동
@@ -57,6 +57,23 @@
 			window.location.href = href; // 페이지 이동
 		}
 	}
+	
+	$(document).ready(function () {
+	    $('#categorySelect').on('change', function () {
+	        let selectedCategory = $(this).val();
+	        $('#qnaTableBody .listItem').each(function () {
+	            let itemCategory = $(this).data('category');
+	            if (selectedCategory === '전체' || itemCategory === selectedCategory) {
+	                $(this).show(); // 일치하는 항목은 보이게
+	            } else {
+	                $(this).hide(); // 일치하지 않는 항목은 숨기기
+	            }
+	        });
+	    });
+
+	    // 초기 로드 시 전체 항목 보이기
+	    $('#categorySelect').trigger('change');
+	});
   </script>
   <body>
     <div id="skip_navi">
@@ -77,13 +94,13 @@
 	                <legend>게시물 분류</legend>
 	                <div class="qna_category">
 	                  <div class="select_wrap">
-	                    <select>
-	                      <option>전체</option>
-	                      <option>상품문의</option>
-	                      <option>주문/결제</option>
-	                      <option>배송문의</option>
-	                      <option>교환/반품</option>
-	                      <option>기타문의</option>
+	                    <select id="categorySelect">
+	                      <option value="전체">전체</option>
+	                      <option value="상품문의">상품문의</option>
+	                      <option value="주문/결제">주문/결제</option>
+	                      <option value="배송문의">배송문의</option>
+	                      <option value="교환/반품">교환/반품</option>
+	                      <option value="기타문의">기타문의</option>
 	                    </select>
 	                  </div>
 	                  <div class="select_wrap">
@@ -111,7 +128,7 @@
 	                    <th class="col6">작성일</th>
 	                  </tr>
 	                </thead>
-	                <tbody>
+	                <tbody id="qnaTableBody">
 						<c:choose>
 							<c:when test="${empty lists}">
 								<tr>
@@ -122,7 +139,7 @@
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${lists}" var="row" varStatus="loop">
-									<tr>
+									<tr class="listItem" data-category="${row.category}">
 										<td>${row.idx}</td>
 										<td class="td_img"><a href="#"><img src="images/${row.product}.jpg" alt="${row.product}"></a></td>
 					                    <td class="td_tit">
