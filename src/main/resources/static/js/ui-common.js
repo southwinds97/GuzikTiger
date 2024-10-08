@@ -17,85 +17,67 @@ $(function () {
     $('#header').addClass('on');
     $('#header').on('mouseleave', function () {
       $('#header').removeClass('on');
-    });
+	 });
+	 
+	 $(document).ready(function () {
+	   function updateHeaderBackground() {
+	     if ($('.main_best').length > 0) {
+	       // .main_best가 있을 경우
+	       $('#header').css({
+	         background: 'transparent',
+	         border: 'none'
+	       });
+	     } else {
+	       // .main_best가 없을 경우
+	       $('#header').css({
+	         background: 'white',
+	       });
+	     }
+	   }
 
-    // 헤더메뉴 고정
-    $(window).on('resize', function () {
-      let w = $(this).outerWidth();
+	   // 페이지 로드 시 초기 설정
+	   updateHeaderBackground();
 
-      if (w < 1201) {
-        $(window).off('scroll').on('scroll', function () { });
-      } else {
-        if (!!$('#header').offset()) {
-          // .main_best 요소가 존재하는지 확인
-          if ($('.main_best').length > 0) {
-            let gnbTop = $('.main_best').offset().top;
-            $(window).on('scroll', function () {
-              let windowTop = $(window).scrollTop();
-              if (gnbTop < windowTop) {
-                if (!searchActive) {
-                  scrollActive = true;
-                  $('#header').css({
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    'z-index': 9999,
-                    background: 'white',
-                    'border-bottom': '1px solid #ebebeb',
-                    width: '100%',
-                    'box-shadow': 'rgba(0, 0, 0, 0.5)',
-                  });
-                }
-              } else {
-                if (!searchActive) {
-                  scrollActive = false;
-                  $('#header').css({
-                    position: 'fixed',
-                    background: 'none',
-                    'border-bottom': 'none',
-                    'box-shadow': 'none',
-                  });
-                }
-              }
-            });
-          } else {
-            // .main_best 요소가 없을 때 기본 동작 설정
-            $('#header').css({
-              background: 'white', // 배경을 white로 설정
-            });
-            $(window).on('scroll', function () {
-              let windowTop = $(window).scrollTop();
-              if (windowTop > 0) {
-                if (!searchActive) {
-                  scrollActive = true;
-                  $('#header').css({
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    'z-index': 9999,
-                    background: 'white',
-                    'border-bottom': '1px solid #ebebeb',
-                    width: '100%',
-                    'box-shadow': 'rgba(0, 0, 0, 0.5)',
-                  });
-                }
-              } else {
-                if (!searchActive) {
-                  scrollActive = false;
-                  $('#header').css({
-                    position: 'fixed',
-                    background: 'white', // 배경을 white로 설정
-                    'border-bottom': 'none',
-                    'box-shadow': 'none',
-                  });
-                }
-              }
-            });
-          }
-        }
-      }
-    });
+	  
+	       if (!!$('#header').offset()) {
+	         // 스크롤 이벤트 핸들러 정의
+	         $(window).on('scroll', function () {
+	           let windowTop = $(window).scrollTop();
+	           let gnbTop = $('.main_best').length > 0 ? $('.main_best').offset().top : 0;
 
+	           if ($('.main_best').length > 0) {
+	             // .main_best가 있을 경우
+	             if (gnbTop < windowTop) {
+	               if (!searchActive) {
+	                 $('#header').css({
+	                   position: 'fixed',
+	                   background: 'white',
+	                   'border-bottom': '1px solid #ebebeb', // 필요 시 추가
+	                   'box-shadow': 'rgba(0, 0, 0, 0.5)',
+	                   width: '100%',
+	                   top: 0,
+	                   left: 0,
+	                   'z-index': 9999
+	                 });
+	               }
+	             } else {
+	               if (!searchActive) {
+	                 $('#header').css({
+	                   position: 'fixed',
+	                   background: 'transparent',
+	                   'border-bottom': 'none',
+	                   'box-shadow': 'none'
+	                 });
+	               }
+	             }
+	           } 
+	         });
+	       }
+	     
+
+	   // 초기 스크롤 핸들링
+	   $(window).trigger('scroll');
+	 });
     // 검색창 토글
     $('.search').on('click', function () {
       searchActive = !searchActive;
