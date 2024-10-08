@@ -16,6 +16,8 @@
   top: 0;
   z-index: 9999;
   width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #ebebeb;
 }
 
 #header .inner {
