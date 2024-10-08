@@ -33,7 +33,7 @@
   
   <script>
   $(document).ready(function () {
- 	 //최근 리스트 스크립트에서 변환 , 
+ 	 //장바구니 리스트 스크립트에서 변환 , 
      let arr = new Array();
      <c:forEach items="${cartList}" var="item">
      arr.push({product_id : "${item.product_id}"
@@ -45,7 +45,32 @@
      	,option_List :"${item.option_list}"});
      </c:forEach>
      console.log('#####',arr);
-       
+   
+     
+      
+     //주문금액 정보
+     var totalPrice = Basket.paymentSet(arr);
+     
+     //총상품금액
+     var totalProductPrice = totalPrice ;
+     var innerTotalProductPrice = document.getElementById('totalProductPrice')
+     innerTotalProductPrice.innerHTML = totalProductPrice +'원';
+	 
+     //총 배송비
+     var  totalDelvPrice    = totalProductPrice>50000?0:3000 ;
+     var innerTotalDelvPrice = document.getElementById('totalDelvPrice')
+     innerTotalDelvPrice.innerHTML = totalDelvPrice +'원';
+     
+     //총 할인금액
+	 var  totalDiscountPrice= totalProductPrice * 0.04;
+	 var innerTotalDiscountPrice = document.getElementById('totalDiscountPrice')
+     innerTotalDiscountPrice.innerHTML = totalDiscountPrice +'원';
+	 
+     //결제 예정금액
+	 var  totalPaymentPrice = totalProductPrice +totalDelvPrice -totalDiscountPrice;
+	 var innerTotalPaymentPrice = document.getElementById('totalPaymentPrice')
+     innerTotalPaymentPrice.innerHTML = totalPaymentPrice +'원';
+	 
      //옵션 및 옵션가격 조회
      $(function(){
      
@@ -64,11 +89,15 @@
      
      
  });
-  function fnchek(obj){
+  
+  //장바구 아이템 구매수량 수정
+  function fnQuantityMod(obj){
   	var quantity = $('#'+obj.name).val();
   	var cart_dtl_id = obj.name;
     location.href = 'cartUpdate.do?quantity='+quantity+'&cart_dtl_id='+cart_dtl_id ;
    }
+  
+  
   
 </script>
     <div id="skip_navi">
@@ -111,7 +140,9 @@
                     </div>
                     <div class="cart_wrap">
                       <div class="cart_list">
-                      
+                      <%
+                      request.setAttribute("arr", "${arr}");
+                      %>
                      <!--  -------------------------아이템 시작--------------------------------------------------------- -->
                      
                      <c:forEach items="${cartList}" var="row" varStatus="loop">
@@ -193,7 +224,7 @@
                                   <a href="javascript:;" class="btn_minus"
                                     onclick="Basket.outQuantityShortcut('${row.cart_dtl_id}');">수량감소</a>
                                 </span>
-                                <button type="button" name="${row.cart_dtl_id}"  class="btnNormal btn_edit" onclick="fnchek(this)" >변경</button>
+                                <button type="button" name="${row.cart_dtl_id}"  class="btnNormal btn_edit" onclick="fnQuantityMod(this)" >변경</button>
                               </div>
                               <div class="displaynone">2</div>
                             </div>
@@ -208,7 +239,7 @@
                               <a href="#none" onclick="Basket.orderBasketItem(0);" class="btnSubmit sizeM">주문하기</a>
                             </div>
                           </div>
-                          <a href="#none" onclick="Basket.deleteBasketItem(0);" class="btn_delete">삭제</a>
+                          <a href="#none" onclick="Basket.deleteBasketItem('${row.cart_dtl_id}');" class="btn_delete">삭제</a>
                         </div>
                     </c:forEach> 
          <!--  -------------------------아이템 끝--------------------------------------------------------- -->
@@ -238,7 +269,7 @@
                         <h4 class="title">총 상품금액</h4>
                         <div class="data">
                           <strong>
-                            <span class="totalPrice">170,500</span>
+                            <span class="totalPrice" id="totalProductPrice">170,500</span>
                           </strong>
                           원
                         </div>
@@ -249,7 +280,7 @@
                         <h4 class="title">총 배송비</h4>
                         <div class="data">
                           <strong class="total_delv_price_front">
-                            <span class="total_delv_price_front">0</span>
+                            <span class="total_delv_price_front" id= "totalDelvPrice">0</span>
                           </strong>
                           원
                         </div>
@@ -257,9 +288,9 @@
                     </div>
                     <div class="discount totalSummary_item">
                       <div class="heading">
-                        <h4 class="title">총 할인금액</h4>
+                        <h4 class="title" >총 할인금액</h4>
                         <div class="data">
-                          <strong id="total_discount_price_front">3,650</strong>
+                          <strong id="totalDiscountPrice">3,650</strong>
                           원
                           <span class="refer displaynone">
                             <span id="otal_product_discount_price_back"></span>
@@ -270,7 +301,7 @@
                     <div class="total">
                       <h3 class="title">결제예정금액</h3>
                       <div class="paymentPrice">
-                        <strong id="total_order_price_front">170,500</strong>원
+                        <strong id="totalPaymentPrice">170,500</strong>원
                       </div>
                     </div>
                   </div>
