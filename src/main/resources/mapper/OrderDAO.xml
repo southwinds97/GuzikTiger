@@ -76,11 +76,11 @@
     </update>
     
     <!-- 장바구니에서 상품 삭제 -->
-    <select id="deleteCart" 	parameterType = "com.edu.springboot.product.ProductDTO">
+    <delete id="deleteCart" 	parameterType = "com.edu.springboot.product.ProductDTO">
     	delete from cart
-        where member_id = #{member_id} and CART_DTL_ID = #{CART_DTL_ID}
+        where member_id = #{member_id} and CART_DTL_ID = #{cart_dtl_id}
     	
-    </select>
+    </delete>
    
 
 </mapper>

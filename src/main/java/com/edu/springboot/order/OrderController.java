@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
@@ -36,14 +37,34 @@ public class OrderController {
 	@GetMapping("/cartList.do")
 	public String cartList(Model model, HttpServletRequest req) {
 		String member_id  =(String)req.getSession().getAttribute("id");
+		 if (member_id == null) {
+	           return "redirect:/login.do";
+	       }
 		ArrayList<ProductDTO> cartList = orderService.selectCart(member_id);
 		model.addAttribute("cartList", cartList);
 		return "order/cartList";
 	}
+	
+	// ajaxTest 조회
+		@GetMapping("/cartListAjax.do")
+		@ResponseBody
+		public ArrayList<ProductDTO> cartListAjax(Model model, HttpServletRequest req) {
+			String member_id  =(String)req.getSession().getAttribute("id");
+			ArrayList<ProductDTO> cartList = orderService.selectCart(member_id);
+			model.addAttribute("cartList", cartList);
+			 System.out.println("AjaxController.exasdf01");
+		        return cartList;
+		}
+		
+	
 	 // 장바구니 등록 처리
    @PostMapping("/cartInsert.do")
    public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
        
+	   String memberId = (String) req.getSession().getAttribute("id");
+
+      
+
    	ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
    	
        int result = orderService.insertCart(list);
@@ -77,12 +98,12 @@ public class OrderController {
 	@GetMapping("/cartDelete.do")
 	public String cartDelete(Model model, HttpServletRequest req) {
 		ProductDTO productDTO = new ProductDTO();
-		String member_id = req.getParameter("member_id");
+		String member_id = (String) req.getSession().getAttribute("id");
 		String cart_dtl_id = req.getParameter("cart_dtl_id");
 		productDTO.setMember_id(member_id);
 		productDTO.setCart_dtl_id(cart_dtl_id);
 		int result = orderService.deleteCart(productDTO);
-		return "orderTest/cart2";
+		return "redirect:/cartList.do";
 	}	
 
 	
