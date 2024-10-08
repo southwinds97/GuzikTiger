@@ -389,6 +389,32 @@
         and a.product_id = #{product_id}
 	</select>
 
+	<!-- 키워드를 이용한 상품검색 -->
+	<select id="getSelectByKeyword" resultType = "com.edu.springboot.product.ProductDTO"
+		parameterType="map">
+		select 
+			a.product_id,
+		    a.product_name as product_name, 
+		    a.product_content as product_content , 
+		    b.stock as stock,
+		    b.img_id as img_id,
+		    TO_CHAR(b.price, 'FM999,999,999,999') as price
+		from product a, product_dtl b 
+		where 1=1
+		and b.idx = 1
+		and a.product_id = b.product_id
+		and a.product_name like '%'||#{searchKeyword}||'%'
+		order by a.product_name 
+		</select>
 
-
+	<!-- 키워드를 이용한 상품검색 수 -->
+	<select id="getSelectByKeywordCount" resultType = "int"
+		parameterType="String">
+		select count(*)
+		from product a, product_dtl b 
+		where 1=1
+		and b.idx = 1
+		and a.product_id = b.product_id
+		and a.product_name like '%'||#{searchKeyword}||'%'
+	</select>
 </mapper>

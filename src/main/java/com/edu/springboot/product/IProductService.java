@@ -66,6 +66,12 @@ public interface IProductService {
 	
 	// 상품 상세 조회(임시)
 	public ProductDTO getProductDtl(String id);
+
+	// 상품 검색키워드를 이용한 상품 검색
+	public ArrayList<ProductDTO> getSelectByKeyword(Map<String, Object> param);
+
+	// 상품 검색키워드를 이용한 상품 검색 수
+	int getSelectByKeywordCount(@Param("searchKeyword") String searchKeyword);
 	
 
 	/*-----------admin--------------*/

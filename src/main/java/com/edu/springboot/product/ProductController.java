@@ -2,6 +2,7 @@ package com.edu.springboot.product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.edu.springboot.ParameterDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import utils.PagingUtil;
 
 
 @Controller
@@ -82,7 +84,8 @@ public class ProductController {
 			@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "list_array", required = false) String listArray,
 			@RequestParam(value = "offset", defaultValue = "0") int offset,
-			@RequestParam(value = "limit", defaultValue = "20") int limit) {
+			@RequestParam(value = "limit", defaultValue = "20") int limit,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
 		ArrayList<ProductDTO> lists;
 
 		int count = 0;
@@ -96,15 +99,19 @@ public class ProductController {
 		params.put("list_array", String.valueOf(listArray));
 		params.put("offset", offset);
 		params.put("limit", limit);
+		params.put("searchKeyword", searchKeyword);
 
 		if (code == null || code.isEmpty()) {
 			if ("BEST".equals(category)) {
 				lists = dao.getSelectByCodeBest(params);
 			} else if ("NEW".equals(category)) {
 				lists = dao.getSelectByCodeNew(params);
-			} else {
+			} else if ("mainCate".equals(category)) {
 				count = dao.getSelectByCodeAllCount();
 				lists = dao.getSelectByCodeAll(params);
+			} else {
+				count = dao.getSelectByKeywordCount(searchKeyword);
+				lists = dao.getSelectByKeyword(params);
 			}
 			// count = dao.getSelectByCodeAllCount();
 			// // code 값이 null이거나 비어있는 경우
@@ -118,14 +125,6 @@ public class ProductController {
 			// code 값이 'B'로 시작하는 경우
 			lists = dao.getSelectByCodeSub(params);
 		} else {
-			// } else if (category == "BEST") {
-			// count = 0;
-			// lists = dao.getSelectByCodeBest(params);
-			// System.out.println("BESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBESTBEST");
-			// } else if (category == "NEW") {
-			// count = 0;
-			// lists = dao.getSelectByCodeNew(params);
-			// } else {
 
 			count = dao.getSelectByCodeAllCount();
 			// 그 외의 경우
@@ -153,6 +152,31 @@ public class ProductController {
 		model.addAttribute("product_dtl", productDTO) ;
 		
 		return "/product_review"; 
+	}
+
+	// 상품 검색 페이지 
+	@RequestMapping("/product_search.do")
+	public String productSearch(HttpServletRequest req, Model model, ParameterDTO parameterDTO, ProductDTO productDTO) {
+    	String searchKeyword = req.getParameter("searchKeyword");
+		
+		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
+		? 1
+		: Integer.parseInt(req.getParameter("pageNum"));
+		int pageSize = 20; // 페이지당 항목 수
+		int start = (pageNum - 1) * pageSize + 1;
+		int end = pageNum * pageSize;
+		parameterDTO.setStart(start);
+		parameterDTO.setEnd(end);
+		
+		int productCount = dao.getSelectByKeywordCount(searchKeyword);
+		String pagingImg = PagingUtil.pagingImg(productCount, pageSize, 5, pageNum,
+				req.getContextPath() + "/product_search.do?");
+		
+		model.addAttribute("productCount", productCount);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("pagingImg", pagingImg);
+
+		return "product/product_search";
 	}
 
 }

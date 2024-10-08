@@ -209,6 +209,22 @@
             <a href="logout.do">Logout</a>
             <% } %>
               <button class="search"><span class="blind">검색</span></button>
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  let searchInput = document.getElementById("searchInput");
+
+                  searchInput.addEventListener("keypress", function (event) {
+                    if (event.key === "Enter") {
+                      event.preventDefault(); // 기본 엔터키 동작 방지
+                      let searchValue = searchInput.value.trim(); // 입력된 값 가져오기 및 공백 제거
+                      if (searchValue) {
+                        // 검색 페이지로 이동
+                        window.location.href = "product_search.do?searchKeyword=" + encodeURIComponent(searchValue);
+                      }
+                    }
+                  });
+                });
+              </script>
               <button class="wish" id="wish"><span class="blind">위시리스트</span></button>
               <script>
                 $('#wish').click(function () {
@@ -237,7 +253,7 @@
     </div>
     <div class="header_bottom">
       <div class="search_wrap">
-        <input type="search" placeholder="무엇을 찾아드릴까요?">
+        <input type="search" id="searchInput" placeholder="무엇을 찾아드릴까요?">
         <div class="trend">
           <button>부끄부끄 인형</button>
           <button>키링</button>
