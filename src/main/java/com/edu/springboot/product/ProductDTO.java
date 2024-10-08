@@ -27,5 +27,6 @@ public class ProductDTO {
 	private String  cart_dtl_id;
 	private int quantity;
 	private String option_yn;
+	private List<String>cart_dtl_id_list;
 
 }

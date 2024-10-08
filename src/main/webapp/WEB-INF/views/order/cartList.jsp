@@ -143,12 +143,12 @@
                       <%
                       request.setAttribute("arr", "${arr}");
                       %>
-                     <!--  -------------------------아이템 시작--------------------------------------------------------- -->
+          <!--  -------------------------아이템 시작--------------------------------------------------------- -->
                      
                      <c:forEach items="${cartList}" var="row" varStatus="loop">
                         <div class="cart_item">
                           <div class="cart_box">
-                            <input type="checkbox" id="cart_check1" class="cart_check"> &nbsp;
+                            <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check" onclick='Basket.isChecked(this)'> &nbsp;
                             <div class="thumbnail">
                               <a href="#">
                                 <img src="images/keyring.jpg" alt="상품명">
@@ -307,18 +307,10 @@
                   </div>
                   <div class="orderFixItem">
                     <div class="ec-base-button">
-                      <a href="#" onclick="" class="btnSubmit gFull sizeL">전체상품주문하기</a>
-                      <a href="#" onclick="" class="btnNormal gFull sizeL">선택상품주문하기</a>
+                      <a href="#" onclick="Basket.allProductOrder(); return false;" class="btnSubmit gFull sizeL">전체상품주문하기</a>
+                      <a href="#" onclick="Basket.selProductOrder(); return false;" class="btnNormal gFull sizeL">선택상품주문하기</a>
                     </div>
                   </div>
-                  <!-- 전체상품 주문하기 클릭시 pay.do 이동 -->
-                  <script>
-                    $(document).ready(function () {
-                      $(".btnSubmit").click(function () {
-                        location.href = "pay.do";
-                      });
-                    });
-                  </script>
                   <div class="gInnerMargin">
                     <ul class="ec-base-help">
                       <li class>할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</li>

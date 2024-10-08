@@ -1,6 +1,7 @@
 package com.edu.springboot.order;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,40 +46,38 @@ public class OrderController {
 		return "order/cartList";
 	}
 	
-	// ajaxTest 조회
+	
+		 // 장바구니 등록 처리
+	  @PostMapping("/cartInsert.do")
+	  public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
+	      
+		 String memberId = (String) req.getSession().getAttribute("id");
+		 ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+	  	
+	      int result = orderService.insertCart(list);
+	
+	      if (result > 0) {
+	          // 회원가입 성공 메세지
+	          JSFunction.alertLocation(resp, "회원가입이 완료되었습니다.", "/");
+	          return null;
+	      } else {
+	          // 회원가입 실패
+	          JSFunction.alertBack(resp, "회원가입에 실패했습니다.");
+	          return null;
+	      }
+	  }
+	
+	// ajax quantity 변경  조회
 		@GetMapping("/cartListAjax.do")
 		@ResponseBody
 		public ArrayList<ProductDTO> cartListAjax(Model model, HttpServletRequest req) {
 			String member_id  =(String)req.getSession().getAttribute("id");
 			ArrayList<ProductDTO> cartList = orderService.selectCart(member_id);
 			model.addAttribute("cartList", cartList);
-			 System.out.println("AjaxController.exasdf01");
-		        return cartList;
+		    return cartList;
 		}
 		
-	
-	 // 장바구니 등록 처리
-   @PostMapping("/cartInsert.do")
-   public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
-       
-	   String memberId = (String) req.getSession().getAttribute("id");
 
-      
-
-   	ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-   	
-       int result = orderService.insertCart(list);
-
-       if (result > 0) {
-           // 회원가입 성공 메세지
-           JSFunction.alertLocation(resp, "회원가입이 완료되었습니다.", "/");
-           return null;
-       } else {
-           // 회원가입 실패
-           JSFunction.alertBack(resp, "회원가입에 실패했습니다.");
-           return null;
-       }
-   }
 	// 장바구니페이지 수량변경
 	@GetMapping("/cartUpdate.do")
 	public String cartUpdate(Model model, HttpServletRequest req, ProductDTO productDTO) {
@@ -109,23 +108,27 @@ public class OrderController {
 	
 	/**************** 결제(창) ***********************/
 	// 장바구니에서 결제페이지로
-	//@PostMapping("/cartOrderPage.do")
-	@RequestMapping(value="cartOrderPage.do", method={RequestMethod.POST})
-	public String cartOrderPage(Model model, HttpServletRequest req, @RequestParam(value="data[]") String[] list) {
-		System.out.println("***********"+list);
+	@RequestMapping("/cartOrderPage.do")
+	public String cartOrderPage(Model model, HttpServletRequest req, HttpServletResponse res
+			,OrderDTO orderDTO) {
+		
 		String member_id  =(String)req.getSession().getAttribute("id");
-		//String member_id = "inee1945";	
-		List<ProductDTO> cartlist=new ArrayList<>();
-			for(String str: list) {
-				ProductDTO productDTO = new ProductDTO();
-				productDTO.setCart_dtl_id(str);
-				productDTO.setMember_id(member_id);
-				cartlist.add(orderService.selectCartPayment(productDTO));
-			}
-			System.out.println(cartlist);
-			
-		model.addAttribute("lists", cartlist);
-		return "payment";
+		String cart_dtl_id_list = req.getParameter("cart_dtl_list");
+		if(cart_dtl_id_list==null) {
+			orderDTO.setMember_id(member_id);
+			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentAll(orderDTO);
+			model.addAttribute("lists", orderDTOList);
+		}else {
+			String[] str =  cart_dtl_id_list.split(",");
+			System.out.println(str);
+			orderDTO.setMember_id(member_id);
+			orderDTO.setCart_dtl_id_list(Arrays.asList(str));
+
+			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentSel(orderDTO);
+			model.addAttribute("lists", orderDTOList);
+		}
+		
+		return "order/pay";
 	}
 
 	// 상품 상세페이지 진입

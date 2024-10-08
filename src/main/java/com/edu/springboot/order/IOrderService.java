@@ -27,9 +27,12 @@ public interface IOrderService {
 	 String orderProc(Model model, HttpServletRequest req);
 	
 	//장바구니에서 선택한 항목 셀렉트 (결제창에 뿌리기)
-	//public ProductDTO selectCartPayment(ProductDTO productDTO);
-	 ProductDTO selectCartPayment (ProductDTO productDTO);
-	
+	 
+	//전체 선택 결제
+	 ArrayList<OrderDTO> selectCartPaymentAll (OrderDTO orderDTO);
+	 
+	 //선택 결제
+	 ArrayList<OrderDTO> selectCartPaymentSel (OrderDTO orderDTO);
 	
 			/* 장바구니 */
 	//장바구니 조회
