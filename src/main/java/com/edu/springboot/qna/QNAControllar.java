@@ -32,8 +32,8 @@ public class QNAControllar {
 	public String qnaList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
 
 		int totalCount = dao.getTotalCount(parameterDTO);
-		int pageSize = 2;
-		int blockPage = 10;
+		int pageSize = 10;
+		int blockPage = 5;
 		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
 				? 1
 				: Integer.parseInt(req.getParameter("pageNum"));

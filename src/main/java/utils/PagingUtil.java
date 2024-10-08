@@ -24,8 +24,8 @@ public class PagingUtil {
         if(intTemp != 1) {
             //첫번째 페이지 블럭에서는 출력되지 않음
             //두번째 페이지 블럭부터 출력됨.
-            pagingStr += "<a href='"+page+"pageNum=1' class='first'>첫 페이지</a>";
-            pagingStr += "<a href='"+page+"pageNum="+(intTemp-blockPage)+"'>이전페이지</a>";
+            pagingStr += "<a href='"+page+"pageNum=1' class='first'></a>";
+            pagingStr += "<a href='"+page+"pageNum="+(intTemp-blockPage)+"'></a>";
         }
         
         //페이지표시 제어를 위한 변수
@@ -50,8 +50,8 @@ public class PagingUtil {
         
         //5.다음페이지블럭 & 마지막페이지 바로가기
         if(intTemp <= totalPage) {
-            pagingStr += "<a href='"+page+"pageNum="+intTemp+"'>다음페이지</a>";
-            pagingStr += "<a href='"+page+"pageNum="+totalPage+"' class='last'>마지막페이지</a>";
+            pagingStr += "<a href='"+page+"pageNum="+intTemp+"' class='next_button'></a>";
+            pagingStr += "<a href='"+page+"pageNum="+totalPage+"' class='last'></a>";
         }
         
         pagingStr += "</div>";
