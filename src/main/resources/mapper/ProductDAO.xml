@@ -159,7 +159,9 @@
 	</update> -->
 
 	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
-		select cd_name  from code_list where category = 'mainCate'
+		select cd_name  from code_list where category = 'mainCate' 
+		<!-- 중복 제거 -->
+		group by cd_name
 	</select>
 
 	<select id="subCategoryList" parameterType="String" resultType="com.edu.springboot.product.CodeListDTO">
@@ -179,6 +181,7 @@
 	<!-- up_code로 cd_name 리스트 조회 -->
     <select id="getCategoriesByUpCode" parameterType="String" resultType="com.edu.springboot.product.CodeListDTO">
         SELECT cd_name FROM code_list WHERE up_code = #{up_code}
+		group by cd_name
     </select>
 
 	<!-- 코드를 이용해서 mainCate 상품 검색 -->
