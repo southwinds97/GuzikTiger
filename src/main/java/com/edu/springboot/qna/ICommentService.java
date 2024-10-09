@@ -9,11 +9,18 @@ import com.edu.springboot.ParameterDTO;
 
 @Mapper
 public interface ICommentService {
-	
+
 	public int getTotalCount(ParameterDTO parameterDTO);
+
 	public List<CommentDTO> getBoardIdx(String board_idx);
-	public ArrayList<CommentDTO> listCom(ParameterDTO parameterDTO);
+
+	public ArrayList<CommentDTO> listCom(String idx);
+
 	public int write(CommentDTO comDTO);
-	public int edit(CommentDTO comDTO);
-	public int delete(String idx);
+
+	public CommentDTO getCommentEdit(String idx);
+
+	void updateComment(CommentDTO comment);
+
+	public int deleteComment(String idx);
 }

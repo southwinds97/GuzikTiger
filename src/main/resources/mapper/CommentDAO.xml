@@ -5,7 +5,7 @@
 
 <mapper namespace="com.edu.springboot.qna.ICommentService">
    
-   <select id="getTotalCount" resultType="int"
+   <!-- <select id="getTotalCount" resultType="int"
    	parameterType="com.edu.springboot.qna.CommentDTO">
    		SELECT COUNT(*) from qna_comment
    		where board_idx=#{board_idx}
@@ -13,18 +13,10 @@
    	<select id="getBoardIdx" parameterType="com.edu.springboot.qna.CommentDTO">
    		SELECT * FROM qna_comment where board_idx=#{board_idx}
    	</select>
-   	
-	<select id="listCom" resultType="com.edu.springboot.qna.CommentDTO"
-		parameterType="com.edu.springboot.ParameterDTO">
-		SELECT * FROM (
-        SELECT Tb.*, rownum rNum FROM (
-            SELECT * FROM qna_comment
-            WHERE board_idx = #{qna.getIdx()}
-            ORDER BY idx DESC
-        ) Tb
-    )    
-    WHERE rNum <![CDATA[>=]]> #{start} AND rNum <![CDATA[<=]]> #{end}
-	</select>   	
+   	 -->
+	<select id="listCom" resultType="com.edu.springboot.qna.CommentDTO" parameterType="String">
+    	select * from qna_comment where board_idx=#{idx}
+	</select>  	
 	
 	<insert id="write" parameterType="com.edu.springboot.qna.CommentDTO">
     INSERT INTO qna_comment (idx, board_idx, name, comments, password, secretYN)
@@ -37,16 +29,23 @@
 		parameterType="com.edu.springboot.qna.CommentDTO">
 		SELECT * FROM qna_comment WHERE idx=#{idx}
 	</select>
+
+	<!-- edit 내용 가져오기 -->
+	<select id="getCommentEdit" resultType="com.edu.springboot.qna.CommentDTO"
+		parameterType="String">
+		SELECT * FROM qna_comment WHERE idx=#{idx}
+	</select>
 	
-	<update id="edit" parameterType="com.edu.springboot.qna.CommentDTO">
-		UPDATE qna_comment SET
-		product=#{product, jdbcType=VARCHAR}, category=#{category, jdbcType=VARCHAR}, content=#{content, jdbcType=VARCHAR},
-		password=#{password, jdbcType=VARCHAR}, uccURL=#{uccURL, jdbcType=VARCHAR},
-		secretYN=#{secretYN, jdbcType=VARCHAR}, ofile=#{ofile, jdbcType=VARCHAR}, sfile=#{sfile, jdbcType=VARCHAR}
-		WHERE idx=#{idx}
+	<update id="updateComment" parameterType="com.edu.springboot.qna.CommentDTO">
+		UPDATE qna_comment
+		SET name = #{name},
+			comments = #{comments},
+			password = #{password},
+			secretYN = #{secretYN}
+		WHERE idx = #{idx}
 	</update>
 	
-	<delete id="delete">
-		DELETE FROM qna_comment WHERE idx=#{param1}
+	<delete id="deleteComment" parameterType="String">
+		DELETE FROM qna_comment WHERE idx = #{idx}
 	</delete>
 </mapper>
