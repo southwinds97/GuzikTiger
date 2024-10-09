@@ -33,10 +33,16 @@ public interface IOrderService {
 	 
 	 //선택 결제
 	 ArrayList<OrderDTO> selectCartPaymentSel (OrderDTO orderDTO);
+	 
+	//결제품목 삭제
+	int deletePayment(ProductDTO productDTO);
 	
 			/* 장바구니 */
 	//장바구니 조회
-	 ArrayList<ProductDTO> selectCart(String member_id);
+	 ArrayList<ProductDTO> selectCart(ProductDTO productDTO);
+	 
+	//장바구니 cke항목 조회
+	 ArrayList<ProductDTO> selectCartChk(ProductDTO productDTO);
 	//장바구니 등록
 	 int insertCart(List<ProductDTO> productDTOList);
 	//장바구니 수정

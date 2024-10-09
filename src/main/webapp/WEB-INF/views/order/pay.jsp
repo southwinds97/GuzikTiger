@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,13 +24,15 @@
   
   <!-- JS 파일 -->
   <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/swiper-bundle.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
   <header id="header">
     <div class="top_head">
-      <h2><a href="#">MUZIKTIGER</a></h2>
+      <h2><a href="/">MUZIKTIGER</a></h2>
       <div class="left_menu">
         <span class="back_btn">
           <a href="#none" onclick=""></a>  
@@ -37,10 +40,10 @@
       </div>
       <div class="right_menu">
         <span class="other_btn">
-          <a href="#none" onclick=""></a>
+          <a href="/cartList.do" onclick=""></a>
           <span class="count">2</span>
         </span>
-        <a href="#none" onclick="" class="person"></a>    
+        <a href="myPage.do" onclick="" class="person"></a>    
       </div>
     </div> 
     <div class="title_area">
@@ -50,7 +53,7 @@
   <div class="order_bord"></div>
   <div class="shop_title">
     <div class="delivery">
-      <h2>배송지</h2>
+      <h2 >배송지</h2>
     </div>
    <div class="base_table hidden-content">
    <div class=inform>
@@ -134,18 +137,55 @@
     </div>
     </div>
     <div class="order_bord"></div>
+    
     <script>
-    $(document).ready(function() {
-    	  $('.shop_title .delivery').click(function() {
-    	    // 중간 내용들을 숨기거나 보이게 하는 코드
-    	    $(this).toggleClass('active'); // 'active' 클래스 토글
-    	    // 모든 중간 요소들을 숨기거나 보이게 처리
-    	    $('.shop_title .base_table').toggleClass('hidden-content');
-    	  });
-    	});
+ $(document).ready(function () {
+  //주문 리스트 스크립트에서 변환 , 
+  function fnIntl(){
+	  let orderArr = new Array();
+	  
+	    <c:forEach items="${orderList}" var="item">
+	    orderArr.push({product_id : "${item.product_id}"
+	    	, cart_dtl_id : "${item.cart_dtl_id}"
+	    	, option_id : "${item.option_id}"
+	        , product_name : "${item.product_name}"
+	        , price : "${item.price}" 
+	        , idx : "${item.idx}" 
+	        , quantity : "${item.quantity}" 
+	    	, option_List :"${item.option_list}"
+	    	, point : "${item.points}"
+	    });
+	    </c:forEach>
+	    console.log('##주문리스트###',orderArr);
+	    return orderArr;
+  }
+    
+            
+    //주문금액 정보
+    let orderArr =  fnIntl();
+    var totalPrice = Basket.paymemtSetAmont(orderArr);
+    
+    //적립금 change event
+   
+    $('#usePoint').change(function(e){
+    	let usePoint = e.target.value
+    
+    	if(usePoint>orderArr[0].point){
+    		alert('사용가능 적립금보다 많습니다 적립금 사용금액을 다시 입력해주세요');
+    		$('#usePoint').val(0);
+    		let orderArr =  fnIntl();
+    		Basket.finalSetAmount(orderArr,0);
+    		return ;
+    	}else{
+    		let orderArr =  fnIntl();
+    		Basket.finalSetAmount(orderArr,usePoint);
+    	}
+    });
+     
+    });
   </script>
     <div class="more_title">
-      <h2>추가입력</h2>
+      <h2 >추가입력</h2>
     <div class="more_table">
      <div>
       <div class="gift">
@@ -157,61 +197,39 @@
     </div>
     <div class="order_bord"></div>
     <script>
-    $(document).ready(function() {
-    	  $('.more_title').click(function() {
-    	    // 'active' 클래스 토글
-    	    $(this).toggleClass('active'); 
-    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
-    	    $('.more_table').toggleClass('hidden-content');
-    	  });
-    	});
+  
   	</script>
     <div class="order_form">
 	 <h2>주문상품</h2>
     <div class="buy_table">
-	<div class="probox">
-     <div class="thumbnail">
+
+<!-- ---------------주문상품 목록 끝------------------------------------- -->
+  <c:forEach items="${orderList}" var="row" varStatus="loop">
+	<div class="probox2">
+      <div class="thumbnail">
        <a href="">
-         <img src="/images/BEST8.jpg" class="tiger">   
+         <img src="../images/productList/${row.img_id }" class="tiger">   
        </a>
-     </div>
-    <div class="description">
-     <a href="" class="proname">뚱랑이 스트레스볼 3종</a>
-      <span class="option">
-      <p>[옵션: 01. 적호 뚱랑이]</p>
-      </span>
-      <span class="number">
-	   <p>수량: 1개</p>
-      </span>	   
-	  <span class="price">
-	   <p>15,000원</p>
-      </span>	       
+      </div>
+      <div class="description">
+       <a href="" class="proname">${row.product_name}</a>
+        <span class="option">
+        	<p>[옵션: 0${row.idx}. ${row.option_id}]</p>
+        </span>
+        <span class="number">
+        	<p>수량: ${row.quantity}개</p>
+        </span>	   
+        <span class="price">
+    	  <p>${row.quantity*row.price}원</p>
+        </span>	       
+      </div>
+     <button type="button" class="btnRemove" onclick="Basket.productRemove('${row.cart_dtl_id}')"></button>
     </div>
-    <button type="button" class="btnRemove"></button>
-    </div>
-    <div class="probox2">
-     <div class="thumbnail">
-       <a href="">
-		  <img src="/images/BEST1.jpg">  
-       </a>
-     </div>
-    <div class="description">
-     <a href="" class="proname">무직타이거 부끄부끄 미니 인형 키링 6종</a>
-      <span class="option">
-      <p>[옵션: 01. 적호 뚱랑이]</p>
-      </span>
-      <span class="number">
-	   <p>수량: 1개</p>
-      </span>	   
-	  <span class="price">
-	   <p>8,900원</p>
-      </span>	       
-    </div>
-    <button type="button" class="btnRemove"></button>
-    </div>
+  </c:forEach>
+<!-- ---------------주문상품 목록 끝------------------------------------- -->
     <div class="price_title">
      <h3>배송비</h3>
-     <span class="dlprice">
+     <span class="dlprice" id="delvAmout1">
       3,000원
      </span>
     </div>
@@ -219,38 +237,26 @@
     </div>
    <div class="order_bord"></div>
    <script>
-    $(document).ready(function() {
-    	  $('.order_form').click(function() {
-    	    // 'active' 클래스 토글
-    	    $(this).toggleClass('active'); 
-    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
-    	    $('.buy_table').toggleClass('hidden-content');
-    	  });
-    	});
+    
   </script>
    <div class="discount">
     <h2>할인/부가결제</h2>
   <div class="dis_table">
    <div class=dis_detail>
    	<h3>자동&nbsp할인</h3>
-   	<span class="dis_price">
+   	<span class="dis_price" id="productDscount1">
    	 890원
    	</span>
    </div>
-    <div class=dis_detail2>
-   	<h3>기간할인</h3>
-   	<span class="dis_period">
-   	 890원
-   	</span>
-   </div>
+ 
    <div class="membership">
    	<h3>적립금</h3>
-   	<input type="text" class="member_money">
-    <button type="button" class="use_btn" onclick="">전액 사용</button>
+   	<input type="text" class="member_money" id="usePoint" value=0>
+    <button type="button" class="use_btn" onclick="fnUsePoint()">전액 사용</button>
    </div>
    <div class="balance">
     <span class="summary">보유&nbsp잔액
-     <span class="txtem">3,000원</span>
+     <span class="txtem" id="points">0원</span>
     </span>
    </div>
   <div class="expand">
@@ -263,19 +269,12 @@
   </div>
   <div class="totalpay">
   	<h3>적용금액</h3>
-  	<div class="txtem">-890원</div>
+  	<div class="txtem" id="totalDiscount1">-890원</div>
   </div>
   </div>
   <div class="order_bord"></div>
   <script>
-    $(document).ready(function() {
-    	  $('.discount').click(function() {
-    	    // 'active' 클래스 토글
-    	    $(this).toggleClass('active'); 
-    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
-    	    $('.dis_table').toggleClass('hidden-content');
-    	  });
-    	});
+ 
   </script>
   </div>
   <div class="payinfo">
@@ -283,45 +282,44 @@
    <div class="info_table">
   	<div class="sagment">
   	 <h3>주문상품</h3>
-  	 <span class="order_price">
+  	 <span class="order_price" id="totalProductPrice">
   	 23,900원
   	 </span>
   	</div>
   	<div class="sagment">
   	 <h3>배송비</h3>
-  	 <span class="order_price">
+  	 <span class="order_price"id="delvAmout2">
   	 +3,000원
   	 </span>
   	</div>
   	<div class="sagment">
   	 <h3>할인/부가결제</h3>
-  	 <span class="more_price">
+  	 <span class="more_price" id="totalDiscount2">
   	 -890원
   	 </span>
   	</div>
   <div class="dis_basic">
     <h3><i></i>기본 할인</h3>
-    <span class="basic_price">
+    <span class="basic_price" id="productDscount2" >
      -890원
+    </span>
+  </div>
+  <div class="dis_basic">
+    <h3><i></i>적립금</h3>
+    <span class="basic_price" id="usedPoint">
+     0원
     </span>
   </div>
   <div class="payment">
   	<h3>최종 결제 금액</h3>
-  	<span class="order_price">
+  	<span class="order_price" id="totalPaymentAmount">
   	 26,010원
   	</span>
   </div>	
   </div>
   <div class="order_bord"></div>
   <script>
-    $(document).ready(function() {
-    	  $('.payinfo').click(function() {
-    	    // 'active' 클래스 토글
-    	    $(this).toggleClass('active'); 
-    	    // 현재 클릭된 .more_title의 다음 형제 .more_table만 선택하여 숨기거나 보이게 처리
-    	    $('.info_table').toggleClass('hidden-content');
-    	  });
-    	});
+ 
   </script>
   </div>
    <div class="paymethod">

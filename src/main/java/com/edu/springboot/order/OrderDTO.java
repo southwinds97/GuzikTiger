@@ -19,7 +19,7 @@ public class OrderDTO {
 	private String deliv_charge;
 	private String order_prog;
 	private String deliv_prog;
-		
+
 	private String product_id;
 	private String product_name;
 	private String option_id;
@@ -29,6 +29,19 @@ public class OrderDTO {
 	private String option_yn;
 	private List<String>option_list;
 	private List<String>cart_dtl_id_list;
+	
+	
+	private String sub_cate;
+	private String product_content;
+	private int stock;
+	private int price;
+	private Date regidate;
+	private String option_cate;
+	private int idx;
+	private int sell_count;
+	private String option_id_list;
+	private String cd_name;
+	private int points;	
 	
 	
 }

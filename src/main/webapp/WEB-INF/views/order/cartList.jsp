@@ -33,43 +33,26 @@
   
   <script>
   $(document).ready(function () {
- 	 //장바구니 리스트 스크립트에서 변환 , 
-     let arr = new Array();
-     <c:forEach items="${cartList}" var="item">
-     arr.push({product_id : "${item.product_id}"
-     	, option_id : "${item.option_id}"
-         , product_name : "${item.product_name}"
-         ,price : "${item.price}" 
-         ,idx : "${item.idx}" 
-         ,quantity : "${item.quantity}" 
-     	,option_List :"${item.option_list}"});
-     </c:forEach>
-     console.log('#####',arr);
-   
-     
-      
+	 function fnIntl(){
+		//장바구니 리스트 스크립트에서 변환 , 
+	     let arr = new Array();
+	     <c:forEach items="${cartList}" var="item">
+	     arr.push({product_id : "${item.product_id}"
+	    	 , cart_dtl_id : "${item.cart_dtl_id}"
+	     	 , option_id : "${item.option_id}"
+	         , product_name : "${item.product_name}"
+	         ,price : "${item.price}" 
+	         ,idx : "${item.idx}" 
+	         ,quantity : "${item.quantity}" 
+	     	 ,option_List :"${item.option_list}"});
+	     </c:forEach>
+	     console.log('###장바구니리스트##',arr);
+	     return arr;
+	 }
+ 	 
      //주문금액 정보
-     var totalPrice = Basket.paymentSet(arr);
-     
-     //총상품금액
-     var totalProductPrice = totalPrice ;
-     var innerTotalProductPrice = document.getElementById('totalProductPrice')
-     innerTotalProductPrice.innerHTML = totalProductPrice +'원';
-	 
-     //총 배송비
-     var  totalDelvPrice    = totalProductPrice>50000?0:3000 ;
-     var innerTotalDelvPrice = document.getElementById('totalDelvPrice')
-     innerTotalDelvPrice.innerHTML = totalDelvPrice +'원';
-     
-     //총 할인금액
-	 var  totalDiscountPrice= totalProductPrice * 0.04;
-	 var innerTotalDiscountPrice = document.getElementById('totalDiscountPrice')
-     innerTotalDiscountPrice.innerHTML = totalDiscountPrice +'원';
-	 
-     //결제 예정금액
-	 var  totalPaymentPrice = totalProductPrice +totalDelvPrice -totalDiscountPrice;
-	 var innerTotalPaymentPrice = document.getElementById('totalPaymentPrice')
-     innerTotalPaymentPrice.innerHTML = totalPaymentPrice +'원';
+     let arr =  fnIntl();
+     var totalPrice = Basket.cartAmountSet(arr);
 	 
      //옵션 및 옵션가격 조회
      $(function(){
@@ -96,7 +79,6 @@
   	var cart_dtl_id = obj.name;
     location.href = 'cartUpdate.do?quantity='+quantity+'&cart_dtl_id='+cart_dtl_id ;
    }
-  
   
   
 </script>
@@ -151,7 +133,7 @@
                             <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check" onclick='Basket.isChecked(this)'> &nbsp;
                             <div class="thumbnail">
                               <a href="#">
-                                <img src="images/keyring.jpg" alt="상품명">
+                                <img src="../images/productList/${row.img_id }" alt="상품명">
                               </a>
                             </div>
                             <div class="description">
@@ -254,8 +236,8 @@
                     </div>
                     <div class="xans-element- xans-order xans-order-selectorder ec-base-button typeMulti">
                       <div class="gLeft">
-                        <a href="#none" class="btnNormal sizeS" id="select_all">전체 선택</a>
-                        <a href="#none" onclick="Basket.deleteBasket()" class="btnNormal sizeS">선택 삭제</a>
+                        <a href="#none" class="btnNormal sizeS" id="select_all" onclick="Basket.allChk()">전체 선택</a>
+                        <a href="#none" onclick="Basket.deleteBasketSel()" class="btnNormal sizeS">선택 삭제</a>
                       </div>
                     </div>
                   </div>

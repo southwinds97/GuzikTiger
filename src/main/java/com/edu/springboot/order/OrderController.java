@@ -36,12 +36,13 @@ public class OrderController {
 	/**************** 장바구니 ***********************/
 	// 장바구니페이지 조회
 	@GetMapping("/cartList.do")
-	public String cartList(Model model, HttpServletRequest req) {
+	public String cartList(Model model, HttpServletRequest req , ProductDTO productDTO) {
 		String member_id  =(String)req.getSession().getAttribute("id");
 		 if (member_id == null) {
 	           return "redirect:/login.do";
 	       }
-		ArrayList<ProductDTO> cartList = orderService.selectCart(member_id);
+		 productDTO.setMember_id(member_id);
+		ArrayList<ProductDTO> cartList = orderService.selectCart(productDTO);
 		model.addAttribute("cartList", cartList);
 		return "order/cartList";
 	}
@@ -68,16 +69,29 @@ public class OrderController {
 	  }
 	
 	// ajax quantity 변경  조회
-		@GetMapping("/cartListAjax.do")
+		@PostMapping("/cartListAjax.do")
 		@ResponseBody
-		public ArrayList<ProductDTO> cartListAjax(Model model, HttpServletRequest req) {
+		public ArrayList<ProductDTO> cartListAjax(Model model, HttpServletRequest req , ProductDTO productDTO) {
 			String member_id  =(String)req.getSession().getAttribute("id");
-			ArrayList<ProductDTO> cartList = orderService.selectCart(member_id);
-			model.addAttribute("cartList", cartList);
-		    return cartList;
+				productDTO.setMember_id(member_id);
+				ArrayList<ProductDTO> cartList = orderService.selectCart(productDTO);
+				model.addAttribute("cartList", cartList);
+			    return cartList;
 		}
+	
+	// ajax 체크 변경  조회
+		@RequestMapping(value="/cartListAjaxChk.do", method={RequestMethod.POST})
+		@ResponseBody
+		public ArrayList<ProductDTO> cartListAjaxChk(Model model,HttpServletRequest req , ProductDTO productDTO,
+				@RequestParam(value="chkList") List<String> chkList){
+			String member_id  =(String)req.getSession().getAttribute("id");
+				productDTO.setMember_id(member_id);
+				productDTO.setCart_dtl_id_list(chkList);
+				ArrayList<ProductDTO> cartList = orderService.selectCartChk(productDTO);
+				model.addAttribute("cartList", cartList);
+			    return cartList;
+			}
 		
-
 	// 장바구니페이지 수량변경
 	@GetMapping("/cartUpdate.do")
 	public String cartUpdate(Model model, HttpServletRequest req, ProductDTO productDTO) {
@@ -99,17 +113,27 @@ public class OrderController {
 		ProductDTO productDTO = new ProductDTO();
 		String member_id = (String) req.getSession().getAttribute("id");
 		String cart_dtl_id = req.getParameter("cart_dtl_id");
-		productDTO.setMember_id(member_id);
-		productDTO.setCart_dtl_id(cart_dtl_id);
-		int result = orderService.deleteCart(productDTO);
-		return "redirect:/cartList.do";
+		String cart_dtl_id_list = req.getParameter("cart_dtl_id_list");
+		
+		if(cart_dtl_id_list==null) {
+			productDTO.setMember_id(member_id);
+			productDTO.setCart_dtl_id(cart_dtl_id);
+			int result = orderService.deleteCart(productDTO);
+			return "redirect:/cartList.do";
+		}else {
+			productDTO.setMember_id(member_id);
+			String[] str =  cart_dtl_id_list.split(",");
+			productDTO.setCart_dtl_id_list(Arrays.asList(str));
+			int result = orderService.deleteCart(productDTO);
+			return "redirect:/cartList.do";
+		}
 	}	
 
 	
 	/**************** 결제(창) ***********************/
 	// 장바구니에서 결제페이지로
-	@RequestMapping("/cartOrderPage.do")
-	public String cartOrderPage(Model model, HttpServletRequest req, HttpServletResponse res
+	@RequestMapping("/payment.do")
+	public String payment(Model model, HttpServletRequest req, HttpServletResponse res
 			,OrderDTO orderDTO) {
 		
 		String member_id  =(String)req.getSession().getAttribute("id");
@@ -117,7 +141,7 @@ public class OrderController {
 		if(cart_dtl_id_list==null) {
 			orderDTO.setMember_id(member_id);
 			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentAll(orderDTO);
-			model.addAttribute("lists", orderDTOList);
+			model.addAttribute("orderList", orderDTOList);
 		}else {
 			String[] str =  cart_dtl_id_list.split(",");
 			System.out.println(str);
@@ -125,12 +149,36 @@ public class OrderController {
 			orderDTO.setCart_dtl_id_list(Arrays.asList(str));
 
 			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentSel(orderDTO);
-			model.addAttribute("lists", orderDTOList);
+			model.addAttribute("orderList", orderDTOList);
 		}
 		
 		return "order/pay";
 	}
-
+	// 결제페이지에서 품목삭제 후 다시 결제 페이지로
+		@GetMapping("/paymentDelete.do")
+		public String paymentDelete(Model model, HttpServletRequest req ,OrderDTO orderDTO) {
+			ProductDTO productDTO = new ProductDTO();
+			String member_id = (String) req.getSession().getAttribute("id");
+			String cart_dtl_id = req.getParameter("cart_dtl_id_del");
+			productDTO.setMember_id(member_id);
+			productDTO.setCart_dtl_id(cart_dtl_id);
+			int result = orderService.deletePayment(productDTO);
+			
+			
+			String paymentList = req.getParameter("paymentList");
+			String[] str =  paymentList.split(",");
+			orderDTO.setMember_id(member_id);
+			
+			orderDTO.setCart_dtl_id_list(Arrays.asList(str));
+			
+			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentSel(orderDTO);
+			model.addAttribute("orderList", orderDTOList);
+			
+			return "order/pay";
+		}	
+	
+	
+	
 	// 상품 상세페이지 진입
 	@GetMapping("/productDtl.do")
 	public String productOrder() {
@@ -162,16 +210,6 @@ public class OrderController {
 		lists.add(orderDTO);
 		model.addAttribute("lists", lists);
 		return "paymentComplet";
-	}
-
-	@RequestMapping("/orderList.do")
-	public String orderList(Model model, HttpServletRequest req) {
-		return "order/orderList";
-	}
-	
-	@GetMapping("/pay.do")
-	public String pay(Model model, HttpServletRequest req) {
-		return "order/pay";
 	}
 
 }
