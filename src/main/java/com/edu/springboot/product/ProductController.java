@@ -16,7 +16,6 @@ import com.edu.springboot.ParameterDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
 
-
 @Controller
 public class ProductController {
 	@Autowired
@@ -141,40 +140,28 @@ public class ProductController {
 		model.addAttribute("totalCount", count);
 		return "product/productListContent";
 	}
-	
-	///상품상세 페이지 (임시)
+
+	/// 상품상세 페이지 (임시)
 	@RequestMapping("/product_review.do")
 	public String productReview(HttpServletRequest req, Model model, ProductDTO productDTO) {
-		
+
 		String id = "P10856";
 		productDTO = dao.getProductDtl(id);
-			
-		model.addAttribute("product_dtl", productDTO) ;
-		
-		return "/product_review"; 
+
+		model.addAttribute("product_dtl", productDTO);
+
+		return "/product_review";
 	}
 
-	// 상품 검색 페이지 
+	// 상품 검색 페이지
 	@RequestMapping("/product_search.do")
 	public String productSearch(HttpServletRequest req, Model model, ParameterDTO parameterDTO, ProductDTO productDTO) {
-    	String searchKeyword = req.getParameter("searchKeyword");
-		
-		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
-		? 1
-		: Integer.parseInt(req.getParameter("pageNum"));
-		int pageSize = 20; // 페이지당 항목 수
-		int start = (pageNum - 1) * pageSize + 1;
-		int end = pageNum * pageSize;
-		parameterDTO.setStart(start);
-		parameterDTO.setEnd(end);
-		
+		String searchKeyword = req.getParameter("searchKeyword");
+
 		int productCount = dao.getSelectByKeywordCount(searchKeyword);
-		String pagingImg = PagingUtil.pagingImg(productCount, pageSize, 5, pageNum,
-				req.getContextPath() + "/product_search.do?");
-		
+
 		model.addAttribute("productCount", productCount);
 		model.addAttribute("searchKeyword", searchKeyword);
-		model.addAttribute("pagingImg", pagingImg);
 
 		return "product/product_search";
 	}

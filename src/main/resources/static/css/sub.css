@@ -11,20 +11,20 @@
   padding-top: 132px;
 }
 
-.sub_container .inner {
+/* .sub_container .inner {
   padding: 30px 80px 200px;
-}
-.sub_container .inner h2 {
+} */
+.sub_container .inner_search h2 {
   line-height: 36px;
   font-size: 25px;
   margin: 55px 0 45px;
   text-align: center;
 }
-.inner .path {
+.inner_search .path {
   text-align: end;
   font-size: 12px;
 }
-.inner .path a {
+.inner_search .path a {
   color: #898b89;
 }
 
@@ -124,41 +124,39 @@
 }
 
 .board_pagination .paginate {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 .board_pagination .paginate .first {
-	background: url(../images/double_arrow.svg) no-repeat center center / 60%;
+  background: url(../images/double_arrow.svg) no-repeat center center / 60%;
 }
 .board_pagination .paginate a {
-	display: block;
-	width: 40px;
-	height: 40px;
-	background: url(../images/left_arrow.svg) no-repeat center center / 60%;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: url(../images/left_arrow.svg) no-repeat center center / 60%;
 }
 .board_pagination .paginate .next_button {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .board_pagination .paginate .last {
-	background: url(../images/double_arrow.svg) no-repeat center center / 60%;
-	transform: rotate(180deg);
+  background: url(../images/double_arrow.svg) no-repeat center center / 60%;
+  transform: rotate(180deg);
 }
 .board_pagination .paginate ol {
-	display: flex;
+  display: flex;
 }
-.board_pagination .paginate ol>li>a {
-	display: block;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	border: 1px solid #e5e5e5;
-	background: none;
+.board_pagination .paginate ol > li > a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #e5e5e5;
+  background: none;
 }
 .board_pagination .paginate ol .this {
-	border: 1px solid black;
+  border: 1px solid black;
 }
-
-
 
 /* qna 쓰기페이지 */
 .product_sel {
@@ -231,13 +229,13 @@
 .qna_write select {
   height: 40px;
 }
-.qna_write input[type=text] {
+.qna_write input[type="text"] {
   border: 1px solid #e0e0e0;
   height: 40px;
   line-height: 40px;
   width: 300px;
 }
-.qna_write input[type=file]::file-selector-button {
+.qna_write input[type="file"]::file-selector-button {
   height: 40px;
   padding: 0 20px;
   border: 1px solid #bcbcbc;
@@ -364,7 +362,7 @@
 .com_list .secret_com {
   margin-bottom: 20px;
 }
-.com_list .secret_com input[type=password] {
+.com_list .secret_com input[type="password"] {
   border: 1px solid #bcbcbc;
   height: 32px;
   margin-right: 10px;
@@ -396,7 +394,7 @@
   position: relative;
 }
 .pagination_view span::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 35px;
   top: 24px;
@@ -414,7 +412,6 @@
   border-top: 1px solid #eaeaea;
 }
 
-
 .etc_view {
   margin-top: 50px;
 }
@@ -423,7 +420,7 @@
 }
 .etc_view .qna_list .col2 {
   width: 8%;
-} 
+}
 .etc_view .qna_list .col3 {
   width: 78%;
 }
@@ -439,7 +436,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 .search_input_wrap span {
   font-size: 14px;
@@ -454,17 +450,17 @@
   font-size: 18px;
 }
 .search_input {
-	position: relative;
+  position: relative;
 }
 .search_input button {
-	position: absolute;
-	right: 10px;
-	top: 0;
-	width: 28px;
-	height: 28px;
-	border: none;
-	background: none;
-	background: url(../images/ico_search.svg) no-repeat 0 0 / 100%;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  background: url(../images/ico_search.svg) no-repeat 0 0 / 100%;
 }
 .best_search button {
   border: none;
@@ -489,11 +485,11 @@
 .search_result .list {
   display: flex;
   flex-wrap: wrap;
-  gap:15px;
+  gap: 15px;
   justify-content: center;
 }
 
-.search_result .list>li {
+.search_result .list > li {
   width: calc((100% - 45px) / 4);
   position: relative;
 }
