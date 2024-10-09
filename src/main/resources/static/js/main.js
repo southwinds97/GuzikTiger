@@ -6,7 +6,10 @@ let cartList ;
 //최초결제리스트
 let paymentList = [];
 //상품수량 넣는 임시 목록 배열
-var arrary = [] ; 
+var arrary = [] ;
+
+//수량 증가감소 체크
+var quanChk;  
 const Basket = {
 	/**
 	 * '△' 버튼 클릭, 수량증가
@@ -19,6 +22,7 @@ const Basket = {
 		this.chkQuantity(iQuantity,cart_dtl_id);
 	    if (isNaN(iQuantity) === false) {
 	        $('#'+cart_dtl_id).val(iQuantity);
+			quanChk=1;
 			this.quatityArrMod(cart_dtl_id,iQuantity)
 	    }	   
 	},
@@ -43,6 +47,7 @@ const Basket = {
 		}else{
 			if (isNaN(iQuantity) === false) {
 					        $('#'+cart_dtl_id).val(iQuantity);
+							quanChk=1;
 							this.quatityArrMod(cart_dtl_id,iQuantity)
 			}
 		}
@@ -203,7 +208,7 @@ const Basket = {
 	},
 	//체크리스트 정보
 	isChecked : function(obj){
-		if(cartList != null||cartList != undefined) {
+		if(quanChk == 1) {
 					alert('변경 버튼을 클릭하여 변경 된 수량을 적용 하세요.');
 				}else {
 					if(obj.checked){
