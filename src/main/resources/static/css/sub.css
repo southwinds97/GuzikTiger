@@ -11,9 +11,23 @@
   padding-top: 132px;
 }
 
-/* .sub_container .inner {
+.sub_container .inner {
   padding: 30px 80px 200px;
-} */
+}
+.sub_container .inner h2 {
+  line-height: 36px;
+  font-size: 25px;
+  margin: 55px 0 45px;
+  text-align: center;
+}
+.inner .path {
+  text-align: end;
+  font-size: 12px;
+}
+.inner .path a {
+  color: #898b89;
+}
+
 .sub_container .inner_search h2 {
   line-height: 36px;
   font-size: 25px;

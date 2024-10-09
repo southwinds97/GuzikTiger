@@ -183,6 +183,8 @@ prefix="c" %>
 
                     if (offset >= totalCount) {
                       $(".btn_more").hide();
+                    } else {
+                      $(".btn_more").show();
                     }
                   },
                   error: function (xhr, status, error) {

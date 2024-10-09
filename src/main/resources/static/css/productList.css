@@ -21,13 +21,12 @@
 .location {
   float: right;
   font-size: 12px;
-  color: #000000
+  color: #000000;
 }
 
 .location a {
   color: #000000;
 }
-
 
 .location a:not(:first-child):before {
   content: "/";
@@ -84,7 +83,6 @@
 .count {
   font-weight: 500;
   color: #000000;
-
 }
 
 .list_count {
@@ -113,7 +111,6 @@ select {
   gap: 20px;
   padding-bottom: 50px;
 }
-
 
 .list_item {
   padding: 10px;
@@ -184,9 +181,8 @@ select {
   position: relative;
 }
 
-
 .btn_more {
-  margin: 0 auto 0;
+  margin: 80px auto 80px;
   display: inline-block;
   min-width: 166px;
   padding: 18px 0;
@@ -199,7 +195,6 @@ select {
   font-weight: 500;
   position: relative;
 }
-
 
 /* .btn_more::before {
   content: '+';

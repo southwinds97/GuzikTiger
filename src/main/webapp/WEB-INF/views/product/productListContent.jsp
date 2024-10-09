@@ -11,7 +11,7 @@
         <body>
             <input type="hidden" id="totalCount" value="${totalCount}">
             <section class="list">
-                <div class="inner">
+                <div class="inner" style="padding: 0;">
                     <c:forEach items="${allLists}" var="row" varStatus="loop">
                         <div class="list_item">
                             <a href="#">
