@@ -52,4 +52,27 @@
 	<delete id="delete">
 		DELETE FROM qna_board WHERE idx=#{param1}
 	</delete>
+
+	<!-- 이전 글의 정보를 가져오는 쿼리 -->
+	<select id="getPrevQna" parameterType="String" resultType="com.edu.springboot.qna.QNABoardDTO">
+		<![CDATA[
+		SELECT * FROM (
+			SELECT * FROM qna_board WHERE idx < #{idx} ORDER BY idx DESC
+		) WHERE ROWNUM = 1
+		]]>
+	</select>
+
+	<!-- 다음 글의 정보를 가져오는 쿼리 -->
+	<select id="getNextQna" parameterType="String" resultType="com.edu.springboot.qna.QNABoardDTO">
+		<![CDATA[
+		SELECT * FROM (
+			SELECT * FROM qna_board WHERE idx > #{idx} ORDER BY idx ASC
+		) WHERE ROWNUM = 1
+		]]>
+	</select>
+
+	<!-- 관련 글 목록을 가져오는 쿼리 -->
+    <select id="getRelatedQnaList" parameterType="String" resultType="com.edu.springboot.qna.QNABoardDTO">
+        SELECT * FROM qna_board WHERE category = #{category} ORDER BY postdate DESC
+    </select>
 </mapper>

@@ -17,12 +17,12 @@
   <body>
     <main id="container" class="login_page sub_container">
       <div class="contents">
-        <div class="inner">
+        <div class="login_inner">
           <div class="login_area">
             <h2>로그인</h2>
             <p>1초 회원가입으로 쿠폰도 받고<br>
               간편하게 로그인 하랑구!</p>
-            <div class="btn_wrap">
+            <div class="social_btn_wrap">
               <div class="kakao">
                 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
                   integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"

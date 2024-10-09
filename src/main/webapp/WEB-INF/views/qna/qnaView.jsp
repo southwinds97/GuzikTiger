@@ -90,40 +90,61 @@
         <div class="pagination_view">
           <div class="prev_btn">
             <span>이전</span>
-            <a href="#">문의드려요 :)</a>
+            <c:if test="${not empty prevQna}">
+              <a href="qnaView.do?idx=${prevQna.idx}">${prevQna.title}</a>
+            </c:if>
+            <c:if test="${empty prevQna}">
+              <a href="#">이전 글이 없습니다</a>
+            </c:if>
           </div>
           <div class="next_btn">
             <span>다음</span>
-            <a href="#">문의드려요 :)</a>
+            <c:if test="${not empty nextQna}">
+              <a href="qnaView.do?idx=${nextQna.idx}">${nextQna.title}</a>
+            </c:if>
+            <c:if test="${empty nextQna}">
+              <a href="#">다음 글이 없습니다</a>
+            </c:if>
           </div>
         </div>
         <div class="etc_view">
           <h3>관련 글 보기</h3>
           <div class="qna_list">
             <table>
-              <caption>관련 글 테이블: 번호, 상품명. 제목, 작성자, 등록일</caption>
-              <thead>
-                <tr>
-                  <th class="col1">번호</th>
-                  <th class="col2">상품명</th>
-                  <th class="col3">제목</th>
-                  <th class="col4">작성자</th>
-                  <th class="col5">작성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>9999</td>
-                  <td>무직타이거 납작 인형 키링 4종</td>
-                  <td class="td_tit">
-                    <a href="qnaview.html">문의드려요 :)</a>
-                  </td>
-                  <td>신제헌</td>
-                  <td>2024-09-24 20:17:44</td>
-                </tr>
-              </tbody>
+                <caption>관련 글 테이블: 번호, 상품명. 제목, 작성자, 등록일</caption>
+                <thead>
+                    <tr>
+                        <th class="col1">번호</th>
+                        <th class="col2">상품명</th>
+                        <th class="col3">제목</th>
+                        <th class="col4">작성자</th>
+                        <th class="col5">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:choose>
+                        <c:when test="${empty relatedQnaList}">
+                            <tr>
+                                <td colspan="5" align="center">관련 글이 없습니다.</td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${relatedQnaList}" var="row">
+                                <tr>
+                                    <td>${row.idx}</td>
+                                    <td>${row.product}</td>
+                                    <td class="td_tit">
+                                        <a href="qnaView.do?idx=${row.idx}">${row.title}</a>
+                                    </td>
+                                    <td>${row.name}</td>
+                                    <td>${row.postdate}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </tbody>
             </table>
-          </div>
+        </div>
         </div>
       </div>
     </main>

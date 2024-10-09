@@ -60,10 +60,19 @@ public class QNAControllar {
 
 	@RequestMapping("/qnaView.do")
 	public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO) {
+		String idx = qnaDTO.getIdx();
 		qnaDTO = dao.view(qnaDTO);
 		qnaDTO.setContent(qnaDTO.getContent().replace("\r\n", "<br/>"));
+
+		// 이전 및 다음 글의 정보를 가져옴
+		QNABoardDTO prevQna = dao.getPrevQna(idx);
+		QNABoardDTO nextQna = dao.getNextQna(idx);
 		model.addAttribute("qnaDTO", qnaDTO);
-		model.addAttribute("board_idx", qnaDTO.getIdx());
+		model.addAttribute("board_idx", idx);
+
+		// 관련 글 목록을 가져옴
+		ArrayList<QNABoardDTO> relatedQnaList = dao.getRelatedQnaList(qnaDTO.getCategory());
+		model.addAttribute("relatedQnaList", relatedQnaList);
 
 		return "qna/qnaView";
 	}
@@ -95,7 +104,7 @@ public class QNAControllar {
 			String[] phArr = partHeader.split("filename=");
 			String originalFileName = phArr[1].trim().replace("\"", "");
 			String savedFileName = null;
-			
+
 			if (!originalFileName.isEmpty()) {
 				part.write(uploadDir + File.separator + originalFileName);
 				savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
@@ -103,7 +112,7 @@ public class QNAControllar {
 
 			qnaDTO.setOfile(originalFileName);
 			qnaDTO.setSfile(savedFileName);
-			
+
 			System.out.println(qnaDTO);
 			dao.write(qnaDTO);
 		} catch (Exception e) {
@@ -133,12 +142,11 @@ public class QNAControllar {
 			String[] phArr = partHeader.split("filename=");
 			String originalFileName = phArr[1].trim().replace("\"", "");
 			String savedFileName = null;
-			
+
 			if (!originalFileName.isEmpty()) {
 				part.write(uploadDir + File.separator + originalFileName);
 				savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 			}
-
 
 			qnaDTO.setOfile(originalFileName);
 			qnaDTO.setSfile(savedFileName);
