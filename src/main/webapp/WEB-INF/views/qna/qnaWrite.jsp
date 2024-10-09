@@ -16,12 +16,20 @@
       <title>GUZIK TIGER 구직타이거</title>
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
     <link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css/sub.css?v=<?php echo time(); ?>">
+	<!-- summernote 추가 -->
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
     <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
+</head>
   </head>
 
   <body>
@@ -76,7 +84,7 @@
 		                </tr>
 		                <tr>
 		                  <th>본문</th>
-		                  <td><textarea name="content"></textarea></td>
+		                  <td><textarea id="summernote" name="content"></textarea></td>
 		                </tr>
 		                <tr>
 		                  <th>UCC URL</th>
@@ -122,6 +130,16 @@
         <!-- 푸터 -->
         <%@ include file="../footer.jsp" %>
     </div>
+	<script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 300, // 에디터 높이
+                minHeight: null, // 최소 높이
+                maxHeight: null, // 최대 높이
+                focus: true // 에디터 로딩 후 포커스 맞추기
+            });
+        });
+    </script>
   </body>
 
   </html>

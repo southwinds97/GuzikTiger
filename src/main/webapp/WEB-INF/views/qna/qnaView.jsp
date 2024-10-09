@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Q&A View</title>
   <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/common.css?v=<%= System.currentTimeMillis() %>">
   <link rel="stylesheet" href="css/main.css?v=<%= System.currentTimeMillis() %>">
   <link rel="stylesheet" href="css/sub.css?v=<%= System.currentTimeMillis() %>">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
