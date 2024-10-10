@@ -35,7 +35,7 @@
       <h2><a href="/">MUZIKTIGER</a></h2>
       <div class="left_menu">
         <span class="back_btn">
-          <a href="#none" onclick=""></a>  
+          <a href="/" onclick=""></a>  
         </span>
       </div>
       <div class="right_menu">

@@ -2,6 +2,7 @@
   max-width: 1903px;
   margin: 0 auto;
   position: unset;
+  border: unset;	
 }
 
 #header .top_head {
@@ -221,10 +222,12 @@
 
 .shop_title .same_addr {
   padding: 0 6px 15px;
+  margin-right: 50px;
 }
 .shop_title .same_addr label {
   font-size: 16px;
-  margin: 0 16px 0 6px;
+  padding-left: unset;
+  padding-left: 10px;
 }
 
 .shop_title .same_addr input[type="radio"] {
@@ -1076,6 +1079,7 @@
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
   position:relative;	
+  min-height: 630px;
 }
 
 
