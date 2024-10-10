@@ -82,8 +82,7 @@
           </script>
           <div id="container">
             <div class="location">
-              <a href="index.html">Home</a>
-              <a href="mypage.html">마이 쇼핑</a>
+              <a href="/">Home</a>
               <a>나의 위시리스트</a>
             </div>
             <main id="contents">
