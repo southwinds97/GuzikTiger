@@ -124,7 +124,7 @@ public class OrderController {
 			productDTO.setMember_id(member_id);
 			String[] str =  cart_dtl_id_list.split(",");
 			productDTO.setCart_dtl_id_list(Arrays.asList(str));
-			int result = orderService.deleteCart(productDTO);
+			int result = orderService.deleteCartSel(productDTO);
 			return "redirect:/cartList.do";
 		}
 	}	
@@ -137,7 +137,7 @@ public class OrderController {
 			,OrderDTO orderDTO) {
 		
 		String member_id  =(String)req.getSession().getAttribute("id");
-		String cart_dtl_id_list = req.getParameter("cart_dtl_list");
+		String cart_dtl_id_list = req.getParameter("cart_dtl_id_list");
 		if(cart_dtl_id_list==null) {
 			orderDTO.setMember_id(member_id);
 			ArrayList<OrderDTO> orderDTOList =  orderService.selectCartPaymentAll(orderDTO);
@@ -196,7 +196,7 @@ public class OrderController {
 	}
 
 	// 결제페이지에서 (결제)진행
-	@PostMapping("/payment.do")
+	@PostMapping("/pay.do")
 	public String paymentProc(Model model, HttpServletRequest req) {
 
 		String product_id = req.getParameter("product_id");

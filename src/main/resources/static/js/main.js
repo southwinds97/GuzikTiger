@@ -3,6 +3,11 @@ let chkList = [];
 
 // ajax조회 장바구니 리스트
 let cartList ;
+
+// ajax조회 장바구니 chk 리스트
+let ChkcartList ;
+
+
 //최초결제리스트
 let paymentList = [];
 //상품수량 넣는 임시 목록 배열
@@ -32,7 +37,7 @@ const Basket = {
 	outQuantityShortcut: function(cart_dtl_id)
 	{
 		this.allChkClear();
-		var iQuantity = Number($('#'+cart_dtl_id).val()) - 1;
+		var iQuantity = Number($("#"+cart_dtl_id).val()) - 1;
 		
 			this.chkQuantity(iQuantity,cart_dtl_id);
 			
@@ -102,24 +107,24 @@ const Basket = {
 		 })
 	       /*--------------------------금액 셋팅---------------------------*/
 		    //총상품금액
-		    var totalProductPrice = totalPrice ;
-		    var innerTotalProductPrice = document.getElementById('totalProductPrice')
-		    innerTotalProductPrice.innerHTML = totalProductPrice +'원';
+		  var totalProductPrice = totalPrice ;
+		  var innerTotalProductPrice = document.getElementById('totalProductPrice')
+		      innerTotalProductPrice.innerHTML = totalProductPrice +'원';
 		  
 		    //총 배송비
-		    var  totalDelvPrice    = totalProductPrice>50000?0:3000 ;
-		    var innerTotalDelvPrice = document.getElementById('totalDelvPrice')
-		    innerTotalDelvPrice.innerHTML = totalDelvPrice +'원';
+		  var totalDelvPrice    = totalProductPrice>50000?0:3000 ;
+		  var innerTotalDelvPrice = document.getElementById('totalDelvPrice')
+		      innerTotalDelvPrice.innerHTML = totalDelvPrice +'원';
 		    
 		    //총 할인금액
-		  var  totalDiscountPrice= totalProductPrice * 0.04;
+		  var totalDiscountPrice= totalProductPrice * 0.04;
 		  var innerTotalDiscountPrice = document.getElementById('totalDiscountPrice')
-		    innerTotalDiscountPrice.innerHTML = totalDiscountPrice +'원';
+		      innerTotalDiscountPrice.innerHTML = totalDiscountPrice +'원';
 		  
 		    //결제 예정금액
-		  var  totalPaymentPrice = totalProductPrice +totalDelvPrice -totalDiscountPrice;
+		  var totalPaymentPrice = totalProductPrice +totalDelvPrice -totalDiscountPrice;
 		  var innerTotalPaymentPrice = document.getElementById('totalPaymentPrice')
-		    innerTotalPaymentPrice.innerHTML = totalPaymentPrice +'원';
+		      innerTotalPaymentPrice.innerHTML = totalPaymentPrice +'원';
 			
 		/*	//보유 포인트 
 		  var innerPonts = document.getElementById('points')
@@ -210,11 +215,17 @@ const Basket = {
 	isChecked : function(obj){
 		if(quanChk == 1) {
 					alert('변경 버튼을 클릭하여 변경 된 수량을 적용 하세요.');
+					return false;
 				}else {
 					if(obj.checked){
 								chkList.push(obj.name);
 						}else{
-							chkList.splice(obj.name,1);
+							
+							for(let i = 0; i < chkList.length; i++) {
+								if (chkList[i] === obj.name) {
+							       chkList.splice(i, 1);
+							    }
+							}
 						}	
 						if(chkList.length > 0){
 							
@@ -225,8 +236,8 @@ const Basket = {
 								data: {"chkList":chkList},
 								traditional : true,
 							    success: function (data) {
-								cartList =data;
-								Basket.cartAmountSetChk(cartList);
+								ChkcartList =data;
+								Basket.cartAmountSetChk(ChkcartList);
 							    },
 					            error: function () {
 					             alert("서버와의 통신 중 오류가 발생했습니다.");
@@ -265,10 +276,21 @@ const Basket = {
 			}else {
 				console.log(chkList);
 				alert('결제창으로 이동합니다.');
-				location.href = "/payment.do?cart_dtl_list="+chkList;
+				location.href = "/payment.do?cart_dtl_id_list="+chkList;
 			}
 		}
 	},
+	//단일상품 주문 
+		oneProductOrder : function (cart_dtl_id){
+				if(cartList != null||cartList != undefined) {
+					alert('변경 버튼을 클릭하여 변경 된 수량을 적용 하세요.');
+				}else {
+					chkList.push(cart_dtl_id);
+					console.log(chkList);
+					alert('결제창으로 이동합니다.');
+					location.href = "/payment.do?cart_dtl_id_list="+chkList;
+			}
+		},
 		
 	// 결제 금액 조회 (결제창)	
 	paymemtSetAmont : function(orderArr, usePoint){
@@ -399,5 +421,22 @@ const Basket = {
 			chkList.push(item);
 		})
 		console.log(chkList);
+	},
+	moveWish : function(product_id){
+		$.ajax({
+                 url: "wishListAdd.do",
+                 type: "post",
+                 data: {
+                   product_id: product_id
+                 },
+                 success: function (data) {
+                   if (data.redirect) {
+                     alert(data.message);
+                     window.location.href = data.redirect;
+                   } else {
+                     alert(data.message);
+                   }
+                 }
+		                       });
 	}
 }

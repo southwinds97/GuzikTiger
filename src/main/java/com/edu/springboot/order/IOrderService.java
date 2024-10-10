@@ -47,7 +47,10 @@ public interface IOrderService {
 	 int insertCart(List<ProductDTO> productDTOList);
 	//장바구니 수정
 	 int updateCart(ProductDTO productDTO);
-	//장바구니 삭제
+	//장바구니 건별삭제
 	 int deleteCart(ProductDTO productDTO);
+	 
+	//장바구니 선택삭제
+	 int deleteCartSel(ProductDTO productDTO);
 	
 }

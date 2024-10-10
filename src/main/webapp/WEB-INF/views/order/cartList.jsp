@@ -130,7 +130,7 @@
                      <c:forEach items="${cartList}" var="row" varStatus="loop">
                         <div class="cart_item">
                           <div class="cart_box">
-                            <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check" onclick='Basket.isChecked(this)'> &nbsp;
+                            <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check" onclick='return Basket.isChecked(this); '> &nbsp;
                             <div class="thumbnail">
                               <a href="#">
                                 <img src="../images/productList/${row.img_id }" alt="상품명">
@@ -217,8 +217,8 @@
                               <span class="displaynone"></span>
                             </div>
                             <div class="buttonGroup">
-                              <a href="#none" onclick="BasketNew.moveWish(0);" class="btnNormal sizeM">관심상품</a>
-                              <a href="#none" onclick="Basket.orderBasketItem(0);" class="btnSubmit sizeM">주문하기</a>
+                              <a href="#none" onclick="Basket.moveWish('${row.product_id}');" class="btnNormal sizeM">관심상품</a>           
+                              <a href="#none" onclick="Basket.oneProductOrder('${row.cart_dtl_id}');" class="btnSubmit sizeM">주문하기</a>
                             </div>
                           </div>
                           <a href="#none" onclick="Basket.deleteBasketItem('${row.cart_dtl_id}');" class="btn_delete">삭제</a>
