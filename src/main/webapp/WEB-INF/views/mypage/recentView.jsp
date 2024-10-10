@@ -88,8 +88,16 @@
               </div>
               <div class="recentView">
                 <ul class="productList">
-                
-                <c:forEach items="${recentViewList}" var="row" varStatus="loop">
+                <c:choose>
+	                <c:when test="${empty recentViewList}">
+	                <tr>
+									<td colspan="6" aling="center">
+										조회된 게시물이 없습니다.
+									</td>
+								</tr>
+	                </c:when>
+	               <c:otherwise>
+	               <c:forEach items="${recentViewList}" var="row" varStatus="loop">
                   <c:if test="${row.idx eq 1}">     
                   <li class="list_Wrap">
                     <div class="prdlist">
@@ -139,6 +147,11 @@
                   </li>
                	  </c:if>
     			</c:forEach> 
+	               </c:otherwise>
+                </c:choose>
+                
+                
+                
                 </ul>
               </div>
 
