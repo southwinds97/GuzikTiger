@@ -118,9 +118,7 @@
                         </div>
                       </div>
                     </ul>
-                  </c:forEach>
-                 </c:otherwise>
-               </c:choose>
+
                   <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
                   <script>
                     $(document).ready(function () {
@@ -210,6 +208,9 @@
                     <button type="button" onclick="" class="btnallorder">전체상품주문</button>
                   </div>
                 </div>
+                   </c:forEach>
+                 </c:otherwise>
+               </c:choose>
               </div>
               <div class="paginate">
                 <a href="#" class="first">첫 페이지</a>
