@@ -73,8 +73,8 @@
     </div>
     <div class="base_table">
       <div class="rcv_man">
-        <label for="receive">받는 사람*</label>
-        <input type="text" class="receive" id="receive">
+        <label for="receive" >받는 사람*</label>
+        <input type="text" class="receive" id="orderName">
       </div>
 	  <!-- 주소와 우편번호가 한 줄에 나란히 배치되도록 변경 -->
 	 <div class="addr_container">
@@ -84,8 +84,8 @@
 	 </div>
 	
 	 <div class="addr1">
-	   <input type="text" readonly name="addr" value="" placeholder="기본주소" id="address" class="basic"/>
-	   <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailAddress" />
+	   <input type="text" readonly name="addr" value="" placeholder="기본주소" id="addr" class="basic"/>
+	   <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailaddr" />
 	 </div>
       <div class="tel">
         <label for="tel">휴대전화*</label>
@@ -97,9 +97,9 @@
           <option value="018">018</option>
           <option value="019">019</option>
         </select><span>-</span>
-        <input type="text" name="tel2" value="" /><span>-</span>
-        <input type="text" name="tel3" value="" />
-        <input type="hidden" name="tel" value="" />
+        <input type="text" name="tel2" id="tel2"value="" /><span>-</span>
+        <input type="text" name="tel3" id="tel3" />
+        <input type="hidden" name="tel" id="tel4" />
       </div>
       <div class="email">
         <label for="email">이메일*</label>
@@ -139,13 +139,17 @@
     <div class="order_bord"></div>
     
     <script>
+    let intlData ;
  $(document).ready(function () {
+	
+	 
   //주문 리스트 스크립트에서 변환 , 
   function fnIntl(){
 	  let orderArr = new Array();
 	  
 	    <c:forEach items="${orderList}" var="item">
-	    orderArr.push({product_id : "${item.product_id}"
+	    	orderArr.push({product_id : "${item.product_id}"
+	    	, member_id : "${item.member_id}"	
 	    	, cart_dtl_id : "${item.cart_dtl_id}"
 	    	, option_id : "${item.option_id}"
 	        , product_name : "${item.product_name}"
@@ -157,6 +161,13 @@
 	    });
 	    </c:forEach>
 	    console.log('##주문리스트###',orderArr);
+	   
+	    //전역변수 설정
+	    intlData = orderArr;
+	    
+	    // 주문자정보 셋팅
+	    Basket.orderMember(orderArr);
+	    
 	    return orderArr;
   }
     
@@ -180,9 +191,15 @@
     		let orderArr =  fnIntl();
     		Basket.finalSetAmount(orderArr,usePoint);
     	}
+     });
     });
-     
-    });
+ 
+	 //적립금 전액사용 
+	 function usefullPoint () {
+		let usePoint = intlData[0].point;
+		$('#usePoint').val(usePoint);
+		Basket.finalSetAmount(intlData,usePoint );
+	}
   </script>
     <div class="more_title">
       <h2 >추가입력</h2>
@@ -203,7 +220,7 @@
 	 <h2>주문상품</h2>
     <div class="buy_table">
 
-<!-- ---------------주문상품 목록 끝------------------------------------- -->
+<!-- ---------------주문상품 목록 시작------------------------------------- -->
   <c:forEach items="${orderList}" var="row" varStatus="loop">
 	<div class="probox2">
       <div class="thumbnail">
@@ -252,7 +269,7 @@
    <div class="membership">
    	<h3>적립금</h3>
    	<input type="text" class="member_money" id="usePoint" value=0>
-    <button type="button" class="use_btn" onclick="fnUsePoint()">전액 사용</button>
+    <button type="button" class="use_btn" onclick="usefullPoint('${item.points}')">전액 사용</button>
    </div>
    <div class="balance">
     <span class="summary">보유&nbsp잔액
