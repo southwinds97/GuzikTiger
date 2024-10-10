@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
   <!DOCTYPE html>
   <html>
 
@@ -116,48 +117,35 @@
                         <th scoper="col">분류</th>
                         <th scoper="col">작성자</th>
                         <th scoper="col">작성일</th>
-                        <th scoper="col">조회</th>
                       </tr>
                     </thead>
                     <tbody class="center">
-                      <tr class="xans-record">
-                        <td class="num">
-                          <span class="RW">2</span>
-                        </td>
-                        <td class="title">
-                          &nbsp;&nbsp;&nbsp;
-                          <img src="/images/ico_re.gif" alt="답변" class="rwd-img">
-                          <a href="#">문의 안드려요:(</a>
-                          <span class="comment"></span>
-                          <img src="/images/ico_new.gif" alt="NEW" class="rwd-img">
-                        </td>
-                        <td>
-                          <a href="qnaList.do" class="txtEm">Q&A</a>
-                        </td>
-                        <td>MUZIKTIGER</td>
-                        <td>2024-09-27</td>
-                        <td>
-                          <span class="RW">1</span>
-                        </td>
-                      </tr>
-                      <tr class="xans-record"></tr>
-                      <td class="num">
-                        <span class="RW">1</span>
-                      </td>
-                      <td class="title">
-                        <a href="#">문의드려요:)</a>
-                        <span class="comment"></span>
-                        <img src="/images/ico_new.gif" alt="NEW" class="rwd-img">
-                      </td>
-                      <td>
-                        <a href="qnaList.do" class="txtEm">Q&A</a>
-                      </td>
-                      <td>키*****</td>
-                      <td>2024-09-27</td>
-                      <td>
-                        <span class="RW">3</span>
-                      </td>
-                      </tr>
+						<c:choose>
+							<c:when test="${empty nameQnaList}">
+								<tr>
+									<td colspan="5" aling="center">
+										작성한 게시물이 없습니다.
+									</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${nameQnaList}" var="row" varStatus="loop">
+									<tr class="listItem xans-record" data-name="${row.name}">
+										<td class="num">
+				                          <span class="RW">${row.idx}</span>
+				                        </td>
+				                        <td class="title">
+				                          <a href="qnaView.do?idx=${row.idx}">${row.title}</a>
+				                        </td>
+				                        <td>
+				                          <a href="qnaList.do" class="txtEm">Q&A</a>
+				                        </td>
+				                        <td>${row.name}</td>
+				                        <td>${row.postdate}</td>
+					                  </tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
                     </tbody>
                   </table>
                 </div>

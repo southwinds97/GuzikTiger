@@ -46,7 +46,7 @@
 	          </div>
 	          <h2>Q&A</h2>
 				  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaWrite.do">
-					<input type="text" value="${name}" name="name">
+					<input type="hidden" value="${name}" name="name">
 		          	<div class="product_sel">
 		            <img src="images/noimg.gif" onerror="this.src='url';">
 		            <div class="product_info">
@@ -56,9 +56,24 @@
 		              </div>
 		              <div class="sel_wrap">
 		                <a href="#">상품상세보기</a>
-		                <a href="#">상품정보선택</a>
+		                <a href="#" class="pro_sel">상품정보선택</a>
 		              </div>
 		            </div>
+					<script>
+					            $(document).ready(function () {
+					                $(".pro_sel").click(function (event) {
+					                    event.preventDefault();
+					                    window.open("/qna/productSelect.do", "상품정보선택", "width=500, height=700");
+					                    
+					                });
+
+					                // 모달 창을 클릭하면 닫기
+					                $(".close_btn").click(function () {
+					                    $(".product_select_page").hide();
+					                });
+
+					            });
+					        </script>
 		          </div>
 		          <div class="qna_write">
 		            <table>

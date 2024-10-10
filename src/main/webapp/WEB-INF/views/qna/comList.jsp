@@ -1,5 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+	$('#comPassCheck').on('click', function(e) {
+	    e.preventDefault();
+	    let pass = prompt("비밀번호를 입력하세요:");
+		let password = $(this).data('password');
+		let comments = $(this).data('comments');
+	    if (pass == password) {
+	         $(this).html('<img src="/images/lock.gif" alt="비밀글">'+'&nbsp;&nbsp;'+comments);
+	    } else {
+	        alert('비밀번호가 일치하지 않습니다.');
+	    }
+	});
+</script>
 <div class="com_lists">
   <c:forEach var="comment" items="${comlists}">
     <div class="comment">
@@ -7,10 +20,13 @@
       <div class="com_content">
         <c:choose>
           <c:when test="${comment.secretYN == 'on'}">
-			<c:if test="">
+			<c:if test="${comment.name == sessionScope.name}">
 				<img src="/images/lock.gif" alt="비밀글"><p>${comment.comments}</p>
 			</c:if>
-            <img src="/images/lock.gif" alt="비밀글"><p>비밀댓글 입니다.</p>
+			<c:if test="${comment.name != sessionScope.name}">
+	            <a id="comPassCheck" href="#" data-password="${comment.password}" data-comments="${comment.comments}">
+					<img src="/images/lock.gif" alt="비밀글">&nbsp;&nbsp;비밀댓글 입니다.</a>
+	        </c:if>
           </c:when>
           <c:otherwise>
             <p>${comment.comments}</p>

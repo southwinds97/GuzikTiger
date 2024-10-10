@@ -165,4 +165,9 @@ public class QNAControllar {
 
 		return "redirect:qnaList.do";
 	}
+	
+	@RequestMapping("/qna/productSelect.do")
+	public String productSelect() {
+		return "productSelect";
+	}
 }

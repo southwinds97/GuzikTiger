@@ -29,4 +29,6 @@ public interface IQNAService {
 	public QNABoardDTO getNextQna(String idx);
 
 	public ArrayList<QNABoardDTO> getRelatedQnaList(String category);
+	
+	public ArrayList<QNABoardDTO> getnameQnaList(String name);
 }
