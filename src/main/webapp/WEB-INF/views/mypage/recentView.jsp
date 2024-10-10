@@ -90,11 +90,7 @@
                 <ul class="productList">
                 <c:choose>
 	                <c:when test="${empty recentViewList}">
-	                 <tr>
-					  <td colspan="6" aling="center">
-						최근 본 상품이 없습니다.
-					  </td>
-					 </tr>
+					  <p style="text-align: center; padding: 56px 0; border-bottom: 1px solid #e5e5e5; ">최근본 상품 내역이 없습니다.</p>
 	                </c:when>
 	               <c:otherwise>
 	               <c:forEach items="${recentViewList}" var="row" varStatus="loop">
