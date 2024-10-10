@@ -79,6 +79,7 @@
 .list_package .list_count {
   float: left;
   color: #7d7d7d;
+  margin-left: 9px;
 }
 
 .count {

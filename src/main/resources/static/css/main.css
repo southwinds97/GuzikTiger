@@ -329,8 +329,8 @@ body {
 
 .main_slider .swiper-pagination {
   left: auto;
-  right: -750px;
-  bottom: 50px;
+  right: -775px;
+  bottom: -100px;
   position: absolute;
 }
 

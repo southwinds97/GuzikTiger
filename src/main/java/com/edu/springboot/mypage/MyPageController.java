@@ -1,5 +1,11 @@
 package com.edu.springboot.mypage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,24 +14,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.product.ProductDTO;
+import com.edu.springboot.qna.IQNAService;
+import com.edu.springboot.qna.QNABoardDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import utils.JSFunction;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import utils.PagingUtil;
 
 @Controller
 public class MyPageController {
 
     @Autowired
     private IMyPageService dao;
+    @Autowired
+    private IQNAService qnadao;
 
     @RequestMapping("/myPage.do")
     public String myPage() {
@@ -198,7 +202,11 @@ public class MyPageController {
     
 
     @RequestMapping("/myPost.do")
-    public String myPost() {
+    public String myPost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {
+    	String name = (String) req.getSession().getAttribute("name");
+    	ArrayList<QNABoardDTO> nameQnaList = qnadao.getnameQnaList(name);
+    	model.addAttribute("nameQnaList", nameQnaList);
+    	
         return "mypage/myPost";
     }
 }

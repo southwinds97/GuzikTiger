@@ -82,14 +82,22 @@
           </script>
           <div id="container">
             <div class="location">
-              <a href="index.html">Home</a>
-              <a href="mypage.html">마이 쇼핑</a>
+              <a href="/">Home</a>
               <a>나의 위시리스트</a>
             </div>
             <main id="contents">
               <div class="mypage_main">
                 <h2>나의 위시리스트</h2>
                 <div class="mylist">
+                  <c:choose>
+	                <c:when test="${empty wishListData}">
+	                 <tr>
+					  <td colspan="6" aling="center">
+						위시 리스트가 없습니다.
+					  </td>
+					 </tr>
+	                </c:when>
+	               <c:otherwise>
                   <c:forEach var="item" items="${wishListData}">
                     <ul class="mypage_top">
                       <li>
@@ -115,6 +123,8 @@
                       </div>
                     </ul>
                   </c:forEach>
+                 </c:otherwise>
+               </c:choose>
                   <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
                   <script>
                     $(document).ready(function () {
@@ -223,7 +233,7 @@
                 </div>
                 <ul class="menu">
                   <li>
-                    <a href="#">주문내역 조회</a>
+                    <a href="myPage.do">주문내역 조회</a>
                   </li>
                 </ul>
                 <div class="subTitle">

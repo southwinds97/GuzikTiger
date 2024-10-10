@@ -90,11 +90,11 @@
                 <ul class="productList">
                 <c:choose>
 	                <c:when test="${empty recentViewList}">
-	                <tr>
-									<td colspan="6" aling="center">
-										조회된 게시물이 없습니다.
-									</td>
-								</tr>
+	                 <tr>
+					  <td colspan="6" aling="center">
+						최근 본 상품이 없습니다.
+					  </td>
+					 </tr>
 	                </c:when>
 	               <c:otherwise>
 	               <c:forEach items="${recentViewList}" var="row" varStatus="loop">
@@ -147,8 +147,8 @@
                   </li>
                	  </c:if>
     			</c:forEach> 
-	               </c:otherwise>
-                </c:choose>
+	            </c:otherwise>
+               </c:choose>
                 
                 
                 
@@ -176,7 +176,7 @@
                 </div>
                 <ul class="menu">
                   <li>
-                    <a href="#">주문내역 조회</a>
+                    <a href="myPage.do">주문내역 조회</a>
                   </li>
                 </ul>
                 <div class="subTitle">

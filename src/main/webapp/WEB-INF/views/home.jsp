@@ -39,7 +39,7 @@
           <main id="container">
             <section class="main_slider">
               <h2 class="blind">메인 슬라이더</h2>
-              <div class="swiper">
+              <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <a href="#">
@@ -82,6 +82,29 @@
                 <div class="swiper-button-prev arrow_btn"></div>
                 <div class="swiper-button-next arrow_btn"></div>
               </div>
+			 <script>
+			    const swiper = new Swiper('.swiper-container', {
+			      grabCursor: true,
+			      draggable: true,
+			      speed: 1000,
+			      loop: true,
+			      effect: 'fade',
+			      fadeEffect: { crossFade: true },
+			      preloadImages: false,
+			      lazy: {
+			        loadOnTransitionStart: true,
+			        loadPrevNext: true,
+			      },
+			      pagination: {
+			        el: '.swiper-pagination',
+			        clickable: true,
+			      },
+			      navigation: {
+			        nextEl: '.swiper-button-next',
+			        prevEl: '.swiper-button-prev',
+			      },
+			    });
+			  </script>
             </section>
             <section class="main_best main_item">
               <div class="inner">
