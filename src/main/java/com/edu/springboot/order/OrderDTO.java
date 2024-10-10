@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class OrderDTO {
-	private BigDecimal order_id;
+	private String order_id;
 	private String member_id;
 	private Date order_date;
 	private String order_name;

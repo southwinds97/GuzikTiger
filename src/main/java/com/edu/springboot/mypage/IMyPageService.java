@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 
+import com.edu.springboot.order.OrderDTO;
 import com.edu.springboot.product.ProductDTO;
 
 @Mapper
@@ -34,4 +35,7 @@ public interface IMyPageService {
     
     // 최근 본 상품 등록
     int recentViewInsert(ProductDTO productDTO);
+
+    // 주문내역 조회
+    ArrayList<OrderDTO> orderSelect(String id);
 }

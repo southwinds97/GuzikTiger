@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.ParameterDTO;
+import com.edu.springboot.member.IMemberService;
+import com.edu.springboot.member.MemberDTO;
+import com.edu.springboot.order.OrderDTO;
 import com.edu.springboot.product.ProductDTO;
 import com.edu.springboot.qna.IQNAService;
 import com.edu.springboot.qna.QNABoardDTO;
@@ -30,9 +33,26 @@ public class MyPageController {
     private IMyPageService dao;
     @Autowired
     private IQNAService qnadao;
+    @Autowired
+    private IMemberService memberDAO;
 
     @RequestMapping("/myPage.do")
-    public String myPage() {
+    public String myPage(HttpServletRequest req, HttpServletResponse res, Model model, MemberDTO memberDTO) {
+        // 회원정보 가져오기
+        String id = (String) req.getSession().getAttribute("id");
+        MemberDTO MDTO = memberDAO.viewMember(id);
+
+        model.addAttribute("MDTO", MDTO);
+
+        // 주문내역 가져오기
+        ArrayList<OrderDTO> orderList = dao.orderSelect(id);
+
+        // 총 주문내역 수
+        int totalRecord = orderList.size();
+
+        model.addAttribute("orderList", orderList);
+        model.addAttribute("totalRecord", totalRecord);
+
         return "mypage/myPage";
     }
 
