@@ -1,12 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="com_list">
+<div class="com_lists">
   <c:forEach var="comment" items="${comlists}">
     <div class="comment">
       <span class="com_user">${comment.name}</span><span>${comment.postdate}</span>
       <div class="com_content">
         <c:choose>
           <c:when test="${comment.secretYN == 'on'}">
+			<c:if test="">
+				<img src="/images/lock.gif" alt="비밀글"><p>${comment.comments}</p>
+			</c:if>
             <img src="/images/lock.gif" alt="비밀글"><p>비밀댓글 입니다.</p>
           </c:when>
           <c:otherwise>

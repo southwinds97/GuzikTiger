@@ -16,6 +16,15 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script src="js/ui-common.js?v=<%= System.currentTimeMillis() %>"></script>
 </head>
+<script>
+	function checkFrm(frm) {
+		if(frm.password.value == '') {
+			alert('비밀번호를 입력해주세요.');
+			frm.password.focus();
+			return false;
+		}
+	}
+</script>
 <body>
   <div id="wrap">
     <!-- 헤더 -->

@@ -539,3 +539,9 @@
 .search_result .img_wrap .wish_add_btn:hover {
   background-image: url(/images/heart_fill.svg);
 }
+
+textarea {
+	background: none;
+	border: 1px solid #a7a7a7;
+	border-bottom: none;
+}

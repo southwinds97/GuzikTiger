@@ -15,7 +15,7 @@
    	</select>
    	 -->
 	<select id="listCom" resultType="com.edu.springboot.qna.CommentDTO" parameterType="String">
-    	select * from qna_comment where board_idx=#{idx}
+    	select * from qna_comment where board_idx=#{idx} order by idx
 	</select>  	
 	
 	<insert id="write" parameterType="com.edu.springboot.qna.CommentDTO">
