@@ -150,7 +150,7 @@ public class ProductController {
 
 		model.addAttribute("product_dtl", productDTO);
 
-		return "/product_review";
+		return "product/product_review";
 	}
 
 	// 상품 검색 페이지

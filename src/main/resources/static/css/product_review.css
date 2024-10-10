@@ -1,0 +1,465 @@
+.prd_review {
+  margin-top: 100px;
+  padding-left: 300px;
+  padding-right: 700px;
+}
+
+.prd_review h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.prd_review .summary {
+  margin-top: 10px;
+  border-top: 1px solid black;
+}
+
+.prd_review .summary .colum_box {
+   margin: 30px 0;
+   padding: 40px 0;
+   border-radius: 4px;
+   border: 1px solid #ebebeb;
+   height: 150px;
+   display: flex;
+   justify-content: space-between; 
+}
+
+
+.prd_review .summary .colum_box .left_box {
+   flex: 1;
+   margin: 0 10px;
+   text-align: center;
+   display: flex;
+   flex-direction: column; /* 기본적으로 수직 배치 */
+   align-items: center; /* 가로 중앙 정렬 */
+   border-right: 1px solid #ebebeb;
+}
+
+.prd_review .summary .colum_box .left_box p {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #333;
+  letter-spacing: -0.2px;
+}
+
+
+
+.prd_review .summary .colum_box .left_box .rating_box {
+   display: flex;
+   align-items: center; 
+   justify-content: center;
+   margin-right: 10px;
+}
+
+.prd_review .summary .colum_box .left_box img {
+   width: 17px;
+   height: auto;
+   margin-bottom: 2px;
+   margin-right: 4px;
+}
+
+
+.prd_review .summary .colum_box .left_box .per {
+   margin-right: 4px;
+   font-size: 21px;
+   font-weight: bold;
+   color: #000;
+}
+
+.prd_review .summary .colum_box .left_box .max {
+  color: #b8bbc2;
+  font-weight: 500;
+  font-size: 21px;
+}
+
+
+.prd_review .summary .colum_box .middle_box {
+   flex: 1;
+   text-align: center;
+   border-right: 1px solid #ebebeb;
+}
+
+.prd_review .summary .colum_box .middle_box .count {
+  font-size: 21px;
+  font-weight: bold;
+  color: #000;
+  margin-top: 7px;
+}
+
+
+
+.prd_review .summary .colum_box .right_box {
+   flex: 1;
+   text-align: center;
+}
+
+.right_box .score {
+   display: flex; /* 자식 요소들을 가로로 배치 */
+
+   height: 70px;
+   justify-content: center;
+   position: relative;
+}
+
+
+.right_box .score .graph5,
+.right_box .score .graph4,
+.right_box .score .graph3,
+.right_box .score .graph2,
+.right_box .score .graph1 {
+  width: 8px;
+  height: 52px;
+  background: #f6f7f8;
+  margin: 0 10px;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 3%);
+  position: relative;
+}
+
+.right_box .score .graph5 {
+  background-color: #333;
+  border-color: #333;
+}
+
+.right_box .score .graph4 .progress {
+  height: 1%;	
+  background-color: #333;
+  border-color: #333;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.right_box .score .graph3 .progress{
+  height: 1%;
+  background-color: #333;
+  border-color: #333;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.right_box .score .graph5:before,
+.right_box .score .graph4:before,
+.right_box .score .graph3:before,
+.right_box .score .graph2:before,
+.right_box .score .graph1:before {
+   position: absolute;
+   top: 100%;
+   transform: translateX(-50%);
+   font-size: 11px;
+   color: #2e2e2e;
+   font-weight: 500;
+   white-space: nowrap;
+   margin: 8px 0 5px;
+}
+
+.right_box .score .graph5:before {
+    content: '5점';
+}
+
+.right_box .score .graph4:before {
+    content: '4점';
+}
+
+.right_box .score .graph3:before {
+    content: '3점';
+}
+
+.right_box .score .graph2:before {
+    content: '2점';
+}
+
+.right_box .score .graph1:before {
+    content: '1점';
+}
+
+.more_pr {
+  position: relative;
+  padding: 10px 0 40px;
+  font-size: 0;
+  line-height: 1;
+  display: flex; /* Flexbox로 가로 정렬 */
+  gap: 10px; 
+  border-bottom: 1px solid #ebebeb;
+}
+
+.more_pr .thumb img {
+  min-width: 98px;
+  height: 98px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.swiper-container {
+  overflow: hidden;
+}
+
+.comment_box .rv_com {
+  height: auto;
+  border-bottom: 1px solid #ebebeb;
+  padding: 30px 0;
+  display: flex; /* 두 자식 박스를 가로로 나누기 */
+  justify-content: space-between;
+}
+
+.comment_box .rv_com p {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.comment_box .rv_com .content img {
+  margin-bottom: 25px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.comment_box .rv_com .review_text {
+ font-size: 13px;
+  font-weight: unset;
+  overflow: hidden;
+  white-space: nowrap; /* 줄바꿈 방지 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 생략 부호로 표시 */
+  max-width: 100%; /* 레이아웃에 따라 조정 */
+  transition: max-height 0.3s ease;
+}
+
+
+.comment_box .rv_com .more_check {
+  position: relative;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #a6a6a6;
+}
+
+.comment_box .rv_com .more_check::after {
+  position: absolute;
+  top: 9px;
+  left: 53px;
+  content: '';
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border: 2px solid #BCBCBC;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.comment_box .rv_com .info {
+  margin-left: auto;
+  padding-left: 30px;
+  border-left: 1px solid #ebebeb;
+  width: 10%;
+  min-width: 140px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.comment_box .rv_com .info p {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 3px;
+  font-weight: unset;
+}
+
+
+.comment_box .rv_cmt {
+  height: auto;
+  border-bottom: 1px solid #ebebeb;
+  padding: 30px 0;
+  display: flex; /* 두 자식 박스를 가로로 나누기 */
+  justify-content: space-between;
+}
+
+.comment_box .rv_cmt .info	 {
+  margin-left: auto;
+  padding-left: 30px;
+  border-left: 1px solid #ebebeb;
+  width: 10%;
+  min-width: 140px;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.comment_box .rv_cmt .reply .review_text {
+  font-size: 13px;
+  font-weight: unset;
+}
+
+.comment_box .rv_cmt .more_check {
+  position: relative;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #a6a6a6;
+}
+
+.comment_box .rv_cmt .more_check::after {
+  position: absolute;
+  top: 9px;
+  left: 53px;
+  content: '';
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border: 2px solid #BCBCBC;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.comment_box .rv_com .more_check.expanded::after {
+  left: 64px;
+  top: 5px;
+}
+
+.comment_box .rv_cmt .more_check.expanded::after {
+  left: 64px;
+  top: 5px;
+}
+
+
+
+.comment_box .rv_com .more_check.expanded::after, 
+.comment_box .rv_cmt .more_check.expanded::after {
+  transform: rotate(225deg); /* 6시 방향 회전 */
+}
+
+
+.comment_box .rv_cmt .info p {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 3px;
+}
+
+
+
+
+.comment_box .rv_com .content strong {
+  color: #f94830;
+  font-size: 12px;
+}
+
+
+
+.comment_box .rv_cmt .reply p {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.base_btn {
+  text-align: right;
+  margin: 20px 0;
+}
+
+.base_btn .all {
+  min-width: 135px;
+  padding: 10px 20px;
+  height: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  border: 1px solid #bcbcbc;
+}
+
+.base_btn .write {
+  min-width: 135px;
+  padding: 10px 20px;
+  height: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #000;
+  text-align: center;
+  vertical-align: middle;
+  word-spacing: -0.5px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.paginate {
+  margin: 80px 0;
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+}
+
+.paginate>a {
+  display: inline-block;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.paginate>a::after,
+.paginate>a:first-child::before,
+.paginate>a:last-child::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-width: 1px 1px 0 0;
+  border-style: solid;
+  border-color: #000;
+  vertical-align: middle;
+  transform: rotate(45deg);
+}
+
+.paginate>a:first-child::after,
+.paginate>a:first-child::before,
+.paginate>a:first-child+a::after {
+  transform: rotate(-135deg);
+}
+
+.paginate>a:first-child::before,
+.paginate>a:last-child::before {
+  margin: 0 -1px;
+}
+
+.paginate ol {
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.paginate a.this {
+  position: relative;
+  z-index: 1;
+  color: #000;
+  border-color: #000;
+}
+
+.paginate li a {
+  display: block;
+  width: 40px;
+  padding: 12px 0;
+  font-size: 12px;
+  color: #6d6d6d;
+  border: 1px solid #e5e5e5;
+  line-height: 14px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
