@@ -208,9 +208,6 @@
                     <button type="button" onclick="" class="btnallorder">전체상품주문</button>
                   </div>
                 </div>
-                   </c:forEach>
-                 </c:otherwise>
-               </c:choose>
               </div>
               <div class="paginate">
                 <a href="#" class="first">첫 페이지</a>
@@ -223,6 +220,9 @@
                 <a href="#">다음페이지</a>
                 <a href="#" class="last">마지막페이지</a>
               </div>
+                </c:forEach>
+              </c:otherwise>
+             </c:choose>
               <div class="myinfo_Main">
                 <h2>My Account</h2>
                 <div class="subTitle">
