@@ -100,12 +100,12 @@
         <input type="text" name="tel2" id="tel2"value="" /><span>-</span>
         <input type="text" name="tel3" id="tel3" />
         <input type="hidden" name="tel" id="tel4" />
+        <input type="hidden" name="emailAll" id="emailAll" />
       </div>
       <div class="email">
         <label for="email">이메일*</label>
         <input type="text" id="email">@
-        <select class="choose_mail">
-		<option value="">-이메일 선택-</option>
+        <select class="choose_mail" id="emailSelect">
 		<option value="naver.com" selected="selected">naver.com</option>
 		<option value="daum.net">daum.net</option>
 		<option value="nate.com">nate.com</option>
@@ -139,7 +139,10 @@
     <div class="order_bord"></div>
     
     <script>
-    let intlData ;
+    //주문상품정보
+    let intlOrder ;
+    //결제금액정보
+    let paymentInfo; 
  $(document).ready(function () {
 	
 	 
@@ -163,7 +166,7 @@
 	    console.log('##주문리스트###',orderArr);
 	   
 	    //전역변수 설정
-	    intlData = orderArr;
+	    intlOrder = orderArr;
 	    
 	    // 주문자정보 셋팅
 	    Basket.orderMember(orderArr);
@@ -174,7 +177,7 @@
             
     //주문금액 정보
     let orderArr =  fnIntl();
-    var totalPrice = Basket.paymemtSetAmont(orderArr);
+    paymentInfo = Basket.paymemtSetAmont(orderArr);
     
     //적립금 change event
    
@@ -196,10 +199,14 @@
  
 	 //적립금 전액사용 
 	 function usefullPoint () {
-		let usePoint = intlData[0].point;
+		let usePoint = intlOrder[0].point;
 		$('#usePoint').val(usePoint);
-		Basket.finalSetAmount(intlData,usePoint );
-	}
+		Basket.finalSetAmount(intlOrder,usePoint );
+	 }
+	 // 결제 진행
+	 function fnPayment( ){
+		 Basket.payProcess(intlOrder,paymentInfo);
+	 }
   </script>
     <div class="more_title">
       <h2 >추가입력</h2>
@@ -512,7 +519,7 @@
     <label for="needagree">[필수] 결제대행서비스 약관 동의</label>  
    </div>   
   </div>
-   <button type="button" class="paybtn">
+   <button type="button" class="paybtn" onclick="fnPayment()">
     <span class="price_view">
      26,900원 결제하기
     </span></button>

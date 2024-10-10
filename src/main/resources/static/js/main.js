@@ -15,6 +15,8 @@ var arrary = [] ;
 
 //수량 증가감소 체크
 var quanChk;  
+
+
 const Basket = {
 	/**
 	 * '△' 버튼 클릭, 수량증가
@@ -330,7 +332,7 @@ const Basket = {
 		      innerProductDscount2.innerHTML = productDscount +'원';
 			
 			//포인트 사용금액금액
-		  var applyPoint = usePoint==undefined? 0: usePoint ;
+		  var applyPoint = usePoint==undefined? 0: Number(usePoint) ;
 		  var innerUsePoint = document.getElementById('usePoint')
 		  //    innerUsePoint.innerHTML = applyPoint +'원';
 		   
@@ -345,7 +347,14 @@ const Basket = {
 		  var totalPaymentAmount = totalProductPrice +delvAmout -totalDiscount;
 		  var innerTotalPaymentAmount = document.getElementById('totalPaymentAmount')
 		      innerTotalPaymentAmount.innerHTML = totalPaymentAmount +'원';
-		  return totalPrice ;
+
+			   let  paymentInfo = {"totalProductPrice":totalProductPrice,
+			  					"delvAmout": delvAmout,
+			  					"productDscount":productDscount,
+			  					"applyPoint"	:applyPoint,
+			  					"totalPaymentAmount": totalPaymentAmount }
+			  	  
+			    return paymentInfo ;
 	},
 	
 	//부가정보에 따른 금액 변경 로직
@@ -382,7 +391,7 @@ const Basket = {
 		      innerProductDscount2.innerHTML = productDscount +'원';
 			
 			//포인트 사용금액금액
-		  var applyPoint = usePoint==undefined? 0: usePoint ;
+		  var applyPoint = usePoint==undefined? 0: Number(usePoint) ;
 		  var innerUsePoint = document.getElementById('usedPoint')
 		      innerUsePoint.innerHTML = applyPoint +'원';
 		   
@@ -397,7 +406,14 @@ const Basket = {
 		  var totalPaymentAmount = Number(totalProductPrice) +Number(delvAmout) -Number(totalDiscount);
 		  var innerTotalPaymentAmount = document.getElementById('totalPaymentAmount')
 		      innerTotalPaymentAmount.innerHTML = totalPaymentAmount +'원';
-		  return totalPrice ;
+			  
+		 let  paymentInfo = {"totalProductPrice":totalProductPrice,
+							"delvAmout": delvAmout,
+							"productDscount":productDscount,
+							"applyPoint"	:applyPoint,
+							"totalPaymentAmount": totalPaymentAmount }
+			  
+		  return paymentInfo ;
 	},
 	
 	/*------결제 창에서 품목 삭제(장바구니 삭제 후 다시 불러오기)------*/
@@ -424,19 +440,86 @@ const Basket = {
 	},
 	moveWish : function(product_id){
 		$.ajax({
-                 url: "wishListAdd.do",
-                 type: "post",
-                 data: {
-                   product_id: product_id
-                 },
-                 success: function (data) {
-                   if (data.redirect) {
-                     alert(data.message);
-                     window.location.href = data.redirect;
-                   } else {
-                     alert(data.message);
-                   }
-                 }
-		                       });
+             url: "wishListAdd.do",
+             type: "post",
+             data: {
+               product_id: product_id
+             },
+             success: function (data) {
+               if (data.redirect) {
+                 alert(data.message);
+                 window.location.href = data.redirect;
+               } else {
+                 alert(data.message);
+               }
+             }
+		 });
+	},
+	orderMember : function(obj){
+		let member_id = obj[0].member_id
+		$.ajax({
+			url: "/payMember.do",
+			type: "GET",
+			data: member_id ,
+			success: function(data){
+				Basket.memberSetup(data);
+			},
+			error: function(){
+				alert('ajax 통신실패');
+			} 
+		});
+	},
+	memberSetup : function(data){
+		 $('#orderName').val(data.name);
+		
+		$('#zip').val(data.postcode);
+		$('#addr').val(data.addr);
+		$('#detailaddr').val(data.detailaddr);
+		
+		$('#tel4').val(data.tel);
+		let telArr = data.tel.split('-');	
+		$('#tel2').val(telArr[1]);
+		$('#tel3').val(telArr[2]);
+		
+		$('#emailArr').val(data.email) ;
+		let emailArr = data.email.split('@');
+		$('#email').val(emailArr[0]);
+		
+		//옵션 찾기 ..보류
+		let emailOptionArr=$('.choose_mail').find('option').map(function() {return $(this).val();}).get()
+				
+	console.log('여기까지');
+		
+	} ,
+	payProcess : function(intlOrder,paymentInfo){
+		
+		var orderName = $('#orderName').val();
+		var addr =$('#addr').val();
+		var tel = $('#tel4').val();
+		var email = $('#emailArr').val() ;
+		let  orderInfo = {"orderName":orderName,
+						"addr": addr,
+						"tel":tel,
+						"email"	:email,
+						"tel": tel }
+		
+		var intlOrder = JSON.stringify(intlOrder);
+		var obj = JSON.parse(intlOrder);
+		var paymentInfo = JSON.stringify(paymentInfo);
+		 orderInfo = JSON.stringify(orderInfo);
+		$.ajax({
+					url: "/payProcess.do",
+					type: "POST",
+					data: {"obj":obj, "paymentInfo":paymentInfo, "orderInfo":orderInfo} ,
+					traditional : true,
+					success: function(data){
+						alert('성공');
+						
+					},
+					error: function(){
+						alert('ajax 통신실패');
+					} 
+				});
 	}
+	
 }

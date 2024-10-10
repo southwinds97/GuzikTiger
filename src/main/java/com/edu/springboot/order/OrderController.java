@@ -1,9 +1,11 @@
 package com.edu.springboot.order;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.member.IMemberService;
+import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
 
@@ -30,8 +34,15 @@ public class OrderController {
 	@Autowired
 	IProductService iProductService;
 	
+	@Autowired
+	private IMemberService dao;
+	
 	ProductDTO productDTO = new ProductDTO();
 	OrderDTO orderDTO = new OrderDTO()	;
+	
+	
+	
+	
 	
 	/**************** 장바구니 ***********************/
 	// 장바구니페이지 조회
@@ -196,20 +207,73 @@ public class OrderController {
 	}
 
 	// 결제페이지에서 (결제)진행
-	@PostMapping("/pay.do")
-	public String paymentProc(Model model, HttpServletRequest req) {
+	@PostMapping("/payProcess.do")
+    @ResponseBody
+	public String payProcess(Model model, HttpServletRequest req, OrderDTO orderDTO) throws IOException {
+		String member_id = (String) req.getSession().getAttribute("id");
+		
+		
+		String intlOrder = req.getParameter("obj");
+		String paymentInfo = req.getParameter("paymentInfo");
+		String orderInfo = req.getParameter("orderInfo");
+		
+		
+		
+		
+		System.out.println(intlOrder);
 
-		String product_id = req.getParameter("product_id");
-		String option_id = req.getParameter("option_id");
-		int quantity = Integer.parseInt(req.getParameter("quantity"));
-		OrderDTO orderDTO = new OrderDTO();
-		orderDTO.setProduct_id(product_id);
-		orderDTO.setOption_id(option_id);
-		orderDTO.setQuantity(quantity);
-		ArrayList<OrderDTO> lists = new ArrayList<OrderDTO>();
-		lists.add(orderDTO);
-		model.addAttribute("lists", lists);
+		/*
+		 *
+		 * 
+		 * 
+		 * 
+		 * orderDTO.setOrder_name(orderInfo)
+		 * orderDTO.setOrder_phone(orderInfo)
+		 * orderDTO.setOrder_addr(orderInfo)
+		 *  orderDTO.setOrder_amount(0)
+		 * orderDTO.setPayment(paymentInfo)
+		 *  orderDTO.setPayment("현금");
+		 * orderDTO.setDeliv_charge(orderInfo)
+		 *  orderDTO.setOrder_prog("주문완료");
+		 * orderDTO.setDeliv_prog("배송준비중");
+		 */
+		
+	
+		//int result = orderService.insertOrder(orderDTO);
+	
 		return "paymentComplet";
 	}
+	
+	// 회원정보 수정(정보 가져오기)
+    @GetMapping("/payMember.do")
+    @ResponseBody
+    public MemberDTO  payMember(HttpServletRequest req, MemberDTO memberDTO, Model model) {
+        // 회원정보 가져오기
+        String id = (String) req.getSession().getAttribute("id");
+        MemberDTO dto = dao.viewMember(id);
+
+        // 전화번호 나누기
+        if (dto.getTel() != null) {
+            String[] telParts = dto.getTel().split("-");
+            if (telParts.length == 3) {
+                model.addAttribute("tel1", telParts[0]);
+                model.addAttribute("tel2", telParts[1]);
+                model.addAttribute("tel3", telParts[2]);
+            }
+        }
+
+        // 생년월일 나누기
+        if (dto.getBirth() != null) {
+            String[] birthParts = dto.getBirth().split("-");
+            if (birthParts.length == 3) {
+                model.addAttribute("year", birthParts[0]);
+                model.addAttribute("month", birthParts[1]);
+                model.addAttribute("day", birthParts[2]);
+            }
+        }
+
+        model.addAttribute("member", dto);
+        return dto;
+    }
 
 }

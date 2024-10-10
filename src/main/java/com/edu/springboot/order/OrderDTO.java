@@ -43,5 +43,10 @@ public class OrderDTO {
 	private String cd_name;
 	private int points;	
 	
-	
+	/*------결제금액------------*/
+private int applyPoint;
+private int delvAmout;
+private int productDscount;
+private int totalPaymentAmount;
+private int totalProductPrice;
 }
