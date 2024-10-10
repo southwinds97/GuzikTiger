@@ -141,8 +141,6 @@
                       <button type="button" class="btn_Delete" href="#none">삭제</button>
                     </div>
                   </li>
-                
-           
                 </ul>
               </div>
 
@@ -159,11 +157,11 @@
                 <a href="#">다음페이지</a>
                 <a href="#" class="last">마지막페이지</a>
               </div>
-                  </c:if>
-    			</c:forEach> 
-	            </c:otherwise>
-               </c:choose>
-                
+              	 </c:if>
+	    	   </c:forEach> 
+		      </c:otherwise>
+	        </c:choose>
+	                
               <!-- 왼쪽메뉴 -->
               <div class="myinfo_Main">
                 <h2>My Account</h2>

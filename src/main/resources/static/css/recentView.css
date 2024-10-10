@@ -11,8 +11,8 @@
 }
 
 #contents {
-  width: 100%;
-  height: 100%;
+  max-width: 1920px;
+  min-height: 800px;
   margin: 39px 0 0;
   padding: 0 0 0 210px;
   position: relative;
