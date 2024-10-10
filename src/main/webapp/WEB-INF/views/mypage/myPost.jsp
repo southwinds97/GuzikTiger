@@ -170,7 +170,7 @@
                 </div>
                 <ul class="menu">
                   <li>
-                    <a href="#">주문내역 조회</a>
+                    <a href="myPage.do">주문내역 조회</a>
                   </li>
                 </ul>
                 <div class="subTitle">

@@ -185,7 +185,7 @@
   border-bottom: 1px solid #ebebeb;
 }
 
-.more_pr .thumb img {
+.more_pr .thumb img {	
   min-width: 98px;
   height: 98px;
   object-fit: cover;

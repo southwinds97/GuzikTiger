@@ -87,7 +87,7 @@
             <div class="mypage_main">
               <ul class="mypage_top">
                 <li class="Savings">
-                  <img src="/images/Savings.svg" alt="적립금">
+                  <img src="/images/common/money.png" alt="적립금">
                   <h2>3,000원</h2>
                   <p>총적립금</p>
                 </li>
@@ -134,7 +134,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="title_area2">
+              <div class="titlearea2">
                 <h3>주문내역 조회</h3>
               </div>
               <div class="order_listwrap">
