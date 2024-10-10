@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -212,34 +211,60 @@ public class OrderController {
 	public String payProcess(Model model, HttpServletRequest req, OrderDTO orderDTO) throws IOException {
 		String member_id = (String) req.getSession().getAttribute("id");
 		
-		
-		String intlOrder = req.getParameter("obj");
+		//결제상품 정보
+		String intlOrder = req.getParameter("intlOrder");
+		//결제금액 정보
 		String paymentInfo = req.getParameter("paymentInfo");
+		//결제자 정보
 		String orderInfo = req.getParameter("orderInfo");
 		
+		/*----------insert 테스트를 위한 하드코딩---------*/
 		
+		//주문테이블
+	     orderDTO.setMember_id("admin");
+	     orderDTO.setOrder_name("관리자");
+	     orderDTO.setOrder_phone("010-9077-1999");
+	     orderDTO.setOrder_addr("서울 종로 더좋은");
+	     orderDTO.setOrder_amount(148000);
+	     orderDTO.setPayment("현금");
+	     orderDTO.setDeliv_charge("무료");
+	     orderDTO.setOrder_prog("주문완료");
+	     orderDTO.setDeliv_prog("배송준비중");
+	     
+	     int result = orderService.insertOrder(orderDTO);
+	     
+	     //생성된 order_id 받기
+	     String o_id = orderDTO.getOrder_id() ;
+	     System.out.println("o_id"+o_id);
+	     if(result>0) {
+	    	 OrderDTO orderDTODtl1 =  new OrderDTO();
+		     //주문상세(품목)테이블
+		     ArrayList<OrderDTO> orderDTOList = new ArrayList<>();
+		     orderDTODtl1.setOrder_id(o_id);
+		     orderDTODtl1.setProduct_id("P10636");
+		     orderDTODtl1.setOption_id("흑호 뚱랑이");
+		     orderDTODtl1.setQuantity(2); //35000원
+		     orderDTOList.add(orderDTODtl1);
+		     
+		     OrderDTO orderDTODtl2 =  new OrderDTO();
+		     orderDTODtl2.setOrder_id(o_id);
+		     orderDTODtl2.setProduct_id("P10670");
+		     orderDTODtl2.setOption_id("보냉백");
+		     orderDTODtl2.setQuantity(1); //28000원
+		     orderDTOList.add(orderDTODtl2);
+		     
+		     OrderDTO orderDTODtl3 =  new OrderDTO();
+		     orderDTODtl3.setOrder_id(o_id);
+		     orderDTODtl3.setProduct_id("P10670");
+		     orderDTODtl3.setOption_id("보냉백+피크닉매트 세트");
+		     orderDTODtl3.setQuantity(1); //57000원
+		     orderDTOList.add(orderDTODtl3);
+		     
+		     int result2 = orderService.insertOrderDtl(orderDTOList);
+		     System.out.println(result2);
+	     }
+	    
 		
-		
-		System.out.println(intlOrder);
-
-		/*
-		 *
-		 * 
-		 * 
-		 * 
-		 * orderDTO.setOrder_name(orderInfo)
-		 * orderDTO.setOrder_phone(orderInfo)
-		 * orderDTO.setOrder_addr(orderInfo)
-		 *  orderDTO.setOrder_amount(0)
-		 * orderDTO.setPayment(paymentInfo)
-		 *  orderDTO.setPayment("현금");
-		 * orderDTO.setDeliv_charge(orderInfo)
-		 *  orderDTO.setOrder_prog("주문완료");
-		 * orderDTO.setDeliv_prog("배송준비중");
-		 */
-		
-	
-		//int result = orderService.insertOrder(orderDTO);
 	
 		return "paymentComplet";
 	}

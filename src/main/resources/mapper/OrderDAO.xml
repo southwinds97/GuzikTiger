@@ -12,19 +12,53 @@
 	
 	 <!-- 주문 등록 -->
     <insert id="insertOrder" parameterType="com.edu.springboot.order.OrderDTO" >
-       INSERT INTO order_list (order_id, member_id, order_name, order_phone, order_addr,
-                        order_amount, payment, deliv_charge, order_prog, deliv_prog)
-        VALUES (#{order_id}, #{member_id}, #{order_name}, #{order_phone}, #{order_addr}, 
-        #{order_amount}, #{payment}, #{deliv_charge}, #{order_prog}, #{deliv_prog}) 
+       INSERT INTO order_list (
+        order_id,
+       	member_id, 
+       	order_name, 
+       	order_phone, 
+       	order_addr,
+        order_amount, 
+        payment, 
+        deliv_charge, 
+        order_prog, 
+        deliv_prog )
+        
+       VALUES (
+        TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_ID_seq.nextval ,
+        #{member_id}, 
+        #{order_name}, 
+        #{order_phone}, 
+        #{order_addr}, 
+        #{order_amount}, 
+        #{payment}, 
+        #{deliv_charge}, 
+        #{order_prog}, 
+        #{deliv_prog}
+        ) 
+        <selectKey keyProperty="order_id" resultType="String" order="AFTER">
+       		select TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_ID_seq.currval from dual
+  		</selectKey>
+        
     </insert>
     
 	 <!-- 주문 상세 등록 -->
     <insert id="insertOrderDtl" parameterType="java.util.List">
     	insert all
         <foreach item="item" collection="list">       
-	        INTO order_detail (idx, order_id, product_id, option_id, quantity)
+	        INTO order_detail (
+	         order_id, 
+        	 product_id, 
+        	 option_id, 
+        	 quantity
+        	 )
 	        VALUES
-	         (#{item.idx}, #{item.order_id}, #{item.product_id}, #{item.option_id}, #{item.quantity} )
+	         (
+	         #{item.order_id}, 
+	         #{item.product_id}, 
+	         #{item.option_id}, 
+	         #{item.quantity} 
+	         )
          </foreach>
          select * from dual
     </insert>	
@@ -132,10 +166,20 @@
      
           <!-- 장바구니 등록 -->
     <insert id="insertCart" parameterType="com.edu.springboot.product.ProductDTO" >
-       INSERT INTO cart (MEMBER_ID, CART_DTL_ID, PRODUCT_ID, OPTION_ID,
-       QUANTITY)
-        VALUES 
-        ( #{member_id}, #{cart_dtl_id}, #{product_id}, #{option_id}, #{quantity})
+        INSERT INTO cart (
+		    MEMBER_ID, 
+		    CART_DTL_ID, 
+		    PRODUCT_ID, 
+		    OPTION_ID,
+		    QUANTITY
+		 )
+		VALUES ( 
+		    #{member_id}, 
+		    #{product_id}||#{idx},
+		    #{product_id}, 
+		    #{option_id}, 
+		    #{quantity}
+ 	    )  
     </insert> 
      
     <!-- 장바구니에서 수량 변경목록 -->

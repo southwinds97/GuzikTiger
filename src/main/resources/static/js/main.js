@@ -504,13 +504,12 @@ const Basket = {
 						"tel": tel }
 		
 		var intlOrder = JSON.stringify(intlOrder);
-		var obj = JSON.parse(intlOrder);
 		var paymentInfo = JSON.stringify(paymentInfo);
 		 orderInfo = JSON.stringify(orderInfo);
 		$.ajax({
 					url: "/payProcess.do",
 					type: "POST",
-					data: {"obj":obj, "paymentInfo":paymentInfo, "orderInfo":orderInfo} ,
+					data: {"intlOrder":intlOrder, "paymentInfo":paymentInfo, "orderInfo":orderInfo} ,
 					traditional : true,
 					success: function(data){
 						alert('성공');
