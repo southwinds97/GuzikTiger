@@ -122,37 +122,37 @@
                         </div>
                         <div class="odder_detail">
                           <a href="#">
-                            <strong class="odder_name">${order.product_name}</strong>
+                            <strong class="odder_name">${order.product_name} 외 1종</strong>
                           </a>
                           <span class="odder_price">
                             <strong class="txtEm">
-                              ${order.price}
+                              ${order.order_amount}
                             </strong>원
-                            <span class="odder_count">(${order.quantity}개)</span>
+                            <!-- <span class="odder_count">(${order.quantity}개)</span> -->
                           </span>
                         </div>
                       </div>
                     </div>
-                  </c:forEach>
-                  <div class="odder_cancel">
-                    <div class="cancel_left">
-                      <span class="cancel">취소신청</span>
-                      <span class="store">
-                        <a href="#" class="btnText">상세정보</a>
+                    <div class="odder_cancel">
+                      <div class="cancel_left">
+                        <span class="cancel">취소신청</span>
+                        <span class="store">
+                          <a href="#" class="btnText">상세정보</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="odder_right">
+                      <a href="#none" class="btnnormal" id="cancelButton" onclick="alert('취소를 철회하시겠습니까?')">취소철회</a>
+                      <span class="displaynone">
+                        <a href="#none" class="btnnormal" id="statusButton" onclick="alert(배송조회)">배송조회</a>
+                        <a href="#none" class="btnnormal" id="exchangeButton" onclick="alert('교환을 철회하시겠습니까?')">교환철회</a>
+                        <a href="#none" class="btnnormal" id="returnButton" onclick="alert('반품을 철회하시겠습니까?')">반품철회</a>
                       </span>
                     </div>
-                  </div>
-                  <div class="odder_right">
-                    <a href="#none" class="btnnormal" id="cancelButton" onclick="alert('취소를 철회하시겠습니까?')">취소철회</a>
-                    <span class="displaynone">
-                      <a href="#none" class="btnnormal" id="statusButton" onclick="alert(배송조회)">배송조회</a>
-                      <a href="#none" class="btnnormal" id="exchangeButton" onclick="alert('교환을 철회하시겠습니까?')">교환철회</a>
-                      <a href="#none" class="btnnormal" id="returnButton" onclick="alert('반품을 철회하시겠습니까?')">반품철회</a>
-                    </span>
-                  </div>
-                  <a href="#" class="btnDetail">상세보기
-                    <i aria-hidden="true" class="rArrow"></i>
-                  </a>
+                    <a href="#" class="btnDetail">상세보기
+                      <i aria-hidden="true" class="rArrow"></i>
+                    </a>
+                  </c:forEach>
                 </div>
               </div>
               <div class="paginate">
@@ -240,15 +240,28 @@
                 }
               });
 
+
+
+              // 9,999원 형식으로 변환
+              $('.odder_price strong').each(function () {
+                let price = parseInt($(this).text().replace(/,/g, ''));
+                $(this).text(price.toLocaleString());
+              });
+
+              $('.Savings h2').each(function () {
+                let point = parseInt($(this).text().replace(/,/g, ''));
+                $(this).text(point.toLocaleString());
+              });
+
               // 총 가격 계산 함수
               function calculateTotalPrice() {
                 let totalPrice = 0;
-                $('.odder_list').each(function () {
-                  const price = parseFloat($(this).find('.odder_price .txtEm').text().replace(/,/g, ''));
-                  const quantity = parseInt($(this).find('.odder_count').text().replace(/[()개]/g, ''));
-                  totalPrice += price * quantity;
+                // $order_amount 값을 가져와서 총 가격 계산
+                $('.odder_price strong').each(function () {
+                  let price = parseInt($(this).text().replace(/,/g, ''));
+                  totalPrice += price;
                 });
-                $('#total-price').text(totalPrice + '원');
+                $('#total-price').text(totalPrice.toLocaleString() + '원');
               }
 
               // 페이지 로드 시 총 가격 계산

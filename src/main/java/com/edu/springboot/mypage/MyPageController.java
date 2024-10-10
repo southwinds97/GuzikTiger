@@ -50,6 +50,8 @@ public class MyPageController {
         // 총 주문내역 수
         int totalRecord = orderList.size();
 
+        // 주문 내역 안에 상품 종류 수
+        
         model.addAttribute("orderList", orderList);
         model.addAttribute("totalRecord", totalRecord);
 

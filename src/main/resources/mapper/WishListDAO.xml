@@ -95,73 +95,36 @@
 
     <!-- 주문 내역 조회 -->
     <select id="orderSelect" resultType="com.edu.springboot.order.OrderDTO" parameterType="String">
-    WITH order_combined AS (
-        SELECT 
-            ol.order_id,
-            ol.order_date,
-            ol.member_id,
-            ol.order_name,
-            ol.order_phone,
-            ol.order_addr,
-            ol.order_amount,
-            ol.payment,
-            ol.deliv_charge,
-            ol.order_prog,
-            ol.deliv_prog,
-            od.product_id,
-            od.option_id,
-            od.quantity
-        FROM 
-            order_list ol
-        JOIN 
-            order_detail od
-        ON 
-            ol.order_id = od.order_id
-        WHERE 
-            ol.member_id = #{id}
-    ),
-    product_combined AS (
-        SELECT 
-            p.product_id,
-            pd.option_id,
-            p.product_name,
-            pd.price,
-            pd.img_id
-        FROM 
-            product p
-        JOIN 
-            product_dtl pd
-        ON 
-            p.product_id = pd.product_id
-    )
-    SELECT 
-        oc.order_id,
-        oc.order_date,
-        oc.member_id,
-        oc.order_name,
-        oc.order_phone,
-        oc.order_addr,
-        oc.order_amount,
-        oc.payment,
-        oc.deliv_charge,
-        oc.order_prog,
-        oc.deliv_prog,
-        oc.product_id,
-        oc.option_id,
-        oc.quantity,
-        pc.product_name,
-        pc.price,
-        pc.img_id
-    FROM 
-        order_combined oc
-    JOIN 
-        product_combined pc
-    ON 
-        oc.product_id = pc.product_id
-    AND 
-        oc.option_id = pc.option_id
-    ORDER BY 
-        oc.order_id DESC
-</select>
+        SELECT * FROM (
+            SELECT 
+                a.order_id,
+                a.order_date,
+                a.member_id,
+                a.order_name,
+                a.order_phone,
+                a.order_addr,
+                a.order_amount,
+                a.payment,
+                a.deliv_charge,
+                a.order_prog,
+                a.deliv_prog,
+                b.product_id,
+                b.option_id,
+                b.quantity,
+                d.product_name,
+                c.price,
+                c.img_id
+            FROM 
+                order_list a
+                JOIN order_detail b ON a.order_id = b.order_id
+                JOIN product_dtl c ON b.product_id = c.product_id
+                JOIN product d ON c.product_id = d.product_id
+            WHERE 
+                c.idx = 1
+                AND a.member_id = #{id}
+            ORDER BY 
+                a.order_id DESC
+        ) WHERE ROWNUM = 1
+    </select>
     
 </mapper>
