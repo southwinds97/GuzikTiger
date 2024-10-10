@@ -57,7 +57,7 @@ public class ApiController {
 			String code = null;
 			int listArray = 2;
 			int offset = 0; // 기본값 설정
-			int limit = 10; // 기본값 설정
+			int limit = 500; // 기본값 설정
 		
 			Map<String, Object> params = new HashMap<>();
 			params.put("code", code);
