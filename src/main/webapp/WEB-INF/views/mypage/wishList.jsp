@@ -118,6 +118,7 @@
                         </div>
                       </div>
                     </ul>
+                  </c:forEach>
 
                   <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
                   <script>
@@ -151,6 +152,7 @@
                     <button type="button" onclick="" class="btnchoose">선택삭제</button>
                   </div>
                 </div>
+
                 <!-- 선택삭제 -->
                 <script>
                   $(document).ready(function () {
@@ -220,9 +222,8 @@
                 <a href="#">다음페이지</a>
                 <a href="#" class="last">마지막페이지</a>
               </div>
-                </c:forEach>
-              </c:otherwise>
-             </c:choose>
+                </c:otherwise>
+               </c:choose>
               <div class="myinfo_Main">
                 <h2>My Account</h2>
                 <div class="subTitle">
@@ -261,8 +262,8 @@
               </div>
             </main>
           </div>
+          <%@ include file="../footer.jsp" %>
       </div>
-     <%@ include file="../footer.jsp" %>
     </body>
 
     </html>
