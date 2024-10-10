@@ -141,7 +141,7 @@
                                     </strong>
                                     <ul class="price">
                                       <li class="id">
-                                        <strong>${row.price}</strong>
+                                        <strong>${row.price}</strong>원
                                         <span class="displaynone">
                                           <span></span>
                                         </span>
