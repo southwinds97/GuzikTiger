@@ -179,8 +179,8 @@
             </div>
           </main>
           <!-- 푸터 -->
-          <%@ include file="../footer.jsp" %>
       </div>
+     <%@ include file="../footer.jsp" %>
     </body>
 
     </html>
