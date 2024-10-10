@@ -225,7 +225,7 @@
                 </c:otherwise>
                </c:choose>
               <div class="myinfo_Main">
-                <h2>My Account</h2>
+                <h3>My Account</h3>
                 <div class="subTitle">
                   <h3>쇼핑 정보</h3>
                 </div>

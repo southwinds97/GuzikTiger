@@ -351,6 +351,10 @@ body {
 
 }
 
+.main_slide .swiper-container {
+	position: relative;
+}
+
 
 /*메인 베스트 */
 
