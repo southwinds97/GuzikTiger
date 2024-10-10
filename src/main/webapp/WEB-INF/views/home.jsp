@@ -93,7 +93,7 @@
                   <ul class="list">
                     <c:forEach items="${bestLists }" var="row" varStatus="loop">
                       <li>
-                        <a href="#">
+                        <a href="product_review.do">
                           <div class="img_wrap">
 							<img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                             <input type="hidden" name="product_id" value="${row.product_id}" />
