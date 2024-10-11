@@ -78,7 +78,6 @@
 			  and a.product_id = x.product_id
               and a.product_id = c.product_id
               and b.option_cate = d.code(+)
-              and c.member_id = #{member_id}
 			  order by c.view_date desc, a.product_id,b.idx
     </select >
     

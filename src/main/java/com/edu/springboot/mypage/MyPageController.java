@@ -219,9 +219,6 @@ public class MyPageController {
     	dao.recentViewInsert(productDTO);
     	  return "mypage/recentView";
     }
-      
-    
-    
 
     @RequestMapping("/myPost.do")
     public String myPost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {
@@ -230,5 +227,10 @@ public class MyPageController {
     	model.addAttribute("nameQnaList", nameQnaList);
     	
         return "mypage/myPost";
+    }
+
+    @RequestMapping("/order_detailView.do")
+    public String order_detailView(HttpServletRequest req, HttpServletResponse res, Model model, OrderDTO orderDTO) {
+       return "mypage/order_detailView";
     }
 }

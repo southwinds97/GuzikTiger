@@ -110,6 +110,7 @@
                     <div class="odder_list">
                       <div class="odder_date">
                         <span class="date" title="주문일시">${order.order_date}</span>
+                        <!-- 날짜형식 변환 -->
                         <span class="number" title="주문번호">
                           <a href="#" alt="주문번호">(${order.order_id})</a>
                         </span>

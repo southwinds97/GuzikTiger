@@ -693,7 +693,7 @@ textarea {
   font-weight: bold;
 }
 
-table {
+.result_product table {
   border-collapse: collapse;
   margin: 1rem auto;
   background-color: white;
@@ -708,7 +708,7 @@ table {
 }
 
 /* 테이블 헤더 */
-th {
+.result_product th {
   background-color: #ffce32;
   /* 헤더 배경색 */
   color: white;
@@ -723,34 +723,34 @@ th {
 }
 
 /* 테이블 행 */
-th,
-td {
+.result_product th,
+.result_product td {
   text-align: center;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
 
 /* 테이블 본문 행 */
-tbody tr:hover {
+.result_product tbody tr:hover {
   background-color: #f1f1f1;
   /* 행에 마우스를 올렸을 때 배경색 */
   opacity: 0.9;
   cursor: pointer;
 }
 
-tr:nth-child(even) {
+.result_product tr:nth-child(even) {
   background-color: #f9f9f9;
   /* 짝수 행 배경색 */
 }
 
 /* 테이블 본문 행 */
-tbody tr {
+.result_product tbody tr {
   transition: background-color 0.3s ease;
   /* 배경색 전환 효과 */
 }
 
 /* 테이블 본문 셀 */
-td {
+.result_product td {
   line-height: 30px;
   font-size: 14px;
   /* 본문 글자 크기 */
