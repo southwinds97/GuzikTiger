@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.ParameterDTO;
 
@@ -167,5 +168,11 @@ public class ProductController {
 		
 		return "product/productView";
 	}
+	@GetMapping("/productViewJson.do")
+    @ResponseBody
+    public ArrayList<ProductDTO> productView(@RequestParam("product_id") String product_id) {
+        ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
+        return productViewList;
+    }
 
 }
