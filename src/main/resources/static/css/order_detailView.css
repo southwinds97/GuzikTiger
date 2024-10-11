@@ -1,0 +1,556 @@
+#wrap {
+  max-width: 1920px;
+  height: 100%;
+  padding: 0 80px 200px;
+  margin: 0 auto;
+}
+
+#container {
+  margin-top: 0px;
+	padding: 69px 0 60px;
+}
+
+#contents {
+  width: 100%;
+  height: 100%;
+  margin: 39px 0 0;
+  padding: 0 0 0 210px;
+  position: relative;
+  clear: both;
+}
+
+.mypage_main {
+  width: 100%;
+  height: 100%;
+}
+
+.mypage_main h2 {
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+.mypage_main .inform h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.mypage_main .inform h3::after {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.location {
+  overflow: hidden;
+  margin: 10px 0 0;
+  height: 30px;
+  line-height: 30px;
+}
+
+.location span {
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  white-space: nowrap;
+  text-indent: 100%;
+}
+
+.location a {
+  font-size: 12px;
+  color: #7d7d7d;
+}
+
+.location ol {
+  float: right;
+}
+
+.location li:first-child {
+  background: none;
+}
+
+.location li {
+  display: inline-block;
+  font-size:13px;
+  font-weight: 500;
+}
+
+.location li:first-child a {
+  font-size: 0;
+}
+
+.location li:first-child a::before {
+  content: 'Home';
+  font-family: inherit;
+  color: currentColor;
+  font-size: 12px;
+}
+
+.location li:not(:first-child):before {
+  content: "/";
+  display: inline-block;
+  margin: 0 4px 0 2px;
+  color: #7d7d7d;
+  font-size: 10px;
+  vertical-align: middle;
+}
+
+.mypage_main .order th {
+  padding: 10px 30px;
+  text-align: left;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  background-color: #f6f6f6;
+  height: 60px;
+  width: 190px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.mypage_main .order td {
+  padding: 10px 20px;
+  border-right: none;
+  border: 1px solid #e0e0e0;
+}
+
+.mypage_main .order .watch_btn {
+  height:30px;
+  width: 80px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.mypage_main .goods {
+  border-top: 1px solid #000000;
+  padding: 20px 0 80px;
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.mypage_main .goods .text {
+  margin-left: 10px;
+
+}
+
+.mypage_main .goods .text p {
+	margin-bottom: 5px;
+}
+.mypage_main .goods .text .ball, .option {
+	font-weight: 700;
+}
+
+.mypage_main .goods .text .price {
+	margin-bottom: 15px;
+}
+.mypage_main .goods img {
+  width:100px;
+  height:100px;
+}
+
+.comple {
+  display: flex;
+}
+
+.comple h3 {
+  padding: 20px 0;
+  font-size: 17px;
+  font-weight: 700;
+  position: relative;
+}
+
+.comple span {
+  color: #000;
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 22px;
+  margin-left: 15px;
+  text-decoration: underline;
+}
+
+.cansle {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f6f6f6;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  gap: 10px;
+}
+
+.cansle span {
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.credit h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.credit h3::after {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.money th {
+  padding: 10px 30px;
+  text-align: left;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  background-color: #f6f6f6;
+  height: 60px;
+  width: 190px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.money td {
+  padding: 10px 20px;
+  border-right: none;
+  border: 1px solid #e0e0e0;
+  font-weight: 700;
+}
+
+.money .zero {
+  font-size: 20px;
+}
+
+
+.refund h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.refund h3::after {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.rf_infor {
+  border-top: 1px solid #000000;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.rf_infor th,
+.rf_infor td {
+  border: none; /* 테두리 제거 */
+}
+
+.rf_infor .division tr {
+  border-left: 1px solid #e5e5e5;
+}
+
+.rf_infor .division th {
+  border: unset;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
+
+
+.rf_infor .division td {
+  border: none; /* 특정 row(구분, 상품정보, 수량, 상품구매금액)에서 테두리 제거 */
+}
+
+.rf_infor .division .form {
+	width: 900px;
+	text-align: center;
+}
+
+.rf_infor .division .count {
+	text-align: center;
+}
+
+.rf_infor .division .buy {
+	text-align: center;
+}
+
+.rf_infor .target td {
+  border-right: none;
+}
+
+.rf_infor .target .score {
+  border: unset;
+  border-right: none;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+} 
+.rf_infor .target .money {
+  border: unset;
+  border-left: none;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  border-right: 1px solid #e5e5e5;
+}
+
+.rf_infor .target .kring {
+	font-weight: 600;
+}
+
+.rf_infor .target span {
+   color:#c0c0c0;
+   font-weight: 600;
+   display: block;
+   margin-top: 10px;
+}
+
+.rf_infor .repay {
+	font-weight: 700;
+}
+
+.rf_infor .total {
+	font-weight: 700;
+}
+
+
+.rf_infor th {
+  padding: 10px 30px;
+  text-align: left;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: none;
+  border-left: 1px solid #e5e5e5;
+  background-color: #f6f6f6;
+  height: 60px;
+  width: 190px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.rf_infor td {
+  padding: 10px 20px;
+  border-right: none;
+  border: 1px solid #e0e0e0;
+}
+
+.deliver .inform h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.deliver .inform h3::after {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.deliver .order th {
+  padding: 10px 30px;
+  text-align: left;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: none;
+  border-left: 1px solid #e5e5e5;
+  background-color: #f6f6f6;
+  height: 60px;
+  width: 190px;
+  line-height: 22px;
+  vertical-align: middle;
+}
+
+.deliver .order td {
+  padding: 10px 20px;
+  border-right: none;
+  border: 1px solid #e0e0e0;
+}
+
+.more .inform h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.more .inform h3::after {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid #000000;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.bottom {
+  text-align: right;
+}
+
+.bottom .card_btn {
+  min-width: 135px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #c0c0c0;
+  text-align: center;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.order_view {
+  margin-top: 60px;
+  text-align: right;
+
+}
+
+.order_view .view_btn {
+  min-width: 135px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 1px solid transparent;
+  line-height: 1;
+  font-weight: bold;
+  height: 40px;
+  color: #fff;
+  background-color: #000;
+}
+
+.use .inform {
+  margin-top: 50px;
+}
+
+.use .inform h3 {
+  padding: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+}
+
+.guide {
+  border-top: 1px solid #000000;
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20px 20px;
+}
+
+.guide span {
+  display: block;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.guide p {
+  margin-bottom: 3px;
+}
+
+.guide p::before {
+    content: '•'; /* 점 기호 */
+    color: black; /* 점 색상 */
+    margin-right: 5px; /* 점과 텍스트 사이의 간격 */
+    font-weight: bold; /* 점 두께 조정 (선택사항) */
+}
+
+
+.myinfo_Main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+}
+
+.myinfo_Main h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000
+}
+
+.myinfo_Main .subTitle {
+  margin: 50px 0 0;
+}
+
+.myinfo_Main h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #000;
+}
+
+.myinfo_Main .menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.myinfo_Main .menu li a {
+  margin: 10px 0 0;
+  display: block;
+  color: #6d6d6d;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
