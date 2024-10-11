@@ -415,7 +415,9 @@
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
-		and a.product_name like '%'||#{searchKeyword}||'%'
+		<if test="searchKeyword != null and searchKeyword != ''">
+         AND a.product_name LIKE '%' || #{searchKeyword} || '%'
+      	</if>
 		<choose>
 			<when test="list_array == 1">
 				order by b.price
@@ -447,6 +449,8 @@
 		where 1=1
 		and b.idx = 1
 		and a.product_id = b.product_id
-		and a.product_name like '%'||#{searchKeyword}||'%'
+		<if test="searchKeyword != null and searchKeyword != ''">
+         AND a.product_name LIKE '%' || #{searchKeyword} || '%'
+      	</if>
 	</select>
 </mapper>

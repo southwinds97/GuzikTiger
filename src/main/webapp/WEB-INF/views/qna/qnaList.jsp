@@ -141,7 +141,7 @@
 								<c:forEach items="${lists}" var="row" varStatus="loop">
 									<tr class="listItem" data-category="${row.category}">
 										<td>${row.idx}</td>
-										<td class="td_img"><a href="#"><img src="images/${row.product}.jpg" alt="${row.product}"></a></td>
+										<td class="td_img"><a href="#"><img src="./images/productList/${row.product_img}" alt="${row.product}"></a></td>
 					                    <td class="td_tit">
 										<c:choose>
 					                      <c:when test="${not empty row.product}">

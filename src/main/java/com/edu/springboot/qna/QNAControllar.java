@@ -3,7 +3,6 @@ package com.edu.springboot.qna;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edu.springboot.ParameterDTO;
+import com.edu.springboot.product.IProductService;
+import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
@@ -27,6 +28,8 @@ public class QNAControllar {
 	@Autowired
 	IQNAService dao;
 	ICommentService comDao;
+	@Autowired
+	IProductService proDao;
 
 	@RequestMapping("/qnaList.do")
 	public String qnaList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
@@ -166,8 +169,71 @@ public class QNAControllar {
 		return "redirect:qnaList.do";
 	}
 	
-	@RequestMapping("/qna/productSelect.do")
-	public String productSelect() {
-		return "productSelect";
+	@RequestMapping("/productSelect.do")
+	public String productSelect(Model model, HttpServletRequest req) {
+	    String searchKeyword = req.getParameter("searchKeyword");
+	    int offset = 0; // 기본값 설정
+	    int limit = 10; // 기본값 설정
+
+	    // offset 값을 요청 파라미터에서 가져오기
+	    String offsetParam = req.getParameter("offset");
+	    if (offsetParam != null) {
+	        offset = Integer.parseInt(offsetParam);
+	    }
+
+	    System.out.println("Search Keyword: " + searchKeyword);
+	    System.out.println("Offset: " + offset);
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("code", null);
+	    params.put("list_array", String.valueOf(2));
+	    params.put("offset", offset);
+	    params.put("limit", limit);
+	    params.put("searchKeyword", searchKeyword);
+
+	    // 총 상품 수 가져오기
+	    int productCount = proDao.getSelectByKeywordCount(searchKeyword);
+	    model.addAttribute("productCount", productCount);
+
+	    // 상품 리스트 가져오기
+	    ArrayList<ProductDTO> productLists = proDao.getSelectByKeyword(params);
+	    model.addAttribute("productLists", productLists);
+
+	    // AJAX 요청 시 HTML 조각만 반환
+	    return "qna/productSelect"; // HTML fragment 반환
+	}
+
+	@RequestMapping("/productSelectList.do")
+	public String productSelectList(Model model, HttpServletRequest req) {
+	    String searchKeyword = req.getParameter("searchKeyword");
+	    int offset = 10; // 기본값 설정
+	    int limit = 10; // 기본값 설정
+
+	    // offset 값을 요청 파라미터에서 가져오기
+	    String offsetParam = req.getParameter("offset");
+	    if (offsetParam != null) {
+	        offset = Integer.parseInt(offsetParam);
+	    }
+
+	    System.out.println("Search Keyword: " + searchKeyword);
+	    System.out.println("Offset: " + offset);
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("code", null);
+	    params.put("list_array", String.valueOf(2));
+	    params.put("offset", offset);
+	    params.put("limit", limit);
+	    params.put("searchKeyword", searchKeyword);
+
+	    // 총 상품 수 가져오기
+	    int productCount = proDao.getSelectByKeywordCount(searchKeyword);
+	    model.addAttribute("productCount", productCount);
+
+	    // 상품 리스트 가져오기
+	    ArrayList<ProductDTO> productLists = proDao.getSelectByKeyword(params);
+	    model.addAttribute("productLists", productLists);
+
+	    // AJAX 요청 시 HTML 조각만 반환
+	    return "qna/productSelectList"; // HTML fragment 반환
 	}
 }

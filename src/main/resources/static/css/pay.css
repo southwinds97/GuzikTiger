@@ -2,7 +2,7 @@
   max-width: 1903px;
   margin: 0 auto;
   position: unset;
-  border: unset;	
+  border: unset;
 }
 
 #header .top_head {
@@ -63,7 +63,7 @@
   display: flex;
 }
 
-#header .right_menu .other_btn > a {
+#header .right_menu .other_btn>a {
   background: url(../images/common/pay_header.png) no-repeat -30px 0;
   background-size: 90px auto;
   display: block;
@@ -99,7 +99,8 @@
 
 .title_area {
   width: 898px;
-  margin: 0 auto; /* 위쪽에 30px 간격을 추가 */
+  margin: 0 auto;
+  /* 위쪽에 30px 간격을 추가 */
   background: #000;
 }
 
@@ -134,7 +135,7 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  
+
 }
 
 
@@ -142,32 +143,32 @@
   transform: rotate(-135deg);
 }
 
-.shop_title  .delivery {
+.shop_title .delivery {
   height: 67px;
   border-bottom: 1px solid #d7d5d5;
   padding: 20px 16px;
-  position:relative;
+  position: relative;
 }
 
 .shop_title .delivery:after {
-   position: absolute;
-   top: 26px;
-   right: 20px;
-   content: '';
-   width: 12px;
-   height: 12px;
-   display: inline-block;
-   border: 2px solid #BCBCBC;
-   border-right: 0;
-   border-bottom: 0;
-   transform: rotate(45deg);
-   cursor:pointer;
-   transition: transform 0.3s ease;
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 2px solid #BCBCBC;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 
 
-.shop_title .delivery.active + .base_table {
+.shop_title .delivery.active+.base_table {
   display: none;
 }
 
@@ -175,23 +176,23 @@
   transform: rotate(-135deg);
 }
 
-.shop_title  .delivery h2 {
+.shop_title .delivery h2 {
   margin: 0 10px 0 0;
   font-size: 16px;
   color: #000;
   font-weight: 500;
   line-height: 28px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .shop_title ul {
- display: flex;
- margin-bottom: 22px;
- font-size: 16px;
- font-weight: 400;
- height:53px;
- position: relative; 
- z-index: 1
+  display: flex;
+  margin-bottom: 22px;
+  font-size: 16px;
+  font-weight: 400;
+  height: 53px;
+  position: relative;
+  z-index: 1
 }
 
 .shop_title li {
@@ -200,16 +201,16 @@
   border-left: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
   background: #f8f9fa;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
 }
 
-.shop_title .recent_addr a{
-  color:#797979
+.shop_title .recent_addr a {
+  color: #797979
 }
 
 .shop_title .recent_addr {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .shop_title .direct_input {
@@ -224,6 +225,7 @@
   padding: 0 6px 15px;
   margin-right: 50px;
 }
+
 .shop_title .same_addr label {
   font-size: 16px;
   padding-left: unset;
@@ -231,37 +233,46 @@
 }
 
 .shop_title .same_addr input[type="radio"] {
-   margin-left: 7px;
-   width: 22px;
-   height: 22px;
-   border: 0;
-   cursor: pointer;
-   background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
-   background-size: 22px 22px;
+  margin-left: 7px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  cursor: pointer;
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
+  background-size: 22px 22px;
 }
 
 .shop_title .same_addr input[type="radio"]:checked:after {
-   content: ""; /* 필수: content 속성 추가 */
-   display: inline-block; /* 필수: inline-block 설정 */
-   width: 22px; /* 체크된 이미지의 너비 */
-   height: 22px; /* 체크된 이미지의 높이 */
-   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
-   background-size: cover; /* 배경 이미지를 전체 영역에 맞추기 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
+  height: 22px;
+  /* 체크된 이미지의 높이 */
+  background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
+  background-size: cover;
+  /* 배경 이미지를 전체 영역에 맞추기 */
 }
 
 /* label에 기본 스타일 추가 (예: position) */
 .shop_title .same_addr label {
-   position: relative; /* :after의 위치를 위해 */
-   cursor: pointer; /* 라벨 클릭 시 커서 모양 변경 */
+  position: relative;
+  /* :after의 위치를 위해 */
+  cursor: pointer;
+  /* 라벨 클릭 시 커서 모양 변경 */
 }
 
-.shop_title .recent_addr, .shop_title .direct_input {
-  position: relative; /* 사라지는 문제를 방지하기 위해 설정 */
+.shop_title .recent_addr,
+.shop_title .direct_input {
+  position: relative;
+  /* 사라지는 문제를 방지하기 위해 설정 */
 }
 
-.base_table .rcv_man input{
-  width:776px;
-  height:42px;
+.base_table .rcv_man input {
+  width: 776px;
+  height: 42px;
   padding: 10px 11px 10px 10px;
 }
 
@@ -276,7 +287,8 @@
 .base_table {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* 상하 요소 간의 간격 */
+  gap: 10px;
+  /* 상하 요소 간의 간격 */
   border-bottom: 1px solid #d7d5d5;
   padding-bottom: 20px;
 }
@@ -284,21 +296,22 @@
 .addr_container {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .addr_container label {
   width: 90px;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .addr_container input {
-  width:25%;
-  height:42px;
+  width: 25%;
+  height: 42px;
 }
 
 .addr_container .search_btn {
-  width: 100px; /* 버튼의 너비 */
+  width: 100px;
+  /* 버튼의 너비 */
   height: 45px;
   color: #fff;
   background-color: #222222;
@@ -323,9 +336,9 @@
 
 
 .addr1 input {
-  width:776px;
+  width: 776px;
   margin-left: 100px;
-  height:42px;
+  height: 42px;
 }
 
 .addr1 .basic {
@@ -365,21 +378,21 @@
 }
 
 .email input {
-  width:383px;
-  height:42px;
+  width: 383px;
+  height: 42px;
   margin-left: 16px;
   margin-right: 6px;
 }
 
 .email .choose_mail {
-  width:371px;
-  height:42px;
+  width: 371px;
+  height: 42px;
   padding: 0 20px 0 10px;
   line-height: 40px;
   color: #333;
   background: #fff url(../images/common/ico_select.png) no-repeat 100% 50%;
   background-size: auto 40px;
-	
+
 }
 
 .choose_msg {
@@ -388,8 +401,8 @@
 
 .choose_msg .message_select {
   padding: 0 20px 0 15px;
-  width:866px;
-  height:42px;
+  width: 866px;
+  height: 42px;
   background: #fff url(../images/common/ico_select.png) no-repeat 100% 50%;
   background-size: auto 40px;
   line-height: 40px;
@@ -399,7 +412,7 @@
 }
 
 
-.save_addr input[type='checkbox']{
+.save_addr input[type='checkbox'] {
   margin: 0;
   width: 20px;
   height: 20px;
@@ -412,12 +425,15 @@
 
 .save_addr input[type='checkbox']:checked:after {
   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
-  content: ""; /* 필수: content 속성 추가 */
-  display: inline-block; /* 필수: inline-block 설정 */
-  width: 22px; /* 체크된 이미지의 너비 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
   height: 22px;
   background-size: cover;
-} 
+}
 
 
 .save_addr label {
@@ -432,11 +448,11 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position:relative;
+  position: relative;
 }
 
 .more_title:after {
-  position: absolute; 
+  position: absolute;
   top: 26px;
   right: 20px;
   content: '';
@@ -447,9 +463,10 @@
   border-right: 0;
   border-bottom: 0;
   transform: rotate(45deg);
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
+
 .more_title.active:after {
   transform: rotate(-135deg);
 }
@@ -460,7 +477,7 @@
   color: #000;
   font-weight: 500;
   line-height: 27px;
-  cursor:pointer;
+  cursor: pointer;
   padding: 20px 16px;
 }
 
@@ -473,7 +490,7 @@
 
 .more_title .gift {
   padding: 0 16px 30px;
-  display:flex;
+  display: flex;
 }
 
 .more_title .gift h3 {
@@ -486,10 +503,12 @@
 .more_title .gift .more_msg {
   width: 751px;
   height: 216px;
-  padding: 10px; /* 기본적인 여백을 위해 추가 */
-  vertical-align: top; /* 커서를 맨 위로 정렬 */
-  line-height: 1.5; 
-  background:#fff;
+  padding: 10px;
+  /* 기본적인 여백을 위해 추가 */
+  vertical-align: top;
+  /* 커서를 맨 위로 정렬 */
+  line-height: 1.5;
+  background: #fff;
   border: 1px solid #d7d5d5;
 }
 
@@ -499,11 +518,11 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position:relative;
+  position: relative;
 }
 
 .order_form:after {
-  position: absolute; 
+  position: absolute;
   top: 26px;
   right: 20px;
   content: '';
@@ -514,7 +533,7 @@
   border-right: 0;
   border-bottom: 0;
   transform: rotate(45deg);
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -529,7 +548,7 @@
   color: #000;
   font-weight: 500;
   line-height: 27px;
-  cursor:pointer;
+  cursor: pointer;
   padding: 20px 16px;
 }
 
@@ -547,12 +566,13 @@
   width: 88px;
   height: 90px;
   margin-right: 20px;
-  margin-left: 15px; 
+  margin-left: 15px;
   border: 1px solid #ddd;
 }
 
 .probox .description {
   font-size: 14px;
+  width: 85%;
 }
 
 .probox .description .proname {
@@ -587,8 +607,8 @@
   font-size: 0;
   line-height: 0;
   white-space: nowrap;
-  background-color:#fff;
-  left: 67%;
+  background-color: #fff;
+  left: -3%;
 }
 
 .probox .btnRemove:before {
@@ -603,14 +623,14 @@
 }
 
 .probox .btnRemove:after {
-   position: absolute;
-   top: 50%;
-   left: 4px;
-   content: "";
-   width: 14px;
-   height: 1px;
-   background: #7b7d8a;
-   transform: rotate(-135deg);
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: #7b7d8a;
+  transform: rotate(-135deg);
 }
 
 
@@ -629,7 +649,7 @@
   width: 88px;
   height: 90px;
   margin-right: 20px;
-  margin-left: 15px; 
+  margin-left: 15px;
   border: 1px solid #ddd;
 }
 
@@ -669,7 +689,7 @@
   font-size: 0;
   line-height: 0;
   white-space: nowrap;
-  background-color:#fff;
+  background-color: #fff;
   left: 56%;
 }
 
@@ -685,14 +705,14 @@
 }
 
 .probox2 .btnRemove:after {
-   position: absolute;
-   top: 50%;
-   left: 4px;
-   content: "";
-   width: 14px;
-   height: 1px;
-   background: #7b7d8a;
-   transform: rotate(-135deg);
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: #7b7d8a;
+  transform: rotate(-135deg);
 }
 
 .price_title {
@@ -701,7 +721,7 @@
   padding: 11px 16px 11px 16px;
   background: #F8F9FA;
   margin-top: 10px;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 .price_title h3 {
@@ -711,7 +731,7 @@
   color: #606060;
 }
 
-.price_title .dlprice{
+.price_title .dlprice {
   text-align: right;
   font-size: 14px;
   font-weight: 500;
@@ -725,12 +745,12 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position:relative;
+  position: relative;
 }
 
 
 .discount:after {
-  position: absolute; 
+  position: absolute;
   top: 26px;
   right: 20px;
   content: '';
@@ -741,7 +761,7 @@
   border-right: 0;
   border-bottom: 0;
   transform: rotate(45deg);
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -763,7 +783,7 @@
   color: #000;
   font-weight: 500;
   line-height: 27px;
-  cursor:pointer;
+  cursor: pointer;
   padding: 20px 16px;
 }
 
@@ -771,8 +791,8 @@
   height: 42px;
   padding: 0 16px 20px;
   display: flex;
-  position:relative;
-  justify-content: space-between; 
+  position: relative;
+  justify-content: space-between;
   border-bottom: 1px dashed rgba(130, 130, 130, 0.25);
 }
 
@@ -781,19 +801,20 @@
 }
 
 .discount .dis_detail h3:after {
-   content: '';
-   position: absolute;
-   top: 7px;
-   left: 90px;
-   width: 10px;
-   height: 10px;
-   display: inline-block;
-   border: 2px solid #BCBCBC;
-   border-right: 0;
-   border-bottom: 0;
-   transform: rotate(45deg);
-   cursor:pointer;
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 90px;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 2px solid #BCBCBC;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
 }
+
 .discount .dis_detail .dis_price {
   text-align: right;
   font-size: 16px;
@@ -806,12 +827,13 @@
   height: 42px;
   padding: 0 16px 20px;
   display: flex;
-  position:relative;
-  justify-content: space-between; 
+  position: relative;
+  justify-content: space-between;
   border-bottom: 1px solid #eaeaea;
   margin-top: 10px;
 }
-.discount .dis_detail2 h3:before{
+
+.discount .dis_detail2 h3:before {
   content: '';
   display: inline-block;
   width: 5px;
@@ -824,7 +846,7 @@
 
 .discount .dis_detail2 h3 {
   font-size: 13px;
-  
+
 }
 
 
@@ -838,23 +860,26 @@
 
 .discount .membership {
   height: 42px;
-  padding: 20px 16px;	
+  padding: 20px 16px;
   font-size: 16px;
-  display:flex;
+  display: flex;
 }
 
 .discount .membership h3 {
-  margin-right:22px;
+  margin-right: 22px;
   font-size: 16px;
   font-weight: 400;
   color: #383838;
   line-height: 42px;
 }
+
 .discount .membership input {
-  width:80%;
+  width: 80%;
 }
+
 .membership .use_btn {
-  width: 100px; /* 버튼의 너비 */
+  width: 100px;
+  /* 버튼의 너비 */
   height: 40px;
   color: #fff;
   background-color: #222222;
@@ -894,51 +919,51 @@
   padding: 13px 20px;
   background-color: #F8F9FA;
   height: 120px;
-  width:866px;
+  width: 866px;
   margin-left: 14px;
 }
 
 .expand .moneywrap p {
-   font-size: 13px;
-   font-weight: 500;
-   color: #383838;
-   text-align: left;
-   line-height: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #383838;
+  text-align: left;
+  line-height: 24px;
 }
 
 .expand .moneywrap .buy {
-	position: relative;
+  position: relative;
 }
 
 
 .expand .moneywrap .buy:after {
-   position: absolute;
-   display: inline-block;
-   content: '';
-   top: 3px;
-   right: 2px;
-   height: 8px;
-   width: 8px;
-   vertical-align: middle;
-   border: 1px solid #7b7d8a;
-   border-left-width: 0;
-   border-top-width: 0;
-   transform: rotate(-135deg);
-   cursor:pointer;
+  position: absolute;
+  display: inline-block;
+  content: '';
+  top: 3px;
+  right: 2px;
+  height: 8px;
+  width: 8px;
+  vertical-align: middle;
+  border: 1px solid #7b7d8a;
+  border-left-width: 0;
+  border-top-width: 0;
+  transform: rotate(-135deg);
+  cursor: pointer;
 }
 
 .totalpay {
-   height:50px;
-   padding: 15px 16px;
-   color: #000;
-   font-size: 18px;
-   font-weight: 700;
-   word-wrap: break-word;
-   word-break: break-all;
-   background: #F6F6F6;
-   margin-top: 20px;
-   display:flex;
-   justify-content: space-between;
+  height: 50px;
+  padding: 15px 16px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  word-wrap: break-word;
+  word-break: break-all;
+  background: #F6F6F6;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .totalpay h3 {
@@ -954,12 +979,12 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position:relative;
+  position: relative;
 }
 
 
 .payinfo:after {
-  position: absolute; 
+  position: absolute;
   top: 26px;
   right: 20px;
   content: '';
@@ -970,7 +995,7 @@
   border-right: 0;
   border-bottom: 0;
   transform: rotate(45deg);
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -992,7 +1017,7 @@
   color: #000;
   font-weight: 500;
   line-height: 27px;
-  cursor:pointer;
+  cursor: pointer;
   padding: 20px 16px;
 }
 
@@ -1000,8 +1025,8 @@
   height: 30px;
   padding: 0 16px 20px;
   display: flex;
-  position:relative;
-  justify-content: space-between; 
+  position: relative;
+  justify-content: space-between;
 }
 
 .payinfo .sagment h3 {
@@ -1011,13 +1036,13 @@
 
 .payinfo .sagment .order_price {
   font-weight: 700;
-  color: #383838;	
+  color: #383838;
   font-size: 16px;
 }
 
 .payinfo .sagment .more_price {
   color: #DC2C2C;
-  font-weight: 700;	
+  font-weight: 700;
   font-size: 16px;
 }
 
@@ -1030,7 +1055,7 @@
   padding: 12px 10px;
   border-top: 1px dashed rgba(130, 130, 130, 0.25);
   border-bottom: 1px dashed rgba(130, 130, 130, 0.25);
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 
 .dis_basic i {
@@ -1052,10 +1077,10 @@
   height: 50px;
   padding: 0 16px 20px;
   display: flex;
-  position:relative;
-  justify-content: space-between; 
-  margin-top:30px;
-  background:#F4F7FF;
+  position: relative;
+  justify-content: space-between;
+  margin-top: 30px;
+  background: #F4F7FF;
   line-height: 50px;
 }
 
@@ -1063,13 +1088,13 @@
   font-size: 15px;
   color: #000;
   font-weight: 500;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 
 .payment .order_price {
   font-weight: 700;
-  color: #383838;	
+  color: #383838;
   font-size: 16px;
 }
 
@@ -1078,13 +1103,13 @@
   border-left: 1px solid #d7d5d5;
   border-right: 1px solid #d7d5d5;
   border-bottom: 1px solid #d7d5d5;
-  position:relative;	
+  position: relative;
   min-height: 630px;
 }
 
 
 .paymethod:after {
-  position: absolute; 
+  position: absolute;
   top: 26px;
   right: 20px;
   content: '';
@@ -1095,7 +1120,7 @@
   border-right: 0;
   border-bottom: 0;
   transform: rotate(45deg);
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.3s ease;
 }
 
@@ -1119,7 +1144,7 @@
   /* display: none; */
 }
 
-.paychoice h3 { 
+.paychoice h3 {
   font-size: 15px;
   display: inline-block;
   margin-left: 16px;
@@ -1148,24 +1173,26 @@
   border: 1px solid #3971FF;
 }
 
-.payinner .cardpay img, .deposit img {
+.payinner .cardpay img,
+.deposit img {
   filter: grayscale(1);
   opacity: 1;
- }
- 
-.payinner .cardpay.pay_active img, 
-.payinner .deposit.pay_active img { 
+}
+
+.payinner .cardpay.pay_active img,
+.payinner .deposit.pay_active img {
   filter: grayscale(0);
 }
+
 .payinner .deposit {
   padding: 17px 25px 16px;
 }
 
 .paycard {
-  display:flex;
+  display: flex;
   flex-direction: column;
-  width:866px;
-  height:270px;
+  width: 866px;
+  height: 270px;
   margin-left: 15px;
   margin-top: 10px;
   background-color: #FAFAFD;
@@ -1184,35 +1211,35 @@
 }
 
 .paycard .more_card {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .paycard .more_card .cardSelect {
-	width: 85%;
-	height: 42px;
-	max-width: 100%;
-    margin: 0;
-    padding: 0 20px 0 10px;
-    line-height: 40px;
-    color: #333;
-    word-break: break-all;
-    border: 1px solid #C5C5C5;
-    background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
-    background-size: auto 40px;
+  width: 85%;
+  height: 42px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px 0 10px;
+  line-height: 40px;
+  color: #333;
+  word-break: break-all;
+  border: 1px solid #C5C5C5;
+  background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
+  background-size: auto 40px;
 }
 
 .paycard .period .cardone {
-	width: 85%;
-	height: 42px;
-	max-width: 100%;
-    margin: 0;
-    padding: 0 20px 0 10px;
-    line-height: 40px;
-    color: #333;
-    word-break: break-all;
-    border: 1px solid #C5C5C5;
-    background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
-    background-size: auto 40px;
+  width: 85%;
+  height: 42px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px 0 10px;
+  line-height: 40px;
+  color: #333;
+  word-break: break-all;
+  border: 1px solid #C5C5C5;
+  background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
+  background-size: auto 40px;
 }
 
 .paycard .period .basehelp {
@@ -1223,7 +1250,7 @@
   color: #000;
   border: 1px solid #b5b5b5;
   background: #fff;
-  height:42px;
+  height: 42px;
   width: 142px;
   font-size: 14px;
 }
@@ -1232,7 +1259,7 @@
   color: #000;
   border: 1px solid #b5b5b5;
   background: #fff;
-  height:42px;
+  height: 42px;
   width: 105px;
   font-size: 14px;
 }
@@ -1241,7 +1268,7 @@
   color: #000;
   border: 1px solid #b5b5b5;
   background: #fff;
-  height:42px;
+  height: 42px;
   width: 134px;
   font-size: 14px;
 }
@@ -1252,10 +1279,10 @@
 
 
 .paybank {
-  display:none;
+  display: none;
   flex-direction: column;
-  width:866px;
-  height:287px;
+  width: 866px;
+  height: 287px;
   margin-left: 15px;
   margin-top: 10px;
   background-color: #FAFAFD;
@@ -1277,123 +1304,137 @@
 }
 
 .paybank .deposit1 .bankaccount {
-   width: 85%;
-   height: 42px;
-   max-width: 100%;
-   margin: 0;
-   padding: 0 20px 0 10px;
-   line-height: 40px;
-   color: #333;
-   word-break: break-all;
-   border: 1px solid #C5C5C5;
-   background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
-   background-size: auto 40px;
+  width: 85%;
+  height: 42px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px 0 10px;
+  line-height: 40px;
+  color: #333;
+  word-break: break-all;
+  border: 1px solid #C5C5C5;
+  background: #fff url(//img.echosting.cafe24.com/skin/mobile/common/ico_select.gif) no-repeat 100% 50%;
+  background-size: auto 40px;
 }
 
 .paybank .deposit2 .txt_name {
-   width: 85%;
-   height: 42px;
-   max-width: 100%;
-   margin: 0;
-   padding: 0 20px 0 10px;
-   line-height: 40px;
-   color: #333;
+  width: 85%;
+  height: 42px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px 0 10px;
+  line-height: 40px;
+  color: #333;
 }
 
 .paybank .deposit3 h3 {
-	font-size: 15px;
-    font-weight: 500;
-    color: #000;
-    line-height: 22px;
-    margin-left: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  line-height: 22px;
+  margin-left: 16px;
 }
 
 
 
 .paybank .deposit3 input[type="radio"] {
-   margin-left: 15px;
-   width: 22px;
-   height: 22px;
-   border: 0;
-   cursor: pointer;
-   background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
-   background-size: 22px 22px;
+  margin-left: 15px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  cursor: pointer;
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
+  background-size: 22px 22px;
 }
 
 .paybank .deposit3 input[type="radio"]:checked:after {
-   content: ""; /* 필수: content 속성 추가 */
-   display: inline-block; /* 필수: inline-block 설정 */
-   width: 22px; /* 체크된 이미지의 너비 */
-   height: 22px; /* 체크된 이미지의 높이 */
-   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
-   background-size: cover; /* 배경 이미지를 전체 영역에 맞추기 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
+  height: 22px;
+  /* 체크된 이미지의 높이 */
+  background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
+  background-size: cover;
+  /* 배경 이미지를 전체 영역에 맞추기 */
 }
 
 /* label에 기본 스타일 추가 (예: position) */
 .paybank .deposit3 label {
-   position: relative; /* :after의 위치를 위해 */
-   cursor: pointer; /* 라벨 클릭 시 커서 모양 변경 */
-   padding: unset;
-   margin-top: 20px;
-   margin-left: 5px;
+  position: relative;
+  /* :after의 위치를 위해 */
+  cursor: pointer;
+  /* 라벨 클릭 시 커서 모양 변경 */
+  padding: unset;
+  margin-top: 20px;
+  margin-left: 5px;
 }
 
 
-input[type='radio'] + label:before {
-	display: none;
+input[type='radio']+label:before {
+  display: none;
 }
 
 
-input[type='radio']:checked + label:after {
-	display: none;
+input[type='radio']:checked+label:after {
+  display: none;
 }
 
 .paybank .deposit4 input[type="radio"] {
-   margin-left: 15px;
-   width: 22px;
-   height: 22px;
-   border: 0;
-   cursor: pointer;
-   background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
-   background-size: 22px 22px;
+  margin-left: 15px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  cursor: pointer;
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio.png) no-repeat 0 0;
+  background-size: 22px 22px;
 }
 
 .paybank .deposit4 input[type="radio"]:checked:after {
-   content: ""; /* 필수: content 속성 추가 */
-   display: inline-block; /* 필수: inline-block 설정 */
-   width: 22px; /* 체크된 이미지의 너비 */
-   height: 22px; /* 체크된 이미지의 높이 */
-   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
-   background-size: cover; /* 배경 이미지를 전체 영역에 맞추기 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
+  height: 22px;
+  /* 체크된 이미지의 높이 */
+  background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newRadio_checked.png);
+  background-size: cover;
+  /* 배경 이미지를 전체 영역에 맞추기 */
 }
 
 /* label에 기본 스타일 추가 (예: position) */
 .paybank .deposit4 label {
-   position: relative; /* :after의 위치를 위해 */
-   cursor: pointer; /* 라벨 클릭 시 커서 모양 변경 */
-   padding: unset;
+  position: relative;
+  /* :after의 위치를 위해 */
+  cursor: pointer;
+  /* 라벨 클릭 시 커서 모양 변경 */
+  padding: unset;
 }
 
 
 .paybank .deposit4 label {
-	padding: unset;
-	margin-left: 5px;
-	
+  padding: unset;
+  margin-left: 5px;
+
 }
 
 .paybank .deposit4 .tel {
-	margin-left: 45px;
+  margin-left: 45px;
 }
 
 
 
 .paybank .nextuse label {
-	margin-top: 20px;
-	margin-left: 0;
+  margin-top: 20px;
+  margin-left: 0;
 }
 
 
-.paybank .deposit4  .nextuse input[type='checkbox']{
+.paybank .deposit4 .nextuse input[type='checkbox'] {
   margin-top: 11px;
   width: 20px;
   height: 20px;
@@ -1404,24 +1445,27 @@ input[type='radio']:checked + label:after {
   margin-bottom: 1px;
 }
 
-.paybank .deposit4  .nextuse input[type='checkbox']:checked:after {
+.paybank .deposit4 .nextuse input[type='checkbox']:checked:after {
   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
-  content: ""; /* 필수: content 속성 추가 */
-  display: inline-block; /* 필수: inline-block 설정 */
-  width: 22px; /* 체크된 이미지의 너비 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
   height: 22px;
   background-size: cover;
-}  
+}
 
 .nextuse {
-	line-height: 2px;
+  line-height: 2px;
 }
 
 .nextuse label {
-	padding: unset;
+  padding: unset;
 }
 
-.nextuse input[type='checkbox']{
+.nextuse input[type='checkbox'] {
   margin-top: 2px;
   width: 20px;
   height: 20px;
@@ -1434,45 +1478,48 @@ input[type='radio']:checked + label:after {
 
 .nextuse input[type='checkbox']:checked:after {
   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
-  content: ""; /* 필수: content 속성 추가 */
-  display: inline-block; /* 필수: inline-block 설정 */
-  width: 22px; /* 체크된 이미지의 너비 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
   height: 22px;
   background-size: cover;
-}  
+}
 
 
 
 .earn {
   position: relative;
   border-left: 1px solid #d7d5d5;
-  border-right: 1px solid #d7d5d5; 
+  border-right: 1px solid #d7d5d5;
 }
 
 .earn h2 {
-   margin: 0 10px 0 0;
-   font-size: 15px;
-   color: #000;
-   font-weight: 500;
-   line-height: 27px;
-   cursor: pointer;
-   padding: 20px 16px;
+  margin: 0 10px 0 0;
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  padding: 20px 16px;
 }
 
 .earn h2:after {
-   position: absolute;
-   top: 26px;
-   right: 20px;
-   content: '';
-   width: 12px;
-   height: 12px;
-   display: inline-block;
-   border: 2px solid #BCBCBC;
-   border-right: 0;
-   border-bottom: 0;
-   transform: rotate(45deg);
-   cursor:pointer;
-   transition: transform 0.3s ease;
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  content: '';
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 2px solid #BCBCBC;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .earn .sagment {
@@ -1495,7 +1542,7 @@ input[type='radio']:checked + label:after {
 }
 
 .earn .sagment .more_price {
-  color:#383838;
+  color: #383838;
 }
 
 .earn.active:after {
@@ -1504,18 +1551,18 @@ input[type='radio']:checked + label:after {
 
 
 .totalpay2 {
-   height:50px;
-   padding: 15px 16px;
-   color: #000;
-   font-size: 18px;
-   font-weight: 700;
-   word-wrap: break-word;
-   word-break: break-all;
-   background: #F6F6F6;
-   display:flex;
-   justify-content: space-between;
-   border-left: 1px solid #d7d5d5;
-   border-right: 1px solid #d7d5d5; 
+  height: 50px;
+  padding: 15px 16px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  word-wrap: break-word;
+  word-break: break-all;
+  background: #F6F6F6;
+  display: flex;
+  justify-content: space-between;
+  border-left: 1px solid #d7d5d5;
+  border-right: 1px solid #d7d5d5;
 }
 
 .totalpay2 h3 {
@@ -1536,7 +1583,7 @@ input[type='radio']:checked + label:after {
   font-size: 16px;
   font-weight: 700;
   color: #333;
-  
+
 }
 
 .agree .service {
@@ -1547,16 +1594,16 @@ input[type='radio']:checked + label:after {
   color: #333;
 }
 
-input[type='checkbox'] + label:before {
-	display: none;
+input[type='checkbox']+label:before {
+  display: none;
 }
 
 
-input[type='checkbox']:checked + label:after {
-	display: none;
+input[type='checkbox']:checked+label:after {
+  display: none;
 }
 
-.agree .all_agr input[type='checkbox']{
+.agree .all_agr input[type='checkbox'] {
   margin: 0;
   width: 20px;
   height: 20px;
@@ -1569,14 +1616,17 @@ input[type='checkbox']:checked + label:after {
 
 .agree .all_agr input[type='checkbox']:checked:after {
   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
-  content: ""; /* 필수: content 속성 추가 */
-  display: inline-block; /* 필수: inline-block 설정 */
-  width: 22px; /* 체크된 이미지의 너비 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
   height: 22px;
   background-size: cover;
-} 
+}
 
-.agree .service input[type='checkbox']{
+.agree .service input[type='checkbox'] {
   margin: 0;
   width: 20px;
   height: 20px;
@@ -1589,22 +1639,26 @@ input[type='checkbox']:checked + label:after {
 
 .agree .service input[type='checkbox']:checked:after {
   background-image: url(//img.echosting.cafe24.com/skin/mobile/common/bg_newCheckbox_checked.png);
-  content: ""; /* 필수: content 속성 추가 */
-  display: inline-block; /* 필수: inline-block 설정 */
-  width: 22px; /* 체크된 이미지의 너비 */
+  content: "";
+  /* 필수: content 속성 추가 */
+  display: inline-block;
+  /* 필수: inline-block 설정 */
+  width: 22px;
+  /* 체크된 이미지의 너비 */
   height: 22px;
   background-size: cover;
-} 
+}
+
 .paybtn {
   height: 50px;
   width: 100%;
-  background:#000000;
-  
+  background: #000000;
+
 }
 
 .paybtn .price_view {
   font-weight: bold;
-  font-size: 16px;	
+  font-size: 16px;
   color: #fff;
 }
 
@@ -1614,6 +1668,7 @@ input[type='checkbox']:checked + label:after {
   margin-bottom: -25px;
   background: #FAFAFD;
 }
+
 .helparea p:before {
   display: inline-block;
   content: "";
@@ -1624,6 +1679,7 @@ input[type='checkbox']:checked + label:after {
   height: 1px;
   background: #999;
 }
+
 .helparea p {
   padding: 0 0 23px 9px;
   font-size: 12px;
