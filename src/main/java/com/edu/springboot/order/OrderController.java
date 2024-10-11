@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,16 +57,20 @@ public class OrderController {
 
 	// 장바구니 등록 처리
 	@PostMapping("/cartInsert.do")
-	public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
-
+	public String RegistProc(HttpServletRequest req, HttpServletResponse resp,
+			@RequestBody List<ProductDTO> productList, Model model) {
 		String memberId = (String) req.getSession().getAttribute("id");
-		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 
-		int result = orderService.insertCart(list);
+		// memberId를 각 ProductDTO에 설정
+		for (ProductDTO product : productList) {
+			product.setMember_id(memberId);
+		}
+
+		int result = orderService.insertCart(productList);
 
 		if (result > 0) {
 			// 장바구니 성공 메세지
-			JSFunction.alertLocation(resp, "장바구니에 상품이 추가되었습니다.", "/");
+			JSFunction.alertBack(resp, "장바구니에 상품이 추가되었습니다.");
 			return null;
 		} else {
 			// 장바구니 실패

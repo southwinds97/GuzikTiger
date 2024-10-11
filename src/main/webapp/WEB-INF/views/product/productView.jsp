@@ -343,18 +343,68 @@
                           <p class="ec-base-help displaynone EC-price-warning">할인가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.</p>
                           <div id class="productAction">
                             <div class="flex">
-                              <a href="#none" class="btnSubmit gFull sizeL" onclick="product_submit()">
+                              <a href="#" class="btnSubmit gFull sizeL" onclick="payInsert()">
                                 <span id="actionBuy">구매하기</span>
                               </a>
                               <span class="gActionButtonColumn">
-                                <button tpye="button" class="btnNormal sizeL actionCart" onclick="cartInsert()"
-                                  id="actionCart">장바구니</button>
+                                <button tpye="button" class="btnNormal sizeL actionCart"
+                                  id="actionCart" onclick="cartInsert()">장바구니</button>
                                 <script>
-                                  // 장바구니에 담기(ajax 처리) 넘겨야할 데이터(cart_dtl_id,member_id, product_id, option_id, quantity)
-                                  
-                                  
-                                </script>
-                                
+  // URL에서 매개변수를 추출하는 함수 정의
+  function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+    const results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  let isRequestInProgress = false; // 요청 진행 중인지 확인하는 플래그
+
+  function cartInsert() {
+    if (isRequestInProgress) return; // 요청이 진행 중이면 함수 종료
+
+    const productArray = [];
+    document.querySelectorAll(".option_product").forEach((row) => {
+      const productId = getParameterByName("product_id");
+      const quantity = row.querySelector(".quantity_opt").value;
+      const option_id = row.querySelector(".product span").textContent.split(". ")[1];
+      const number = row.querySelector(".product span").textContent.split(". ")[0];
+      const idx = parseInt(number, 10); // number를 idx로 변환
+
+      productArray.push({
+        product_id: productId,
+        quantity: quantity,
+        option_id: option_id,
+        idx: idx,
+      });
+    });
+
+    console.log(productArray);
+
+    isRequestInProgress = true; // 요청 시작 시 플래그 설정
+    document.getElementById("actionCart").disabled = true; // 버튼 비활성화
+
+    // ajax 요청(Json 처리 안함)
+    $.ajax({
+      url: "/cartInsert.do",
+      type: "post",
+      data: JSON.stringify(productArray),
+      contentType: "application/json",
+      success: function (data) {
+        alert("장바구니에 담겼습니다.");
+        isRequestInProgress = false; // 요청 완료 시 플래그 해제
+        document.getElementById("actionCart").disabled = false; // 버튼 활성화
+      },
+      error: function (xhr, status, error) {
+        alert("장바구니 담기 실패");
+        isRequestInProgress = false; // 요청 실패 시 플래그 해제
+        document.getElementById("actionCart").disabled = false; // 버튼 활성화
+      },
+    });
+  }
+</script>
                               </span>
                             </div>
                             <div id="chatis_gp_button_area"

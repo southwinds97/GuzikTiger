@@ -77,17 +77,20 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedProduct = productViewList[selectedValue - 1]; // 선택된 제품 정보 가져오기
       const price = parseInt(selectedProduct.price.replace(/,/g, "")); // 가격에서 쉼표 제거 후 정수로 변환
       const mileage = Math.floor(price * 0.05); // 가격의 5% 계산
+      const selectedProducts = []; // 선택된 제품 정보를 담을 배열
+      // 선택된 제품 정보를 배열에 추가
+      selectedProducts.push({ selectedProduct });
+      console.log(selectedProducts);
 
-      console.log("선택된 값:", selectedValue);
+      //   console.log("선택된 값:", selectedValue);
       console.log("선택된 텍스트:", selectedText); // 선택된 텍스트를 콘솔에 출력하여 확인
-      console.log("선택된 제품:", selectedProduct); // 선택된 제품 정보를 콘솔에 출력하여 확인
-      console.log("계산된 적립금:", mileage); // 계산된 적립금을 콘솔에 출력하여 확인
+      //   console.log("선택된 제품:", selectedProduct); // 선택된 제품 정보를 콘솔에 출력하여 확인
+      //   console.log("계산된 적립금:", mileage); // 계산된 적립금을 콘솔에 출력하여 확인
 
       const newRow = document.createElement("tr");
       newRow.className = "option_product";
       newRow.innerHTML = `
         <td>
-          <input type="hidden" class="option_box_id">
           <p class="product">
             ${selectedProduct.product_name}
             <br>
@@ -154,6 +157,68 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 총 금액 및 총 수량 업데이트
       updateTotal();
+
+      // 밑에 코드는 JS로 처리시 중복 호출됨
+      // URL에서 매개변수를 추출하는 함수 정의
+      //   function getParameterByName(name, url = window.location.href) {
+      //     name = name.replace(/[\[\]]/g, "\\$&");
+      //     const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+      //     const results = regex.exec(url);
+      //     if (!results) return null;
+      //     if (!results[2]) return "";
+      //     return decodeURIComponent(results[2].replace(/\+/g, " "));
+      //   }
+
+      //   // 장바구니에 담기 버튼(#actionCart) 클릭 이벤트 처리(ajax) 배열로 담아서 전송
+      //   const actionCart = document.getElementById("actionCart");
+      //   let isRequestInProgress = false; // 요청 진행 중인지 확인하는 플래그
+
+      //   actionCart.addEventListener("click", function () {
+      //     if (isRequestInProgress) return; // 요청이 진행 중이면 함수 종료
+
+      //     const productArray = [];
+      //     document.querySelectorAll(".option_product").forEach((row) => {
+      //       const productId = getParameterByName("product_id");
+      //       const quantity = row.querySelector(".quantity_opt").value;
+      //       const option_id = row
+      //         .querySelector(".product span")
+      //         .textContent.split(". ")[1];
+      //       const number = row
+      //         .querySelector(".product span")
+      //         .textContent.split(". ")[0];
+      //       const idx = parseInt(number, 10); // number를 idx로 변환
+
+      //       productArray.push({
+      //         product_id: productId,
+      //         quantity: quantity,
+      //         option_id: option_id,
+      //         idx: idx,
+      //       });
+      //     });
+
+      //     console.log(productArray);
+
+      //     isRequestInProgress = true; // 요청 시작 시 플래그 설정
+      //     actionCart.disabled = true; // 버튼 비활성화
+
+      //     // ajax 요청(Json 처리 안함)
+      //     $.ajax({
+      //       url: "/cartInsert.do",
+      //       type: "post",
+      //       data: JSON.stringify(productArray),
+      //       contentType: "application/json",
+      //       success: function (data) {
+      //         alert("장바구니에 담겼습니다.");
+      //         isRequestInProgress = false; // 요청 완료 시 플래그 해제
+      //         actionCart.disabled = false; // 버튼 활성화
+      //       },
+      //       error: function (xhr, status, error) {
+      //         alert("장바구니 담기 실패");
+      //         isRequestInProgress = false; // 요청 실패 시 플래그 해제
+      //         actionCart.disabled = false; // 버튼 활성화
+      //       },
+      //     });
+      //   });
     }
   });
 });

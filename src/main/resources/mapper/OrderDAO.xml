@@ -165,7 +165,7 @@
      </select> 
      
           <!-- 장바구니 등록 -->
-    <insert id="insertCart" parameterType="com.edu.springboot.product.ProductDTO" >
+    <!-- <insert id="insertCart" parameterType="com.edu.springboot.product.ProductDTO" >
         INSERT INTO cart (
 		    MEMBER_ID, 
 		    CART_DTL_ID, 
@@ -180,7 +180,25 @@
 		    #{option_id}, 
 		    #{quantity}
  	    )  
-    </insert> 
+    </insert>  -->
+	<insert id="insertCart" parameterType="java.util.List">
+    INSERT INTO cart (
+        MEMBER_ID, 
+        CART_DTL_ID, 
+        PRODUCT_ID, 
+        OPTION_ID,
+        QUANTITY
+    )
+    <foreach collection="list" item="item" separator=" UNION ALL ">
+        SELECT
+            #{item.member_id}, 
+            #{item.product_id} || '_' || #{item.idx},  <!-- CONCAT 대신 || 연산자 사용 -->
+            #{item.product_id}, 
+            #{item.option_id}, 
+            #{item.quantity}
+        FROM DUAL
+    </foreach>
+</insert>
      
     <!-- 장바구니에서 수량 변경목록 -->
     <update id="updateCart" 	parameterType = "com.edu.springboot.product.ProductDTO">
