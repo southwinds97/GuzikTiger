@@ -99,11 +99,16 @@
             $(document).ready(function () {
                 $("#chattingId_btn").click(function (event) {
                     event.preventDefault();
-                    $(".chat_modal").show();
-                    var roomId = '<%= session.getAttribute("id") %>';
-                    var userId = '<%= session.getAttribute("id") %>';
+                    if ($(".chat_modal").is(":visible")) {
+                        $(".chat_modal").hide();
+                        $("#chat_iframe").attr("src", ""); // iframe src 초기화
+                    } else {
+                        $(".chat_modal").show();
+                        var roomId = '<%= session.getAttribute("id") %>';
+                        var userId = '<%= session.getAttribute("id") %>';
 
-                    $("#chat_iframe").attr("src", "chat/talk?roomId=" + roomId + "&userId=" + userId);
+                        $("#chat_iframe").attr("src", "chat/talk?roomId=" + roomId + "&userId=" + userId);
+                    }
                 });
 
                 // 모달 창을 클릭하면 닫기

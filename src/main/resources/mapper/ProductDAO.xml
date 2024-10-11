@@ -401,6 +401,26 @@
         and a.product_id = #{product_id} 
 	</select>
 
+	<!-- 관련상품 리스트 -->
+	<select id="getProductRelate" resultType = "com.edu.springboot.product.ProductDTO">
+		SELECT product_id, product_name, img_id, price, stock
+		FROM (
+			SELECT p.product_id, p.product_name, p.img_id, pd.price, pd.stock,
+				ROW_NUMBER() OVER (PARTITION BY p.product_name ORDER BY p.product_id) AS rn
+			FROM product p
+			JOIN product_dtl pd ON p.product_id = pd.product_id
+			WHERE pd.sub_cate = (
+				SELECT sub_cate
+				FROM product_dtl
+				WHERE product_id = #{product_id} 
+				AND ROWNUM = 1
+			)
+			AND p.product_id != #{product_id} 
+		) subquery
+		WHERE rn = 1
+	</select>
+
+
 	<!-- 키워드를 이용한 상품검색 -->
 	<select id="getSelectByKeyword" resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="map">

@@ -11,7 +11,6 @@ import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.order.OrderDTO;
 
-
 @Mapper
 public interface IProductService {
 	// 토탈카운드
@@ -63,25 +62,27 @@ public interface IProductService {
 
 	// 상품 New 조회
 	public ArrayList<ProductDTO> getSelectByCodeNew(Map<String, Object> param);
-	
+
 	// 상품 상세 조회
-	public ArrayList<ProductDTO>  getProductDtl(String id);
+	public ArrayList<ProductDTO> getProductDtl(String id);
 
 	// 상품 검색키워드를 이용한 상품 검색
 	public ArrayList<ProductDTO> getSelectByKeyword(Map<String, Object> param);
 
 	// 상품 검색키워드를 이용한 상품 검색 수
 	int getSelectByKeywordCount(@Param("searchKeyword") String searchKeyword);
-	
+
+	// 관련 상품 조회
+	public ArrayList<ProductDTO> getProductRelate(String product_id);
 
 	/*-----------admin--------------*/
 	// 모든상품 조회
 	public ArrayList<ProductDTO> adminProductSelect(ParameterDTO parameterDTO);
+
 	// 모든주문 조회
 	public ArrayList<OrderDTO> adminOrderSelect(OrderDTO orderDTO);
+
 	// 모든회원 조회
 	public ArrayList<MemberDTO> adminMemberSelect(MemberDTO memberDTO);
-	
-	
 
 }

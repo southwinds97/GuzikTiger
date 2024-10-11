@@ -162,17 +162,19 @@ public class ProductController {
 	public String productView(HttpServletRequest req, Model model, ProductDTO productDTO) {
 		String product_id = req.getParameter("product_id");
 		ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
-	   
-	
+		ArrayList<ProductDTO> productRelateList = dao.getProductRelate(product_id);
+
 		model.addAttribute("productViewList", productViewList);
-		
+		model.addAttribute("productRelateList", productRelateList);
+
 		return "product/productView";
 	}
+
 	@GetMapping("/productViewJson.do")
-    @ResponseBody
-    public ArrayList<ProductDTO> productView(@RequestParam("product_id") String product_id) {
-        ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
-        return productViewList;
-    }
+	@ResponseBody
+	public ArrayList<ProductDTO> productView(@RequestParam("product_id") String product_id) {
+		ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
+		return productViewList;
+	}
 
 }
