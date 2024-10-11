@@ -352,7 +352,7 @@ body {
 }
 
 .main_slide .swiper-container {
-	position: relative;
+  position: relative;
 }
 
 
@@ -598,7 +598,7 @@ body {
   border-top: 1px solid #e5e5e5;
   padding: 60px 80px;
   display: flex;
-  gap: 400px;
+  /* gap: 400px; */
 }
 
 .footer_wrap .logo {
@@ -688,6 +688,7 @@ body {
 .footer_wrap .footer_right {
   display: flex;
   gap: 100px;
+  margin-left: 400px;
 }
 
 .footer_wrap h3 {
