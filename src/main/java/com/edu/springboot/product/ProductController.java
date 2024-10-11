@@ -15,6 +15,8 @@ import com.edu.springboot.ParameterDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class ProductController {
@@ -164,6 +166,13 @@ public class ProductController {
 		model.addAttribute("searchKeyword", searchKeyword);
 
 		return "product/product_search";
+	}
+
+	// 상품 상세 페이지
+	@GetMapping("/productView.do")
+	public String productView(HttpServletRequest req, Model model, ProductDTO productDTO) {
+
+		return "product/productView";
 	}
 
 }

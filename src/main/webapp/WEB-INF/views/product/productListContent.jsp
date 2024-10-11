@@ -14,7 +14,7 @@
                 <div class="inner" style="padding: 0;">
                     <c:forEach items="${allLists}" var="row" varStatus="loop">
                         <div class="list_item">
-                            <a href="#">
+                            <a href="productView.do">
                                 <div class="item_img">
                                     <input type="hidden" name="product_id" value="${row.product_id}" />
                                     <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">

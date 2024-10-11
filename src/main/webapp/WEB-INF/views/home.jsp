@@ -82,29 +82,29 @@
                 <div class="swiper-button-prev arrow_btn"></div>
                 <div class="swiper-button-next arrow_btn"></div>
               </div>
-			 <script>
-			    const swiper = new Swiper('.swiper-container', {
-			      grabCursor: true,
-			      draggable: true,
-			      speed: 1000,
-			      loop: true,
-			      effect: 'fade',
-			      fadeEffect: { crossFade: true },
-			      preloadImages: false,
-			      lazy: {
-			        loadOnTransitionStart: true,
-			        loadPrevNext: true,
-			      },
-			      pagination: {
-			        el: '.swiper-pagination',
-			        clickable: true,
-			      },
-			      navigation: {
-			        nextEl: '.swiper-button-next',
-			        prevEl: '.swiper-button-prev',
-			      },
-			    });
-			  </script>
+              <script>
+                const swiper = new Swiper('.swiper-container', {
+                  grabCursor: true,
+                  draggable: true,
+                  speed: 1000,
+                  loop: true,
+                  effect: 'fade',
+                  fadeEffect: { crossFade: true },
+                  preloadImages: false,
+                  lazy: {
+                    loadOnTransitionStart: true,
+                    loadPrevNext: true,
+                  },
+                  pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                  },
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  },
+                });
+              </script>
             </section>
             <section class="main_best main_item">
               <div class="inner">
@@ -116,9 +116,9 @@
                   <ul class="list">
                     <c:forEach items="${bestLists }" var="row" varStatus="loop">
                       <li>
-                        <a href="product_review.do">
+                        <a href="productView.do">
                           <div class="img_wrap">
-							<img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
+                            <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                             <input type="hidden" name="product_id" value="${row.product_id}" />
                             <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
                             <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
