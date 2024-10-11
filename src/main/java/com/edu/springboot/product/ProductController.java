@@ -32,7 +32,7 @@ public class ProductController {
 		model.addAttribute("subCategories", subCategories);
 
 		// category가 'mainCate', 'BEST', 'NEW' 가 아닌 경우에만 code 조회
-		if (!"mainCate".equals(category) && !"BEST".equals(category) && !"NEW".equals(category)) {
+		if (!"mainCate".equals(category) && !"BEST".equals(category) && !"NEW".equals(category) && !"Go".equals(category)) {
 			// category를 cd_name으로 사용하여 code 찾기
 			String code = dao.getCodeByCdName(category);
 			if (code == null) {
@@ -68,7 +68,7 @@ public class ProductController {
 			model.addAttribute("productCount", productCount);
 
 			model.addAttribute("selectedCategory", category);
-		} else if ("mainCate".equals(category)) {
+		} else if ("mainCate".equals(category) || "Go".equals(category) ) {
 			// category가 'mainCate'인 경우 메인 카테고리의 전체 카운트 조회
 			int mainCategoryCount = dao.getSelectByCodeAllCount();
 			model.addAttribute("productCount", mainCategoryCount);
@@ -108,13 +108,13 @@ public class ProductController {
 			} else if ("mainCate".equals(category)) {
 				count = dao.getSelectByCodeAllCount();
 				lists = dao.getSelectByCodeAll(params);
-			} else {
+			} else if (searchKeyword != null && !searchKeyword.isEmpty()) {
 				count = dao.getSelectByKeywordCount(searchKeyword);
 				lists = dao.getSelectByKeyword(params);
 			}
-			// count = dao.getSelectByCodeAllCount();
-			// // code 값이 null이거나 비어있는 경우
-			// lists = dao.getSelectByCodeAll(params);
+			count = dao.getSelectByCodeAllCount();
+			// code 값이 null이거나 비어있는 경우
+			lists = dao.getSelectByCodeAll(params);
 		} else if (code.startsWith("A")) {
 			count = dao.getSelectByCodeMainCount(code);
 			// code 값이 'A'로 시작하는 경우
