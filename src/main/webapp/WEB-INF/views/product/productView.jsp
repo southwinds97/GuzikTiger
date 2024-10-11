@@ -431,6 +431,24 @@
                           <div>
                             <%@ include file="product_viewDetail.jsp" %>
                           </div>
+                          <div class="product_review">
+                            <script>
+                            // product_review.jsp ajax로 호출
+                            $(document).ready(function () {
+                              $.ajax({
+                                url: "product_review.do",
+                                type: "get",
+                                data: {},
+                                success: function (data) {
+                                  $(".product_review").html(data); // 응답 데이터를 통째로 가져옴
+                                },
+                                error: function () {
+                                  alert("리뷰 페이지를 불러오는 데 실패했습니다.");
+                                }
+                              });
+                            });
+                          </script>
+                          </div>
                           
                         </div>
                       </div>
@@ -440,6 +458,8 @@
                 
             </main>
           </div>
+          <!-- 푸터 -->
+          <%@ include file="../footer.jsp" %>
       </div>
     </body>
 

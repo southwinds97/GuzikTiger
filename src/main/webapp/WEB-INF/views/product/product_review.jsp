@@ -224,7 +224,7 @@
      <button type="button" class="all">전체보기</button>
      <button type="button" class="write">리뷰작성</button>
     </div>
-    <div class="paginate">
+    <!-- <div class="paginate">
     <a href="#" class="first">첫 페이지</a>
     <a href="#">이전페이지</a>
     <ol>
@@ -234,7 +234,7 @@
     </ol>
     <a href="#">다음페이지</a>
     <a href="#" class="last">마지막페이지</a>
-    </div>
+    </div> -->
     <script>
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 8, // 한 번에 보여줄 슬라이드 개수

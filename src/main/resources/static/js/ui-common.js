@@ -310,6 +310,7 @@ $(function () {
   //많이 구매한 제품 슬라이더
   var individualSwiper = new Swiper(".product_relationlist .swiper-container", {
     slidesPerView: "auto",
+    slidesPerView: 4,
     spaceBetween: 10,
     navigation: {
       nextEl: ".prd-nav--next",

@@ -1076,14 +1076,7 @@ a[class^="btnNormal"]:hover {
 }
 .jsThumbNav {
   max-height: 400px; /* 원하는 높이로 설정 */
-  overflow-y: auto; /* 스크롤 가능하도록 설정 */
 }
-
-.list__item {
-  height: auto; /* 자동 높이 설정 */
-  margin-bottom: 10px; /* 기존 마진 유지 */
-}
-
-.swiper-slide {
-  height: auto !important; /* Swiper 슬라이드의 높이를 자동으로 설정 */
+.jsThumbNav .swiper-slide {
+  width: 150px !important; /* 원하는 너비로 설정 */
 }

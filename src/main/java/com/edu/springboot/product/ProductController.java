@@ -177,4 +177,10 @@ public class ProductController {
 		return productViewList;
 	}
 
+	@GetMapping("/product_review.do")
+	public String productReview(HttpServletRequest req, Model model, ProductDTO productDTO) {
+
+		return "product/product_review";
+	}
+
 }
