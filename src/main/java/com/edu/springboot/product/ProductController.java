@@ -1,6 +1,7 @@
 package com.edu.springboot.product;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -143,18 +144,6 @@ public class ProductController {
 		return "product/productListContent";
 	}
 
-	/// 상품상세 페이지 (임시)
-	@RequestMapping("/product_review.do")
-	public String productReview(HttpServletRequest req, Model model, ProductDTO productDTO) {
-
-		String id = "P10856";
-		productDTO = dao.getProductDtl(id);
-
-		model.addAttribute("product_dtl", productDTO);
-
-		return "product/product_review";
-	}
-
 	// 상품 검색 페이지
 	@RequestMapping("/product_search.do")
 	public String productSearch(HttpServletRequest req, Model model, ParameterDTO parameterDTO, ProductDTO productDTO) {
@@ -171,7 +160,12 @@ public class ProductController {
 	// 상품 상세 페이지
 	@GetMapping("/productView.do")
 	public String productView(HttpServletRequest req, Model model, ProductDTO productDTO) {
-
+		String product_id = req.getParameter("product_id");
+		ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
+	   
+	
+		model.addAttribute("productViewList", productViewList);
+		
 		return "product/productView";
 	}
 

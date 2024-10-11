@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
+ <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+   
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,6 +51,8 @@
             </li>
           </ol>
         </div>
+        <c:forEach items="${productViewList}" var="row" varStatus="loop">
+        <c:if test="${row.idx eq 1}">
         <div class="product_detail">
           <div class="imgArea">
             <div class="clearfix">
@@ -58,7 +60,7 @@
                 <div class="inner swiper-container jsThumbNav swiper-container-initialized swiper-container-vertical" style="cursor: grab;">
                   <ul class="list swiper-wrapper">
                     <li class="list__item swiper-slide xans-record- run swiper-slide-active current">
-                      <img src="images/sl1.jpg" class="ThumbImage" alt="상품 이미지" data-slide-index="0">
+                      <img src="../images/productList/${row.img_id }" class="ThumbImage" alt="상품 이미지" data-slide-index="0">
                     </li>
                     <li class="list__item swiper-slide xans-record- run swiper-slide-active">
                       <img src="images/sl2.jpg" class="ThumbImage" alt="상품 이미지" data-slide-index="1">
@@ -171,13 +173,9 @@
                         <td>
                           <select name="option1" id="option1" class="option_select">
                             <option value="*" selected>- [필수] 옵션을 선택해 주세요 -</option>
-                            <option value="1">01. 적호 뚱랑이</option>
-                            <option value="3">02. 백호 뚱랑이</option>
-                            <option value="4">03. 흑호 뚱랑이</option>
-                            <option value="5">04. 포르미</option>
-                            <option value="6">05. 솜핑냥</option>
-                            <option value="6">06. 사자</option>
-                            <option value="6">07. 6종 세트 (5% OFF)</option>
+                              <c:forEach items="${productViewList}" var="dto" varStatus="loop">
+                                 <option value="${loop.count}">0${loop.count}. ${dto.option_id}</option>
+                              </c:forEach>
                           </select>
                           <p class="value"></p>
                         </td>
@@ -292,7 +290,7 @@
                     <strong class="shippingCost">무료배송</strong>
                   </div>
                   <div class="text2" class="display: none;">
-                    <strong>😄 무료배송</strong>
+                    <strong>무료배송</strong>
                     <span>
                       <strong class="shippingCost">무료배송!</strong>
                       원을 절약했어요.
@@ -580,7 +578,7 @@
                           <p>
                             <span>
                               <strong>MATERIAL</strong>
-                              &nbsp; Polyester
+                              &nbsp; Polyester
                             </span>
                           </p>
                           <p><br></p>
@@ -749,6 +747,10 @@
                 </div>
               </div>
           </div>
+          </div>
+          
+           </c:if>
+         </c:forEach>
       </main>
     </div>
   </div> 

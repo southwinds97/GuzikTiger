@@ -116,7 +116,7 @@
                   <ul class="list">
                     <c:forEach items="${bestLists }" var="row" varStatus="loop">
                       <li>
-                        <a href="productView.do">
+                        <a href="productView.do?product_id=${row.product_id}">
                           <div class="img_wrap">
                             <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                             <input type="hidden" name="product_id" value="${row.product_id}" />
@@ -191,8 +191,9 @@
                       <div class="swiper-wrapper">
 
                         <c:forEach items="${newLists }" var="row" varStatus="loop">
+                        
                           <div class="swiper-slide">
-                            <a href="#">
+                            <a href="productView.do?product_id=${row.product_id}">
                               <div class="img_wrap">
                                 <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                               </div>

@@ -551,7 +551,7 @@ const Basket = {
 					data: {"intlOrder":intlOrder, "paymentInfo":paymentInfo, "orderInfo":orderInfo} ,
 					traditional : true,
 					success: function(data){
-						alert('성공');
+					//	alert('성공');
 						
 					},
 					error: function(){
