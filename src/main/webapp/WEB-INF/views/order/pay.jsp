@@ -297,8 +297,17 @@
                     <p>수량: ${row.quantity}개</p>
                   </span>
                   <span class="price">
-                    <p>${row.quantity*row.price}원</p>
+                    <p>${row.quantity*row.price}</p>
                   </span>
+                  <script>
+                    //상품금액 콤마찍기
+                    $(document).ready(function () {
+                      $('.price p').each(function () {
+                       let price = parseInt($(this).text().replace(/[^0-9]/g, ''));
+                       $(this).text(price.toLocaleString() + '원');
+                      });
+                    });
+                  </script>
                 </div>
                 <button type="button" class="btnRemove" onclick="Basket.productRemove('${row.cart_dtl_id}')"></button>
               </div>
@@ -334,6 +343,12 @@
             <div class="balance">
               <span class="summary">보유&nbsp잔액
                 <span class="txtem" id="points">0원</span>
+                <script>
+                  $(document).ready(function () {
+                    let point = parseInt($('#points').text().replace(/[^0-9]/g, ''));
+                    $('#points').text(point.toLocaleString() + '원');
+                  });
+                </script>
               </span>
             </div>
             <div class="expand">

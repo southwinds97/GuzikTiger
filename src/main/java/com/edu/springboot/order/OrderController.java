@@ -214,7 +214,7 @@ public class OrderController {
 		System.out.println(orderInfo + "#######");
 
 		// 주문테이블
-		orderDTO.setMember_id("admin");
+		orderDTO.setMember_id(member_id);
 		orderDTO.setOrder_name("관리자");
 		orderDTO.setOrder_phone("010-9077-1999");
 		orderDTO.setOrder_addr("서울 종로 더좋은");

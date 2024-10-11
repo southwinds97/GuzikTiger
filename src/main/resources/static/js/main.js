@@ -511,9 +511,9 @@ const Basket = {
   memberSetup: function (data) {
     $("#orderName").val(data.name);
 
-    $("#zip").val(data.postcode);
-    $("#addr").val(data.addr);
-    $("#detailaddr").val(data.detailaddr);
+    $("#postcode").val(data.postcode);
+    $("#address").val(data.addr);
+    $("#detailAddress").val(data.detailaddr);
 
     $("#tel4").val(data.tel);
     let telArr = data.tel.split("-");

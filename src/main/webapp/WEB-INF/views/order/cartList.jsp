@@ -128,11 +128,10 @@
                             <c:forEach items="${cartList}" var="row" varStatus="loop">
                               <div class="cart_item">
                                 <div class="cart_box">
-                                  <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check"
-                                    onclick='return Basket.isChecked(this); '> &nbsp;
+                                  <input type="checkbox" name="${row.cart_dtl_id}" class="cart_check" onclick='return Basket.isChecked(this); '> &nbsp;
                                   <div class="thumbnail">
                                     <a href="#">
-                                      <img src="../images/productList/${row.img_id }" alt="상품명">
+                                      <img src="../images/productList/${row.img_id}" alt="상품명">
                                     </a>
                                   </div>
                                   <div class="description">
@@ -141,24 +140,24 @@
                                     </strong>
                                     <ul class="price">
                                       <li class="id">
-                                        <strong>${row.price}</strong>원
+                                        <strong class="price_value">${row.price}</strong>
                                         <span class="displaynone">
                                           <span></span>
                                         </span>
                                       </li>
-                                      <!-- <li>
-                              <span class="txtSecondary">
-                                43,000원 
-                                <span class="displaynone"></span>
-                              </span>
-                            </li>
-                            <li class="id">
-                              <span class="txtSecondary">-0</span>
-                              원
-                              <span class="displaynone">
-                                <span></span>
-                              </span>
-                            </li> -->
+                                      <script>
+                                        // 가격을 0,000원 형식으로 변환하고 적립금을 계산
+                                        $(document).ready(function () {
+                                          $('.price_value').each(function () {
+                                            let price = parseInt($(this).text().replace(/[^0-9]/g, ''));
+                                            $(this).text(price.toLocaleString() + '원');
+
+                                            // 적립금 계산
+                                            let mileagePoint = Math.floor(price * 0.05);
+                                            $(this).closest('.cart_box').find('.mileage_point').text(mileagePoint.toLocaleString() + '원');
+                                          });
+                                        });
+                                      </script>
                                     </ul>
                                     <ul class="info">
                                       <li>배송 :
@@ -175,7 +174,7 @@
                                       <li title="적립금" id="prod_mileage" class="mileage">
                                         <input id="" name="prod_mileage_all" value="" type="hidden">
                                         <img src="/images/ico_product_point.gif">
-                                        2,150원
+                                        <span class="mileage_point"></span>
                                       </li>
                                     </ul>
                                     <ul class="optionGroup">
@@ -187,9 +186,7 @@
                                           </c:if>
                                           <span class="displaynone">(2개)</span>
                                           <span class>
-                                            <a href="#none"
-                                              onclick="Basket.showOptionChangeLayer('option_modify_layer_0', $(this))"
-                                              class="btnText displaynone">변경</a>
+                                            <a href="#none" onclick="Basket.showOptionChangeLayer('option_modify_layer_0', $(this))" class="btnText displaynone">변경</a>
                                           </span>
                                         </div>
                                       </li>
@@ -200,31 +197,25 @@
                                     <div>
                                       <span class="qty">
                                         <input id="${row.cart_dtl_id}" size="2" value="${row.quantity}" type="text">
-                                        <a href="javascript:;" class="btn_plus"
-                                          onclick="Basket.addQuantityShortcut('${row.cart_dtl_id}');">수량증가</a>
-                                        <a href="javascript:;" class="btn_minus"
-                                          onclick="Basket.outQuantityShortcut('${row.cart_dtl_id}');">수량감소</a>
+                                        <a href="javascript:;" class="btn_plus" onclick="Basket.addQuantityShortcut('${row.cart_dtl_id}');">수량증가</a>
+                                        <a href="javascript:;" class="btn_minus" onclick="Basket.outQuantityShortcut('${row.cart_dtl_id}');">수량감소</a>
                                       </span>
-                                      <button type="button" name="${row.cart_dtl_id}" class="btnNormal btn_edit"
-                                        onclick="fnQuantityMod(this)">변경</button>
+                                      <button type="button" name="${row.cart_dtl_id}" class="btnNormal btn_edit" onclick="fnQuantityMod(this)">변경</button>
                                     </div>
                                     <div class="displaynone">2</div>
                                   </div>
                                   <div class="sumPrice displaynone">
                                     <span class="label">주문금액</span>
-                                    <strong>86,000</strong>
+                                    <strong>0</strong>
                                     원
                                     <span class="displaynone"></span>
                                   </div>
                                   <div class="buttonGroup">
-                                    <a href="#none" onclick="Basket.moveWish('${row.product_id}');"
-                                      class="btnNormal sizeM">관심상품</a>
-                                    <a href="#none" onclick="Basket.oneProductOrder('${row.cart_dtl_id}');"
-                                      class="btnSubmit sizeM">주문하기</a>
+                                    <a href="#none" onclick="Basket.moveWish('${row.product_id}');" class="btnNormal sizeM">관심상품</a>
+                                    <a href="#none" onclick="Basket.oneProductOrder('${row.cart_dtl_id}');" class="btnSubmit sizeM">주문하기</a>
                                   </div>
                                 </div>
-                                <a href="#none" onclick="Basket.deleteBasketItem('${row.cart_dtl_id}');"
-                                  class="btn_delete">삭제</a>
+                                <a href="#none" onclick="Basket.deleteBasketItem('${row.cart_dtl_id}');" class="btn_delete">삭제</a>
                               </div>
                             </c:forEach>
                             <!--  -------------------------아이템 끝--------------------------------------------------------- -->

@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       totalPriceElement.textContent =
         (price * quantity).toLocaleString() + "원";
+
+      // 개별 상품의 적립금 업데이트
+      const mileageElement = row.querySelector(".mileage_price");
+      const mileage = Math.floor(price * quantity * 0.05);
+      mileageElement.textContent = mileage.toLocaleString() + "원";
     });
     if (totalPriceElement) {
       totalPriceElement.textContent = currentTotalPrice.toLocaleString() + "원";
