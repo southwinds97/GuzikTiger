@@ -250,4 +250,58 @@ $(function () {
 
 
 
+  //뷰 아코디언
+  $('.ec-base-fold > .eToggle_title').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('on');
+  });
+
+   
+
+  //썸네일&메인 슬라이드
+  var swiper = new Swiper('.jsPrdThumbSlide', {
+    navigation: {
+      nextEl: '.jsThumbNext',
+      prevEl: '.jsThumbPrev',
+    },
+    scrollbar: {
+      el: '.jsThumbSlidePager',
+      draggable: true,
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+  });
+
+
+  document.querySelectorAll('.list__item img').forEach(function(thumb) {
+    thumb.addEventListener('click', function() {
+      var index = this.getAttribute('data-slide-index');
+      swiper.slideTo(index); 
+
+    // current 클래스 제거
+    document.querySelectorAll('.list__item').forEach(function(item) {
+      item.classList.remove('current');
+    });
+    // 클릭된 썸네일에 current 클래스 추가
+    this.parentElement.classList.add('current');   
+    });
+  });
+
+
+
+  //많이 구매한 제품 슬라이더
+  var individualSwiper = new Swiper('.product_relationlist .swiper-container', {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.prd-nav--next',
+      prevEl: '.prd-nav--prev',
+    },
+  });
+
+
+  
+  
+  
+
 });
