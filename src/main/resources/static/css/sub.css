@@ -14,16 +14,19 @@
 .sub_container .inner {
   padding: 30px 80px 200px;
 }
+
 .sub_container .inner h2 {
   line-height: 36px;
   font-size: 25px;
   margin: 55px 0 45px;
   text-align: center;
 }
+
 .inner .path {
   text-align: end;
   font-size: 12px;
 }
+
 .inner .path a {
   color: #898b89;
 }
@@ -34,10 +37,12 @@
   margin: 55px 0 45px;
   text-align: center;
 }
+
 .inner_search .path {
   text-align: end;
   font-size: 12px;
 }
+
 .inner_search .path a {
   color: #898b89;
 }
@@ -45,47 +50,61 @@
 .qna_cate {
   margin-bottom: 20px;
 }
+
 .qna_cate .select_wrap {
   width: 152px;
 }
+
 .qna_cate select {
   height: 40px;
 }
+
 .qna_list {
   text-align: center;
   position: relative;
 }
+
 .qna_list td {
   padding: 15px 10px 16px;
 }
+
 .qna_list thead tr {
   background: #f6f6f6;
   height: 60px;
 }
+
 .qna_list .col1 {
   width: 5%;
 }
+
 .qna_list .col2 {
   width: 5%;
 }
+
 .qna_list .col3 {
   width: 70%;
 }
+
 .qna_list .col4 {
   width: 5%;
 }
+
 .qna_list .col5 {
   width: 6%;
 }
+
 .qna_list .col6 {
   width: 7%;
 }
+
 .qna_list .td_img img {
   width: 46px;
 }
+
 .qna_list .td_tit {
   text-align: left;
 }
+
 .qna_list tbody tr {
   border-bottom: 1px solid #ebebeb;
 }
@@ -97,24 +116,30 @@
   gap: 10px;
   margin-top: 20px;
 }
+
 .qna_search .select_wrap {
   width: 76px;
   border: 1px solid #e0e0e0;
 }
+
 .qna_search select {
   height: 40px;
 }
+
 .qna_search .select2 {
   width: 110px;
 }
+
 .qna_search .search {
   border: 1px solid #e0e0e0;
   line-height: 40px;
   width: 175px;
 }
+
 .qna_search .search:hover {
   border-color: #000;
 }
+
 .qna_search .search_btn {
   border: 1px solid #e0e0e0;
   background: none;
@@ -122,6 +147,7 @@
   margin-left: 10px;
   transition: all 0.3s;
 }
+
 .qna_search .search_btn:hover {
   border-color: #000;
 }
@@ -141,26 +167,32 @@
   display: flex;
   align-items: center;
 }
+
 .board_pagination .paginate .first {
   background: url(../images/double_arrow.svg) no-repeat center center / 60%;
 }
+
 .board_pagination .paginate a {
   display: block;
   width: 40px;
   height: 40px;
   background: url(../images/left_arrow.svg) no-repeat center center / 60%;
 }
+
 .board_pagination .paginate .next_button {
   transform: rotate(180deg);
 }
+
 .board_pagination .paginate .last {
   background: url(../images/double_arrow.svg) no-repeat center center / 60%;
   transform: rotate(180deg);
 }
+
 .board_pagination .paginate ol {
   display: flex;
 }
-.board_pagination .paginate ol > li > a {
+
+.board_pagination .paginate ol>li>a {
   display: block;
   width: 40px;
   height: 40px;
@@ -168,6 +200,7 @@
   border: 1px solid #e5e5e5;
   background: none;
 }
+
 .board_pagination .paginate ol .this {
   border: 1px solid black;
 }
@@ -179,31 +212,37 @@
   margin-bottom: 40px;
   display: flex;
 }
+
 .product_sel img {
   width: 65px;
   height: 65px;
   margin-right: 15px;
 }
+
 .product_sel .product_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
 }
+
 .product_sel .txt_wrap {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
+
 .product_sel .txt_wrap a {
   font-size: 14px;
   font-weight: 600;
 }
+
 .sel_wrap {
   display: flex;
   align-items: center;
   gap: 5px;
 }
+
 .sel_wrap a {
   display: inline-block;
   height: 32px;
@@ -213,6 +252,7 @@
   border: 1px solid #bcbcbc;
   transition: all 0.4s;
 }
+
 .sel_wrap a:hover {
   border-color: black;
 }
@@ -220,6 +260,7 @@
 .qna_write tbody {
   border-top: 1px solid black;
 }
+
 .qna_write th {
   width: 10%;
   background: #f6f6f6;
@@ -228,38 +269,46 @@
   border-bottom: 1px solid #e5e5e5;
   font-weight: 500;
 }
+
 .qna_write td {
   padding: 10px 20px;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .qna_write .select_wrap {
   width: 170px;
   line-height: 40px;
   margin-right: 10px;
 }
+
 .qna_write .sel_tit {
   width: 526px;
 }
+
 .qna_write select {
   height: 40px;
 }
+
 .qna_write input[type="text"] {
   border: 1px solid #e0e0e0;
   height: 40px;
   line-height: 40px;
   width: 300px;
 }
+
 .qna_write input[type="file"]::file-selector-button {
   height: 40px;
   padding: 0 20px;
   border: 1px solid #bcbcbc;
   background: none;
 }
+
 .btn_wrap {
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
 }
+
 .btn_wrap button {
   display: inline-block;
   text-align: center;
@@ -272,9 +321,11 @@
   background: none;
   transition: all 0.4s;
 }
+
 .btn_wrap button:hover {
   border: 1px solid black;
 }
+
 .btn_wrap .write_btn {
   background: #000;
   color: #fff;
@@ -285,6 +336,7 @@
 .qna_view_wrap {
   border-top: 1px solid black;
 }
+
 .qna_view_wrap .tit_wrap {
   display: flex;
   flex-direction: column;
@@ -293,15 +345,18 @@
   gap: 15px;
   border-bottom: 1px solid #eaeaea;
 }
+
 .qna_view_wrap .tit_wrap h3 {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 0;
 }
+
 .qna_view_wrap .tit_wrap span {
   margin-left: 16px;
   color: #6d6d6d;
 }
+
 .qna_view_wrap .content_wrap {
   padding: 30px 20px;
 }
@@ -315,6 +370,7 @@
 .comment_wrap {
   margin-top: 50px;
 }
+
 .comment_user {
   border: 1px solid #a7a7a7;
   display: flex;
@@ -324,19 +380,23 @@
   gap: 50px;
   position: relative;
 }
+
 .com_user_info {
   display: flex;
   gap: 20px;
 }
+
 .com_user_info input {
   width: 200px;
   border: 1px solid #e0e0e0;
 }
+
 .com_user_info .info_wrap {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .comment_user .com_btn {
   position: absolute;
   right: 20px;
@@ -348,18 +408,22 @@
   border: none;
   font-weight: 600;
 }
+
 .com_list {
   margin-top: 50px;
   border-top: 2px solid black;
 }
+
 .com_list .comment {
   padding: 25px 0;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .com_list .comment span {
   color: #6d6d6d;
   margin: 0 20px;
 }
+
 .com_list .comment .com_user {
   display: inline-block;
   margin: 0;
@@ -367,20 +431,24 @@
   font-weight: 500;
   margin-bottom: 20px;
 }
+
 .com_list .com_content {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   gap: 10px;
 }
+
 .com_list .secret_com {
   margin-bottom: 20px;
 }
+
 .com_list .secret_com input[type="password"] {
   border: 1px solid #bcbcbc;
   height: 32px;
   margin-right: 10px;
 }
+
 .com_list .comment button {
   padding: 10px 20px;
   border: 1px solid #bcbcbc;
@@ -391,22 +459,26 @@
   background: none;
   transition: all 0.4s;
 }
+
 .com_list .comment button:hover {
   border: 1px solid black;
 }
-.com_list .comment button + button {
+
+.com_list .comment button+button {
   margin-left: 10px;
 }
 
 .pagination_view {
   margin-top: 50px;
 }
+
 .pagination_view span {
   display: inline-block;
   width: 80px;
   padding: 20px 0;
   position: relative;
 }
+
 .pagination_view span::after {
   content: "";
   position: absolute;
@@ -416,12 +488,15 @@
   height: 12px;
   background: url(/images/icon_arrow_down.svg) no-repeat center center / 100%;
 }
+
 .pagination_view .prev_btn span::after {
   transform: rotate(180deg);
 }
+
 .pagination_view a {
   padding: 20px 0;
 }
+
 .pagination_view .next_btn {
   border-top: 1px solid #eaeaea;
 }
@@ -429,18 +504,23 @@
 .etc_view {
   margin-top: 50px;
 }
+
 .etc_view .qna_list .col1 {
   width: 4%;
 }
+
 .etc_view .qna_list .col2 {
   width: 8%;
 }
+
 .etc_view .qna_list .col3 {
   width: 78%;
 }
+
 .etc_view .qna_list .col4 {
   width: 6%;
 }
+
 .etc_view .qna_list .col5 {
   width: 4%;
 }
@@ -451,11 +531,13 @@
   flex-direction: column;
   align-items: center;
 }
+
 .search_input_wrap span {
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 5px;
 }
+
 .search_input_wrap input[type="text"] {
   margin-bottom: 25px;
   width: 686px;
@@ -463,9 +545,11 @@
   border-bottom: 1px solid black;
   font-size: 18px;
 }
+
 .search_input {
   position: relative;
 }
+
 .search_input button {
   position: absolute;
   right: 10px;
@@ -476,12 +560,14 @@
   background: none;
   background: url(../images/ico_search.svg) no-repeat 0 0 / 100%;
 }
+
 .best_search button {
   border: none;
   padding: 6px 10px;
   font-size: 14px;
 }
-.best_search button + button {
+
+.best_search button+button {
   margin-left: 8px;
 }
 
@@ -489,6 +575,7 @@
   margin-top: 42px;
   border-top: 1px solid #e0e0e0;
 }
+
 .search_result span {
   display: inline-block;
   padding-top: 40px;
@@ -503,10 +590,11 @@
   justify-content: center;
 }
 
-.search_result .list > li {
+.search_result .list>li {
   width: calc((100% - 45px) / 4);
   position: relative;
 }
+
 .search_result .list .img_wrap {
   position: relative;
   overflow: hidden;
@@ -516,9 +604,11 @@
   transition: all 0.2s;
   height: 426px;
 }
+
 .search_result .list a:hover .add_btn {
   opacity: 1;
 }
+
 .search_result .add_btn {
   transition: all 0.5s;
   opacity: 0;
@@ -532,59 +622,143 @@
   border-radius: 50%;
   border: none;
 }
+
 .search_result .wish_add_btn {
   bottom: 10px;
   background-image: url(/images/wishlist.svg);
 }
+
 .search_result .img_wrap .wish_add_btn:hover {
   background-image: url(/images/heart_fill.svg);
 }
 
 textarea {
-	background: none;
-	border: 1px solid #a7a7a7;
-	border-bottom: none;
+  background: none;
+  border: 1px solid #a7a7a7;
+  border-bottom: none;
 }
 
 .product_selecting {
-	padding: 10px;
+  padding: 10px;
 }
+
 .product_selecting h2 {
-	font-size: 15px;
-	font-weight: 600;
-	padding-bottom: 30px;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
+  font-weight: 600;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
 }
+
 .product_selecting input[type="text"] {
-	width: 77%;
-	height: 40px;
-	line-height: 40px;
-	padding: 2px 4px 2px 15px;
-	border-radius: 0;
-	border: 1px solid #e0e0e0;
+  width: 77%;
+  height: 40px;
+  line-height: 40px;
+  padding: 2px 4px 2px 15px;
+  border-radius: 0;
+  border: 1px solid #e0e0e0;
 }
+
 .product_selecting .proSel_btn {
-	height: 40px;
-	padding: 12px 20px;
-	margin: 0 auto;
-	border: none;
-	background: black;
-	color: #fff;
+  height: 40px;
+  padding: 12px 20px;
+  margin: 0 auto;
+  border: none;
+  background: black;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
 }
+
 .td_img img {
-	width: 80px;
-	padding: 10px;
+  width: 80px;
+  padding: 10px;
 }
+
 .result_product table {
-	margin-top : 30px;
+  margin-top: 30px;
 }
+
 .result_product td {
-	font-size: 13px;
+  font-size: 14px;
+  padding: 10px;
 }
+
 .result_product button {
-	background: none;
-	padding: 12px 20px;
-	border: 1px solid #bcbcbc;
-	white-space: nowrap;
+  background: white;
+  padding: 12px 20px;
+  border: 1px solid #ffce32;
+  white-space: nowrap;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem auto;
+  background-color: white;
+  width: 100%;
+  /* 테이블 너비를 100%로 설정 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* 테이블에 그림자 추가 */
+  border-radius: 8px;
+  /* 테이블 모서리를 둥글게 */
+  overflow: hidden;
+  /* 테이블 내용이 넘치지 않도록 */
+}
+
+/* 테이블 헤더 */
+th {
+  background-color: #ffce32;
+  /* 헤더 배경색 */
+  color: white;
+  /* 헤더 글자색 */
+  line-height: 70px;
+  font-weight: bold;
+  /* 헤더 글자 굵게 */
+  font-size: 16px;
+  /* 헤더 글자 크기 */
+  /* 텍스트 자동 넘김 */
+  white-space: nowrap;
+}
+
+/* 테이블 행 */
+th,
+td {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+/* 테이블 본문 행 */
+tbody tr:hover {
+  background-color: #f1f1f1;
+  /* 행에 마우스를 올렸을 때 배경색 */
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+  /* 짝수 행 배경색 */
+}
+
+/* 테이블 본문 행 */
+tbody tr {
+  transition: background-color 0.3s ease;
+  /* 배경색 전환 효과 */
+}
+
+/* 테이블 본문 셀 */
+td {
+  line-height: 30px;
+  font-size: 14px;
+  /* 본문 글자 크기 */
+  color: #333;
+  /* 본문 글자 색 */
+}
+
+.btr_wrap {
+  display: flex;
+  justify-content: center;
 }
