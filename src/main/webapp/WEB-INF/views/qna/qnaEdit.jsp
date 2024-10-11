@@ -48,18 +48,31 @@
 	          <h2>Q&A</h2>
 			  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaEdit.do" onsubmit="return validateForm(this);">
 				<input type="hidden" name="idx" value="${qnaDTO.idx}">
-		          <div class="product_sel">
-		            <img src="images/noimg.gif" onerror="this.src='url';">
-		            <div class="product_info">
-		              <div class="txt_wrap">
-		                <a href="#">무직타이거 뚱랑이 테니스공 키링</a>
-		                <span>7,000원</span>
-		              </div>
-		              <div class="sel_wrap">
-		                <a href="#">상품상세보기</a>
-		                <a href="#">상품정보선택</a>
-		              </div>
-		            </div>
+				<input type="hidden" value="${name}" name="name">
+				<input type="hidden" id="product-hiddenname" value="" name="product">
+				<input type="hidden" id="product-hiddenimg" value="" name="product_img">
+				<input type="hidden" id="product-hiddenprice" value="" name="product_price">
+					<div class="product_sel">
+			            <img id="product-img" src="./images/productList/${qnaDTO.product_img}" onerror="this.src='url';">
+			            <div class="product_info">
+			              <div class="txt_wrap">
+			                <a id="product-name" href="#" data-product-name="">${qnaDTO.product}
+							</a>
+			                <span id="product-price">${qnaDTO.product_price}원</span>
+			              </div>
+			              <div class="sel_wrap">
+			                <a href="#">상품상세보기</a>
+			                <a href="#" class="pro_sel">상품정보선택</a>
+			              </div>
+			            </div>
+					<script>
+			            $(document).ready(function () {
+			                $(".pro_sel").click(function (event) {
+			                    event.preventDefault();
+			                    window.open("productSelect.do?searchKeyword=", "상품정보선택", "width=500, height=700");
+			                });
+			            });
+			        </script>
 		          </div>
 		          <div class="qna_write">
 		            <table>

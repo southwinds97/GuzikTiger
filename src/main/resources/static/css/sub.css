@@ -545,3 +545,46 @@ textarea {
 	border: 1px solid #a7a7a7;
 	border-bottom: none;
 }
+
+.product_selecting {
+	padding: 10px;
+}
+.product_selecting h2 {
+	font-size: 15px;
+	font-weight: 600;
+	padding-bottom: 30px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #e0e0e0;
+}
+.product_selecting input[type="text"] {
+	width: 77%;
+	height: 40px;
+	line-height: 40px;
+	padding: 2px 4px 2px 15px;
+	border-radius: 0;
+	border: 1px solid #e0e0e0;
+}
+.product_selecting .proSel_btn {
+	height: 40px;
+	padding: 12px 20px;
+	margin: 0 auto;
+	border: none;
+	background: black;
+	color: #fff;
+}
+.td_img img {
+	width: 80px;
+	padding: 10px;
+}
+.result_product table {
+	margin-top : 30px;
+}
+.result_product td {
+	font-size: 13px;
+}
+.result_product button {
+	background: none;
+	padding: 12px 20px;
+	border: 1px solid #bcbcbc;
+	white-space: nowrap;
+}

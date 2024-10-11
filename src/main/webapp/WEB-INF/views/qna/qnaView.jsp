@@ -38,11 +38,11 @@
         <c:choose>
           <c:when test="${not empty qnaDTO.product}">
             <div class="product_sel">
-              <img src="images/noimg.gif" onerror="this.src='url';">
+              <img src="./images/productList/${qnaDTO.product_img}" onerror="this.src='url';">
               <div class="product_info">
                 <div class="txt_wrap">
                   <a href="#">${qnaDTO.product}</a>
-                  <span>7,000원</span>
+                  <span>${qnaDTO.product_price}원</span>
                 </div>
               </div>
             </div>

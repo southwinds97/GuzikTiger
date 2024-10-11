@@ -6,6 +6,8 @@ import lombok.Data;
 public class QNABoardDTO {
 	private String idx;
 	private String product;
+	private String product_img;
+	private String product_price;
 	private String category;
 	private String title;
 	private String content;
