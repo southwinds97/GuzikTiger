@@ -64,11 +64,11 @@ public class OrderController {
 		int result = orderService.insertCart(list);
 
 		if (result > 0) {
-			// 회원가입 성공 메세지
+			// 장바구니 성공 메세지
 			JSFunction.alertLocation(resp, "장바구니에 상품이 추가되었습니다.", "/");
 			return null;
 		} else {
-			// 회원가입 실패
+			// 장바구니 실패
 			JSFunction.alertBack(resp, "장바구니에 상품 등록이 실패했습니다.");
 			return null;
 		}
@@ -179,12 +179,6 @@ public class OrderController {
 		model.addAttribute("orderList", orderDTOList);
 
 		return "order/pay";
-	}
-
-	// 상품 상세페이지 진입
-	@GetMapping("/productDtl.do")
-	public String productOrder() {
-		return "productDtl";
 	}
 
 	// 상세페이지에서 결제 페이지로 진행

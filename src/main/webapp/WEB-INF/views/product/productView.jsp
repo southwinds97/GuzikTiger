@@ -347,8 +347,14 @@
                                 <span id="actionBuy">구매하기</span>
                               </a>
                               <span class="gActionButtonColumn">
-                                <button tpye="button" class="btnNormal sizeL actionCart" onclick="product_submit()"
+                                <button tpye="button" class="btnNormal sizeL actionCart" onclick="cartInsert()"
                                   id="actionCart">장바구니</button>
+                                <script>
+                                  // 장바구니에 담기(ajax 처리) 넘겨야할 데이터(cart_dtl_id,member_id, product_id, option_id, quantity)
+                                  
+                                  
+                                </script>
+                                
                               </span>
                             </div>
                             <div id="chatis_gp_button_area"
@@ -420,6 +426,15 @@
                                                       <span class="salePrice displaynone">${product.price}원</span>
                                                       <span class="prdPrice ">${product.price}원</span>
                                                   </div>
+                                                  <script>
+                                                    // 가격을 0,000원 형식으로 변환
+                                                    $(document).ready(function () {
+                                                      $('.prdPrice').each(function () {
+                                                        let price = parseInt($(this).text().replace(/[^0-9]/g, ''));
+                                                        $(this).text(price.toLocaleString() + '원');
+                                                      });
+                                                    });
+                                                  </script>
                                               </div>
                                           </li>
                                       </c:forEach>

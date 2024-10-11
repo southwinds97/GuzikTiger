@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const quantity = parseInt(row.querySelector(".quantity_opt").value);
       currentTotalPrice += price * quantity;
       currentTotalQuantity += quantity;
+
+      // 개별 상품의 총 가격 업데이트
+      const totalPriceElement = row.querySelector(
+        ".ec-front-product-item-price"
+      );
+      totalPriceElement.textContent =
+        (price * quantity).toLocaleString() + "원";
     });
     if (totalPriceElement) {
       totalPriceElement.textContent = currentTotalPrice.toLocaleString() + "원";
@@ -79,46 +86,46 @@ document.addEventListener("DOMContentLoaded", function () {
       const newRow = document.createElement("tr");
       newRow.className = "option_product";
       newRow.innerHTML = `
-                <td>
-                    <input type="hidden" class="option_box_id">
-                    <p class="product">
-                        ${selectedProduct.product_name}
-                        <br>
-                        -
-                        <span>${selectedText}</span>
-                    </p>
-                </td>
-                <td>
-                    <span class="quantity" style="width: 65px;">
-                        <input type="text" id="option_box${selectedValue}_quantity" name="quantity_opt[]"
-                            class="quantity_opt eProductQuantityClass" value="1">
-                        <a href="#none" class="up eProductQuantityUpClass">
-                            <img src="images/btn_count_up.gif" id="option_box${selectedValue}_up" class="option_box_up"
-                                alt="수량증가">
-                        </a>
-                        <a href="#none" class="down eProductQuantityDownClass">
-                            <img src="images/btn_count_down.gif" id="option_box${selectedValue}_down"
-                                class="option_box_down" alt="수량감소">
-                        </a>
-                    </span>
-                    <a href="#none" class="delete">
-                        <img src="images/btn_delete.gif" id="option_box${selectedValue}_del" class="option_box_del"
-                            alt="삭제">
-                    </a>
-                </td>
-                <td class="right">
-                    <span id="option_box${selectedValue}_price">
-                        <input type="hidden" class="option_box_price" value="${price}">
-                        <span class="ec-front-product-item-price">${price.toLocaleString()}원</span>
-                    </span>
-                    <span class="mileage">
-                        (
-                        <img src="images/ico_product_point.gif" alt="적립금">
-                        <span id="option_box${selectedValue}_mileage" class="mileage_price">${mileage.toLocaleString()}</span>
-                        )
-                    </span>
-                </td>
-            `;
+        <td>
+          <input type="hidden" class="option_box_id">
+          <p class="product">
+            ${selectedProduct.product_name}
+            <br>
+            -
+            <span>${selectedText}</span>
+          </p>
+        </td>
+        <td>
+          <span class="quantity" style="width: 65px;">
+            <input type="text" id="option_box${selectedValue}_quantity" name="quantity"
+              class="quantity_opt eProductQuantityClass" value="1">
+            <a href="#none" class="up eProductQuantityUpClass">
+              <img src="images/btn_count_up.gif" id="option_box${selectedValue}_up" class="option_box_up"
+                alt="수량증가">
+            </a>
+            <a href="#none" class="down eProductQuantityDownClass">
+              <img src="images/btn_count_down.gif" id="option_box${selectedValue}_down"
+                class="option_box_down" alt="수량감소">
+            </a>
+          </span>
+          <a href="#none" class="delete">
+            <img src="images/btn_delete.gif" id="option_box${selectedValue}_del" class="option_box_del"
+              alt="삭제">
+          </a>
+        </td>
+        <td class="right">
+          <span id="option_box${selectedValue}_price">
+            <input type="hidden" class="option_box_price" value="${price}">
+            <span class="ec-front-product-item-price">${price.toLocaleString()}원</span>
+          </span>
+          <span class="mileage">
+            (
+            <img src="images/ico_product_point.gif" alt="적립금">
+            <span id="option_box${selectedValue}_mileage" class="mileage_price">${mileage.toLocaleString()}</span>
+            )
+          </span>
+        </td>
+      `;
       tbodyElement.appendChild(newRow);
 
       // 수량 증가 버튼 이벤트 리스너
