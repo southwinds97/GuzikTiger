@@ -549,20 +549,44 @@ const Basket = {
       tel: tel,
     };
 
-    var intlOrder = JSON.stringify(intlOrder);
-    var paymentInfo = JSON.stringify(paymentInfo);
-    orderInfo = JSON.stringify(orderInfo);
+    // var intlOrder = JSON.stringify(intlOrder);
+    // var paymentInfo = JSON.stringify(paymentInfo);
+    // orderInfo = JSON.stringify(orderInfo);
+    //     $.ajax({
+    //       url: "/payProcess.do",
+    //       type: "POST",
+    //       contentType: "application/json",
+    //       data: {
+    //         intlOrder: intlOrder,
+    //         paymentInfo: paymentInfo,
+    //         orderInfo: orderInfo,
+    //       },
+    //       traditional: true,
+    //       success: function (data) {
+    //         //	alert('성공');
+    //       },
+    //       error: function () {
+    //         alert("ajax 통신실패");
+    //       },
+    //     });
+    //   },
+    // };
     $.ajax({
       url: "/payProcess.do",
       type: "POST",
-      data: {
+      contentType: "application/json",
+      data: JSON.stringify({
         intlOrder: intlOrder,
         paymentInfo: paymentInfo,
         orderInfo: orderInfo,
-      },
-      traditional: true,
+      }),
       success: function (data) {
-        //	alert('성공');
+        if (data.success) {
+          alert(data.message);
+          window.location.href = "/myPage.do";
+        } else {
+          alert("결제에 실패했습니다: " + data.message);
+        }
       },
       error: function () {
         alert("ajax 통신실패");

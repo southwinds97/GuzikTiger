@@ -3,7 +3,9 @@ package com.edu.springboot.order;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -198,66 +202,77 @@ public class OrderController {
 	// 결제페이지에서 (결제)진행
 	@PostMapping("/payProcess.do")
 	@ResponseBody
-	public String payProcess(Model model, HttpServletRequest req, OrderDTO orderDTO) throws IOException {
+	public Map<String, Object> payProcess(@RequestBody Map<String, Object> requestData, HttpServletRequest req)
+			throws IOException {
+		Map<String, Object> response = new HashMap<>();
 		String member_id = (String) req.getSession().getAttribute("id");
 
-		// 결제상품 정보
-		String intlOrder = req.getParameter("intlOrder");
-		// 결제금액 정보
-		String paymentInfo = req.getParameter("paymentInfo");
-		// 결제자 정보
-		String orderInfo = req.getParameter("orderInfo");
-		/*----------insert 테스트를 위한 하드코딩---------*/
+		// JSON 데이터 파싱
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<Map<String, Object>> intlOrder = objectMapper.convertValue(requestData.get("intlOrder"),
+				new TypeReference<List<Map<String, Object>>>() {
+				});
+		Map<String, Object> paymentInfo = objectMapper.convertValue(requestData.get("paymentInfo"),
+				new TypeReference<Map<String, Object>>() {
+				});
+		Map<String, Object> orderInfo = objectMapper.convertValue(requestData.get("orderInfo"),
+				new TypeReference<Map<String, Object>>() {
+				});
 
-		System.out.println(intlOrder + "#######");
-		System.out.println(paymentInfo + "#######");
-		System.out.println(orderInfo + "#######");
+		System.out.println("#####" + "intlOrder -" + intlOrder + "#####");
+		System.out.println("#####" + "paymentInfo -" + paymentInfo + "#######");
+		System.out.println("#####" + "orderInfo -" + orderInfo + "#######");
 
-		// 주문테이블
-		orderDTO.setMember_id(member_id);
-		orderDTO.setOrder_name("관리자");
-		orderDTO.setOrder_phone("010-9077-1999");
-		orderDTO.setOrder_addr("서울 종로 더좋은");
-		orderDTO.setOrder_amount(148000);
-		orderDTO.setPayment("현금");
-		orderDTO.setDeliv_charge("무료");
-		orderDTO.setOrder_prog("주문완료");
-		orderDTO.setDeliv_prog("배송준비중");
+		try {
+			// 주문테이블
+			orderDTO.setMember_id(member_id);
+			orderDTO.setOrder_name((String) orderInfo.get("orderName"));
+			orderDTO.setOrder_phone((String) orderInfo.get("tel"));
+			orderDTO.setOrder_addr("서울 종로구 삼일대로17길 51 5층");
+			orderDTO.setOrder_amount((int) paymentInfo.get("totalPaymentAmount"));
+			orderDTO.setPayment("현금");
+			orderDTO.setDeliv_charge("무료");
+			orderDTO.setOrder_prog("주문완료");
+			orderDTO.setDeliv_prog("배송준비중");
 
-		int result = orderService.insertOrder(orderDTO);
+			int result = orderService.insertOrder(orderDTO);
 
-		// 생성된 order_id 받기
-		String o_id = orderDTO.getOrder_id();
-		System.out.println("o_id" + o_id);
-		if (result > 0) {
-			OrderDTO orderDTODtl1 = new OrderDTO();
-			// 주문상세(품목)테이블
-			ArrayList<OrderDTO> orderDTOList = new ArrayList<>();
-			orderDTODtl1.setOrder_id(o_id);
-			orderDTODtl1.setProduct_id("P10636");
-			orderDTODtl1.setOption_id("흑호 뚱랑이");
-			orderDTODtl1.setQuantity(2); // 35000원
-			orderDTOList.add(orderDTODtl1);
+			// 생성된 order_id 받기
+			String o_id = orderDTO.getOrder_id();
+			System.out.println("o_id" + o_id);
+			if (result > 0) {
+				// 주문상세(품목)테이블
+				ArrayList<OrderDTO> orderDTOList = new ArrayList<>();
 
-			OrderDTO orderDTODtl2 = new OrderDTO();
-			orderDTODtl2.setOrder_id(o_id);
-			orderDTODtl2.setProduct_id("P10670");
-			orderDTODtl2.setOption_id("보냉백");
-			orderDTODtl2.setQuantity(1); // 28000원
-			orderDTOList.add(orderDTODtl2);
+				for (Map<String, Object> item : intlOrder) {
+					OrderDTO orderDTODtl = new OrderDTO();
+					orderDTODtl.setOrder_id(o_id);
+					orderDTODtl.setProduct_id((String) item.get("product_id"));
+					orderDTODtl.setOption_id((String) item.get("option_id"));
+					orderDTODtl.setQuantity(Integer.parseInt(item.get("quantity").toString())); // 정수형으로 변환
+					orderDTOList.add(orderDTODtl);
+				}
 
-			OrderDTO orderDTODtl3 = new OrderDTO();
-			orderDTODtl3.setOrder_id(o_id);
-			orderDTODtl3.setProduct_id("P10670");
-			orderDTODtl3.setOption_id("보냉백+피크닉매트 세트");
-			orderDTODtl3.setQuantity(1); // 57000원
-			orderDTOList.add(orderDTODtl3);
+				int result2 = orderService.insertOrderDtl(orderDTOList);
+				System.out.println(result2);
 
-			int result2 = orderService.insertOrderDtl(orderDTOList);
-			System.out.println(result2);
+				if (result2 > 0) {
+					response.put("success", true);
+					response.put("message", "결제가 완료되었습니다.");
+				} else {
+					response.put("success", false);
+					response.put("message", "주문 상세 등록에 실패했습니다.");
+				}
+			} else {
+				response.put("success", false);
+				response.put("message", "주문 등록에 실패했습니다.");
+			}
+		} catch (Exception e) {
+			response.put("success", false);
+			response.put("message", "결제 처리 중 오류가 발생했습니다: " + e.getMessage());
 		}
 
-		return "paymentComplet";
+		return response;
 	}
 
 	// 회원정보 수정(정보 가져오기)

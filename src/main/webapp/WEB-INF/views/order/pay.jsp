@@ -231,6 +231,7 @@
             //주문금액 정보
             let orderArr = fnIntl();
             paymentInfo = Basket.paymemtSetAmont(orderArr);
+            console.log('##결제정보###', paymentInfo);
 
             //적립금 change event
 
