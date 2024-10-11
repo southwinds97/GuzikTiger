@@ -150,7 +150,7 @@
                         <a href="#none" class="btnnormal" id="returnButton" onclick="alert('반품을 철회하시겠습니까?')">반품철회</a>
                       </span>
                     </div>
-                    <a href="#" class="btnDetail">상세보기
+                    <a href="order_detailView.do" class="btnDetail">상세보기
                       <i aria-hidden="true" class="rArrow"></i>
                     </a>
                   </c:forEach>
