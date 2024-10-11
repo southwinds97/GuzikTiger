@@ -40,7 +40,40 @@
               <div id="modal-body-member"></div>
             </div>
           </div>
+ 
+    		<script>
+            $(document).ready(function () {
+              var modal = $('#deleteMemberModal');
+              var modalContent = $('#modal-body-member');
 
+              $('#deleteMember').click(function (event) {
+                event.preventDefault();
+                $.ajax({
+                  url: '/deleteMember.do',
+                  type: 'GET',
+                  success: function (data) {
+                    console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
+                    modalContent.html(data);
+                    modal.show();
+                  },
+                  error: function (xhr, status, error) {
+                    console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
+                    alert('회원탈퇴 페이지를 불러오는 데 실패했습니다.');
+                  }
+                });
+              });
+
+              $('.close').click(function () {
+                modal.hide();
+              });
+
+              $(window).click(function (event) {
+                if ($(event.target).is(modal)) {
+                  modal.hide();
+                }
+              });
+            });
+          </script>
           <script>
             $(document).ready(function () {
               //최근 리스트 스크립트에서 변환 , 

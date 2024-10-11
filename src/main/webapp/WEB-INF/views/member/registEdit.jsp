@@ -320,7 +320,7 @@
           // 취소 버튼
           $(".cancel_btn").click(function
               () {
-              location.href = "/mypage.do";
+              location.href = "/myPage.do";
           });
         </script>
         </form>
