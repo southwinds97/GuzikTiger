@@ -140,9 +140,9 @@
     
     <script>
     //주문상품정보
-    let intlOrder ;
+    let intlOrder = new Array();
     //결제금액정보
-    let paymentInfo; 
+    let paymentInfo = new Array() ; 
  $(document).ready(function () {
 	
 	 
@@ -353,10 +353,10 @@
     <h3>결제수단 선택</h3>  
    </div>
    <div class="payinner">
-    <div class="cardpay">
+    <div class="cardpay" id="cardpay">
      <img src="images/common/ico_card.png">
     </div>
-    <div class="deposit">
+    <div class="deposit" id="deposit">
      <img src="images/common/ico_bank.png">
     </div>
    </div>
@@ -487,7 +487,7 @@
    <h2>적립 혜택</h2>
    	<div class="sagment">
   	 <h3>상품별 적립금</h3>
-  	 <span class="order_price">
+  	 <span class="order_price"id="productSavePoint">
   	 1,200원
   	 </span>
   	</div>
@@ -506,7 +506,7 @@
   </div>
     <div class="totalpay2">
   	<h3>적립&nbsp예정금액</h3>
-  	<div class="txtem">1,200원</div>
+  	<div class="txtem" id= "expectSavePoint">1,200원</div>
   </div>
   <div class="order_bord"></div>
   <div class="agree">
@@ -520,7 +520,7 @@
    </div>   
   </div>
    <button type="button" class="paybtn" onclick="fnPayment()">
-    <span class="price_view">
+    <span class="price_view" id="paySubmit">
      26,900원 결제하기
     </span></button>
    <div class="helparea">

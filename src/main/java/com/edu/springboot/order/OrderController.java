@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.simple.*;
+
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -217,8 +220,13 @@ public class OrderController {
 		String paymentInfo = req.getParameter("paymentInfo");
 		//결제자 정보
 		String orderInfo = req.getParameter("orderInfo");
-		
 		/*----------insert 테스트를 위한 하드코딩---------*/
+		
+	
+		
+		System.out.println(intlOrder+"#######");
+		System.out.println(paymentInfo+"#######");
+		System.out.println(orderInfo+"#######");
 		
 		//주문테이블
 	     orderDTO.setMember_id("admin");

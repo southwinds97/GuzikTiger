@@ -25,7 +25,7 @@
         deliv_prog )
         
        VALUES (
-        TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_ID_seq.nextval ,
+        TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_LIST_seq.nextval ,
         #{member_id}, 
         #{order_name}, 
         #{order_phone}, 
@@ -37,7 +37,7 @@
         #{deliv_prog}
         ) 
         <selectKey keyProperty="order_id" resultType="String" order="AFTER">
-       		select TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_ID_seq.currval from dual
+       		select TO_CHAR(SYSDATE, 'YYYYMMDDHH')||'order'||ORDER_LIST_seq.currval from dual
   		</selectKey>
         
     </insert>

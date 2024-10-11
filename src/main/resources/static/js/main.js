@@ -9,7 +9,7 @@ let ChkcartList ;
 
 
 //최초결제리스트
-let paymentList = [];
+var paymentList = new Array();
 //상품수량 넣는 임시 목록 배열
 var arrary = [] ;
 
@@ -348,11 +348,29 @@ const Basket = {
 		  var innerTotalPaymentAmount = document.getElementById('totalPaymentAmount')
 		      innerTotalPaymentAmount.innerHTML = totalPaymentAmount +'원';
 
-			   let  paymentInfo = {"totalProductPrice":totalProductPrice,
-			  					"delvAmout": delvAmout,
-			  					"productDscount":productDscount,
-			  					"applyPoint"	:applyPoint,
-			  					"totalPaymentAmount": totalPaymentAmount }
+	        //상품적립금
+	      var productSavePoint = parseInt(totalProductPrice) * 0.05;
+	      var innerProductSavePoint = document.getElementById('productSavePoint')
+	          innerProductSavePoint.innerHTML = productSavePoint +'원';
+	     
+	       //예상 총 적립금
+	      var expectSavePoint = productSavePoint
+	      var innerExpectSavePoint = document.getElementById('expectSavePoint')
+	          innerExpectSavePoint.innerHTML = expectSavePoint +'원';	   
+	    
+	       //결제전송금액
+	      var paySubmit = totalPaymentAmount;
+	      var innerPaySubmit = document.getElementById('paySubmit')
+	          innerPaySubmit.innerHTML = totalPaymentAmount +'원';	  
+	    
+	      let paymentInfo = {
+			"totalProductPrice":totalProductPrice,
+			"delvAmout": delvAmout,
+			"productDscount":productDscount,
+			"applyPoint"	:applyPoint,
+			"expectSavePoint": expectSavePoint,
+			"totalPaymentAmount": totalPaymentAmount
+			 }
 			  	  
 			    return paymentInfo ;
 	},
@@ -407,11 +425,28 @@ const Basket = {
 		  var innerTotalPaymentAmount = document.getElementById('totalPaymentAmount')
 		      innerTotalPaymentAmount.innerHTML = totalPaymentAmount +'원';
 			  
+		   //상품적립금
+		   var productSavePoint = parseInt(totalProductPrice) * 0.05;
+   		   var innerProductSavePoint = document.getElementById('productSavePoint')
+   		       innerProductSavePoint.innerHTML = productSavePoint +'원';
+			   
+		   //예상 총 적립금
+		   var expectSavePoint = productSavePoint
+		   var innerExpectSavePoint = document.getElementById('expectSavePoint')
+		       innerExpectSavePoint.innerHTML = expectSavePoint +'원';	   
+		   
+		   //결제전송금액
+		   var paySubmit = totalPaymentAmount;
+		   		  var innerPaySubmit = document.getElementById('paySubmit')
+		   		      innerPaySubmit.innerHTML = totalPaymentAmount +'원';	  
+			  
 		 let  paymentInfo = {"totalProductPrice":totalProductPrice,
 							"delvAmout": delvAmout,
 							"productDscount":productDscount,
 							"applyPoint"	:applyPoint,
-							"totalPaymentAmount": totalPaymentAmount }
+							"expectSavePoint": expectSavePoint,
+							"totalPaymentAmount": totalPaymentAmount
+							 }
 			  
 		  return paymentInfo ;
 	},
@@ -491,6 +526,10 @@ const Basket = {
 	console.log('여기까지');
 		
 	} ,
+	
+	paymentMethod : function(){
+		
+	},
 	payProcess : function(intlOrder,paymentInfo){
 		
 		var orderName = $('#orderName').val();
