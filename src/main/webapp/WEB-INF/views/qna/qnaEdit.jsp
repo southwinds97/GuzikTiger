@@ -53,7 +53,7 @@
 				<input type="hidden" id="product-hiddenimg" value="" name="product_img">
 				<input type="hidden" id="product-hiddenprice" value="" name="product_price">
 					<div class="product_sel">
-			            <img id="product-img" src="./images/productList/${qnaDTO.product_img}" onerror="this.src='url';">
+			            <img id="product-img" src="./images/productList/${qnaDTO.product_img}" onerror="this.src='./images/noimg.gif';">
 			            <div class="product_info">
 			              <div class="txt_wrap">
 			                <a id="product-name" href="#" data-product-name="">${qnaDTO.product}

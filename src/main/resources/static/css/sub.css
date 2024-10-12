@@ -192,7 +192,7 @@
   display: flex;
 }
 
-.board_pagination .paginate ol>li>a {
+.board_pagination .paginate ol > li > a {
   display: block;
   width: 40px;
   height: 40px;
@@ -464,7 +464,7 @@
   border: 1px solid black;
 }
 
-.com_list .comment button+button {
+.com_list .comment button + button {
   margin-left: 10px;
 }
 
@@ -567,7 +567,7 @@
   font-size: 14px;
 }
 
-.best_search button+button {
+.best_search button + button {
   margin-left: 8px;
 }
 
@@ -590,7 +590,7 @@
   justify-content: center;
 }
 
-.search_result .list>li {
+.search_result .list > li {
   width: calc((100% - 45px) / 4);
   position: relative;
 }
@@ -672,7 +672,7 @@ textarea {
 
 .td_img img {
   width: 80px;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .result_product table {
