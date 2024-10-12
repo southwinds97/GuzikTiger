@@ -2,13 +2,11 @@
 :root {
   --point-color1: #ffce32;
   --point-color2: #009223;
-  --point-color3: #76CA9E;
+  --point-color3: #76ca9e;
   --gray-400: #aca89f;
   --gray-500: #666;
   --gray-600: #000;
 }
-
-
 
 #header {
   position: fixed;
@@ -61,7 +59,7 @@
   color: #000;
 }
 
-.header_left .gnb_wrap .gnb>li:hover>a {
+.header_left .gnb_wrap .gnb > li:hover > a {
   color: var(--gray-400);
   transition: all 0.5s;
 }
@@ -81,25 +79,24 @@
   border: 1px solid rgb(242, 242, 242);
 }
 
-.header_left .gnb_wrap .gnb>li:hover .depth2 {
+.header_left .gnb_wrap .gnb > li:hover .depth2 {
   opacity: 1;
   visibility: visible;
 }
 
-.header_left .gnb_wrap .depth2 li+li {
+.header_left .gnb_wrap .depth2 li + li {
   margin-top: 10px;
 }
 
-.header_left .gnb_wrap .depth2>li>a {
+.header_left .gnb_wrap .depth2 > li > a {
   display: block;
   line-height: 24px;
 }
 
-.header_left .gnb_wrap .depth2>li:hover>a {
+.header_left .gnb_wrap .depth2 > li:hover > a {
   display: block;
   background: #f4f4f4;
 }
-
 
 .header_left .gnb .depth3 {
   position: absolute;
@@ -121,12 +118,12 @@
   line-height: 25px;
 }
 
-.header_left .gnb_wrap .gnb .depth2>li:hover .depth3 {
+.header_left .gnb_wrap .gnb .depth2 > li:hover .depth3 {
   opacity: 1;
   visibility: visible;
 }
 
-.header_left .gnb_wrap .depth3>li:hover>a {
+.header_left .gnb_wrap .depth3 > li:hover > a {
   display: block;
   background: #f4f4f4;
 }
@@ -202,7 +199,7 @@
   justify-content: space-between;
 }
 
-.search_wrap input[type=search] {
+.search_wrap input[type="search"] {
   width: 50%;
   border: none;
 }
@@ -239,7 +236,7 @@
 }
 
 .header_bottom.on::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 85px;
   left: 0;
@@ -249,8 +246,6 @@
   opacity: 0.4;
   z-index: 99999;
 }
-
-
 
 #header .m_logo {
   display: none;
@@ -268,7 +263,6 @@
   display: none;
 }
 
-
 body {
   overflow-x: hidden;
 }
@@ -279,12 +273,12 @@ body {
 
 /* 슬라이더 */
 
-
 .main_slider {
   text-align: center;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 .main_slider img {
@@ -315,7 +309,7 @@ body {
 }
 
 .main_slider .arrow_btn::after {
-  content: '';
+  content: "";
   width: 17px;
   height: 30px;
   background: url(/images/arrow_left.svg) no-repeat center center / 100%;
@@ -330,7 +324,7 @@ body {
 .main_slider .swiper-pagination {
   left: auto;
   right: -775px;
-  bottom: 220px;
+  bottom: 80px;
   position: absolute;
 }
 
@@ -342,28 +336,23 @@ body {
   height: 11px;
   background: #ffffff;
   opacity: 1;
-
 }
 
 .main_slider .swiper-pagination .swiper-pagination-bullet-active {
   background: #292929;
   border-radius: 5px;
-
 }
 
 .main_slide .swiper-container {
   position: relative;
 }
 
-
 /*메인 베스트 */
-
 
 .main_item {
   padding-bottom: 50px;
   margin: 0 auto;
 }
-
 
 .main_top {
   display: flex;
@@ -395,7 +384,7 @@ body {
   justify-content: center;
 }
 
-.main_item .list>li {
+.main_item .list > li {
   width: calc((100% - 45px) / 4);
   position: relative;
 }
@@ -437,12 +426,6 @@ body {
   background-image: url(/images/heart_fill.svg);
 }
 
-
-
-
-
-
-
 .main_item .list .txt_wrap {
   height: 80px;
   background: #fff;
@@ -456,7 +439,6 @@ body {
   display: block;
   line-height: 24px;
 }
-
 
 .main_item .move_btn {
   width: 168px;
@@ -475,14 +457,12 @@ body {
   transition: all 0.5s;
 }
 
-
 .discount {
   margin: 0 auto 65px;
   max-width: 1500px;
   width: 100%;
   display: block;
 }
-
 
 .char_gif {
   margin: 0 106px 50px;
@@ -560,7 +540,7 @@ body {
 }
 
 .new_slider .arrow_btn::after {
-  content: '';
+  content: "";
   width: 10px;
   height: 6px;
   background: url(/images/icon_arrow_down.svg) no-repeat center center / 100%;
@@ -584,7 +564,7 @@ body {
   display: inline-block;
 }
 
-.main_instagram .insta li+li {
+.main_instagram .insta li + li {
   margin: 2px 2px 0 0;
 }
 
@@ -592,7 +572,6 @@ body {
   width: 100%;
   height: 248px;
 }
-
 
 .footer_wrap {
   border-top: 1px solid #e5e5e5;
@@ -636,7 +615,7 @@ body {
 }
 
 .footer_wrap .family_btn::after {
-  content: '';
+  content: "";
   width: 10px;
   height: 5px;
   background: url(/images/icon_arrow_down.svg) no-repeat center center / 100%;
