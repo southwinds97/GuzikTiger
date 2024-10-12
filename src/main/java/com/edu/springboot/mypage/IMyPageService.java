@@ -34,7 +34,7 @@ public interface IMyPageService {
     ArrayList<ProductDTO> recentViewSelect(String memberId);
 
     // 최근 본 상품 등록
-    int recentViewInsert(ProductDTO productDTO);
+    int recentViewInsert(Map<String, Object> param);
 
     // 주문내역 조회
     ArrayList<OrderDTO> orderSelect(String id);

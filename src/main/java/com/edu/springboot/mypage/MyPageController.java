@@ -215,13 +215,14 @@ public class MyPageController {
         return "mypage/recentView";
     }
 
-    @RequestMapping("/recentViewInsert.do")
-    public String insertRecentView(HttpServletRequest req, HttpServletResponse res, Model model,
-            ProductDTO productDTO) {
+    // @RequestMapping("/recentViewInsert.do")
+    // public String insertRecentView(HttpServletRequest req, HttpServletResponse
+    // res, Model model,
+    // ProductDTO productDTO) {
 
-        dao.recentViewInsert(productDTO);
-        return "mypage/recentView";
-    }
+    // dao.recentViewInsert(productDTO);
+    // return "mypage/recentView";
+    // }
 
     @RequestMapping("/myPost.do")
     public String myPost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {

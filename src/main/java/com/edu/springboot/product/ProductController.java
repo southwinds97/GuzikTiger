@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.ParameterDTO;
+import com.edu.springboot.mypage.IMyPageService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
@@ -23,6 +24,8 @@ import utils.PagingUtil;
 public class ProductController {
 	@Autowired
 	IProductService dao;
+	@Autowired
+	IMyPageService myPagedao;
 
 	@RequestMapping("/productList.do")
 	public String productList(Model model, @RequestParam("category") String category) {
@@ -161,8 +164,23 @@ public class ProductController {
 	@GetMapping("/productView.do")
 	public String productView(HttpServletRequest req, Model model, ProductDTO productDTO) {
 		String product_id = req.getParameter("product_id");
+		String member_id = (String) req.getSession().getAttribute("id");
 		ArrayList<ProductDTO> productViewList = dao.getProductDtl(product_id);
 		ArrayList<ProductDTO> productRelateList = dao.getProductRelate(product_id);
+
+		// 최근 본 상품 등록
+		if (member_id != null) {
+			Map<String, Object> param = new HashMap<>();
+			param.put("product_id", product_id);
+			param.put("member_id", member_id);
+			int result = myPagedao.recentViewInsert(param);
+
+			if (result > 0) {
+				System.out.println("최근 본 상품 등록 성공");
+			} else {
+				System.out.println("최근 본 상품 등록 실패");
+			}
+		}
 
 		model.addAttribute("productViewList", productViewList);
 		model.addAttribute("productRelateList", productRelateList);

@@ -82,7 +82,7 @@
     </select >
     
      <!-- 최근본 상품 등록  -->
-    <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
+    <!-- <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
       MERGE INTO recent_view_product 
 		USING  dual 
 		    ON (product_id = #{member_id})
@@ -91,7 +91,16 @@
 		WHEN NOT MATCHED THEN
 		INSERT (member_id, product_id, view_date) VALUES (#{member_id}, #{product_id},sysdate)
 
-    </insert>
+    </insert> -->
+    <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
+    MERGE INTO recent_view_product 
+    USING dual 
+    ON (member_id = #{member_id} AND product_id = #{product_id})
+    WHEN MATCHED THEN
+        UPDATE SET view_date = sysdate
+    WHEN NOT MATCHED THEN
+        INSERT (member_id, product_id, view_date) VALUES (#{member_id}, #{product_id}, sysdate)
+</insert>
 
     <!-- 주문 내역 조회 -->
     <select id="orderSelect" resultType="com.edu.springboot.order.OrderDTO" parameterType="String">

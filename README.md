@@ -3,8 +3,8 @@
 
 참고 사이트 - https://www.muziktiger.com/
 
-상세
-========================================
+# 상세
+
 <br />
 <img src="https://muziktiger.com/mztg/brand_page_1.jpg">
 
@@ -12,23 +12,25 @@
 
 쇼핑몰 페이지 구현
 
-구현 목록
-======================================
+# 구현 목록
+
 메인
 
 로그인 & 회원가입
-  - 로그인
-  - 회원가입
-  - 아이디 찾기
-  - 비밀번호 찾기
+
+- 로그인
+- 회원가입
+- 아이디 찾기
+- 비밀번호 찾기
 
 마이페이지(구현중)
-  - 메인
-  - 최근 본 상품
-  - 위시리스트
-  - 나의 게시글
-  - 회원정보수정
-  - 회원탈퇴
+
+- 메인
+- 최근 본 상품
+- 위시리스트
+- 나의 게시글
+- 회원정보수정
+- 회원탈퇴
 
 상품 목록
 
@@ -40,19 +42,18 @@ Q&A(구현중)
 
 결제창(구현중)
 
-DataBase (SQL)  <br />
-====================================================
-<a href="https://drive.google.com/file/d/1VH9bTVknD-hAx-TwzyKQ4UZ-nN9dxBUz/view?usp=sharing">GuzikTiger(테이블 정의서)</a>  <br/>
-<a href="https://drive.google.com/file/d/1Ffc-tdObH8qu-JM1b2BRESuJAXYY_22K/view?usp=sharing">GuzikTiger(상품 Insert)</a>  <br /> 
+# DataBase (SQL) <br />
 
-사용 프로그램
-====================================================
+<a href="https://drive.google.com/file/d/1VH9bTVknD-hAx-TwzyKQ4UZ-nN9dxBUz/view?usp=sharing">GuzikTiger(테이블 정의서)</a> <br/>
+<a href="https://drive.google.com/file/d/1Ffc-tdObH8qu-JM1b2BRESuJAXYY_22K/view?usp=sharing">GuzikTiger(상품 Insert)</a> <br />
+
+# 사용 프로그램
+
 <a href="https://code.visualstudio.com/">VS Code</a> <br />
 <a href="https://spring.io/tools">Spring Boot</a> <br />
 <a href="https://www.oracle.com/database/technologies/xe-downloads.html">Orecle 21c</a> <br />
 <a href="https://www.oracle.com/database/sqldeveloper/technologies/download"/>Sql Delveloper</a> <br />
 
-기타
-===================================================
+# 기타
 
 <img src="https://muziktiger.com/mztg/character_page_1.jpg">
