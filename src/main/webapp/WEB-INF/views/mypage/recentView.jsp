@@ -143,6 +143,14 @@
                                       </strong>
                                       <div id="${row.product_id }${'p'}"><strong class="price">${row.price }원</strong>
                                       </div>
+                                      <script>
+                                        // 9,999원 형식으로 변환
+                                          $('.description .price').each(function () {
+                                            let price = parseInt($(this).text().replace(/,/g, ''));
+                                            $(this).text(price.toLocaleString() + '원');
+                                          });
+                                      </script>
+                                      
                                       <ul class="Savings">
                                         <li class="mileage">
                                           <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
