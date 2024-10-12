@@ -98,7 +98,7 @@
                   });
 
                   var out = document.getElementById(product_id + "p");
-                  out.innerHTML = option_price[0].price + '원';
+                  out.innerHTML = option_price[0].price.toLocaleString() + '원';
                   //$('#priceTest').text(option_price[0].price);
                 });
               });
