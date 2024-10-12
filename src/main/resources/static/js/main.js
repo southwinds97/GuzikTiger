@@ -78,6 +78,7 @@ const Basket = {
 
     //총 할인금액
     var totalDiscountPrice = totalProductPrice * 0.04;
+    totalDiscountPrice = Math.floor(totalDiscountPrice / 10) * 10;
     var innerTotalDiscountPrice = document.getElementById("totalDiscountPrice");
     innerTotalDiscountPrice.innerHTML =
       totalDiscountPrice.toLocaleString() + "원";
@@ -119,6 +120,7 @@ const Basket = {
 
     //총 할인금액
     var totalDiscountPrice = totalProductPrice * 0.04;
+    totalDiscountPrice = Math.floor(totalDiscountPrice / 10) * 10;
     var innerTotalDiscountPrice = document.getElementById("totalDiscountPrice");
     innerTotalDiscountPrice.innerHTML =
       totalDiscountPrice.toLocaleString() + "원";
@@ -171,6 +173,8 @@ const Basket = {
 
     //총 할인금액
     var totalDiscountPrice = totalProductPrice * 0.04;
+    // 1의 자리 버림
+    totalDiscountPrice = Math.floor(totalDiscountPrice / 10) * 10;
     var innerTotalDiscountPrice = document.getElementById("totalDiscountPrice");
     innerTotalDiscountPrice.innerHTML =
       totalDiscountPrice.toLocaleString() + "원";
@@ -308,7 +312,7 @@ const Basket = {
     var innerPonts = document.getElementById("points");
     innerPonts.innerHTML = point.toLocaleString() + "원";
 
-    //총상품금액
+    //총상품금액(1의 자리 버림)
     var totalProductPrice = totalPrice;
     var innerTotalProductPrice = document.getElementById("totalProductPrice");
     innerTotalProductPrice.innerHTML =
@@ -323,6 +327,7 @@ const Basket = {
 
     //상품 할인금액
     var productDscount = totalProductPrice * 0.04;
+    productDscount = Math.floor(productDscount / 10) * 10;
     var innerProductDscount1 = document.getElementById("productDscount1");
     innerProductDscount1.innerHTML = productDscount.toLocaleString() + "원";
     var innerProductDscount2 = document.getElementById("productDscount2");
@@ -335,6 +340,8 @@ const Basket = {
 
     //할인 합계금액
     var totalDiscount = productDscount;
+    //1의 자리 버림
+    totalDiscount = Math.floor(totalDiscount / 10) * 10;
     var innerTotalDiscount1 = document.getElementById("totalDiscount1");
     innerTotalDiscount1.innerHTML = totalDiscount.toLocaleString() + "원";
     var innerTotalDiscount2 = document.getElementById("totalDiscount2");
@@ -402,6 +409,7 @@ const Basket = {
 
     //상품 할인금액
     var productDscount = totalProductPrice * 0.04;
+    productDscount = Math.floor(productDscount / 10) * 10;
     var innerProductDscount1 = document.getElementById("productDscount1");
     innerProductDscount1.innerHTML = productDscount.toLocaleString() + "원";
     var innerProductDscount2 = document.getElementById("productDscount2");
@@ -414,6 +422,7 @@ const Basket = {
 
     //할인 합계금액
     var totalDiscount = Number(productDscount) + Number(applyPoint);
+    totalDiscount = Math.floor(totalDiscount / 10) * 10;
     var innerTotalDiscount1 = document.getElementById("totalDiscount1");
     innerTotalDiscount1.innerHTML = totalDiscount.toLocaleString() + "원";
     var innerTotalDiscount2 = document.getElementById("totalDiscount2");
@@ -468,6 +477,7 @@ const Basket = {
         "&paymentList=" +
         paymentList;
     }
+    ㅁ;
   },
   allChk: function () {
     $(".cart_check").prop("checked", true);
@@ -538,7 +548,9 @@ const Basket = {
   paymentMethod: function () {},
   payProcess: function (intlOrder, paymentInfo) {
     var orderName = $("#orderName").val();
-    var addr = $("#addr").val();
+    var address = $("#address").val();
+    var detailAddress = $("#detailAddress").val();
+    var addr = address + " " + detailAddress;
     var tel = $("#tel4").val();
     var email = $("#emailArr").val();
     let orderInfo = {

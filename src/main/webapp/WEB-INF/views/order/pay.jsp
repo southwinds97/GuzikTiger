@@ -139,6 +139,7 @@
               <div class="addr1">
                 <input type="text" readonly name="addr" value="" placeholder="기본주소" id="address" class="basic" />
                 <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailAddress" />
+                
               </div>
               <div class="tel">
                 <label for="tel">휴대전화*</label>

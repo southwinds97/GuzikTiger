@@ -228,7 +228,7 @@ public class OrderController {
 			orderDTO.setMember_id(member_id);
 			orderDTO.setOrder_name((String) orderInfo.get("orderName"));
 			orderDTO.setOrder_phone((String) orderInfo.get("tel"));
-			orderDTO.setOrder_addr("서울 종로구 삼일대로17길 51 5층");
+			orderDTO.setOrder_addr((String) orderInfo.get("addr"));
 			orderDTO.setOrder_amount((int) paymentInfo.get("totalPaymentAmount"));
 			orderDTO.setPayment("현금");
 			orderDTO.setDeliv_charge("무료");
@@ -268,6 +268,7 @@ public class OrderController {
 				response.put("message", "주문 등록에 실패했습니다.");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.put("success", false);
 			response.put("message", "결제 처리 중 오류가 발생했습니다: " + e.getMessage());
 		}

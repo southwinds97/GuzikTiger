@@ -31,7 +31,7 @@
         #{order_phone}, 
         #{order_addr}, 
         #{order_amount}, 
-        #{payment}, 
+        #{payment, jdbcType=VARCHAR}, 
         #{deliv_charge}, 
         #{order_prog}, 
         #{deliv_prog}
