@@ -2,6 +2,7 @@ package com.edu.springboot.mypage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class MyPageController {
         int totalRecord = orderList.size();
 
         // 주문 내역 안에 상품 종류 수
-        
+
         model.addAttribute("orderList", orderList);
         model.addAttribute("totalRecord", totalRecord);
 
@@ -194,9 +195,10 @@ public class MyPageController {
         return resultMap;
     }
 
-    //최근 본 상품 내역
+    // 최근 본 상품 내역
     @RequestMapping("/recentView.do")
-    public String selectRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO  ) {
+    public String selectRecentView(HttpServletRequest req, HttpServletResponse res, Model model,
+            ProductDTO productDTO) {
         String memberId = (String) req.getSession().getAttribute("id");
 
         if (memberId == null) {
@@ -204,33 +206,49 @@ public class MyPageController {
         }
 
         ArrayList<ProductDTO> recentViewList = dao.recentViewSelect(memberId);
-        for(ProductDTO dto : recentViewList) {
-			String[] str =  (dto.getOption_id_list().split(";"));
-			dto.setOption_list( Arrays.asList(str));
-		}
+        for (ProductDTO dto : recentViewList) {
+            String[] str = (dto.getOption_id_list().split(";"));
+            dto.setOption_list(Arrays.asList(str));
+        }
         model.addAttribute("recentViewList", recentViewList);
 
         return "mypage/recentView";
     }
-    
+
     @RequestMapping("/recentViewInsert.do")
-    public String insertRecentView(HttpServletRequest req, HttpServletResponse res, Model model,ProductDTO productDTO) {
-    	 
-    	dao.recentViewInsert(productDTO);
-    	  return "mypage/recentView";
+    public String insertRecentView(HttpServletRequest req, HttpServletResponse res, Model model,
+            ProductDTO productDTO) {
+
+        dao.recentViewInsert(productDTO);
+        return "mypage/recentView";
     }
 
     @RequestMapping("/myPost.do")
     public String myPost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {
-    	String name = (String) req.getSession().getAttribute("name");
-    	ArrayList<QNABoardDTO> nameQnaList = qnadao.getnameQnaList(name);
-    	model.addAttribute("nameQnaList", nameQnaList);
-    	
+        String name = (String) req.getSession().getAttribute("name");
+        ArrayList<QNABoardDTO> nameQnaList = qnadao.getnameQnaList(name);
+        model.addAttribute("nameQnaList", nameQnaList);
+
         return "mypage/myPost";
     }
 
+    // 주문내역 상세 조회
     @RequestMapping("/order_detailView.do")
-    public String order_detailView(HttpServletRequest req, HttpServletResponse res, Model model, OrderDTO orderDTO) {
-       return "mypage/order_detailView";
+    public String orderDetailView(HttpServletRequest req, HttpServletResponse res, Model model, OrderDTO orderDTO) {
+        String order_id = req.getParameter("order_id");
+        ArrayList<OrderDTO> orderDetailList = dao.orderDetailSelect(order_id);
+
+        // 환불일자 계산
+        if (!orderDetailList.isEmpty()) {
+            OrderDTO order = orderDetailList.get(0);
+            Date orderDate = (Date) order.getOrder_date();
+            Date refundDate = new Date(orderDate.getTime() + 1000 * 60 * 60 * 24 * 1); // 주문일로부터 1일 후
+            model.addAttribute("refundDate", refundDate);
+        }
+
+        model.addAttribute("orderDetailList", orderDetailList);
+
+        return "mypage/order_detailView";
     }
+
 }

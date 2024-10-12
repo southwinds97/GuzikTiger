@@ -7,7 +7,7 @@
 
 #container {
   margin-top: 0px;
-	padding: 69px 0 60px;
+  padding: 69px 0 60px;
 }
 
 #contents {
@@ -41,7 +41,7 @@
   position: absolute;
   top: 26px;
   right: 20px;
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
   display: inline-block;
@@ -83,7 +83,7 @@
 
 .location li {
   display: inline-block;
-  font-size:13px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .location li:first-child a::before {
-  content: 'Home';
+  content: "Home";
   font-family: inherit;
   color: currentColor;
   font-size: 12px;
@@ -128,7 +128,7 @@
 }
 
 .mypage_main .order .watch_btn {
-  height:30px;
+  height: 30px;
   width: 80px;
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -139,33 +139,34 @@
 
 .mypage_main .goods {
   border-top: 1px solid #000000;
-  padding: 20px 0 80px;
+  padding: 20px 0 20px;
   display: flex;
   border-bottom: 1px solid #e0e0e0;
 }
 
 .mypage_main .goods .text {
   margin-left: 10px;
-
 }
 
 .mypage_main .goods .text p {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
-.mypage_main .goods .text .ball, .option {
-	font-weight: 700;
+.mypage_main .goods .text .ball,
+.option {
+  font-weight: 700;
 }
 
 .mypage_main .goods .text .price {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .mypage_main .goods img {
-  width:100px;
-  height:100px;
+  width: 100px;
+  height: 100px;
 }
 
 .comple {
   display: flex;
+  padding-top: 20px;
 }
 
 .comple h3 {
@@ -211,7 +212,7 @@
   position: absolute;
   top: 26px;
   right: 20px;
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
   display: inline-block;
@@ -247,7 +248,6 @@
   font-size: 20px;
 }
 
-
 .refund h3 {
   padding: 20px 0;
   font-size: 13px;
@@ -259,7 +259,7 @@
   position: absolute;
   top: 26px;
   right: 20px;
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
   display: inline-block;
@@ -291,34 +291,33 @@
   border-right: 1px solid #e5e5e5;
 }
 
-
 .rf_infor .division td {
   border: none; /* 특정 row(구분, 상품정보, 수량, 상품구매금액)에서 테두리 제거 */
 }
 
 .rf_infor .division .form {
-	width: 900px;
-	text-align: center;
+  width: 900px;
+  text-align: center;
 }
 
 .rf_infor .division .count {
-	text-align: center;
+  text-align: center;
 }
 
 .rf_infor .division .buy {
-	text-align: center;
+  text-align: center;
 }
 
-.rf_infor .target td {
+/* .rf_infor .target td {
   border-right: none;
-}
+} */
 
 .rf_infor .target .score {
   border: unset;
   border-right: none;
   border-top: 1px solid #e5e5e5;
   text-align: center;
-} 
+}
 .rf_infor .target .money {
   border: unset;
   border-left: none;
@@ -328,24 +327,23 @@
 }
 
 .rf_infor .target .kring {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 .rf_infor .target span {
-   color:#c0c0c0;
-   font-weight: 600;
-   display: block;
-   margin-top: 10px;
+  color: #c0c0c0;
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
 }
 
 .rf_infor .repay {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .rf_infor .total {
-	font-weight: 700;
+  font-weight: 700;
 }
-
 
 .rf_infor th {
   padding: 10px 30px;
@@ -359,6 +357,7 @@
   width: 190px;
   line-height: 22px;
   vertical-align: middle;
+  text-align: center;
 }
 
 .rf_infor td {
@@ -378,7 +377,7 @@
   position: absolute;
   top: 26px;
   right: 20px;
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
   display: inline-block;
@@ -420,7 +419,7 @@
   position: absolute;
   top: 26px;
   right: 20px;
-  content: '';
+  content: "";
   width: 8px;
   height: 8px;
   display: inline-block;
@@ -450,7 +449,6 @@
 .order_view {
   margin-top: 60px;
   text-align: right;
-
 }
 
 .order_view .view_btn {
@@ -496,12 +494,11 @@
 }
 
 .guide p::before {
-    content: '•'; /* 점 기호 */
-    color: black; /* 점 색상 */
-    margin-right: 5px; /* 점과 텍스트 사이의 간격 */
-    font-weight: bold; /* 점 두께 조정 (선택사항) */
+  content: "•"; /* 점 기호 */
+  color: black; /* 점 색상 */
+  margin-right: 5px; /* 점과 텍스트 사이의 간격 */
+  font-weight: bold; /* 점 두께 조정 (선택사항) */
 }
-
 
 .myinfo_Main {
   position: absolute;
@@ -513,7 +510,7 @@
 .myinfo_Main h2 {
   font-size: 18px;
   font-weight: 600;
-  color: #000
+  color: #000;
 }
 
 .myinfo_Main .subTitle {
@@ -539,18 +536,3 @@
   font-size: 13px;
   text-decoration: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

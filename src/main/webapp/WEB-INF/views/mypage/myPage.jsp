@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     <!DOCTYPE html>
     <html>
 
@@ -14,7 +15,7 @@
         content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
       <link rel="icon" href="images/common/favicon.png">
       <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
-      <title>GUZIK TIGER 무직타이거</title>
+      <title>GUZIK TIGER 구직타이거</title>
       <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
       <link rel="stylesheet" href="css/jquery-ui.min.css">
       <link rel="stylesheet" href="css/swiper-bundle.min.css">
@@ -109,7 +110,9 @@
                   <c:forEach var="order" items="${orderList}">
                     <div class="odder_list">
                       <div class="odder_date">
-                        <span class="date" title="주문일시">${order.order_date}</span>
+                        <span class="date" title="주문일시">
+                          <fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd HH:mm:ss" />
+                        </span>
                         <!-- 날짜형식 변환 -->
                         <span class="number" title="주문번호">
                           <a href="#" alt="주문번호">(${order.order_id})</a>
@@ -150,7 +153,7 @@
                         <a href="#none" class="btnnormal" id="returnButton" onclick="alert('반품을 철회하시겠습니까?')">반품철회</a>
                       </span>
                     </div>
-                    <a href="order_detailView.do" class="btnDetail">상세보기
+                    <a href="order_detailView.do?order_id=${order.order_id}" class="btnDetail">상세보기
                       <i aria-hidden="true" class="rArrow"></i>
                     </a>
                   </c:forEach>

@@ -29,14 +29,17 @@ public interface IMyPageService {
 
     // 위시리스트 전체 삭제
     int wishListDeleteAll(String memberId);
-    
-    // 최근 본 상품 조회 
+
+    // 최근 본 상품 조회
     ArrayList<ProductDTO> recentViewSelect(String memberId);
-    
+
     // 최근 본 상품 등록
     int recentViewInsert(ProductDTO productDTO);
 
     // 주문내역 조회
     ArrayList<OrderDTO> orderSelect(String id);
+
+    // 주문내역 상세 조회
+    ArrayList<OrderDTO> orderDetailSelect(String order_id);
 
 }

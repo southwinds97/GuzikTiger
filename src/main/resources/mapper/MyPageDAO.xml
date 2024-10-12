@@ -98,7 +98,7 @@
         SELECT * FROM (
             SELECT 
                 a.order_id,
-                a.order_date,
+                to_char(a.order_date, 'YYYY-MM-DD HH24:MI:SS') AS order_date,
                 a.member_id,
                 a.order_name,
                 a.order_phone,
@@ -125,6 +125,38 @@
             ORDER BY 
                 a.order_id DESC
         ) WHERE ROWNUM = 1
+    </select>
+
+    <!-- 주문 내역 상세 조회 -->
+    <select id="orderDetailSelect" resultType="com.edu.springboot.order.OrderDTO" parameterType="String">
+        SELECT 
+            a.order_id,
+            to_char(a.order_date, 'YYYY-MM-DD HH24:MI:SS') AS order_date,
+            a.member_id,
+            a.order_name,
+            a.order_phone,
+            a.order_addr,
+            a.order_amount,
+            a.payment,
+            a.deliv_charge,
+            a.order_prog,
+            a.deliv_prog,
+            b.product_id,
+            b.option_id,
+            b.quantity,
+            d.product_name,
+            c.price,
+            c.img_id
+        FROM 
+            order_list a
+            JOIN order_detail b ON a.order_id = b.order_id
+            JOIN product_dtl c ON b.product_id = c.product_id
+            JOIN product d ON c.product_id = d.product_id
+        WHERE 
+            a.order_id = #{order_id}
+            AND c.idx = 1
+        ORDER BY 
+            a.order_id DESC
     </select>
     
 </mapper>

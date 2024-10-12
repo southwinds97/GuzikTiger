@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
   <meta property="og:title" content="MUZIK TIGER  무직타이거">
   <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
   <meta property="og:image" content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
-  <title>MUZIK TIGER  무직타이거</title>
+  <title>GUZIK TIGER  구직타이거</title>
   <link rel="icon" href="images/common/favicon.png">
   <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,19 +57,19 @@
   		       <tbody>
   		        <tr>
   		         <th scope="row">주문번호</th>
-  		         <td>20241011-0000126</td>
+  		         <td>${orderDetailList[0].order_id}</td>
   		        </tr>
   		        <tr>
   		         <th scope="row">주문일자</th>
-  		         <td>2024-10-11 14:24:25</td>
+  		         <td><fmt:formatDate value="${orderDetailList[0].order_date}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
   		        </tr>
   		        <tr>
   		         <th scope="row">주문자</th>
-  		         <td></td>
+  		         <td>${orderDetailList[0].order_name}</td>
   		        </tr>
   		        <tr>
   		         <th scope="row">주문처리상태</th>
-  		         <td></td>
+  		         <td>${orderDetailList[0].order_prog}</td>
   		        </tr>	
   		       </tbody>
   		     </table>
@@ -81,15 +83,21 @@
   		       <tbody>
   		        <tr>
   		         <th scope="row">총 주문금액</th>
-  		         <td>0원 <button type="button" class="watch_btn">내역보기</button></td>
+  		         <td class="product_total"> <button type="button" class="watch_btn">내역보기</button></td>
   		        </tr>
   		        <tr>
   		         <th scope="row">총 결제금액</th>
-  		         <td>10,000원</td>
+  		         <td class="order_amount">${orderDetailList[0].order_amount}원</td>
+				 <script>
+					$('.order_amount').each(function () {
+						let price = parseInt($(this).text().replace(/,/g, ''));
+						$(this).text(price.toLocaleString() + '원');
+					});
+				 </script>
   		        </tr>
   		        <tr>
   		         <th scope="row">결제수단</th>
-  		         <td>신용카드</br>명세서에 카페24페이언츠(으)로 표기합니다</td>
+  		         <td>${orderDetailList[0].payment}</br></td>
   		        </tr>	
   		       </tbody>
   		     </table>
@@ -97,15 +105,63 @@
   	  		<div class="inform">
   		     <h3>주문 상품 정보(총 1개 / 0원)</h3>
   		    </div>
-  		    <div class="goods">
-  		      <img src="images/new3.jpg">
-  		       <div class="text">
-  		   	    <p class="ball">무직타이거 뚱랑이 테니스공 키링</p>
-  		   	    <p class="price">7,000원(1개)</p>
-  		   	    <p class="option">[옵션: 01.테니스공 키링]</p>
-  		   	    <p class="delivery">배송 : 기본배송</div>
-  		   	  </div>
-  		    </div>
+  		    <c:forEach var="order" items="${orderDetailList}">
+				<div class="goods">
+					<img src="/images/productList/${order.img_id}" alt="${order.product_name}">
+					<div class="text">
+						<p class="ball">${order.product_name}</p>
+						<p class="price">${order.price}원<span class="quantity">(${order.quantity}개)</span></p>
+						<p class="option">[옵션: ${order.option_id}]</p>
+						<p class="delivery">배송 : 기본배송</p>
+					</div>
+				</div>
+			</c:forEach>
+
+			<script>
+				$(document).ready(function() {
+					// 가격을 포맷팅하여 표시
+					$('.price').each(function () {
+						let priceText = $(this).contents().filter(function() {
+							return this.nodeType === 3; // 텍스트 노드만 선택
+						}).text().replace(/,/g, '').replace('원', '').trim();
+
+						let price = parseInt(priceText);
+						if (!isNaN(price)) {
+							$(this).contents().filter(function() {
+								return this.nodeType === 3; // 텍스트 노드만 선택
+							}).first().replaceWith(price.toLocaleString() + '원');
+						}
+					});
+
+					// 총 주문금액 price값을 모두 더함
+					var total = 0;
+					$(".goods").each(function() {
+						var priceText = $(this).find(".price").contents().filter(function() {
+							return this.nodeType === 3; // 텍스트 노드만 선택
+						}).text().replace("원", "").replace(/,/g, "").trim();
+
+						var quantityText = $(this).find(".quantity").text().replace("(", "").replace("개)", "").trim();
+						
+						console.log("Price Text: ", priceText); // 디버깅을 위해 추가
+						console.log("Quantity Text: ", quantityText); // 디버깅을 위해 추가
+
+						var price = parseInt(priceText);
+						var quantity = parseInt(quantityText);
+						
+						console.log("Parsed Price: ", price); // 디버깅을 위해 추가
+						console.log("Parsed Quantity: ", quantity); // 디버깅을 위해 추가
+						
+						if (!isNaN(price) && !isNaN(quantity)) {
+							total += price * quantity;
+						}
+					});
+
+					console.log("Total: ", total); // 디버깅을 위해 추가
+
+					// .product_total에 총 주문금액을 넣어줌
+					$(".product_total").text(total.toLocaleString() + "원");
+				});
+			</script>
   		   <div class="comple">
   		     <h3>취소완료</h3>
   		     <span class="more"><a href="#" class="btnText">상세정보</a></span>
@@ -124,7 +180,13 @@
   		       <tbody>
   		        <tr>
   		         <th scope="row">총 결제금액</th>
-  		         <td class="zero">0원</td>
+  		         <td class="zero">${orderDetailList[0].order_amount}원</td>
+				 <script>
+					$('.zero').each(function () {
+						let price = parseInt($(this).text().replace(/,/g, ''));
+						$(this).text(price.toLocaleString() + '원');
+					});
+				 </script>
   		        </tr>
   		        <tr>
   		         <th scope="row">상품구매금액</th>
@@ -158,22 +220,34 @@
 			  <tbody>
 			    <tr class="target">
 			      <th scope="row">취소대상</th>
-			      <td class="kring">무직타이거 뚱랑이 테니스공 키링</br>
-			      <span>[옵션:01.테니스공 키링]</span></td>
-			      <td class="score">1</td>    <!-- 수량 -->
-			      <td class="money">7,000원</td> <!-- 상품구매금액 -->
+			      <td class="kring">${orderDetailList[0].product_name} 외 4종</br>
+			      <span>[옵션:${orderDetailList[0].option_id}]</span></td>
+			      <td class="score">${orderDetailList[0].quantity}</td>    <!-- 수량 -->
+			      <td class="product_price">${orderDetailList[0].price}</td> <!-- 상품구매금액 -->
+				  <script>
+					$('.product_price').each(function () {
+						let price = parseInt($(this).text().replace(/,/g, ''));
+						$(this).text(price.toLocaleString() + '원');
+					});
+				  </script>
 			    </tr>
 			    <tr>
-			      <th scope="row">환불일자 (처리상태)</th>
-			      <td colspan="3">2024-10-11 14:24:57<span class="repay">(환불완료)</span></td>
+			      <th scope="row">환불일자<br/> (처리상태)</th>
+			      <td colspan="3"><fmt:formatDate value="${refundDate}" pattern="yyyy-MM-dd HH:mm:ss" /><span class="repay">(환불완료)</span></td>
 			    </tr>
 			    <tr>
 			      <th scope="row">환불금액</th>
-			      <td colspan="3"><span class="total">상품금액 7,000</span></br>+3,000(배송비)</br> <span class="total">= 합계 10,000원</span></td>
+			      <td colspan="3"><span class="total">${orderDetailList[0].order_amount}원</span></td>
+				  <script>
+					$('.total').each(function () {
+						let price = parseInt($(this).text().replace(/,/g, ''));
+						$(this).text(price.toLocaleString() + '원');
+					});
+				  </script>
 			    </tr>
 			    <tr>
 			      <th scope="row">환불수단</th>
-			      <td colspan="3">신용카드</td>
+			      <td colspan="3">현금</td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -188,23 +262,19 @@
   		       <tbody>
   		        <tr>
   		         <th scope="row">받으시는분</th>
-  		         <td></td>
+  		         <td>${orderDetailList[0].order_name}</td>
   		        </tr>
   		        <tr>
   		         <th scope="row">우편번호</th>
-  		         <td></td>
+  		         <td>03189</td>
   		        </tr>
   		        <tr>
   		         <th scope="row">주소</th>
-  		         <td></td>
+  		         <td>${orderDetailList[0].order_addr}</td>
   		        </tr>
   		        <tr>
-  		         <th scope="row">일반전화</th>
-  		         <td></td>
-  		        </tr>	
-  		        <tr>
   		         <th scope="row">휴대전화</th>
-  		         <td></td>
+  		         <td>${orderDetailList[0].order_phone}</td>
   		        </tr>	
   		        <tr>
   		         <th scope="row">배송메세지</th>
