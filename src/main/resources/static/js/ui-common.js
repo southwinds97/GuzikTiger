@@ -253,6 +253,16 @@ $(function () {
     $(this).parent().toggleClass("on");
   });
 
+
+  // 주문완료페이지 아코디언
+  $('.ec-base-fold eToggle').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('on');
+  });
+
+
+
+  
   // 메인 슬라이드
   var mainSwiper = new Swiper(".jsPrdThumbSlide", {
     navigation: {

@@ -1,0 +1,670 @@
+body {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.header {
+  max-width: 898px;
+  width: inherit;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 120;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-width: 320px;
+}
+
+.header .headerTop {
+  position: relative;
+  padding: 18px 0;
+  text-align: center;
+  vertical-align: top;
+  background: #fff;
+}
+
+.header .headerTop h1 {
+  margin: 0 95px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+}
+
+
+.header .headerMenu {
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.header .headerMenu.gLeft {
+  left: 0;
+}
+
+.header .headerMenu .btnBack a {
+  display: block;
+  position: relative;
+  height: 30px;
+}
+
+.header .headerMenu.gLeft [class*="btn"] {
+  margin-left: 10px;
+}
+
+.header .headerMenu [class*="btn"] {
+  float: left;
+}
+
+
+
+.header .headerMenu [class*="btn"], .header .headerMenu .btnBasket > a {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.header .headerMenu [class*="btn"], .header .headerMenu [class*="btn"] a {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 0;
+  color: transparent;
+}
+
+
+.header .headerMenu .btnBack a:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 9px;
+  width: 10px;
+  height: 17px;
+  background: url(/images/sfix_header.png) no-repeat 0 0;
+  background-size: 90px auto;
+}
+
+.header .headerMenu:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.header .headerMenu.gRight {
+  right: 0;
+}
+
+.header .headerMenu.gRight [class*="btn"] {
+  margin-right: 10px;
+}
+
+.header .headerMenu .btnBasket > a {
+  background: url(/images/sfix_header.png) no-repeat -30px 0;
+  background-size: 90px auto;
+}
+
+.header .headerMenu .btnBasket .count {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  min-width: 10px;
+  padding: 0 2px;
+  height: 14px;
+  border-radius: 14px;
+  font-weight: bold;
+  font-size: 9px;
+  line-height: 13px;
+  color: #fff;
+  text-align: center;
+  background: #ff0000;
+}
+
+.header .headerMenu .btnMy {
+  background: url(//img.echosting.cafe24.com/skin/mobile/common/sfix_header.png) no-repeat -60px 0;
+  background-size: 90px auto;
+}
+
+.header .titleArea h1 {
+  position: relative;
+  padding: 0 42px;
+  line-height: 61px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #D7D7D7;
+  border-right: 0;
+  border-left: 0;
+  background: #595959;
+}
+
+
+
+
+/********************************************************************/
+
+
+.inner {
+  padding-top: 122px;
+  width: 900px;
+  margin: 0 auto;
+  border-left: 1px solid #d7d5d5;
+  border-right: 1px solid #d7d5d5;
+  box-sizing: border-box;
+  background: #EDEDED;
+}
+
+.inner .resultArea {
+  position: relative;
+  margin: 20px 14px 24px;
+  padding: 31px 15px 18px;
+  background: #fff;
+}
+
+.inner .resultArea .message {
+  padding: 56px 0 13px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  line-height: 26px;
+  background: url(/images/ico_resultarea_message.png) no-repeat center 0;
+  background-size: 38px 42px;
+}
+
+.message strong {
+  font-weight: 700;
+}
+
+.inner .ec-base-table tbody th {
+  color:#666;
+}
+
+
+.inner .resultInfo {
+  margin: 13px 0 0;
+  border-top: 1px dashed #d7d5d5;
+}
+
+.inner .ec-base-table:first-child, .inner .displaynone + .ec-base-table {
+  margin-top: 7px;
+}
+.inner .ec-base-table:last-child {
+  margin-bottom: 7px;
+  padding: 0;
+}
+
+.inner .resultInfo .ec-base-table.gCellNarrow {
+  margin: 18px -14px 0;
+  color: #999;
+  font-size: 17px;
+}
+
+caption {
+  font-size: 1px;
+  line-height: 0;
+  text-indent: 150%;
+  white-space: nowrap;
+}
+
+.inner .ec-base-table.gCellNarrow tbody th {
+  padding: 5px 0 5px 14px;
+  font-size: 16px;
+}
+
+.inner .ec-base-table tbody th {
+  font-size: 15px;
+  padding: 8px 0 7px 14px;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: top;
+}
+
+.inner .ec-base-table.gCellNarrow tbody td {
+  font-size: 16px;
+}
+
+.inner .ec-base-table.gCellNarrow td {
+  padding: 5px 14px 5px 5px;
+}
+
+.inner .ec-base-table .right {
+  text-align: right;
+}
+
+.inner .txtEm {
+  color: #3971FF;
+  font-weight: 500;
+}
+
+.inner .refer {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.displaynone {
+  display: none !important;
+}
+
+.inner .resultArea:after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 5px;
+  background: url(/images/bg_resultarea.png) repeat-x 0 bottom;
+  background-size: auto 5px;
+}
+
+/********************************************************************/
+
+.inner .pannelArea {
+  margin: 0 0 10px;
+  border: 1px solid #d7d5d5;
+  border-width: 1px 0;
+  background: #fff;
+}
+
+.inner .pannelArea.title {
+  padding: 16px 14px;
+}
+
+.inner .title {
+  padding: 16px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.inner .title h2 {
+  margin: 0 10px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  line-height: 27px;
+}
+
+.inner .contents {
+  border-top: 1px solid #eaeaea;
+}
+
+.inner .segment:first-child, .inner .segment:first-child[class*='displaynone'] + 
+.segment, .inner .segment:first-child[style*='display: none'] + .segment {
+  border-top-width: 0;
+}
+.inner .segment {
+  position: relative;
+  border-top: 1px solid #d7d5d5;
+  padding: 14px;
+}
+
+.typeView tbody tr > th {
+  color: #999!important;
+}
+
+.inner .segment .ec-base-table tbody td span {
+  font-weight: 600;
+}
+
+.inner .segment > .ec-base-table.typeView {
+  margin: -14px 0;
+}
+
+.inner .segment > .ec-base-table:first-child, 
+.inner .segment > .ec-base-table:last-child {
+  margin: 0;
+}
+
+.inner .ec-base-table.typeView > table > tbody > tr:first-child > th, 
+.inner .ec-base-table.typeView > table > tbody > tr:first-child > td {
+  border-top-width: 0;
+  padding: 16px 0 26px;
+}
+
+.inner .ec-base-table.typeView > table > tbody > tr > td {
+  padding: 16px 0 26px 8px;
+  border-top: 1px solid #eaeaea;
+  color: #333;
+  font-weight: 500;
+}
+
+.inner .segment .ec-base-table tbody th, .inner .segment .ec-base-table tbody td {
+  font-size: 16px;
+  padding: 5px 0;
+}
+
+.inner .segment .ec-base-table tbody th, 
+.inner .segment .ec-base-table tbody td {
+  font-size: 15px;
+}
+
+.inner [class*="btn"].mini {
+  height: 42px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.inner .methodButton a {
+  margin: 6px 0 0;
+}
+
+.inner .btnNormal {
+  color: #000;
+  border: 1px solid #b5b5b5;
+  background: #fff;
+}
+
+.inner .btnNormal, .inner .btnStrong, .inner
+.btnBasic, .inner .btnBase {
+  height: 42px;
+  line-height: 38px;
+  padding: 0 12px;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.inner .segment > .ec-base-table.typeView {
+  margin: -14px 0;
+}
+
+.inner .ec-base-table.typeView > table > tbody > tr > th {
+  padding: 16px 0 26px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+.inner .deliverylist .segment .ec-base-table tbody td {
+  padding: 16px 0 26px 0;
+}
+
+
+/********************************************************************/
+
+.inner .ec-base-fold .ec-base-prdInfo, 
+.inner .pannelArea .ec-base-prdInfo {
+  margin: 0;
+  border: 0;
+}
+
+.inner .orderArea .ec-base-prdInfo {
+  margin: 0 16px 15px 16px;
+  /* border-top: 1px dashed #D5D5D5; */
+}
+
+.inner .ec-base-prdInfo {
+  position: relative;
+  margin: 0 0 7px;
+  padding: 20px 16px 4px;
+  border: 1px solid #d7d5d5;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.inner .normalresultlist .contents > .orderArea > .xans-order:first-child > 
+.ec-base-prdInfo:first-child, .inner .ec-base-prdInfo {
+  padding: 20px 14px 15px;
+}
+
+.inner .ec-base-prdInfo .prdBox {
+  display: flex;
+  min-height: 104px;
+}
+
+.inner .ec-base-prdInfo .thumbnail {
+  overflow: hidden;
+  width: 90px;
+  height: 90px;
+  margin-right: 20px;
+  border: 1px solid #d7d5d5;
+  box-sizing: border-box;
+}
+
+.inner .ec-base-prdInfo .description {
+  margin-top: -3px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.inner .ec-base-prdInfo .description .prdName {
+  margin: 0 0 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+  display: block;
+}
+
+.inner .ec-base-prdInfo .description .info {
+  margin: 0 0 14px;
+}
+
+.inner .ec-base-prdInfo .description .info li {
+  margin: 0 0 2px;
+  font-size: 14px;
+  color: #606060;
+}
+
+.inner .orderArea .totalPrice {
+  margin: 20px 14px 35px;
+  background: #f8f9fa;
+  color: #353535;
+  vertical-align: middle;
+  border: 0;
+  padding: 0;
+}
+
+.inner .ec-base-fold {
+  position: relative;
+  margin: 0 0 10px;
+  padding: 0;
+  border-bottom: 1px solid #d7d5d5;
+  border-width: 1px 0;
+  background: #fff;
+}
+
+.inner .ec-base-fold > .title {
+  position: relative;
+  padding-right: 48px;
+  cursor: pointer;
+}
+
+.inner .orderArea .totalPrice .title {
+  padding: 12px 15px 12px 15px;
+  background: #eff1f3;
+  border: 0;
+}
+
+.inner .orderArea .totalPrice .title h3 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #606060;
+}
+
+/**********************************************/
+
+
+.inner .ec-base-fold > .title:after {
+  position: absolute;
+  content: '';
+  top: 25px;
+  right: 14px;
+  height: 10px;
+  width: 17px;
+  margin-top: -5px;
+  display: block;
+  background: url(/images/bg_fold.png) no-repeat 0 0;
+  background-size: 17px auto;
+  border: 0;
+  transform: rotate(0deg);
+  transition: .3s ease-out;
+}
+
+.inner .ec-base-fold.on > .title:after {
+  transform: rotate(180deg);
+}
+
+.ec-base-fold > .contents {
+  display: none;
+}
+
+.ec-base-fold.on > .contents {
+  display: block;
+}
+
+
+
+
+
+/* 
+.inner .orderArea .totalPrice > .contents {
+  padding: 0 !important;
+  border-top-color: #eaeaea !important;
+  border-top-width: 1px !important;
+  margin-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.inner .ec-base-fold > .contents {
+  overflow: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  transition: height .3s ease, opacity .3s ease-out !important;
+} */
+
+
+
+
+.inner .segment .ec-base-table tbody tr:first-child th {
+  padding: 5px 0 5px 14px;
+  font-size: 16px;
+}
+
+.inner .segment .ec-base-table tbody tr:first-child td {
+  padding: 5px 14px 5px 5px;
+}
+
+.inner .ec-base-table.gCellNarrow tbody th {
+  padding: 5px 0 5px 14px;
+  font-size: 16px;
+}
+
+.inner .ec-order-expandwrap .ec-order-expand {
+  position: relative;
+  display: block;
+  padding-right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.inner .ec-base-table.gCellNarrow tbody td {
+  font-size: 16px;
+}
+
+.inner .ec-base-table.gCellNarrow td {
+  padding: 5px 14px 5px 5px !important;
+}
+
+
+
+/*******************************************************/
+
+
+.inner .segment .totalPay {
+  border-top-width: 0;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.inner .totalPay {
+  padding: 16px 15px;
+  border-top: 1px solid #d7d5d5;
+  color: #333;
+  font-size: 18px;
+  background: #eff1f4;
+}
+
+.inner .gBlank10 {
+  display: block;
+  margin-top: 10px;
+}
+
+.inner .totalPay .heading {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0 4px 0 0;
+}
+
+.inner .txtStrong {
+  color: #3971FF;
+  font-size: 17px;
+  font-weight: 700;
+  float: right; 
+}
+
+.heading, .txtStrong {
+  display: inline-block; 
+}
+
+/***************************************************/
+
+
+
+
+.inner .gColumn {
+  padding-bottom: 30px;
+}
+
+
+.inner .ec-base-button[class*="gColumn"] {
+  display: flex;
+  margin: 14px 14px 25px 4px;
+}
+
+.inner .ec-base-button {
+  text-align: center;
+}
+
+
+.inner .ec-base-button[class*="gColumn"] a, 
+.inner .ec-base-button[class*="gColumn"] button {
+  flex: 1;
+  margin: 0 0 0 10px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 4px;
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.inner .btnEm {
+  height: 36px;
+  line-height: 34px;
+  padding: 0 10px;
+  font-size: 15px;
+  border: 1px solid #d5d5d5;
+  background: #fff;
+}
+
+.inner .btnSubmit {
+  background: #4a5164;
+}
+
+.inner .btnSubmit {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 10px;
+  font-size: 15px;
+  color: #fff;
+  border: 1px solid #4a5164;
+  background: #000;
+}
