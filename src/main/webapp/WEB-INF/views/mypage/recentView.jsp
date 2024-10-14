@@ -181,7 +181,7 @@
                                       </li>
                                     </ul>
                                   </c:if> -->
-                                  <button type="button" class="btn_Delete" href="#none">삭제</button>
+                                  <!-- <button type="button" class="btn_Delete" href="#none">삭제</button> -->
                                 </div>
                               </li>
                             </c:if>
