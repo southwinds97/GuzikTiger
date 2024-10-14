@@ -148,18 +148,18 @@ $(function () {
       // 클릭된 위치가 닫기 버튼의 영역 내인지 확인
       const withinCloseButtonX =
         e.pageX >
-          $(this).offset().left +
-            $(this).outerWidth() -
-            closeButtonPosition.right -
-            closeButtonSize &&
+        $(this).offset().left +
+        $(this).outerWidth() -
+        closeButtonPosition.right -
+        closeButtonSize &&
         e.pageX <
-          $(this).offset().left +
-            $(this).outerWidth() -
-            closeButtonPosition.right;
+        $(this).offset().left +
+        $(this).outerWidth() -
+        closeButtonPosition.right;
       const withinCloseButtonY =
         e.pageY > $(this).offset().top + closeButtonPosition.top &&
         e.pageY <
-          $(this).offset().top + closeButtonPosition.top + closeButtonSize;
+        $(this).offset().top + closeButtonPosition.top + closeButtonSize;
 
       if (withinCloseButtonX && withinCloseButtonY) {
         // 여기에 닫기 버튼 클릭 시 실행할 코드를 작성
@@ -262,7 +262,7 @@ $(function () {
 
 
 
-  
+
   // 메인 슬라이드
   var mainSwiper = new Swiper(".jsPrdThumbSlide", {
     navigation: {
