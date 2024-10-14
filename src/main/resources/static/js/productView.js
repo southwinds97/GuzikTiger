@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const text1Element = document.querySelector(".text1");
   const text2Element = document.querySelector(".text2");
   const levelLineActiveElement = document.getElementById("levelLineActive"); // width를 동적으로 변경할 요소
+  const optionAddList = new Set(); 
   let productViewList = [];
   let basePrice = 50000; // 무료배송 기준 금액
 
@@ -81,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selectElement.options[selectElement.selectedIndex].text;
       const selectedProduct = productViewList[selectedValue - 1]; // 선택된 제품 정보 가져오기
       const price = parseInt(selectedProduct.price.replace(/,/g, "")); // 가격에서 쉼표 제거 후 정수로 변환
+	  const optionIdx = selectedProduct.idx;  //옵션idx값 
       const mileage = Math.floor(price * 0.05); // 가격의 5% 계산
       const selectedProducts = []; // 선택된 제품 정보를 담을 배열
       // 선택된 제품 정보를 배열에 추가
@@ -92,6 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
       //   console.log("선택된 제품:", selectedProduct); // 선택된 제품 정보를 콘솔에 출력하여 확인
       //   console.log("계산된 적립금:", mileage); // 계산된 적립금을 콘솔에 출력하여 확인
 
+	  
+	  var returnVal =  optionAddList.has(optionIdx);
+	  optionAddList.add(optionIdx);
+	     if(returnVal){
+	       alert('이미선택된 옵션입니다.');
+	       return;
+	     }
+	  
       const newRow = document.createElement("tr");
       newRow.className = "option_product";
       newRow.innerHTML = `

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+  <%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
     <!DOCTYPE html>
     <html>
 
@@ -118,7 +119,7 @@
                     </div>
                     <div class="contents">
                       <div class="sub_title">
-                        <h4>일반상품 (3)</h4>
+                      <h4>일반상품 (${fn:length(cartList)})건</h4>
                       </div>
                       <div class="cart_wrap">
                         <div class="cart_list">
@@ -140,7 +141,7 @@
                                     </strong>
                                     <ul class="price">
                                       <li class="id">
-                                        <strong class="price_value" id= "${'p_' }${row.cart_dtl_id}">${row.price}</strong>
+                                        <strong class="price_value" id= "${'p_' }${row.cart_dtl_id}">${row.price*row.quantity}</strong>
                                         <span class="displaynone">
                                           <span></span>
                                         </span>
