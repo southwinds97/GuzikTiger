@@ -8,6 +8,7 @@
     <select id="wishListSelect" resultType="map" parameterType="String">
         SELECT DISTINCT
             w.idx AS idx,
+            W.product_id AS product_id,
             p.product_name AS productName,
             TO_CHAR(pd.price, 'FM999,999,999,999') AS price,
             pd.img_id AS imgId
@@ -79,6 +80,8 @@
               and a.product_id = c.product_id
               and b.option_cate = d.code(+)
 			  order by c.view_date desc, a.product_id,b.idx
+              <!-- 10개까지만 -->
+                fetch first 10 rows only
     </select >
     
      <!-- 최근본 상품 등록  -->

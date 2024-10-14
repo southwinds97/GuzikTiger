@@ -40,8 +40,8 @@
               <div id="modal-body-member"></div>
             </div>
           </div>
- 
-    		<script>
+
+          <script>
             $(document).ready(function () {
               var modal = $('#deleteMemberModal');
               var modalContent = $('#modal-body-member');
@@ -133,24 +133,24 @@
                                 <div class="prdlist">
                                   <div class="prdBox">
                                     <div class="thumbnail">
-                                      <a href="#">
+                                      <a href="productView.do?product_id=${row.product_id}">
                                         <img src="../images/productList/${row.img_id }" alt="상품리스트">
                                       </a>
                                     </div>
                                     <div class="description">
                                       <strong class="prdName">
-                                        <a href="#"> ${row.product_name }</a>
+                                        <a href="productView.do?product_id=${row.product_id}"> ${row.product_name }</a>
                                       </strong>
                                       <div id="${row.product_id }${'p'}"><strong class="price">${row.price }원</strong>
                                       </div>
                                       <script>
                                         // 9,999원 형식으로 변환
-                                          $('.description .price').each(function () {
-                                            let price = parseInt($(this).text().replace(/,/g, ''));
-                                            $(this).text(price.toLocaleString() + '원');
-                                          });
+                                        $('.description .price').each(function () {
+                                          let price = parseInt($(this).text().replace(/,/g, ''));
+                                          $(this).text(price.toLocaleString() + '원');
+                                        });
                                       </script>
-                                      
+
                                       <ul class="Savings">
                                         <li class="mileage">
                                           <span><img src="images/ico_product_point.gif" alt="적립금"> 5%</span>
@@ -192,7 +192,7 @@
 
 
                   <!--페이지 -->
-                  <div class="paginate">
+                  <!-- <div class="paginate">
                     <a href="#" class="first">첫 페이지</a>
                     <a href="#">이전페이지</a>
                     <ol>
@@ -202,7 +202,7 @@
                     </ol>
                     <a href="#">다음페이지</a>
                     <a href="#" class="last">마지막페이지</a>
-                  </div>
+                  </div> -->
                   </c:otherwise>
                   </c:choose>
                   <!-- 왼쪽메뉴 -->

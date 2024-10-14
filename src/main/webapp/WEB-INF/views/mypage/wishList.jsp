@@ -90,60 +90,62 @@
                 <h2>나의 위시리스트</h2>
                 <div class="mylist">
                   <c:choose>
-	                <c:when test="${empty wishListData}">
-					  <p style="text-align: center; padding: 56px 0; border-bottom: 1px solid #e5e5e5; ">관심상품 내역이 없습니다</p>
-	                </c:when>
-	               <c:otherwise>
-                  <c:forEach var="item" items="${wishListData}">
-                    <ul class="mypage_top">
-                      <li>
-                        <input type="checkbox" class="wish_idx" value="${item.IDX}" />
-                      </li>
-                      <li class="thumbnail">
-                        <a href="productView.do?product_id=${item.product_id}">
-                          <img src="./images/productList/${item.IMGID}" class="tiger">
-                        </a>
-                      </li>
-                      <div class="description">
-                        <a href="productView.do?product_id=${item.product_id}" class="proname">${item.PRODUCTNAME}</a>
-                        <ul class="price">
-                          <li>${item.PRICE}원</li>
-                        </ul>
-                        <a href="#none" class="btndelete">삭제</a>
-                      </div>
-                      <div class="btngroup">
+                    <c:when test="${empty wishListData}">
+                      <p style="text-align: center; padding: 56px 0; border-bottom: 1px solid #e5e5e5; ">관심상품 내역이 없습니다
+                      </p>
+                    </c:when>
+                    <c:otherwise>
+                      <c:forEach var="item" items="${wishListData}">
+                        <ul class="mypage_top">
+                          <li>
+                            <input type="checkbox" class="wish_idx" value="${item.IDX}" />
+                          </li>
+                          <li class="thumbnail">
+                            <a href="productView.do?product_id=${item.PRODUCT_ID}">
+                              <img src="./images/productList/${item.IMGID}" class="tiger">
+                            </a>
+                          </li>
+                          <div class="description">
+                            <a href="productView.do?product_id=${item.PRODUCT_ID}"
+                              class="proname">${item.PRODUCTNAME}</a>
+                            <ul class="price">
+                              <li>${item.PRICE}원</li>
+                            </ul>
+                            <a href="#none" class="btndelete">삭제</a>
+                          </div>
+                          <!-- <div class="btngroup">
                         <div class="btn_right">
                           <button type="button" onclick="" class="btnnormal">장바구니</button>
                           <button type="button" onclick="" class="btnorder">주문하기</button>
                         </div>
-                      </div>
-                    </ul>
-                  </c:forEach>
+                      </div> -->
+                        </ul>
+                      </c:forEach>
 
-                  <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
-                  <script>
-                    $(document).ready(function () {
-                      $('.btndelete').click(function () {
-                        var idx = $(this).parent().parent().find('.wish_idx').val();
-                        $.ajax({
-                          url: '/deleteWishList.do',
-                          type: 'POST',
-                          data: {
-                            idx: idx
-                          },
-                          success: function (data) {
-                            console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
-                            alert(data.message); // 서버로부터 받은 메시지를 alert로 표시
-                            location.reload();
-                          },
-                          error: function (xhr, status, error) {
-                            console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
-                            alert(xhr.responseJSON.message); // 서버로부터 받은 에러 메시지를 alert로 표시
-                          }
+                      <!-- btndelete눌렀을 때 해당 부분 삭제(ajax) -->
+                      <script>
+                        $(document).ready(function () {
+                          $('.btndelete').click(function () {
+                            var idx = $(this).parent().parent().find('.wish_idx').val();
+                            $.ajax({
+                              url: '/deleteWishList.do',
+                              type: 'POST',
+                              data: {
+                                idx: idx
+                              },
+                              success: function (data) {
+                                console.log("AJAX 요청 성공:", data); // 디버깅용 콘솔 로그
+                                alert(data.message); // 서버로부터 받은 메시지를 alert로 표시
+                                location.reload();
+                              },
+                              error: function (xhr, status, error) {
+                                console.error("AJAX 요청 실패:", status, error); // 디버깅용 콘솔 로그
+                                alert(xhr.responseJSON.message); // 서버로부터 받은 에러 메시지를 alert로 표시
+                              }
+                            });
+                          });
                         });
-                      });
-                    });
-                  </script>
+                      </script>
 
                 </div>
                 <div class="btngroup2">
@@ -205,11 +207,11 @@
                     });
                   });
                 </script>
-                <div class="btngroup3">
+                <!-- <div class="btngroup3">
                   <div class="bottom_btn">
                     <button type="button" onclick="" class="btnallorder">전체상품주문</button>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="paginate">
                 <a href="#" class="first">첫 페이지</a>
@@ -222,8 +224,8 @@
                 <a href="#">다음페이지</a>
                 <a href="#" class="last">마지막페이지</a>
               </div>
-                </c:otherwise>
-               </c:choose>
+              </c:otherwise>
+              </c:choose>
               <div class="myinfo_Main">
                 <h3>My Account</h3>
                 <div class="subTitle">
