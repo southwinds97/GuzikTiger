@@ -132,9 +132,9 @@
 
 		from cart a, product b, product_dtl c
     		where 1=1
-            and a.product_id = b.product_id
+            and a.option_id = c.option_id
+            and a.product_id = c.product_id
             and b.product_id = c.product_id
-            and c.idx = 1
 		    and member_id = #{member_id}
 	</select> 
     

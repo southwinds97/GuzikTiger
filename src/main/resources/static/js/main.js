@@ -148,6 +148,10 @@ const Basket = {
       if (item.cart_dtl_id == cart_dtl_id) {
         arrary[item.cart_dtl_id] = iQuantity;
         item.price = Number(item.price) * iQuantity;
+		
+		var innerProductPrice = document.getElementById('p_'+item.cart_dtl_id);
+		  innerProductPrice.innerHTML = item.price + "원";
+		
       } else {
         if (
           item.quantity == arrary[item.cart_dtl_id] ||
@@ -155,6 +159,10 @@ const Basket = {
         ) {
           item.price = Number(item.price) * item.quantity;
         } else item.price = Number(item.price) * arrary[item.cart_dtl_id];
+		
+		var innerProductPrice = document.getElementById('p_'+item.cart_dtl_id);
+			  innerProductPrice.innerHTML = item.price + "원";
+		
       }
 
       totalPrice += Number(item.price);

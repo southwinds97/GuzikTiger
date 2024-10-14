@@ -140,7 +140,7 @@
                                     </strong>
                                     <ul class="price">
                                       <li class="id">
-                                        <strong class="price_value">${row.price}</strong>
+                                        <strong class="price_value" id= "${'p_' }${row.cart_dtl_id}">${row.price}</strong>
                                         <span class="displaynone">
                                           <span></span>
                                         </span>
