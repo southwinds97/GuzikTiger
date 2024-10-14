@@ -12,7 +12,9 @@ public interface IQNAService {
 
 	public int getTotalCount(ParameterDTO parameterDTO);
 
-	public ArrayList<QNABoardDTO> listPage(ParameterDTO parameterDTO);
+	public int getTotalCountUser(String name);
+
+	public ArrayList<QNABoardDTO> listPage(QNABoardDTO qnaDTO);
 
 	public int write(QNABoardDTO qnaDTO);
 
@@ -30,5 +32,5 @@ public interface IQNAService {
 
 	public ArrayList<QNABoardDTO> getRelatedQnaList(String category);
 	
-	public ArrayList<QNABoardDTO> getnameQnaList(String name);
+	public ArrayList<QNABoardDTO> getnameQnaList(QNABoardDTO qnaDTO);
 }

@@ -235,12 +235,25 @@ public class MyPageController {
 
     @RequestMapping("/myPost.do")
     public String myPost(Model model, HttpServletRequest req, QNABoardDTO qnaDTO) {
-        String name = (String) req.getSession().getAttribute("name");
-        ArrayList<QNABoardDTO> nameQnaList = qnadao.getnameQnaList(name);
-        model.addAttribute("nameQnaList", nameQnaList);
+    String name = (String) req.getSession().getAttribute("name");
 
-        return "mypage/myPost";
-    }
+    int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+    int pageSize = 10; // 페이지당 항목 수
+    int start = (pageNum - 1) * pageSize + 1;
+    int end = pageNum * pageSize;
+    qnaDTO.setStart(start);
+    qnaDTO.setEnd(end);
+    qnaDTO.setName(name);
+
+    ArrayList<QNABoardDTO> nameQnaList = qnadao.getnameQnaList(qnaDTO);
+    int totalCount = qnadao.getTotalCountUser(name);
+    String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum, req.getContextPath() + "/myPost.do?");
+
+    model.addAttribute("nameQnaList", nameQnaList);
+    model.addAttribute("pagingImg", pagingImg);
+
+    return "mypage/myPost";
+}
 
     // 주문내역 상세 조회
     @RequestMapping("/order_detailView.do")

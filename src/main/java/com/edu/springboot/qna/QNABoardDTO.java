@@ -18,4 +18,8 @@ public class QNABoardDTO {
 	private String password;
 	private java.sql.Date postdate;
 	private String uccURL;
+	private int start;
+	private int end;
+	private String searchField;
+    private String searchKeyword; // 추가된 프로퍼티
 }

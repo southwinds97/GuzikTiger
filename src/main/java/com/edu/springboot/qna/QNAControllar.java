@@ -32,32 +32,26 @@ public class QNAControllar {
 	IProductService proDao;
 
 	@RequestMapping("/qnaList.do")
-	public String qnaList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
-
-		int totalCount = dao.getTotalCount(parameterDTO);
-		int pageSize = 10;
-		int blockPage = 5;
-		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals(""))
-				? 1
-				: Integer.parseInt(req.getParameter("pageNum"));
+	public String qnaList(Model model, HttpServletRequest req, QNABoardDTO qnaDTO, ParameterDTO parameterDTO) {
+		String name = (String) req.getSession().getAttribute("name");
+		
+		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		int pageSize = 10; // 페이지당 항목 수
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
-		parameterDTO.setStart(start);
-		parameterDTO.setEnd(end);
+		qnaDTO.setStart(start);
+		qnaDTO.setEnd(end);
+		qnaDTO.setName(name);
 
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("totalCount", totalCount);
-		maps.put("pageSize", pageSize);
-		maps.put("pageNum", pageNum);
-		model.addAttribute("maps", maps);
+	
+		ArrayList<QNABoardDTO> lists = dao.listPage(qnaDTO);
+		int totalCount = dao.getTotalCount(parameterDTO);
+    	String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum, req.getContextPath() + "/myPost.do?");
 
-		ArrayList<QNABoardDTO> lists = dao.listPage(parameterDTO);
+
 		model.addAttribute("lists", lists);
-
-		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum,
-				req.getContextPath() + "/qnaList.do?");
 		model.addAttribute("pagingImg", pagingImg);
-
+		
 		return "qna/qnaList";
 	}
 
