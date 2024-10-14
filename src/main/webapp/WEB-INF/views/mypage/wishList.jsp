@@ -214,7 +214,7 @@
                 </div> -->
               </div>
               <div class="paginate">
-                <a href="#" class="first">첫 페이지</a>
+                <!-- <a href="#" class="first">첫 페이지</a>
                 <a href="#">이전페이지</a>
                 <ol>
                   <li class="xans-record">
@@ -222,7 +222,8 @@
                   </li>
                 </ol>
                 <a href="#">다음페이지</a>
-                <a href="#" class="last">마지막페이지</a>
+                <a href="#" class="last">마지막페이지</a> -->
+                ${pagingImg}
               </div>
               </c:otherwise>
               </c:choose>

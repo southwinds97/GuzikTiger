@@ -13,7 +13,10 @@ import com.edu.springboot.product.ProductDTO;
 @Mapper
 public interface IMyPageService {
     // 위시리스트 조회
-    List<Map<String, Object>> wishListSelect(String memberId);
+    List<Map<String, Object>> wishListSelect(WishListDTO wishListDTO);
+
+    // 위시리스트 총 갯수
+    int getWishListTotalCount(String memberId);
 
     // 위시리스트 중복 확인
     int wishListCheck(WishListDTO wishListDTO);

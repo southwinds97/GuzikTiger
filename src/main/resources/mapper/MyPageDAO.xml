@@ -5,23 +5,32 @@
 
 <mapper namespace="com.edu.springboot.mypage.IMyPageService">
     <!-- 위시리스트 조회 -->
-    <select id="wishListSelect" resultType="map" parameterType="String">
-        SELECT DISTINCT
-            w.idx AS idx,
-            W.product_id AS product_id,
-            p.product_name AS productName,
-            TO_CHAR(pd.price, 'FM999,999,999,999') AS price,
-            pd.img_id AS imgId
-        FROM 
-            wish_list w
-        JOIN 
-            product p ON w.product_id = p.product_id
-        JOIN 
-            product_dtl pd ON p.product_id = pd.product_id
-        WHERE 
-            w.member_id = #{memberId}
-            and pd.idx=1
-        ORDER BY w.idx desc
+    <select id="wishListSelect" resultType="map" parameterType="com.edu.springboot.mypage.WishListDTO">
+        SELECT * FROM (
+            SELECT 
+                ROWNUM AS rnum,
+                w.idx AS idx,
+                w.product_id AS product_id,
+                p.product_name AS productName,
+                TO_CHAR(pd.price, 'FM999,999,999,999') AS price,
+                pd.img_id AS imgId
+            FROM 
+                wish_list w
+            JOIN 
+                product p ON w.product_id = p.product_id
+            JOIN 
+                product_dtl pd ON p.product_id = pd.product_id
+            WHERE 
+                w.member_id = #{member_id}
+                AND pd.idx = 1
+            ORDER BY w.idx DESC
+        )
+        WHERE rnum BETWEEN #{start} AND #{end}
+    </select>
+
+    <!-- 위시리스트 전체 갯수 조회 -->
+    <select id="getWishListTotalCount" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM wish_list WHERE member_id = #{memberId}
     </select>
 
     <!-- 위시리스트 중복 확인 -->

@@ -68,11 +68,20 @@ public class MyPageController {
             return "redirect:/login.do";
         }
 
-        List<Map<String, Object>> wishListData = dao.wishListSelect(memberId);
+        int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+        int pageSize = 10; // 페이지당 항목 수
+        int start = (pageNum - 1) * pageSize + 1;
+        int end = pageNum * pageSize;
+        wishListDTO.setStart(start);
+        wishListDTO.setEnd(end);
+        wishListDTO.setMember_id(memberId);
+
+        List<Map<String, Object>> wishListData = dao.wishListSelect(wishListDTO);
+        int totalCount = dao.getWishListTotalCount(memberId);
+        String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum, req.getContextPath() + "/wishList.do?");
 
         model.addAttribute("wishListData", wishListData);
-
-        System.out.println(wishListData);
+        model.addAttribute("pagingImg", pagingImg);
 
         return "mypage/wishList";
     }
