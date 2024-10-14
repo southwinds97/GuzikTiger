@@ -13,7 +13,6 @@
       <script src="js/jquery-ui.min.js"></script>
       <script src="js/swiper-bundle.min.js"></script>
       <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
-      <script src="js/productView.js?v=<?php echo time(); ?>"></script>
     </head>
     <div id="prdDetail" class="productDetail tab-content ">
       <div class="eventArea">

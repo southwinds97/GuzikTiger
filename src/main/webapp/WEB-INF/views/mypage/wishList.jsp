@@ -100,12 +100,12 @@
                         <input type="checkbox" class="wish_idx" value="${item.IDX}" />
                       </li>
                       <li class="thumbnail">
-                        <a href="">
+                        <a href="productView.do?product_id=${item.product_id}">
                           <img src="./images/productList/${item.IMGID}" class="tiger">
                         </a>
                       </li>
                       <div class="description">
-                        <a href="" class="proname">${item.PRODUCTNAME}</a>
+                        <a href="productView.do?product_id=${item.product_id}" class="proname">${item.PRODUCTNAME}</a>
                         <ul class="price">
                           <li>${item.PRICE}원</li>
                         </ul>
