@@ -34,6 +34,7 @@
       <script src="js/swiper-bundle.min.js"></script>
       <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
       <script src="js/productView.js?v=<?php echo time(); ?>"></script>
+      <script src="js/main.js"></script>
     </head>
 
     <body>
@@ -343,7 +344,7 @@
                           <p class="ec-base-help displaynone EC-price-warning">할인가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.</p>
                           <div id class="productAction">
                             <div class="flex">
-                              <a href="#" class="btnSubmit gFull sizeL" onclick="payInsert()">
+                              <a href="#" class="btnSubmit gFull sizeL" onclick="Basket.cartInsertPay()">
                                 <span id="actionBuy">구매하기</span>
                               </a>
                               <span class="gActionButtonColumn">
@@ -404,6 +405,50 @@
       },
     });
   }
+  
+  //장바구니 저장 후 결제창 불러오기
+  function cartInsertPay() {
+	    if (isRequestInProgress) return; // 요청이 진행 중이면 함수 종료
+
+	    const productArray = [];
+	    document.querySelectorAll(".option_product").forEach((row) => {
+	      const productId = getParameterByName("product_id");
+	      const quantity = row.querySelector(".quantity_opt").value;
+	      const option_id = row.querySelector(".product span").textContent.split(". ")[1];
+	      const number = row.querySelector(".product span").textContent.split(". ")[0];
+	      const idx = parseInt(number, 10); // number를 idx로 변환
+
+	      productArray.push({
+	        product_id: productId,
+	        quantity: quantity,
+	        option_id: option_id,
+	        idx: idx,
+	      });
+	    });
+
+	    console.log(productArray);
+
+	    isRequestInProgress = true; // 요청 시작 시 플래그 설정
+	    document.getElementById("actionCart").disabled = true; // 버튼 비활성화
+
+	    // ajax 요청(Json 처리 안함)
+	    $.ajax({
+	      url: "/cartInsert.do",
+	      type: "post",
+	      data: JSON.stringify(productArray),
+	      contentType: "application/json",
+	      success: function (data) {
+	        alert("장바구니에 담겼습니다.");
+	        isRequestInProgress = false; // 요청 완료 시 플래그 해제
+	        document.getElementById("actionCart").disabled = false; // 버튼 활성화
+	      },
+	      error: function (xhr, status, error) {
+	        alert("장바구니 담기 실패");
+	        isRequestInProgress = false; // 요청 실패 시 플래그 해제
+	        document.getElementById("actionCart").disabled = false; // 버튼 활성화
+	      },
+	    });
+	  }
 </script>
                               </span>
                             </div>

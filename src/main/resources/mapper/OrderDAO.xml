@@ -185,24 +185,38 @@
 		    #{quantity}
  	    )  
     </insert>  -->
-	<insert id="insertCart" parameterType="java.util.List">
-    INSERT INTO cart (
-        MEMBER_ID, 
-        CART_DTL_ID, 
-        PRODUCT_ID, 
-        OPTION_ID,
-        QUANTITY
-    )
-    <foreach collection="list" item="item" separator=" UNION ALL ">
-        SELECT
-            #{item.member_id}, 
-            #{item.product_id} || '_' || #{item.idx},  <!-- CONCAT 대신 || 연산자 사용 -->
-            #{item.product_id}, 
-            #{item.option_id}, 
-            #{item.quantity}
-        FROM DUAL
-    </foreach>
-</insert>
+	<update id="insertCart" parameterType="java.util.List">
+
+	   MERGE INTO cart A USING (
+	   	 <foreach collection="list" item="item" open="" close="" separator="union">
+	   	  SELECT 
+	   	 	#{item.member_id} as member_id, 
+            #{item.product_id} || '_' || #{item.idx} as  cart_dtl_id, <!-- CONCAT 대신 || 연산자 사용 -->
+            #{item.product_id} as product_id, 
+            #{item.option_id} as option_id, 
+            #{item.quantity} as quantity
+          FROM dual 
+	   	 </foreach>
+	   )B
+	    ON (A.cart_dtl_id = B.cart_dtl_id)
+	   WHEN MATCHED THEN
+	    UPDATE SET A.quantity = B.quantity
+	   WHEN NOT MATCHED THEN
+	    INSERT (
+	        MEMBER_ID, 
+	        CART_DTL_ID, 
+	        PRODUCT_ID, 
+	        OPTION_ID,
+	        QUANTITY
+	    )values(
+	        B.MEMBER_ID, 
+	        B.CART_DTL_ID, 
+	        B.PRODUCT_ID, 
+	        B.OPTION_ID,
+	        B.QUANTITY
+	    )
+    	
+    </update>
      
     <!-- 장바구니에서 수량 변경목록 -->
     <update id="updateCart" 	parameterType = "com.edu.springboot.product.ProductDTO">

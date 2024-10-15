@@ -290,6 +290,61 @@ const Basket = {
       }
     }
   },
+  
+  //장바구니 저장 후 결제창 불러오기
+  cartInsertPay : function() {
+      if (isRequestInProgress) return; // 요청이 진행 중이면 함수 종료
+
+      const productArray = [];
+      document.querySelectorAll(".option_product").forEach((row) => {
+        const productId = getParameterByName("product_id");
+        const quantity = row.querySelector(".quantity_opt").value;
+        const option_id = row.querySelector(".product span").textContent.split(". ")[1];
+        const number = row.querySelector(".product span").textContent.split(". ")[0];
+        const idx = parseInt(number, 10); // number를 idx로 변환
+
+        productArray.push({
+          product_id: productId,
+          quantity: quantity,
+          option_id: option_id,
+          idx: idx,
+        });
+      });
+
+	  if(productArray.length===0){
+		alert('옵션을 선택하세요');
+		return ;
+	  }
+     // 장바구니에 결제창으로 불러올 리스트 만들기
+	  var str ;
+	  var cart_dtl_id_lit = new Array();
+	  productArray.forEach(function(item){
+	
+	  str = 	item.product_id.concat('_',item.idx);
+	  cart_dtl_id_lit.push(str);
+	  })
+      isRequestInProgress = true; // 요청 시작 시 플래그 설정
+      document.getElementById("actionCart").disabled = true; // 버튼 비활성화
+
+      // ajax 요청(Json 처리 안함)
+      $.ajax({
+        url: "/cartInsert.do",
+        type: "post",
+        data: JSON.stringify(productArray),
+        contentType: "application/json",
+        success: function (data) {
+          isRequestInProgress = false; // 요청 완료 시 플래그 해제
+		
+        },
+        error: function (xhr, status, error) {
+          alert("결제 요청 실패");
+          isRequestInProgress = false; // 요청 실패 시 플래그 해제
+          document.getElementById("actionCart").disabled = false; // 버튼 활성화
+        },
+      });
+	    location.href = "/payment.do?cart_dtl_id_list=" + cart_dtl_id_lit;
+    },
+  
   //단일상품 주문
   oneProductOrder: function (cart_dtl_id) {
     if (cartList != null || cartList != undefined) {

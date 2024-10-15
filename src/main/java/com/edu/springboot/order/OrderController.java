@@ -3,6 +3,7 @@ package com.edu.springboot.order;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,21 @@ public class OrderController {
 		}
 
 		int result = orderService.insertCart(productList);
+		
+		//ajax 리턴값 만들기
+//	    ArrayList<String> productViewList = new ArrayList();
+//	    StringBuffer sb = new StringBuffer();
+//		for(ProductDTO dto :productList ) {
+//			
+//			String product_id = dto.getProduct_id();
+//			String idx = Integer.toString(dto.getIdx());
+//			sb.append(product_id);
+//			sb.append("_");
+//			sb.append(idx);
+//			productViewList.add(sb.toString());
+//			sb = new StringBuffer();
+//		}
+//		System.out.println("%%%%%%"+productViewList);
 
 		if (result > 0) {
 			// 장바구니 성공 메세지
