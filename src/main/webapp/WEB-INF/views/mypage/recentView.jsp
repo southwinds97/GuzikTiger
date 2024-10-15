@@ -128,7 +128,6 @@
                         </c:when>
                         <c:otherwise>
                           <c:forEach items="${recentViewList}" var="row" varStatus="loop">
-                            <c:if test="${row.idx eq 1}">
                               <li class="list_Wrap">
                                 <div class="prdlist">
                                   <div class="prdBox">
@@ -184,7 +183,6 @@
                                   <!-- <button type="button" class="btn_Delete" href="#none">삭제</button> -->
                                 </div>
                               </li>
-                            </c:if>
                           </c:forEach>
 
                     </ul>

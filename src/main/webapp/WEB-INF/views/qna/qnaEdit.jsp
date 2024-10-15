@@ -124,7 +124,7 @@
 		                    <form action="">
 		                      <input type="radio" name="secretYN" value="n" id="passn" checked>
 		                      <label for="passn">공개글</label>
-		                      <input type="radio" name="secretYN" value="${qnaDTO.secretYN}" id="passy">
+		                      <input type="radio" name="secretYN" value="y" id="passy">
 		                      <label for="passy">비밀글</label>
 		                    </form>
 		                  </td>
