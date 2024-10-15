@@ -24,8 +24,6 @@
 				$(document).on("click", ".btn_more", function () { // 이벤트 위임 사용
 					productSelectContent(false);
 				});
-
-				// searchKeyword 파라미터가 존재하면 AJAX 요청 보내기
 				function productSelectContent(reset) {
 					$.ajax({
 						url: "productSelectList.do",

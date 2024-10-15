@@ -66,13 +66,10 @@
                             <option value="hint_14">다시 태어나면 되고 싶은 것은?</option>
                             <option value="hint_15">내가 좋아하는 캐릭터는?</option>
                         </select>
-
                         <label for="repass">비밀번호 확인 답변 <span>*</span></label>
                         <input type="text" name="hintas" value="" required /><br />
-
                         <label for="name">이름 <span>*</span></label>
                         <input type="text" name="name" value="" required /><br />
-
                         <label for="zip_code">주소 <span>*</span></label>
                         <div class="register_addr">
                             <input type="text" readonly name="postcode" value="" placeholder="우편번호"
@@ -81,7 +78,6 @@
                         </div>
                         <input type="text" readonly name="addr" value="" placeholder="기본주소" id="address" /><br />
                         <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailAddress" /><br />
-                        <!-- <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
                         <!-- 주소검색 API -->
                         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                         <script>
@@ -89,19 +85,16 @@
                                 new daum.Postcode({
                                     oncomplete: function (data) {
                                         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
                                         // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                                         // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                                         var addr = ''; // 주소 변수
                                         var extraAddr = ''; // 참고항목 변수
-
                                         //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                                         if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                                             addr = data.roadAddress;
                                         } else { // 사용자가 지번 주소를 선택했을 경우(J)
                                             addr = data.jibunAddress;
                                         }
-
                                         // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
                                         if (data.userSelectedType === 'R') {
                                             // 법정동명이 있을 경우 추가한다. (법정리는 제외)
@@ -118,12 +111,7 @@
                                                 extraAddr = ' (' + extraAddr + ')';
                                             }
                                             // 조합된 참고항목을 해당 필드에 넣는다.
-                                            // document.getElementById("sample6_extraAddress").value = extraAddr;
-
-                                        } else {
-                                            // document.getElementById("sample6_extraAddress").value = '';
-                                        }
-
+                                        } 
                                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
                                         document.getElementById('postcode').value = data.zonecode;
                                         document.getElementById("address").value = addr;
@@ -133,58 +121,6 @@
                                 }).open();
                             }
                         </script>
-                        <!-- <label for="tel">일반 전화 <span>*</span></label>
-              <div class="register_tel">
-                <select class="phn" name="tel1">
-                  <option value="02">02</option>
-                  <option value="031">031</option>
-                  <option value="032">032</option>
-                  <option value="033">033</option>
-                  <option value="041">041</option>
-                  <option value="042">042</option>
-                  <option value="043">043</option>
-                  <option value="044">044</option>
-                  <option value="051">051</option>
-                  <option value="052">052</option>
-                  <option value="053">053</option>
-                  <option value="054">054</option>
-                  <option value="055">055</option>
-                  <option value="061">061</option>
-                  <option value="062">062</option>
-                  <option value="063">063</option>
-                  <option value="064">064</option>
-                  <option value="070">070</option>
-                  <option value="010">010</option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                  <option value="018">018</option>
-                  <option value="019">019</option>
-                  <option value="0502">0502</option>
-                  <option value="0503">0503</option>
-                  <option value="0504">0504</option>
-                  <option value="0505">0505</option>
-                  <option value="0506">0506</option>
-                  <option value="0507">0507</option>
-                  <option value="0508">0508</option>
-                </select><span>-</span>
-                <input type="text" name="tel2" value=""><span>-</span>
-                <input type="text" name="tel3" value="">
-              </div> -->
-
-                        <label for="tel">휴대 전화 <span>*</span></label>
-                        <div class="register_tel">
-                            <select class="mobile" name="tel1">
-                                <option value="010">010</option>
-                                <option value="011">011</option>
-                                <option value="016">016</option>
-                                <option value="017">017</option>
-                                <option value="018">018</option>
-                                <option value="019">019</option>
-                            </select><span>-</span>
-                            <input type="text" name="tel2" value="" /><span>-</span>
-                            <input type="text" name="tel3" value="" />
-                            <input type="hidden" name="tel" value="" />
                             <!--전화번호 합치기 Script -->
                             <script>
                                 $(document).ready(function () {
@@ -210,9 +146,6 @@
 
                         <label for="email">이메일 <span>*</span></label>
                         <input type="text" name="email" value=""><br>
-                        <!-- 로그인 아이디로 사용할 이메일을 입력해 주세요. -->
-
-
                         <div class="more">
                             <label for="sex"> 성별 </label><br>
                             <input type="radio" id="man" name="gen" value="남" checked />

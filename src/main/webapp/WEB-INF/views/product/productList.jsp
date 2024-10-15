@@ -140,7 +140,6 @@
                 var listArrayValue = $('#list_array').val();
                 var codeValue = '${code}'; // JSP에서 code 값을 JavaScript 변수로 설정
                 var categoryValue = '${param.category}'; // JSP에서 category 값을 JavaScript 변수로 설정
-
                 $.ajax({
                   url: '${pageContext.request.contextPath}/productListContent.do',
                   type: 'GET',

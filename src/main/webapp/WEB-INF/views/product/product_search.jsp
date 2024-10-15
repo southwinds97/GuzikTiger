@@ -172,15 +172,12 @@ prefix="c" %>
                     } else {
                       $("#searchListContent").append(data);
                     }
-
                     // 서버에서 totalCount 값을 가져와서 설정
                     totalCount = parseInt($("#totalCount").val());
                     console.log(offset, totalCount);
                     offset += limit;
-
                     // productCount 요소의 값을 업데이트
                     $("#productCount").text(totalCount);
-
                     if (offset >= totalCount) {
                       $(".btn_more").hide();
                     } else {
