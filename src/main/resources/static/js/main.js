@@ -305,10 +305,11 @@ const Basket = {
   // 결제 금액 조회 (결제창)
   paymemtSetAmont: function (orderArr, usePoint) {
     var totalPrice = 0;
+	var tempPrice = 0;
     var point = 0;
     orderArr.forEach(function (item) {
-      item.price = Number(item.price) * item.quantity;
-      totalPrice += Number(item.price);
+      tempPrice = Number(item.price) * item.quantity;
+      totalPrice += Number(tempPrice);
       point = item.point;
 
       //최초 결제 리스트 처리
@@ -362,7 +363,7 @@ const Basket = {
       totalPaymentAmount.toLocaleString() + "원";
 
     //상품적립금
-    var productSavePoint = parseInt(totalProductPrice) * 0.05;
+    var productSavePoint = parseInt(totalProductPrice* 0.05);
     var innerProductSavePoint = document.getElementById("productSavePoint");
     innerProductSavePoint.innerHTML = productSavePoint.toLocaleString() + "원";
 
@@ -393,8 +394,8 @@ const Basket = {
     var totalPrice = 0;
     var point = 0;
     orderArr.forEach(function (item) {
-      item.price = Number(item.price) * item.quantity;
-      totalPrice += Number(item.price);
+      tempPrice = Number(item.price*item.quantity) ;
+      totalPrice += Number(tempPrice);
       point = item.point;
     });
     /*--------------------------금액 셋팅---------------------------*/
@@ -444,7 +445,7 @@ const Basket = {
       totalPaymentAmount.toLocaleString() + "원";
 
     //상품적립금
-    var productSavePoint = parseInt(totalProductPrice) * 0.05;
+    var productSavePoint = parseInt(totalProductPrice * 0.05);
     var innerProductSavePoint = document.getElementById("productSavePoint");
     innerProductSavePoint.innerHTML = productSavePoint.toLocaleString() + "원";
 

@@ -473,4 +473,21 @@
          AND a.product_name LIKE '%' || #{searchKeyword} || '%'
       	</if>
 	</select>
+	
+	
+	<!-- 결제 완료 후 재고 및 판매량 업데이트  -->
+	<update id="updateStock" parameterType="com.edu.springboot.product.ProductDTO" >
+	 
+		update product_dtl 
+            set
+            (stock , sell_count) = (
+            select stock - #{quantity},
+            sell_count + #{quantity} 
+            from product_dtl where product_id = #{product_id} and idx = #{idx}
+            )
+        where  product_id = #{product_id} and idx = #{idx}
+     
+	</update>
+	
+	
 </mapper>

@@ -237,7 +237,7 @@
             //적립금 change event
 
             $('#usePoint').change(function (e) {
-              let usePoint = e.target.value
+              let usePoint = Number(e.target.value);
 
               if (usePoint > orderArr[0].point) {
                 alert('사용가능 적립금보다 많습니다 적립금 사용금액을 다시 입력해주세요');
@@ -247,7 +247,7 @@
                 return;
               } else {
                 let orderArr = fnIntl();
-                Basket.finalSetAmount(orderArr, usePoint);
+                paymentInfo = Basket.finalSetAmount(orderArr, usePoint);
               }
             });
           });
@@ -256,7 +256,7 @@
           function usefullPoint() {
             let usePoint = intlOrder[0].point;
             $('#usePoint').val(usePoint);
-            Basket.finalSetAmount(intlOrder, usePoint);
+            paymentInfo = Basket.finalSetAmount(intlOrder, usePoint);
           }
           // 결제 진행
           function fnPayment() {

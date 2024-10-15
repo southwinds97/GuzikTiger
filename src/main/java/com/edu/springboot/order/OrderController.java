@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +40,7 @@ public class OrderController {
 
 	@Autowired
 	private IMemberService dao;
+	
 
 	ProductDTO productDTO = new ProductDTO();
 	OrderDTO orderDTO = new OrderDTO();
@@ -202,7 +202,7 @@ public class OrderController {
 	// 결제페이지에서 (결제)진행
 	@PostMapping("/payProcess.do")
 	@ResponseBody
-	public Map<String, Object> payProcess(@RequestBody Map<String, Object> requestData, HttpServletRequest req)
+	public Map<String, Object> payProcess(@RequestBody Map<String, Object> requestData, HttpServletRequest req )
 			throws IOException {
 		Map<String, Object> response = new HashMap<>();
 		String member_id = (String) req.getSession().getAttribute("id");
@@ -222,8 +222,37 @@ public class OrderController {
 		System.out.println("#####" + "intlOrder -" + intlOrder + "#####");
 		System.out.println("#####" + "paymentInfo -" + paymentInfo + "#######");
 		System.out.println("#####" + "orderInfo -" + orderInfo + "#######");
-
+		
+		ArrayList<String> cart_dtl_id_list = new ArrayList(); 
 		try {
+			
+			
+			ArrayList<ProductDTO> productDTOList = new ArrayList();
+			//재고 정산 리스트 추출 
+			for(Map<String, Object> map : intlOrder) {
+				productDTO = new ProductDTO();
+				productDTO.setQuantity(Integer.parseInt((String)map.get("quantity")));
+				productDTO.setProduct_id((String)map.get("product_id"));
+				productDTO.setIdx(Integer.parseInt((String)map.get("idx")));
+				productDTOList.add(productDTO);
+			}
+			System.out.println(productDTOList);
+			
+			//장바구니 삭제 리스트 추출
+			for(Map<String, Object> map : intlOrder) {
+				cart_dtl_id_list.add((String)map.get("cart_dtl_id"));
+			}
+			productDTO.setCart_dtl_id_list(cart_dtl_id_list);
+			productDTO.setMember_id(member_id);
+			
+			
+			//포인트 정산 추출
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setId(member_id);
+			int point1 =	(int) paymentInfo.get("applyPoint");
+			int point2 =	(int) paymentInfo.get("expectSavePoint");
+			memberDTO.setPoints(point2-point1);
+			
 			// 주문테이블
 			orderDTO.setMember_id(member_id);
 			orderDTO.setOrder_name((String) orderInfo.get("orderName"));
@@ -254,7 +283,21 @@ public class OrderController {
 				}
 
 				int result2 = orderService.insertOrderDtl(orderDTOList);
-				System.out.println(result2);
+				
+				//결제 완료 후 장바구니 삭제
+				orderService.deleteCartSel(productDTO);
+				
+				//결제 완료 후 재고 업데이트
+				
+				for(ProductDTO dto: productDTOList) {
+					iProductService.updateStock(dto);
+				}
+								
+				
+				//결제 완료 후 포인트 업데이트
+				dao.updatePoint(memberDTO);
+				
+				System.out.println(productDTOList);
 
 				if (result2 > 0) {
 					response.put("success", true);

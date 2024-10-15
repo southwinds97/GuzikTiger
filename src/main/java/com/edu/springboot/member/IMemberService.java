@@ -19,6 +19,9 @@ public interface IMemberService {
 
     // 회원 정보 수정 처리 메서드
     int updateMember(MemberDTO memberDTO);
+    
+    // 회원 정보 수정 (only point)
+    int updatePoint(MemberDTO memberDTO);
 
     // 회원 탈퇴 처리 메서드
     int deleteMember(String id);

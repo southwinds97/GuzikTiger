@@ -76,6 +76,7 @@
 		  c.price,
 		  b.option_yn,
 		  d.points,
+		  c.idx,
 		  c.img_id as img_id
 
 		from cart a, product b, product_dtl c, member d
@@ -83,7 +84,7 @@
             and a.product_id = b.product_id
             and b.product_id = c.product_id
             and a.member_id = d.id
-            and c.idx = 1
+            and a.OPTION_ID = c.OPTION_ID
 		            and member_id = #{member_id}  
              
 	</select>
@@ -100,6 +101,7 @@
 		  b.product_name as product_name,
 		  c.price,
 		  b.option_yn,
+		  c.idx,
 		  d.points,
 		  c.img_id as img_id
 
@@ -108,8 +110,8 @@
             and a.product_id = b.product_id
             and b.product_id = c.product_id
             and a.member_id = d.id
-            and c.idx = 1
-		            and member_id = #{member_id} 
+            and a.option_id = c.option_id
+		    and member_id = #{member_id} 
 			and cart_dtl_id in
 			<foreach collection="cart_dtl_id_list" item="item" open="(" close=")" separator=",">
 			 #{item} 
@@ -128,6 +130,7 @@
 		  b.product_name as product_name,
 		  c.price,
 		  b.option_yn,
+		  c.idx,
 		  c.img_id as img_id
 
 		from cart a, product b, product_dtl c
@@ -150,6 +153,7 @@
 		  b.product_name as product_name,
 		  c.price,
 		  b.option_yn,
+		  c.idx,
 		  c.img_id as img_id
 
 		from cart a, product b, product_dtl c

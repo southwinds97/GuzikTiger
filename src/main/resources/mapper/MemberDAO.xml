@@ -32,6 +32,14 @@
         WHERE id=#{id}
     </update>
     
+    <!-- 회원정보수정 처리 point only-->
+    <update id="updatePoint" parameterType="com.edu.springboot.member.MemberDTO">
+         update member 
+            set
+            points = ( select points + #{points} from member where id = #{id} )
+         where id = #{id}
+    </update>
+    
     <!-- 회원탈퇴 처리 -->
     <delete id="deleteMember" parameterType="String">
         DELETE FROM member WHERE id=#{memberId}
