@@ -136,6 +136,7 @@
                 }
               </script>
 
+
               <div class="addr1">
                 <input type="text" readonly name="addr" value="" placeholder="기본주소" id="address" class="basic" />
                 <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailAddress" />
@@ -174,7 +175,7 @@
               </div>
             </div>
             <div class="choose_msg">
-              <select class="message_select">
+              <select class="message_select" id="messageSelect">
                 <option value="oMessage-0" selected="selected">-- 메시지 선택 (선택사항) --</option>
                 <option value="oMessage-1">배송 전에 미리 연락바랍니다.</option>
                 <option value="oMessage-2">부재 시 경비실에 맡겨주세요.</option>
@@ -183,6 +184,9 @@
                 <option value="oMessage-5">택배함에 보관해 주세요.</option>
                 <option value="oMessage-input">직접 입력</option>
               </select>
+              <div id="customMessageInput" class="direct_msg" style="display: none;">
+    			<input type="text" placeholder="메시지를 직접 입력하세요">
+  			  </div>
               <div class="save_addr">
                 <input type="checkbox" id="save">
                 <label for="save">기본 배송지로 저장</label>
@@ -191,7 +195,19 @@
           </div>
         </div>
         <div class="order_bord"></div>
-
+        
+       <script>
+		  document.getElementById('messageSelect').addEventListener('change', function () {
+		    var customInputDiv = document.getElementById('customMessageInput');
+		    
+		    // '직접 입력'이 선택되면 표시, 아니면 숨김
+		    if (this.value === 'oMessage-input') {
+		      customInputDiv.style.display = 'block';
+		    } else {
+		      customInputDiv.style.display = 'none';
+		    }
+		  });
+		</script>
         <script>
           //주문상품정보
           let intlOrder = new Array();
@@ -263,18 +279,6 @@
             Basket.payProcess(intlOrder, paymentInfo);
           }
         </script>
-        <div class="more_title">
-          <h2>추가입력</h2>
-          <div class="more_table">
-            <div>
-              <div class="gift">
-                <h3>선물하기</h3>
-                <textarea class="more_msg"></textarea>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="order_bord"></div>
         <script>
 
         </script>
