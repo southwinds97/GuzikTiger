@@ -127,9 +127,6 @@
   display: block;
   background: #f4f4f4;
 }
-.header_right {
-	position: relative;
-}
 .header_right button {
   display: inline-block;
   width: 34px;
@@ -163,7 +160,10 @@
   background: #222;
   margin-left: 20px;
 }
-
+.header_right .cart_wrap {
+	display: inline-block;
+	position: relative;
+}
 .header_right .cart {
   width: 18px;
   -webkit-mask: url(../images/cart.svg) no-repeat 0 0 / 100%;
@@ -181,7 +181,7 @@
 	height: 15px;
 	line-height: 15px;
 	text-align: center;
-	left: 217px;
+	left: 27px;
 	top: 10px;
 	border: 1px solid white;
 	border-radius: 50%;

@@ -350,10 +350,12 @@
             location.href = "wishList.do";
           });
         </script>
-        <button class="cart" id="cart">
-          <span class="blind">장바구니</span>
-        </button>
-		  <a class="cartCount" href="cartList.do"><span class="cart_count">${countCart}</span></a>
+		<div class=cart_wrap>
+	        <button class="cart" id="cart">
+	          <span class="blind">장바구니</span>
+	        </button>
+			  <a class="cartCount" href="cartList.do"><span class="cart_count">${countCart}</span></a>
+	    </div>
         <!-- cart버튼 페이지 이동 -->
         <script>
           $("#cart").click(function () {
@@ -361,7 +363,7 @@
           });
         </script>
         <!-- 관리자 버튼 페이지 이동 -->
-        <% if ("admin".equals(session.getAttribute("id"))) { %>
+        <% if ("0".equals(String.valueOf(session.getAttribute("user_level")))) { %>
         <button class="admin" id="admin">
           <span class="blind">관리자</span>
         </button>
@@ -373,51 +375,6 @@
           });
         </script>
         <% } %>
-                  searchInput.addEventListener("keypress", function (event) {
-                    if (event.key === "Enter") {
-                      event.preventDefault(); // 기본 엔터키 동작 방지
-                      let searchValue = searchInput.value.trim(); // 입력된 값 가져오기 및 공백 제거
-                      if (searchValue) {
-                        // 검색 페이지로 이동
-                        window.location.href =
-                          "product_search.do?searchKeyword=" +
-                          encodeURIComponent(searchValue);
-                      }
-                    }
-                  });
-                });
-              </script>
-              <button class="wish" id="wish">
-                <span class="blind">위시리스트</span>
-              </button>
-              <script>
-                $("#wish").click(function () {
-                  location.href = "wishList.do";
-                });
-              </script>
-              <button class="cart" id="cart">
-                <span class="blind">장바구니</span>
-              </button>
-			  <a class="cartCount" href="cartList.do"><span class="cart_count">${countCart}</span></a>
-              <!-- cart버튼 페이지 이동 -->
-              <script>
-                $("#cart").click(function () {
-                  location.href = "cartList.do";
-                });
-              </script>
-              <!-- 관리자 버튼 페이지 이동 -->
-              <% if ("0".equals(String.valueOf(session.getAttribute("user_level")))) { %>
-                <button class="admin" id="admin">
-                  <span class="blind">관리자</span>
-                </button>
-                <script>
-                  $(document).ready(function () {
-                    $("#admin").click(function () {
-                      location.href = "admin.do";
-                    });
-                  });
-                </script>
-                <% } %>
       </div>
     </div>
     <div class="header_bottom">

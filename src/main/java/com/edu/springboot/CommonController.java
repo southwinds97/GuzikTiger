@@ -18,7 +18,12 @@ public class CommonController {
     @ModelAttribute
     public void addCommonAttributes(HttpServletRequest req, Model model) {
         String member_id = (String) req.getSession().getAttribute("id");
-        int countCart = orderService.countCart(member_id);
-        model.addAttribute("countCart", countCart);
+        if(member_id != null) {
+        	int countCart = orderService.countCart(member_id);
+        	model.addAttribute("countCart", countCart);        	
+        } else {
+        	int countCart = 0;
+        	model.addAttribute("countCart", countCart);
+        }
     }
 }

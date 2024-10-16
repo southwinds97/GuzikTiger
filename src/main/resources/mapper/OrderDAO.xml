@@ -247,9 +247,14 @@
     	delete from cart
         where member_id = #{member_id} and CART_DTL_ID = #{cart_dtl_id}
     </delete>
+  
+	<select id="countCart" parameterType = "com.edu.springboot.product.ProductDTO">
+
+		select count(*) from cart 
+		<if test="member_id != null">
+   			where member_id=#{member_id}
+   		</if>
+	</select>		
    
-   <select id="countCart" parameterType = "com.edu.springboot.product.ProductDTO">
-   	select count(*) from cart where member_id=#{member_id}
-   </select>
 
 </mapper>
