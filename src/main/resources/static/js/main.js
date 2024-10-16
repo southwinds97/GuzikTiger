@@ -15,6 +15,8 @@ var arrary = [];
 //수량 증가감소 체크
 var quanChk;
 
+//옵션별 재고
+var stockNum=0 ;
 const Basket = {
   /**
    * '△' 버튼 클릭, 수량증가
@@ -22,6 +24,17 @@ const Basket = {
 
   addQuantityShortcut: function (cart_dtl_id) {
     this.allChkClear();
+	
+	//재고 체크 증가 중지 로직
+	var curNum = Number($("#" + cart_dtl_id).val())
+	
+		this.stockChk(cart_dtl_id);
+
+	if(curNum >= stockNum ){
+		alert('상품의 수량이 현재 재고 보다 많습니다.');
+		return ;
+	}
+	
     var iQuantity = Number($("#" + cart_dtl_id).val()) + 1;
     this.chkQuantity(iQuantity, cart_dtl_id);
     if (isNaN(iQuantity) === false) {
@@ -625,28 +638,6 @@ const Basket = {
       tel: tel,
     };
 
-    // var intlOrder = JSON.stringify(intlOrder);
-    // var paymentInfo = JSON.stringify(paymentInfo);
-    // orderInfo = JSON.stringify(orderInfo);
-    //     $.ajax({
-    //       url: "/payProcess.do",
-    //       type: "POST",
-    //       contentType: "application/json",
-    //       data: {
-    //         intlOrder: intlOrder,
-    //         paymentInfo: paymentInfo,
-    //         orderInfo: orderInfo,
-    //       },
-    //       traditional: true,
-    //       success: function (data) {
-    //         //	alert('성공');
-    //       },
-    //       error: function () {
-    //         alert("ajax 통신실패");
-    //       },
-    //     });
-    //   },
-    // };
     $.ajax({
       url: "/payProcess.do",
       type: "POST",
@@ -669,4 +660,20 @@ const Basket = {
       },
     });
   },
+  
+  stockChk : function (cart_dtl_id){
+	  $.ajax({
+		      url: "/stockChk.do",
+			  async: false,
+		      type: "GET",
+		      data: {cart_dtl_id:cart_dtl_id},
+		      success: function (data) {
+				stockNum = data;
+		      },
+		      error: function () {
+		        alert("ajax 통신실패");
+		      },
+	    });
+  },
+		  
 };

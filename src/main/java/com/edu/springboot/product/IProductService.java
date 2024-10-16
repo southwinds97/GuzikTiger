@@ -87,5 +87,8 @@ public interface IProductService {
 
 	// 모든회원 조회
 	public ArrayList<MemberDTO> adminMemberSelect(MemberDTO memberDTO);
+	
+	// 옵션 수량 선태 시 재고 확인
+	ProductDTO  selectStock(ProductDTO productDTO);
 
 }

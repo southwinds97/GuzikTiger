@@ -489,5 +489,11 @@
      
 	</update>
 	
+	<!-- 옵션 수량 선택 시 재고수량과 비교 -->
+	<select id="selectStock" resultType = "com.edu.springboot.product.ProductDTO"
+		parameterType="com.edu.springboot.product.ProductDTO">
+		select * from product_dtl  
+		where  product_id = #{product_id} and idx = #{idx}
+	</select>
 	
 </mapper>

@@ -1,9 +1,7 @@
 package com.edu.springboot.product;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.mypage.IMyPageService;
+import com.edu.springboot.order.OrderDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
-import utils.PagingUtil;
 
 @Controller
 public class ProductController extends CommonController {
@@ -202,4 +200,21 @@ public class ProductController extends CommonController {
 		return "product/product_review";
 	}
 
+	//옵션 수량 증가시 재고 수량 비교
+	@GetMapping("/stockChk.do")
+	@ResponseBody
+	public int stockChk(HttpServletRequest req, Model model, ProductDTO productDTO) {
+		
+		String cart_dtl_id = req.getParameter("cart_dtl_id");
+		String splitStr[] = cart_dtl_id.split("_");
+		String product_id = splitStr[0];
+		String idxTemp = splitStr[1];
+		int idx = Integer.parseInt(idxTemp);
+		productDTO.setProduct_id(product_id);
+		productDTO.setIdx(idx);
+		
+		ProductDTO dto = dao.selectStock(productDTO);
+ 		int	stockNum = dto.getStock();	
+		return stockNum ;
+	}
 }
