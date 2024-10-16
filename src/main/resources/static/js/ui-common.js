@@ -179,30 +179,6 @@ $(function () {
     $(this).parent().siblings().removeClass("on");
   });
 
-  // 메인슬라이더
-  let mainSlider = new Swiper(".main_slider .swiper", {
-    loop: true,
-    // 슬라이드 이동 속도
-    speed: 1000,
-    // 마우스드래그, 모바일 swipe 끄기
-    allowTouchMove: false,
-    autoplay: {
-      delay: 5000,
-      // 슬라이더 내부 인터렉션발생시 자동재생 안멈추게
-      disableOnInteraction: false,
-    },
-    pagination: {
-      // 페이지네이션 클릭으로 이동
-      clickable: true,
-      el: ".swiper-pagination",
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-
-  // 메뉴슬라이더
 
   // 좌우화살표를 .swiper밖으로 뺄 경우 부모이름을 적어야함
   let newSlider = new Swiper(".new_slider .swiper", {

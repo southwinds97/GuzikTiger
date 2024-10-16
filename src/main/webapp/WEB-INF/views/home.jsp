@@ -86,11 +86,17 @@
                 const swiper = new Swiper('.swiper-container', {
                   grabCursor: true,
                   draggable: true,
+				  allowTouchMove: false,
                   speed: 1000,
                   loop: true,
                   effect: 'fade',
                   fadeEffect: { crossFade: true },
                   preloadImages: false,
+				  autoplay: {
+			        delay: 5000,
+			        // 슬라이더 내부 인터렉션발생시 자동재생 안멈추게
+			        disableOnInteraction: false,
+			      },
                   lazy: {
                     loadOnTransitionStart: true,
                     loadPrevNext: true,
