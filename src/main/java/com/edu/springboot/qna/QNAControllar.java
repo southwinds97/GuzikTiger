@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
@@ -23,7 +24,7 @@ import utils.MyFunctions;
 import utils.PagingUtil;
 
 @Controller
-public class QNAControllar {
+public class QNAControllar extends CommonController {
 
 	@Autowired
 	IQNAService dao;

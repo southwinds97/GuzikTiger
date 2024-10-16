@@ -402,6 +402,7 @@
         alert("장바구니에 담겼습니다.");
         isRequestInProgress = false; // 요청 완료 시 플래그 해제
         document.getElementById("actionCart").disabled = false; // 버튼 활성화
+		location.reload();
       },
       error: function (xhr, status, error) {
         alert("장바구니 담기 실패");

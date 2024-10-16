@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
@@ -24,7 +25,7 @@ import utils.PagingUtil;
 
 @RestController
 @RequestMapping("api")
-public class ApiController {
+public class ApiController extends CommonController {
 	
 	@Autowired
 	private IMemberService memberDAO;

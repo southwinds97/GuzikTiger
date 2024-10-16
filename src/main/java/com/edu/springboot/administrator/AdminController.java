@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.order.OrderDTO;
@@ -22,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.PagingUtil;
 
 @Controller
-public class AdminController {
+public class AdminController extends CommonController {
 
 	@Autowired
 	IProductService dao;

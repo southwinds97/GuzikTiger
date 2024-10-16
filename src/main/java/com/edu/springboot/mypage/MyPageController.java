@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
@@ -28,7 +29,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.PagingUtil;
 
 @Controller
-public class MyPageController {
+public class MyPageController extends CommonController {
 
     @Autowired
     private IMyPageService dao;

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.product.IProductService;
@@ -31,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.JSFunction;
 
 @Controller
-public class OrderController {
+public class OrderController extends CommonController {
 
 	@Autowired
 	IOrderService orderService;
@@ -55,11 +56,21 @@ public class OrderController {
 			return "redirect:/login.do";
 		}
 		productDTO.setMember_id(member_id);
+		
 		ArrayList<ProductDTO> cartList = orderService.selectCart(productDTO);
 		model.addAttribute("cartList", cartList);
 		return "order/cartList";
 	}
 
+	@RequestMapping("/header.do")
+	public String countCart(Model model, HttpServletRequest req) {
+		String member_id = (String) req.getSession().getAttribute("id");
+		int countCart = orderService.countCart(member_id);
+
+		model.addAttribute("countCart", countCart);
+		
+		return "/header";
+	}
 	// 장바구니 등록 처리
 	@PostMapping("/cartInsert.do")
 	public String RegistProc(HttpServletRequest req, HttpServletResponse resp,

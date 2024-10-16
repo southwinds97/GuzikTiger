@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.mypage.IMyPageService;
 
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
 
 @Controller
-public class ProductController {
+public class ProductController extends CommonController {
 	@Autowired
 	IProductService dao;
 	@Autowired

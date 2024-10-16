@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.PagingUtil;
 
 @Controller
-public class MainController {
+public class MainController extends CommonController {
 
 	@Autowired
 	IProductService dao;

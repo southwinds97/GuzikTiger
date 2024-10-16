@@ -56,5 +56,7 @@ public interface IOrderService {
 
 	// 장바구니 선택삭제
 	int deleteCartSel(ProductDTO productDTO);
+	
+	int countCart(String member_id);
 
 }
