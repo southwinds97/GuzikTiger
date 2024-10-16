@@ -393,6 +393,12 @@
           <div class="buy_table">
 
             <!-- ---------------주문상품 목록 시작------------------------------------- -->
+			<c:if test="${empty orderList}">
+			    <script>
+					alert('결제할 상품이 없어 장바구니로 이동합니다.');
+			        window.location.href = 'cartList.do'; // cartList.do로 리다이렉트
+			    </script>
+			</c:if>
             <c:forEach items="${orderList}" var="row" varStatus="loop">
               <div class="probox2">
                 <div class="thumbnail">
