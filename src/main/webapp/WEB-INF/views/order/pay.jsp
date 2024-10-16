@@ -43,7 +43,7 @@
           <div class="right_menu">
             <span class="other_btn">
               <a href="/cartList.do" onclick=""></a>
-              <span class="count">2</span>
+              <span class="count">${countCart}</span>
             </span>
             <a href="myPage.do" onclick="" class="person"></a>
           </div>
