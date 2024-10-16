@@ -40,7 +40,7 @@ public class AdminController {
 			return "redirect:/login.do";
 		}
 
-		if (!user_level.equals("1")) {
+		if (user_level.equals("1")) {
 			return "redirect:/";
 		}
 
