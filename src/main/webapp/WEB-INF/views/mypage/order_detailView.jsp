@@ -284,16 +284,8 @@
   		     </table>
   		    </div>
   		   </div>
-  		  <div class="more">
-		    <div class="inform">
-  		     <h3>추가정보</h3>
-  		    </div>
-  		  </div>
-  		 <div class="bottom">
-  		  <button type="button" class="card_btn">카드매출전표 인쇄</button>
-  		 </div>
   		 <div class="order_view">
-  		   <button type="button" class="view_btn">주문목록보기</button>
+  		   <a href="myPage.do"><button type="button" class="view_btn">주문목록보기</button></a>
   		 </div>
   		 <div class="use">
 		  <div class="inform">
@@ -328,7 +320,7 @@
            </div>
            <ul class="menu">
              <li>
-               <a href="#">주문내역 조회</a>
+               <a href="myPage.do">주문내역 조회</a>
              </li>
            </ul>
            <div class="subTitle">

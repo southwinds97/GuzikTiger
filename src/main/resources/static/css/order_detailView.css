@@ -314,7 +314,7 @@
 
 .rf_infor .target .score {
   border: unset;
-  border-right: none;
+  border-left: none;
   border-top: 1px solid #e5e5e5;
   text-align: center;
 }
@@ -328,6 +328,13 @@
 
 .rf_infor .target .kring {
   font-weight: 600;
+  border-right: none;
+}
+
+
+.rf_infor .target .product_price {
+	text-align: center;
+	border-left: none;
 }
 
 .rf_infor .target span {
@@ -408,43 +415,7 @@
   border: 1px solid #e0e0e0;
 }
 
-.more .inform h3 {
-  padding: 20px 0;
-  font-size: 13px;
-  font-weight: 700;
-  position: relative;
-}
 
-.more .inform h3::after {
-  position: absolute;
-  top: 26px;
-  right: 20px;
-  content: "";
-  width: 8px;
-  height: 8px;
-  display: inline-block;
-  border: 1px solid #000000;
-  border-right: 0;
-  border-bottom: 0;
-  transform: rotate(45deg);
-  cursor: pointer;
-}
-
-.bottom {
-  text-align: right;
-}
-
-.bottom .card_btn {
-  min-width: 135px;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 30px;
-  background: #fff;
-  border: 1px solid #c0c0c0;
-  text-align: center;
-  line-height: 1;
-  font-weight: bold;
-}
 
 .order_view {
   margin-top: 60px;
