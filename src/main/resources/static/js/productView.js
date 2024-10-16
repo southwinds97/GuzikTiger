@@ -9,7 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const text1Element = document.querySelector(".text1");
   const text2Element = document.querySelector(".text2");
   const levelLineActiveElement = document.getElementById("levelLineActive"); // width를 동적으로 변경할 요소
+ // 옵션중체크 리스트
   const optionAddList = new Set(); 
+  
+  //옵션별 재고 비교
+  var stockNum=0 ;
+  
   let productViewList = [];
   let basePrice = 50000; // 무료배송 기준 금액
 
@@ -26,6 +31,22 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error("Error fetching product data:", error);
     });
+	
+	
+	function productViewStockChk (cart_dtl_id){
+	  $.ajax({
+		      url: "/stockChk.do",
+			  async: false,
+		      type: "GET",
+		      data: {cart_dtl_id:cart_dtl_id},
+		      success: function (data) {
+				stockNum = data;
+		      },
+		      error: function () {
+		        alert("ajax 통신실패");
+		      },
+	    });
+	 }	
 
   function updateTotal() {
     let currentTotalPrice = 0;
@@ -113,11 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
             <span>${selectedText}</span>
           </p>
         </td>
-        <td>
+        <td >
           <span class="quantity" style="width: 65px;">
             <input type="text" id="option_box${selectedValue}_quantity" name="quantity"
               class="quantity_opt eProductQuantityClass" value="1">
-            <a href="#none" class="up eProductQuantityUpClass">
+            <a href="#none" class="up eProductQuantityUpClass" id="${selectedProduct.product_id}_${selectedProduct.idx}">
               <img src="images/btn_count_up.gif" id="option_box${selectedValue}_up" class="option_box_up"
                 alt="수량증가">
             </a>
@@ -148,6 +169,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 수량 증가 버튼 이벤트 리스너
       newRow.querySelector(".up").addEventListener("click", function () {
+		productViewStockChk(this.id);
+		
+		var cruNum = $('#'+this.id).parent().children('input').val()
+		if(cruNum >= stockNum ){
+				alert('상품의 수량이 현재 재고 보다 많습니다.');
+				return ;
+			}
+
         const quantityInput = newRow.querySelector(".quantity_opt");
         let quantity = parseInt(quantityInput.value);
         quantityInput.value = quantity + 1;
