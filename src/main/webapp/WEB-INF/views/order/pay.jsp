@@ -377,16 +377,15 @@
           }
           // 결제 진행
           function fnPayment() {
-   
-    		  	const allAgreeChecked = document.getElementById('allagree').checked;
-    		  	const needAgreeChecked = document.getElementById('needagree').checked;
-    		
+         	const allAgreeChecked = document.getElementById('allagree').checked;
+    		const needAgreeChecked = document.getElementById('needagree').checked;
+		
     		 	 if (!needAgreeChecked) {
     		    alert("결제대행서비스 약관에 동의해야 결제가 가능합니다.");
     		    return;
               }
-            Basket.payProcess(intlOrder, paymentInfo);
-     
+            Basket.payProcess(intlOrder, paymentInfo) 
+            
           }
         </script>
         <div class="order_form">
