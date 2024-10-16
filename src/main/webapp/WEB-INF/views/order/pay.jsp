@@ -86,6 +86,7 @@
               </div>
               <!-- 주소검색 API -->
               <script src=" //t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+              
               <script>
                 function daumPostcode() {
                   new daum.Postcode({
@@ -195,14 +196,114 @@
           </div>
         </div>
         <div class="order_bord"></div>
-        
-       <script>
+        <script>
+		  // 새로운 배송지 선택 시 입력 필드 초기화
+		  document.getElementById('new').addEventListener('change', function() {
+		    if (this.checked) {
+		      document.getElementById('orderName').value = ''; // 받는 사람 필드 초기화
+		      document.getElementById('postcode').value = '';  // 우편번호 필드 초기화
+		      document.getElementById('address').value = '';   // 주소 필드 초기화
+		      document.getElementById('detailAddress').value = ''; // 상세주소 필드 초기화
+		      document.getElementById('tel2').value = ''; // 휴대전화 필드 초기화
+		      document.getElementById('tel3').value = ''; 
+		      document.getElementById('email').value = ''; // 이메일 필드 초기화
+		    }
+		  });
+		
+		  // 기존 배송지 선택 시 (선택사항: 데이터가 있다면 불러올 수 있도록 처리)
+		  document.getElementById('same').addEventListener('change', function() {
+		    if (this.checked) {
+		      // 기존 데이터를 불러오는 로직을 여기에 추가 가능
+		    }
+		  });
+		
+		  // 다음 주소 검색 API
+		  function daumPostcode() {
+		    new daum.Postcode({
+		      oncomplete: function (data) {
+		        var addr = '';
+		        var extraAddr = '';
+		
+		        if (data.userSelectedType === 'R') {
+		          addr = data.roadAddress;
+		        } else {
+		          addr = data.jibunAddress;
+		        }
+		
+		        document.getElementById('postcode').value = data.zonecode;
+		        document.getElementById('address').value = addr;
+		        document.getElementById('detailAddress').focus();
+		      }
+		    }).open();
+		  }
+		</script>
+		<script>
+		  // 기존 회원 정보 
+		  const savedData = {
+		    orderName: '관리자',
+		    postcode: '12345',
+		    address: '구직',
+		    detailAddress: '타이거',
+		    tel1: '010',
+		    tel2: '1234',
+		    tel3: '5678', 
+		    email: 'admin@naver.com',
+		  };
+		
+		  // 새로운 배송지 선택 시
+		  document.getElementById('new').addEventListener('change', function() {
+		    if (this.checked) {
+		      document.getElementById('orderName').value = '';
+		      document.getElementById('postcode').value = '';  
+		      document.getElementById('address').value = '';  
+		      document.getElementById('detailAddress').value = ''; 
+		      document.getElementById('tel2').value = ''; 
+		      document.getElementById('tel3').value = ''; 
+		      document.getElementById('email').value = ''; 
+		      document.getElementById('emailSelect').value = 'naver.com'; 
+		    }
+		  });
+		
+		  // 회원 정보 다시 선택 시 
+		  document.getElementById('same').addEventListener('change', function() {
+		    if (this.checked) {
+		      document.getElementById('orderName').value = savedData.orderName;  
+		      document.getElementById('postcode').value = savedData.postcode;   
+		      document.getElementById('address').value = savedData.address;     
+		      document.getElementById('detailAddress').value = savedData.detailAddress;
+		      document.getElementById('tel2').value = savedData.tel2;            
+		      document.getElementById('tel3').value = savedData.tel3;          
+		      document.getElementById('email').value = savedData.email.split('@')[0]; 
+		    }
+		  });
+		
+		  // 다음 주소 검색 API
+		  function daumPostcode() {
+		    new daum.Postcode({
+		      oncomplete: function (data) {
+		        var addr = '';
+		        var extraAddr = '';
+		
+		        if (data.userSelectedType === 'R') {
+		          addr = data.roadAddress;
+		        } else {
+		          addr = data.jibunAddress;
+		        }
+		
+		        document.getElementById('postcode').value = data.zonecode;
+		        document.getElementById('address').value = addr;
+		        document.getElementById('detailAddress').focus();
+		      }
+		    }).open();
+		  }
+		</script>
+		<script>
 		  document.getElementById('messageSelect').addEventListener('change', function () {
 		    var customInputDiv = document.getElementById('customMessageInput');
 		    
 		    // '직접 입력'이 선택되면 표시, 아니면 숨김
 		    if (this.value === 'oMessage-input') {
-		      customInputDiv.style.display = 'block';
+		      customInputDiv.style.display = 'flex';
 		    } else {
 		      customInputDiv.style.display = 'none';
 		    }
@@ -278,9 +379,6 @@
           function fnPayment() {
             Basket.payProcess(intlOrder, paymentInfo);
           }
-        </script>
-        <script>
-
         </script>
         <div class="order_form">
           <h2>주문상품</h2>

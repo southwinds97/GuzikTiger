@@ -286,6 +286,7 @@
   /* 상하 요소 간의 간격 */
   border-bottom: 1px solid #d7d5d5;
   padding-bottom: 20px;
+  max-height: 655px;
 }
 
 .addr_container {
