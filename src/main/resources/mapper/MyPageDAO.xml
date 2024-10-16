@@ -88,6 +88,7 @@
 			  and a.product_id = x.product_id
               and a.product_id = c.product_id
               and b.option_cate = d.code(+)
+              and b.idx = 1
 			  order by c.view_date desc, a.product_id,b.idx
               <!-- 10개까지만 -->
                 fetch first 10 rows only
@@ -145,7 +146,7 @@
                 AND a.member_id = #{id}
             ORDER BY 
                 a.order_id DESC
-        ) WHERE ROWNUM = 1
+        ) 
     </select>
 
     <!-- 주문 내역 상세 조회 -->

@@ -312,7 +312,7 @@ const Basket = {
       });
 
 	  if(productArray.length===0){
-		alert('옵션을 선택하세요');
+		alert('상품 옵션을 선택하세요');
 		return ;
 	  }
      // 장바구니에 결제창으로 불러올 리스트 만들기

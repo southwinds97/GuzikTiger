@@ -383,6 +383,11 @@
     });
 
     console.log(productArray);
+    
+    if(productArray.length===0){
+		alert('상품 옵션을 선택하세요');
+		return ;
+	  }
 
     isRequestInProgress = true; // 요청 시작 시 플래그 설정
     document.getElementById("actionCart").disabled = true; // 버튼 비활성화
