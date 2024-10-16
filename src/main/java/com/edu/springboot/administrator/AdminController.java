@@ -34,9 +34,14 @@ public class AdminController {
 		// model.addAttribute("productList", productList);
 
 		String id = (String) req.getSession().getAttribute("id");
+		String user_level = String.valueOf(req.getSession().getAttribute("user_level"));
 
 		if (id == null) {
 			return "redirect:/login.do";
+		}
+
+		if (!user_level.equals("1")) {
+			return "redirect:/";
 		}
 
 		ArrayList<OrderDTO> orderList = dao.adminOrderSelect(orderDTO);

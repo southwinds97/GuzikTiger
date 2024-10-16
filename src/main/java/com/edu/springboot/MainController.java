@@ -34,6 +34,9 @@ public class MainController {
 	@RequestMapping("/")
 	public String productList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
 		String id = (String) req.getSession().getAttribute("id");
+		String user_level = String.valueOf(req.getSession().getAttribute("user_level"));
+
+		System.out.println("user_level : " + user_level);
 
 		int totalCount = dao.getTotalCount(parameterDTO);
 		model.addAttribute("totalCount", totalCount);
@@ -63,6 +66,7 @@ public class MainController {
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum,
 				req.getContextPath() + "/productList.do?");
 		model.addAttribute("id", id);
+		model.addAttribute("user_level", user_level);
 		model.addAttribute("pagingImg", pagingImg);
 
 		return "home";

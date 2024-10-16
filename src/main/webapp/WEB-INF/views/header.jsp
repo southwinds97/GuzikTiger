@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+  <html>
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -298,9 +297,7 @@ pageEncoding="UTF-8" %>
           </ul>
         </nav>
         <h1 class="logo">
-          <a
-            href="/"
-            style="
+          <a href="/" style="
               display: block;
               width: 120px;
               font-size: 19px;
@@ -308,8 +305,7 @@ pageEncoding="UTF-8" %>
               margin-top: -28px;
               font-weight: bold;
               word-spacing: -0.5px;
-            "
-          >
+            ">
             <!-- <img src="/images/logo.png" alt="무직타이거" /> -->
 
             GUZIK TIGER
@@ -319,72 +315,68 @@ pageEncoding="UTF-8" %>
       <div class="header_right">
         <!-- 섹션에 id값이 없는 경우 -->
         <% if (session.getAttribute("id")==null) { %>
-        <a href="#" id="login">Login</a>
-        /
-        <a href="regist.do">Join</a>
-        <% } else { %>
-        <a href="myPage.do">my page</a>
-        /
-        <a href="logout.do">Logout</a>
-        <% } %>
-        <button class="search"><span class="blind">검색</span></button>
-        <script>
-          document.addEventListener("DOMContentLoaded", function () {
-            let searchInput = document.getElementById("searchInput");
+          <a href="#" id="login">Login</a>
+          /
+          <a href="regist.do">Join</a>
+          <% } else { %>
+            <a href="myPage.do">my page</a>
+            /
+            <a href="logout.do">Logout</a>
+            <% } %>
+              <button class="search"><span class="blind">검색</span></button>
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  let searchInput = document.getElementById("searchInput");
 
-            searchInput.addEventListener("keypress", function (event) {
-              if (event.key === "Enter") {
-                event.preventDefault(); // 기본 엔터키 동작 방지
-                let searchValue = searchInput.value.trim(); // 입력된 값 가져오기 및 공백 제거
-                if (searchValue) {
-                  // 검색 페이지로 이동
-                  window.location.href =
-                    "product_search.do?searchKeyword=" +
-                    encodeURIComponent(searchValue);
-                }
-              }
-            });
-          });
-        </script>
-        <button class="wish" id="wish">
-          <span class="blind">위시리스트</span>
-        </button>
-        <script>
-          $("#wish").click(function () {
-            location.href = "wishList.do";
-          });
-        </script>
-        <button class="cart" id="cart">
-          <span class="blind">장바구니</span>
-        </button>
-        <!-- cart버튼 페이지 이동 -->
-        <script>
-          $("#cart").click(function () {
-            location.href = "cartList.do";
-          });
-        </script>
-        <!-- 관리자 버튼 페이지 이동 -->
-        <% if ("admin".equals(session.getAttribute("id"))) { %>
-        <button class="admin" id="admin">
-          <span class="blind">관리자</span>
-        </button>
-        <script>
-          $(document).ready(function () {
-            $("#admin").click(function () {
-              location.href = "admin.do";
-            });
-          });
-        </script>
-        <% } %>
+                  searchInput.addEventListener("keypress", function (event) {
+                    if (event.key === "Enter") {
+                      event.preventDefault(); // 기본 엔터키 동작 방지
+                      let searchValue = searchInput.value.trim(); // 입력된 값 가져오기 및 공백 제거
+                      if (searchValue) {
+                        // 검색 페이지로 이동
+                        window.location.href =
+                          "product_search.do?searchKeyword=" +
+                          encodeURIComponent(searchValue);
+                      }
+                    }
+                  });
+                });
+              </script>
+              <button class="wish" id="wish">
+                <span class="blind">위시리스트</span>
+              </button>
+              <script>
+                $("#wish").click(function () {
+                  location.href = "wishList.do";
+                });
+              </script>
+              <button class="cart" id="cart">
+                <span class="blind">장바구니</span>
+              </button>
+              <!-- cart버튼 페이지 이동 -->
+              <script>
+                $("#cart").click(function () {
+                  location.href = "cartList.do";
+                });
+              </script>
+              <!-- 관리자 버튼 페이지 이동 -->
+              <% if ("0".equals(String.valueOf(session.getAttribute("user_level")))) { %>
+                <button class="admin" id="admin">
+                  <span class="blind">관리자</span>
+                </button>
+                <script>
+                  $(document).ready(function () {
+                    $("#admin").click(function () {
+                      location.href = "admin.do";
+                    });
+                  });
+                </script>
+                <% } %>
       </div>
     </div>
     <div class="header_bottom">
       <div class="search_wrap">
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="무엇을 찾아드릴까요?"
-        />
+        <input type="search" id="searchInput" placeholder="무엇을 찾아드릴까요?" />
         <div class="trend">
           <button>에어팟</button>
           <button>키링</button>
@@ -408,4 +400,5 @@ pageEncoding="UTF-8" %>
       </div>
     </div>
   </header>
-</html>
+
+  </html>
