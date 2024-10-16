@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   max-width: 380px;
-  min-height: 300px;
   height: auto;
   margin: 0 auto;
 }
@@ -172,6 +171,21 @@ input[type='number'] {
   background-color: rgba(175, 175, 175, 0.05);
 }
 
+.register_em label{
+  display: block;
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 12px;
+}
+
+.register_em input {
+  width: 100%;
+}
+
+.register_em span {
+  color: #ef441f;	
+}
+
 .information {
   margin: 50px 0 20px;
   text-align: left;
@@ -179,6 +193,11 @@ input[type='number'] {
 
 .information h3 {
   font-size: 16px;
+}
+
+.more {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .more label {
@@ -237,6 +256,11 @@ input[type='number'] {
   color: #fff;
   background-color: #000;
   margin-top: 30px;
+  cursor: pointer;
+}
+
+.register_btn {
+	margin-bottom: 200px;
 }
 
 .register_inner .agree_toggle {

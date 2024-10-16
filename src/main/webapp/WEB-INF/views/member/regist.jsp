@@ -78,6 +78,22 @@
                         </div>
                         <input type="text" readonly name="addr" value="" placeholder="기본주소" id="address" /><br />
                         <input type="text" value="" name="detailaddr" placeholder="나머지 주소" id="detailAddress" /><br />
+                        
+                       <label for="tel">전화번호 <span>*</span></label>
+                       <div class="register_tel">
+	                    <select class="mobile" name="tel1">
+	                      <option value="010" ${tel1 == '010' ? 'selected' : ''}>010</option>
+	                      <option value="011" ${tel1 == '011' ? 'selected' : ''}>011</option>
+	                      <option value="016" ${tel1 == '016' ? 'selected' : ''}>016</option>
+	                      <option value="017" ${tel1 == '017' ? 'selected' : ''}>017</option>
+	                      <option value="018" ${tel1 == '018' ? 'selected' : ''}>018</option>
+	                      <option value="019" ${tel1 == '019' ? 'selected' : ''}>019</option>
+	                    </select><span>-</span>
+	                    <input type="text" name="tel2" value="${tel2}"><span>-</span>
+	                    <input type="text" name="tel3" value="${tel3}">
+	                    <input type="hidden" name="tel" value="" />
+	                   </div>
+                        
                         <!-- 주소검색 API -->
                         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                         <script>
@@ -143,16 +159,18 @@
 
                             </script>
                         </div>
-
+                       <div class="register_em">
                         <label for="email">이메일 <span>*</span></label>
                         <input type="text" name="email" value=""><br>
+                       </div>
                         <div class="more">
                             <label for="sex"> 성별 </label><br>
                             <input type="radio" id="man" name="gen" value="남" checked />
                             <label for="man">남자</label>
                             <input type="radio" id="woman" name="gen" value="여" />
                             <label for="woman">여자</label>
-
+                       
+						 </div>
                             <label for="birth">생년월일</label>
                             <div class="register_date">
                                 <input type="text" name="year" value=""><span style="color: black;">년</span>
@@ -186,7 +204,7 @@
                             <label for="solar">양력</label>
                             <input type="radio" class="calendar" id="lunar" name="calendar" value="음력" />
                             <label for="lunar">음력</label>
-                        </div>
+
 
                         <!-- 전체동의 이벤트 -->
                         <script>
