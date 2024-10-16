@@ -126,7 +126,7 @@
                           <% request.setAttribute("arr", "${arr}" ); %>
                             <!--  -------------------------아이템 시작--------------------------------------------------------- -->
 							<c:choose>
-								<c:when test="${empty cartLists}">
+								<c:when test="${empty cartList}">
 									<div style="text-align:center; margin-top:40px; font-size:20px;">장바구니에 담긴 상품이 없습니다.</div>
 								</c:when>
 								<c:otherwise>
