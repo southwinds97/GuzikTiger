@@ -703,6 +703,18 @@
           </span>
         </div>
       </div>
+      <script>
+		function fnPayment() {
+		  const allAgreeChecked = document.getElementById('allagree').checked;
+		  const needAgreeChecked = document.getElementById('needagree').checked;
+		
+		  if (!needAgreeChecked) {
+		    alert("약관에 동의해야 결제가 가능합니다.");
+		    return;
+		  }
+		
+		}
+     </script>
       <!-- 모든 약관 동의 눌렀을때 둘다 체크 -->
       <script>
         document.getElementById('allagree').addEventListener('change', function () {
