@@ -303,4 +303,35 @@ $(function () {
       prevEl: ".prd-nav--prev",
     },
   });
+  
+  // 상품등록페이지 대분류/소분류
+  var prds = false;
+
+  function update_selected() {
+    $("#menu_candidates").val(0);
+    $("#menu_candidates").find("option[value!=0]").detach();
+
+    $("#menu_candidates").append(prds.filter(".prd" + $(this).val()));
+  }
+
+  $(function() {
+    prds = $("#menu_candidates").find("option[value!=0]");
+    prds.detach();
+
+    $("#main_Categories").change(update_selected);
+    $("#main_Categories").trigger("change");
+  });
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 });

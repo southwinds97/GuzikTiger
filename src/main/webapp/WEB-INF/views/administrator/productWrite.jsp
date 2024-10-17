@@ -79,19 +79,19 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 																<td>
 																	<select name="main_Categories" id="main_Categories" class="main_Categories">
 																		<option value="0">카테고리 대분류</option>
-																		<option value="A001">토이/인형</option>
-																		<option value="A001">키링</option>
-																		<option value="A001">노트북/태블릿 파우치</option>
-																		<option value="A001">패브릭/생활</option>
-																		<option value="A001">키친</option>
-																		<option value="A001">패션잡화</option>
-																		<option value="A001">여행/잡화</option>
-																		<option value="A001">문구류</option>
-																		<option value="A001">스티커/마스킹테이프</option>
-																		<option value="A001">엽서/카드/포스터</option>
-																		<option value="A001">폰케이스/모양톡/스트랩</option>
-																		<option value="A001">에어팟/버즈 케이스</option>
-																		<option value="A001">선물세트추천</option>
+																		<option value="1">토이/인형</option>
+																		<option value="2">키링</option>
+																		<option value="3">노트북/태블릿 파우치</option>
+																		<option value="4">패브릭/생활</option>
+																		<option value="5">키친</option>
+																		<option value="6">패션잡화</option>
+																		<option value="7">여행/잡화</option>
+																		<option value="8">문구류</option>
+																		<option value="9">스티커/마스킹테이프</option>
+																		<option value="10">엽서/카드/포스터</option>
+																		<option value="11">폰케이스/모양톡/스트랩</option>
+																		<option value="12">에어팟/버즈 케이스</option>
+																		<option value="13">선물세트추천</option>
 																	</select>
 																	<p class="value"></p>
 																</td>
