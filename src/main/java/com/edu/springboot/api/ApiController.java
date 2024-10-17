@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +19,12 @@ import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
+import com.edu.springboot.mypage.IMyPageService;
+import com.edu.springboot.mypage.WishListDTO;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
 
+import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
 
 @RestController
@@ -33,6 +37,9 @@ public class ApiController extends CommonController {
 	@Autowired
 	IProductService productDAO;
 
+	@Autowired
+    private IMyPageService myPagedao;
+
 	// 메인화면
 	@GetMapping("/")
 	public ResponseEntity<List<ProductDTO>> home(ParameterDTO parameterDTO) {
@@ -40,36 +47,67 @@ public class ApiController extends CommonController {
     	return ResponseEntity.ok(lists);
 	}
 	
-	 @PostMapping("/login")
-	    public ResponseEntity<MemberDTO> loginUser(@RequestBody MemberDTO loginRequest) {
-	        MemberDTO member = memberDAO.login(loginRequest.getId(), loginRequest.getPass());
-	        if (member != null) {
-	            return ResponseEntity.ok(member);
-	        } else {
-	            return ResponseEntity.status(401).body(null);
-	        }
+	@PostMapping("/login")
+	public ResponseEntity<MemberDTO> loginUser(@RequestBody MemberDTO loginRequest) {
+	    MemberDTO member = memberDAO.login(loginRequest.getId(), loginRequest.getPass());
+	    if (member != null) {
+	        return ResponseEntity.ok(member);
+	    } else {
+	        return ResponseEntity.status(401).body(null);
 	    }
+	}
 
-		@PostMapping("/category")
-		public ResponseEntity<List<ProductDTO>> category(@RequestBody Map<String, String> body) {
-			String searchKeyword = body.get("keyword");
-			// 검색 키워드를 기반으로 데이터를 조회합니다.
-			ArrayList<ProductDTO> lists;
-			String code = null;
-			int listArray = 2;
-			int offset = 0; // 기본값 설정
-			int limit = 500; // 기본값 설정
+	@PostMapping("/category")
+	public ResponseEntity<List<ProductDTO>> category(@RequestBody Map<String, String> body) {
+		String searchKeyword = body.get("keyword");
+		// 검색 키워드를 기반으로 데이터를 조회합니다.
+		ArrayList<ProductDTO> lists;
+		String code = null;
+		int listArray = 2;
+		int offset = 0; // 기본값 설정
+		int limit = 500; // 기본값 설정
 		
-			Map<String, Object> params = new HashMap<>();
-			params.put("code", code);
-			params.put("list_array", String.valueOf(listArray));
-			params.put("offset", offset);
-			params.put("limit", limit);
-			params.put("searchKeyword", searchKeyword);
+		Map<String, Object> params = new HashMap<>();
+		params.put("code", code);
+		params.put("list_array", String.valueOf(listArray));
+		params.put("offset", offset);
+		params.put("limit", limit);
+		params.put("searchKeyword", searchKeyword);
 		
-			lists = productDAO.getSelectByKeyword(params);
+		lists = productDAO.getSelectByKeyword(params);
 		
-			return ResponseEntity.ok(lists);
+		return ResponseEntity.ok(lists);
+	}
+
+	@GetMapping("/wishList")
+	public ResponseEntity<Map<String, Object>> wishList(HttpServletRequest req) {
+		String memberId = req.getParameter("id"); // URL 파라미터에서 memberId 가져오기
+
+		if (memberId == null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		}
+
+		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		int pageSize = 10; // 페이지당 항목 수
+		int start = (pageNum - 1) * pageSize + 1;
+		int end = pageNum * pageSize;
+
+		WishListDTO wishListDTO = new WishListDTO();
+		wishListDTO.setStart(start);
+		wishListDTO.setEnd(end);
+		wishListDTO.setMember_id(memberId);
+
+		List<Map<String, Object>> wishListData = myPagedao.wishListSelect(wishListDTO);
+		int totalCount = myPagedao.getWishListTotalCount(memberId);
+		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum, req.getContextPath() + "/wishList.do?");
+
+		Map<String, Object> response = new HashMap<>();
+		response.put("wishListData", wishListData);
+		response.put("pagingImg", pagingImg);
+
+		return ResponseEntity.ok(response);
+	}
+
+
 		
 }

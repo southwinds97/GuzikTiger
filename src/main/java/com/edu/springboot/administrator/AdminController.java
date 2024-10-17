@@ -98,7 +98,14 @@ public class AdminController extends CommonController {
     	productDTO.setOption_yn("N");
     	productDTO.setImg_id("kk.jpg");
         int result = dao.insertPorduct(productDTO);
-     //   int result2 = dao.insertPorductDtl(productDTO);
+        
+        
+        String product_id = productDTO.getProduct_id();
+        
+        productDTO.setProduct_id(product_id);
+        productDTO.setIdx(1);
+        productDTO.setSell_count(0);
+        int result2 = dao.insertPorductDtl(productDTO);
 
         if (result > 0) {
             // 회원가입 성공 메세지

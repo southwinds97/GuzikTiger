@@ -73,26 +73,28 @@
     </delete>
     
     <!-- 최근본 상품 조회  -->
-    <select id="recentViewSelect"  resultType="com.edu.springboot.product.ProductDTO">
-    	 select a.product_id, a.product_name, b.price, a.img_id, b.idx, d.cd_name,
-			         x.option_id_list 
-			  from product a , product_dtl b, recent_view_product c ,code_list d,
-			  (
-			    select product_id , LISTAGG(option_id,';') within group(order by product_id, idx) as option_id_list 
-			      from   product_dtl 
-			      where 1=1
-			      group by product_id
-			  )x
-			  where 1=1
-			  and a.product_id = b.product_id
-			  and a.product_id = x.product_id
-              and a.product_id = c.product_id
-              and b.option_cate = d.code(+)
-              and b.idx = 1
-			  order by c.view_date desc, a.product_id,b.idx
-              <!-- 10개까지만 -->
-                fetch first 10 rows only
-    </select >
+    <select id="recentViewSelect" resultType="com.edu.springboot.product.ProductDTO">
+        select * from (
+            select a.product_id, a.product_name, b.price, a.img_id, b.idx, d.cd_name,
+                x.option_id_list,
+                rownum as rnum
+            from product a, product_dtl b, recent_view_product c, code_list d,
+            (
+                select product_id, LISTAGG(option_id, ';') within group(order by product_id, idx) as option_id_list 
+                from product_dtl 
+                where 1=1
+                group by product_id
+            ) x
+            where 1=1
+            and a.product_id = b.product_id
+            and a.product_id = x.product_id
+            and a.product_id = c.product_id
+            and b.option_cate = d.code(+)
+            and b.idx = 1
+            order by c.view_date desc, a.product_id, b.idx
+        )
+        where rownum <![CDATA[<=]]> 10
+    </select>
     
      <!-- 최근본 상품 등록  -->
     <!-- <insert id="recentViewInsert" parameterType="com.edu.springboot.product.ProductDTO">
