@@ -78,6 +78,9 @@ public interface IProductService {
 	//결제 완료 후 재고 업데이트
 	int  updateStock(ProductDTO productDTO);
 	
+	int insertPorduct (ProductDTO productDTO);
+	int insertPorductDtl (ProductDTO productDTO);
+	
 	/*-----------admin--------------*/
 	// 모든상품 조회
 	public ArrayList<ProductDTO> adminProductSelect(ParameterDTO parameterDTO);

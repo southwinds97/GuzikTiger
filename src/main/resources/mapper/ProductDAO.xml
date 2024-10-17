@@ -446,4 +446,16 @@
 		where  product_id = #{product_id} and idx = #{idx}
 	</select>
 	
+	 <!-- 상품테이블 등록 처리 -->
+    <insert id="insertPorduct" parameterType="com.edu.springboot.product.ProductDTO">
+        INSERT INTO product (product_id, product_name , sub_cate,PRODUCT_CONTENT,OPTION_YN,img_id)
+        VALUES ('P'||product_seq.nextval, #{product_name}, #{sub_cate},#{product_content},#{option_yn},#{img_id})
+    </insert>
+    
+     <!-- 상품디테일 테이블 등록 처리 -->
+    <insert id="insertPorductDtl" parameterType="com.edu.springboot.product.ProductDTO">
+        INSERT INTO product_dtl (product_id, product_name, sub_cate, )
+        VALUES (#{id}, endar})
+    </insert>
+	
 </mapper>

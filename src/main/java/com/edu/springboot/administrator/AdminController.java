@@ -1,15 +1,13 @@
 package com.edu.springboot.administrator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
@@ -20,6 +18,7 @@ import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utils.JSFunction;
 import utils.PagingUtil;
 
 @Controller
@@ -85,12 +84,32 @@ public class AdminController extends CommonController {
 		return "administrator/productReg"; 
 	}
 	
-	
+	// 상품등록진입
 	@RequestMapping("/productWrite.do")
 	public String productWrite() {
 		return "administrator/productWrite"; 
 	}
 	
+	 // 상품등록 처리
+    @PostMapping("/productWrite.do")
+    public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
+        // 데이터 확인
+    	productDTO.setOption_id("뚱랑이삼색이");
+    	productDTO.setOption_yn("N");
+    	productDTO.setImg_id("kk.jpg");
+        int result = dao.insertPorduct(productDTO);
+     //   int result2 = dao.insertPorductDtl(productDTO);
+
+        if (result > 0) {
+            // 회원가입 성공 메세지
+            JSFunction.alertLocation(resp, "상품등록이 완료되었습니다.", "/");
+            return null;
+        } else {
+            // 회원가입 실패
+            JSFunction.alertBack(resp, "상품등록이 실패했습니다.");
+            return null;
+        }
+    }
 	
 	@RequestMapping("/chat")
 	public String chat() {
