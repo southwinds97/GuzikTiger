@@ -21,7 +21,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
 <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
-<link rel="stylesheet" href="css/productWrite2.css?v=<?php echo time(); ?>">
+<link rel="stylesheet" href="css/productWrite.css?v=<?php echo time(); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 <!-- summernote 추가 -->
   <script src="js/jquery-3.7.1.min.js"></script>
@@ -44,6 +44,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 				<div class="WritingHeader">
 					<h2 class="title"> 상품등록 </h2>
         </div>
+     <!--  --------------------------------------------form시작-----------------------------------------------      -->
+        <form>
+       
         <div class="WritingContent">
           <div class="WritingEditor">
 						<div id="previewContainer" class="preview-container">
@@ -76,19 +79,19 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 																<td>
 																	<select name="main_Categories" id="main_Categories" class="main_Categories">
 																		<option value="0">카테고리 대분류</option>
-																		<option value="1">토이/인형</option>
-																		<option value="2">키링</option>
-																		<option value="3">노트북/태블릿 파우치</option>
-																		<option value="4">패브릭/생활</option>
-																		<option value="5">키친</option>
-																		<option value="6">패션잡화</option>
-																		<option value="7">여행/잡화</option>
-																		<option value="8">문구류</option>
-																		<option value="9">스티커/마스킹테이프</option>
-																		<option value="10">엽서/카드/포스터</option>
-																		<option value="11">폰케이스/모양톡/스트랩</option>
-																		<option value="12">에어팟/버즈 케이스</option>
-																		<option value="13">선물세트추천</option>
+																		<option value="A001">토이/인형</option>
+																		<option value="A001">키링</option>
+																		<option value="A001">노트북/태블릿 파우치</option>
+																		<option value="A001">패브릭/생활</option>
+																		<option value="A001">키친</option>
+																		<option value="A001">패션잡화</option>
+																		<option value="A001">여행/잡화</option>
+																		<option value="A001">문구류</option>
+																		<option value="A001">스티커/마스킹테이프</option>
+																		<option value="A001">엽서/카드/포스터</option>
+																		<option value="A001">폰케이스/모양톡/스트랩</option>
+																		<option value="A001">에어팟/버즈 케이스</option>
+																		<option value="A001">선물세트추천</option>
 																	</select>
 																	<p class="value"></p>
 																</td>
@@ -187,6 +190,9 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               <button class="write_btn" type="submit">등록</button>
             </div>
           </div>
+          
+           </form>
+    <!--  --------------------------------------------form종료-----------------------------------------------      -->
         </div>  
       </div>
     </main>
