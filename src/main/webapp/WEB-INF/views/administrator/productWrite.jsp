@@ -195,16 +195,26 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
       </div>
     </main>
   </div>
+	
+<script>
+$(document).ready(function() {
+	  $('#summernote').summernote({
+	    height: 1000, // 에디터 높이
+	    minHeight: null, // 최소 높이
+	    maxHeight: null, // 최대 높이
+	    focus: true, // 에디터 로딩 후 포커스 맞추기
+	  });
 
-  <script>
-    $(document).ready(function () {
-        $('#summernote').summernote({
-            height: 1000, // 에디터 높이
-            minHeight: null, // 최소 높이
-            maxHeight: null, // 최대 높이
-            focus: true // 에디터 로딩 후 포커스 맞추기
-        });
-    });
+	  // 폼 제출 이벤트 가로채기
+	  $('form').on('submit', function(event) {
+	    // summernote 에디터의 내용 가져오기
+	    const contents = $('#summernote').val();
+	    // 불필요한 <p> 태그 제거
+	    const cleanedContents = contents.replace(/<p><\/p>/g, '').replace(/<p>/g, '').replace(/<\/p>/g, '');
+	    // 처리된 내용을 다시 에디터에 설정
+	    $('#summernote').val(cleanedContents);
+	  });
+	});
   </script>
 			<script>
 				document.addEventListener('DOMContentLoaded', function() {
@@ -273,6 +283,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 					});
 				});
 				</script>
+
 
 				<style>
 				#wrap {
@@ -362,6 +373,8 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 					padding-top: 10px;
 				}
 				</style>
+			
+			
 	<!-- 푸터 -->
     <%@ include file="../footer.jsp" %>
 </body>

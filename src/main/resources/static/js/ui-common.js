@@ -322,19 +322,7 @@ $(function () {
     $("#main_Categories").trigger("change");
   });
 
-//상품등록페이지에 <p>태그제거
-  $(document).ready(function() {
-    $('#summernote').summernote({
-      callbacks: {
-        onChange: function(contents, $editable) {
-          // 불필요한 <p> 태그 제거
-          const cleanedContents = contents.replace(/<p><\/p>/g, '');
-          $('#summernote').val(cleanedContents);
-        }
-      }
-    });
-  });
-  
+
   
   
   
