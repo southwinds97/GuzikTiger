@@ -221,7 +221,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <a href="#" onclick="listChk(listId.A)">상품 리스트</a>
               </li>
               <li>
-                <a href="#">상품 등록</a>
+                <a href="/productWrite.do">상품 등록</a>
               </li>
             </ul>
             <div class="subTitle">

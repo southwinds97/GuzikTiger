@@ -84,6 +84,14 @@ public class AdminController extends CommonController {
 	public String productReg() {
 		return "administrator/productReg"; 
 	}
+	
+	
+	@RequestMapping("/productWrite.do")
+	public String productWrite() {
+		return "administrator/productWrite"; 
+	}
+	
+	
 	@RequestMapping("/chat")
 	public String chat() {
 		return "forward:/reactChat/index.html";
