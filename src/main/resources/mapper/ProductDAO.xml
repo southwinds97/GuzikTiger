@@ -19,18 +19,6 @@
 	<select id="getAllSelect"
 		resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="com.edu.springboot.ParameterDTO">
-		<!-- select * from (
-			select tb.*, rownum rNum from(
-				select * from product
-				<if test="searchKeyword!=null
-					and !searchKeyword.equals('')" >
-			where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
-		order by product_id desc
-			)Tb
-		)
-		where rNum<![CDATA[>=]]>#{start}
-		and rNum<![CDATA[<=]]>#{end} -->
 		select  a.product_id,
 		    a.product_name as product_name, 
 		    a.product_content as product_content , 
@@ -42,7 +30,6 @@
 		and b.idx = 1
 		and a.product_id = b.product_id
 		order by a.product_name 
-		<!-- OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY -->
 	</select>
 	
 	
@@ -55,18 +42,6 @@
 	<select id="getProductNewList"
 		resultType = "com.edu.springboot.product.ProductDTO"
 		parameterType="com.edu.springboot.ParameterDTO">
-		<!-- select * from (
-			select tb.*, rownum rNum from(
-				select * from product
-				<if test="searchKeyword!=null
-					and !searchKeyword.equals('')" >
-			where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
-		order by product_id desc
-			)Tb
-		)
-		where rNum<![CDATA[>=]]>#{start}
-		and rNum<![CDATA[<=]]>#{end} -->
 		select 
 			a.product_id,
 			c.elapsed_date,
@@ -91,72 +66,31 @@
 	
 	 <!-- best상품 -->
 	<select id="getProductBestList"
-		resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="com.edu.springboot.ParameterDTO">
-		<!-- select * from (
-			select tb.*, rownum rNum from(
-				select * from product
-				<if test="searchKeyword!=null
-					and !searchKeyword.equals('')" >
-			where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
-		order by product_id desc
-			)Tb
+			resultType="com.edu.springboot.product.ProductDTO"
+			parameterType="com.edu.springboot.ParameterDTO">
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content , 
+				b.stock as b_stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				c.stock as c_stock,
+				c.sell_count as sell_count,
+				rownum as rnum
+			from product a, product_dtl b,
+			(select product_id, sum(stock) stock, sum(sell_count) sell_count from product_dtl
+			group by product_id
+			order by product_id) c
+			where 1=1
+			and b.idx = 1
+			and a.product_id = b.product_id
+			and b.product_id = c.product_id
+			order by c.sell_count desc
 		)
-		where rNum<![CDATA[>=]]>#{start}
-		and rNum<![CDATA[<=]]>#{end} -->
-		select 
-			a.product_id,
-		    a.product_name as product_name, 
-		    a.product_content as product_content , 
-		    b.stock as stock,
-		    b.img_id as img_id,
-		    TO_CHAR(b.price, 'FM999,999,999,999') as price,
-		    c.stock,
-		    c.sell_count
-		from product a, product_dtl b ,
-		(select product_id, sum(stock) stock,sum(sell_count) sell_count from product_dtl
-		group by product_id
-		order by product_id)c
-		where 1=1
-		and rowNum <![CDATA[<]]>31
-		and b.idx = 1
-		and a.product_id = b.product_id
-		and b.product_id = c.product_id
-		order by  c.sell_count desc
-		OFFSET 0 ROWS FETCH NEXT 8 ROWS ONLY
+		where rnum between 1 and 8
 	</select>
-	
-	<!-- <select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
-		select cd_name  from code_list where category = 'mainCate'
-	</select> -->
-	<!-- <select id="subCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
-		select cd_name  from code_list where category = 'subCate'
-	</select> -->
-		
-<!-- 	<insert id="write">
-		insert into myboard (idx, name, title, content)
-		values
-		(seq_board_num.nextval, #{_name}, #{_title}, #{_content})
-	</insert>
-	<select id="view" resultType = "com.edu.springboot.jdbc.BoardDTO"
-		parameterType="com.edu.springboot.jdbc.BoardDTO">
-		select * from myboard where idx=#{idx}
-	 </select>
-	 <update id="edit" parameterType="com.edu.springboot.jdbc.ParameterDTO">
-	 	update myboard set
-	 	name=#{name}, title=#{title}, content=#{content}
-	 	where idx = #{idx}
- 	</update>
- 	
- 	<delete id="delete">
- 		delete from myboard where idx = #{param1}
-	</delete>
-	
-	<update id="visitCntPlus" >
-		update myboard set visitcount = visitcount +1
-		where idx = #{idx}
-	</update> -->
 
 	<select id="mainCategoryList" resultType = "com.edu.springboot.product.CodeListDTO" >
 		select cd_name  from code_list where category = 'mainCate' 
@@ -165,12 +99,12 @@
 	</select>
 
 	<select id="subCategoryList" parameterType="String" resultType="com.edu.springboot.product.CodeListDTO">
-        SELECT cd_name FROM code_list WHERE cd_name = #{category} FETCH FIRST 1 ROWS ONLY
+        SELECT cd_name FROM code_list WHERE cd_name = #{category} AND ROWNUM = 1
     </select>
 
 	<!-- cd_name으로 code 가져오기 -->
     <select id="getCodeByCdName" parameterType="String" resultType="String">
-        SELECT code FROM code_list WHERE cd_name = #{cd_name} FETCH FIRST 1 ROWS ONLY
+        SELECT code FROM code_list WHERE cd_name = #{cd_name} AND ROWNUM = 1
     </select>
 
 	<!-- cd_name으로 up_code 가져오기 (code가 'A'로 시작하지 않는 경우) -->
@@ -186,40 +120,43 @@
 
 	<!-- 코드를 이용해서 mainCate 상품 검색 -->
 	<select id="getSelectByCodeMain" parameterType="map" resultType="com.edu.springboot.product.ProductDTO">
-		select  a.product_id,
-			a.product_name as product_name, 
-			a.product_content as product_content , 
-			b.stock as stock,
-			b.img_id as img_id,
-			TO_CHAR(b.price, 'FM999,999,999,999') as price
-		from product a, product_dtl b , code_list c
-		where 1=1
-		and b.idx = 1
-		and a.product_id = b.product_id
-		and a.sub_cate like '%'||c.code||'%'
-		and c.up_code = #{code}
-		<choose>
-			<when test="list_array == 1">
-				order by b.price
-			</when>
-			<when test="list_array == 2">
-				order by a.product_name
-			</when>
-			<when test="list_array == 3">
-				order by b.price
-			</when>
-			<when test="list_array == 4">
-				order by b.price desc
-			</when>
-			<when test="list_array == 5">
-				order by a.product_name
-			</when>
-			<otherwise>
-				order by b.price
-			</otherwise>
-		</choose>
-		<!-- OFFSET 0 ROWS FETCH NEXT 20 ROWS ONLY -->
-		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content , 
+				b.stock as stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				rownum as rnum
+			from product a, product_dtl b, code_list c
+			where 1=1
+			and b.idx = 1
+			and a.product_id = b.product_id
+			and a.sub_cate like '%'||c.code||'%'
+			and c.up_code = #{code}
+			<choose>
+				<when test="list_array == 1">
+					order by b.price
+				</when>
+				<when test="list_array == 2">
+					order by a.product_name
+				</when>
+				<when test="list_array == 3">
+					order by b.price
+				</when>
+				<when test="list_array == 4">
+					order by b.price desc
+				</when>
+				<when test="list_array == 5">
+					order by a.product_name
+				</when>
+				<otherwise>
+					order by b.price
+				</otherwise>
+			</choose>
+		)
+		where rnum between #{offset} + 1 and #{offset} + #{limit}
 	</select>
 
 
@@ -237,40 +174,44 @@
 
 	<!-- 코드검색 subCate 상품 검색  -->
     <select id="getSelectByCodeSub" parameterType="map" resultType="com.edu.springboot.product.ProductDTO">
-        select  a.product_id,
-			a.product_name as product_name, 
-			a.product_content as product_content , 
-			b.stock as stock,
-			b.img_id as img_id,
-			TO_CHAR(b.price, 'FM999,999,999,999') as price
-		from product a, product_dtl b , code_list c
-		where 1=1
-		and b.idx = 1
-		and a.product_id = b.product_id
-		and a.sub_cate like '%'||c.code||'%'
-		and c.code = #{code}
-		<choose>
-			<when test="list_array == 1">
-				order by b.price
-			</when>
-			<when test="list_array == 2">
-				order by a.product_name
-			</when>
-			<when test="list_array == 3">
-				order by b.price
-			</when>
-			<when test="list_array == 4">
-				order by b.price desc
-			</when>
-			<when test="list_array == 5">
-				order by a.product_name
-			</when>
-			<otherwise>
-				order by b.price
-			</otherwise>
-		</choose>
-		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
-    </select>
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content , 
+				b.stock as stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				rownum as rnum
+			from product a, product_dtl b, code_list c
+			where 1=1
+			and b.idx = 1
+			and a.product_id = b.product_id
+			and a.sub_cate like '%'||c.code||'%'
+			and c.code = #{code}
+			<choose>
+				<when test="list_array == 1">
+					order by b.price
+				</when>
+				<when test="list_array == 2">
+					order by a.product_name
+				</when>
+				<when test="list_array == 3">
+					order by b.price
+				</when>
+				<when test="list_array == 4">
+					order by b.price desc
+				</when>
+				<when test="list_array == 5">
+					order by a.product_name
+				</when>
+				<otherwise>
+					order by b.price
+				</otherwise>
+			</choose>
+		)
+		where rnum between #{offset} + 1 and #{offset} + #{limit}
+	</select>
 
     <!-- 코드검색 subCate 상품 카운트 -->
     <select id="getSelectByCodeSubCount" parameterType="String" resultType="int">
@@ -285,42 +226,42 @@
     </select>
 
 	<select id="getSelectByCodeAll"
-		resultType="com.edu.springboot.product.ProductDTO"
-		parameterType="map">
-		
-		select  a.product_id,
-			a.product_name as product_name, 
-			a.product_content as product_content , 
-			b.stock as stock,
-			b.img_id as img_id,
-			TO_CHAR(b.price, 'FM999,999,999,999') as price
-		from product a, product_dtl b 
-		where 1=1
-		and b.idx = 1
-		and a.product_id = b.product_id
-		
-		<choose>
-			<when test="list_array == 1">
-				order by b.price
-			</when>
-			<when test="list_array == 2">
-				order by a.product_name
-			</when>
-			<when test="list_array == 3">
-				order by b.price
-			</when>
-			<when test="list_array == 4">
-				order by b.price desc
-			</when>
-			<when test="list_array == 5">
-				order by a.product_name
-			</when>
-			<otherwise>
-				order by b.price
-			</otherwise>
-		</choose>
-		
-		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+        resultType="com.edu.springboot.product.ProductDTO"
+        parameterType="map">
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content, 
+				b.stock as stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				rownum as rnum
+			from product a
+			join product_dtl b on a.product_id = b.product_id
+			where b.idx = 1
+			<choose>
+				<when test="list_array == 1">
+					order by b.price
+				</when>
+				<when test="list_array == 2">
+					order by a.product_name
+				</when>
+				<when test="list_array == 3">
+					order by b.price
+				</when>
+				<when test="list_array == 4">
+					order by b.price desc
+				</when>
+				<when test="list_array == 5">
+					order by a.product_name
+				</when>
+				<otherwise>
+					order by b.price
+				</otherwise>
+			</choose>
+		)
+		where <![CDATA[rnum > #{offset} and rnum <= #{offset} + #{limit}]]>
 	</select>
 	
 	<!-- 전체검색 수 -->
@@ -333,53 +274,60 @@
 	</select>
 
 	<select id="getSelectByCodeBest"
-		resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="map">
-		select 
-			a.product_id,
-		    a.product_name as product_name, 
-		    a.product_content as product_content , 
-		    b.stock as stock,
-		    b.img_id as img_id,
-		    TO_CHAR(b.price, 'FM999,999,999,999') as price,
-		    c.stock,
-		    c.sell_count
-		from product a, product_dtl b ,
-		(select product_id, sum(stock) stock,sum(sell_count) sell_count from product_dtl
-		group by product_id
-		order by product_id)c
-		where 1=1
-		and rowNum <![CDATA[<]]>31
-		and b.idx = 1
-		and a.product_id = b.product_id
-		and b.product_id = c.product_id
-		order by  c.sell_count desc
-		FETCH NEXT 30 ROWS ONLY
+        resultType="com.edu.springboot.product.ProductDTO"
+        parameterType="map">
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content , 
+				b.stock as b_stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				c.stock as c_stock,
+				c.sell_count as sell_count,
+				rownum as rnum
+			from product a
+			join product_dtl b on a.product_id = b.product_id
+			join (
+				select product_id, sum(stock) stock, sum(sell_count) sell_count 
+				from product_dtl
+				group by product_id
+			) c on b.product_id = c.product_id
+			where b.idx = 1
+			order by c.sell_count desc
+		)
+		where <![CDATA[rnum < 31]]>
 	</select>
 
 	<select id="getSelectByCodeNew"
-		resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="map">
-		select 
-			a.product_id,
-			c.elapsed_date,
-		    a.product_name as product_name, 
-		    a.product_content as product_content , 
-		    b.stock as stock,
-		    b.img_id as img_id,
-		    TO_CHAR(b.price, 'FM999,999,999,999') as price
-		from product a, product_dtl b ,
-		(select t.product_id,rownum num , t.elapsed_date elapsed_date from 
-		(select product_id, to_date(sysdate, 'yyyy/mm/dd') - to_date(regidate, 'yyyy/mm/dd') elapsed_date 
-		    from product_dtl where idx=1  order by elapsed_date ) t )c
-		where 1=1
-		
-		and b.idx = 1
-		and a.product_id = b.product_id
-		and b.product_id = c.product_id
-		and c.num <![CDATA[<=]]>30
-		order by c.elapsed_date  
-		FETCH NEXT 30 ROWS ONLY
+        resultType="com.edu.springboot.product.ProductDTO"
+        parameterType="map">
+		select * from (
+			select 
+				a.product_id,
+				c.elapsed_date,
+				a.product_name as product_name, 
+				a.product_content as product_content, 
+				b.stock as stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				rownum as rnum
+			from product a
+			join product_dtl b on a.product_id = b.product_id
+			join (
+				select t.product_id, rownum as num, t.elapsed_date 
+				from (
+					select product_id, to_date(sysdate, 'yyyy/mm/dd') - to_date(regidate, 'yyyy/mm/dd') as elapsed_date 
+					from product_dtl 
+					where idx = 1  
+					order by elapsed_date 
+				) t
+			) c on b.product_id = c.product_id
+			where b.idx = 1
+			order by c.elapsed_date
+		)
+		where <![CDATA[rnum < 31]]>
 	</select>
 
 	<!-- 상품 상세  -->
@@ -422,44 +370,46 @@
 
 
 	<!-- 키워드를 이용한 상품검색 -->
-	<select id="getSelectByKeyword" resultType = "com.edu.springboot.product.ProductDTO"
-		parameterType="map">
-		select 
-			a.product_id,
-		    a.product_name as product_name, 
-		    a.product_content as product_content , 
-		    b.stock as stock,
-		    b.img_id as img_id,
-		    TO_CHAR(b.price, 'FM999,999,999,999') as price
-		from product a, product_dtl b 
-		where 1=1
-		and b.idx = 1
-		and a.product_id = b.product_id
-		<if test="searchKeyword != null and searchKeyword != ''">
-         AND a.product_name LIKE '%' || #{searchKeyword} || '%'
-      	</if>
-		<choose>
-			<when test="list_array == 1">
-				order by b.price
-			</when>
-			<when test="list_array == 2">
-				order by a.product_name
-			</when>
-			<when test="list_array == 3">
-				order by b.price
-			</when>
-			<when test="list_array == 4">
-				order by b.price desc
-			</when>
-			<when test="list_array == 5">
-				order by a.product_name
-			</when>
-			<otherwise>
-				order by b.price
-			</otherwise>
-		</choose> 
-		OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
-		</select>
+	<select id="getSelectByKeyword" resultType="com.edu.springboot.product.ProductDTO"
+        parameterType="map">
+		select * from (
+			select 
+				a.product_id,
+				a.product_name as product_name, 
+				a.product_content as product_content, 
+				b.stock as stock,
+				b.img_id as img_id,
+				TO_CHAR(b.price, 'FM999,999,999,999') as price,
+				rownum as rnum
+			from product a
+			join product_dtl b on a.product_id = b.product_id
+			where b.idx = 1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND a.product_name LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<choose>
+				<when test="list_array == 1">
+					order by b.price
+				</when>
+				<when test="list_array == 2">
+					order by a.product_name
+				</when>
+				<when test="list_array == 3">
+					order by b.price
+				</when>
+				<when test="list_array == 4">
+					order by b.price desc
+				</when>
+				<when test="list_array == 5">
+					order by a.product_name
+				</when>
+				<otherwise>
+					order by b.price
+				</otherwise>
+			</choose>
+		)
+		where <![CDATA[rnum > #{offset} and rnum <= #{offset} + #{limit}]]>
+	</select>
 
 	<!-- 키워드를 이용한 상품검색 수 -->
 	<select id="getSelectByKeywordCount" resultType = "int"
