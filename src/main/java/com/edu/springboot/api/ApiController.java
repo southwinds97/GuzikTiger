@@ -47,6 +47,7 @@ public class ApiController extends CommonController {
     	return ResponseEntity.ok(lists);
 	}
 	
+	// 로그인
 	@PostMapping("/login")
 	public ResponseEntity<MemberDTO> loginUser(@RequestBody MemberDTO loginRequest) {
 	    MemberDTO member = memberDAO.login(loginRequest.getId(), loginRequest.getPass());
@@ -57,6 +58,7 @@ public class ApiController extends CommonController {
 	    }
 	}
 
+	// 카테고리
 	@PostMapping("/category")
 	public ResponseEntity<List<ProductDTO>> category(@RequestBody Map<String, String> body) {
 		String searchKeyword = body.get("keyword");
@@ -79,6 +81,31 @@ public class ApiController extends CommonController {
 		return ResponseEntity.ok(lists);
 	}
 
+	// 상품 상세
+    @PostMapping("/productDetail")
+    public ResponseEntity<Map<String, Object>> productDetail(@RequestBody Map<String, String> body) {
+        String product_id = body.get("product_id");
+        String member_id = body.get("member_id");
+        ArrayList<ProductDTO> productViewList = productDAO.getProductDtl(product_id);
+        ArrayList<ProductDTO> productRelateList = productDAO.getProductRelate(product_id);
+
+        // 최근 본 상품 등록
+        if (member_id != null) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("product_id", product_id);
+            param.put("member_id", member_id);
+            myPagedao.recentViewInsert(param);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("productViewList", productViewList);
+        response.put("productRelateList", productRelateList);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+	// 위시리스트
 	@GetMapping("/wishList")
 	public ResponseEntity<Map<String, Object>> wishList(HttpServletRequest req) {
 		String memberId = req.getParameter("id"); // URL 파라미터에서 memberId 가져오기
