@@ -72,6 +72,7 @@
           <h3>댓글달기</h3>
           <form name="commentFrm" method="post" action="comWrite.do" onsubmit="return checkFrm(this);">
             <input type="hidden" value="${qnaDTO.idx}" name="board_idx">
+			<input type="hidden" value="${id}" name="member_id">
             <div class="comment_box">
               <textarea name="comments"></textarea>
               <div class="comment_user">

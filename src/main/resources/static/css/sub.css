@@ -325,6 +325,22 @@
 .btn_wrap button:hover {
   border: 1px solid black;
 }
+.btn_wrap a {
+  display: inline-block;
+  text-align: center;
+  min-width: 135px;
+  height: 40px;
+  line-height: 1;
+  padding: 13px 15px;
+  margin-left: 10px;
+  border: 1px solid #bcbcbc;
+  background: none;
+  transition: all 0.4s;
+}
+
+.btn_wrap a:hover {
+  border: 1px solid black;
+}
 
 .btn_wrap .write_btn {
   background: #000;

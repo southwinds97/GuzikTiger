@@ -49,16 +49,19 @@
 			  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaEdit.do" onsubmit="return validateForm(this);">
 				<input type="hidden" name="idx" value="${qnaDTO.idx}">
 				<input type="hidden" value="${name}" name="name">
-				<input type="hidden" id="product-hiddenname" value="" name="product">
-				<input type="hidden" id="product-hiddenimg" value="" name="product_img">
-				<input type="hidden" id="product-hiddenprice" value="" name="product_price">
+				<input type="hidden" value="${id}" name="member_id">
+				<input type="hidden" id="product-hiddenname" value="${qnaDTO.product}" name="product">
+				<input type="hidden" id="product-hiddenimg" value="${qnaDTO.product_img}" name="product_img">
+				<input type="hidden" id="product-hiddenprice" value="${qnaDTO.product_price}" name="product_price">
 					<div class="product_sel">
 			            <img id="product-img" src="./images/productList/${qnaDTO.product_img}" onerror="this.src='./images/noimg.gif';">
 			            <div class="product_info">
 			              <div class="txt_wrap">
 			                <a id="product-name" href="#" data-product-name="">${qnaDTO.product}
 							</a>
-			                <span id="product-price">${qnaDTO.product_price}원</span>
+							<c:if test="${not empty qnaDTO.product_price}">
+			                	<span id="product-price">${qnaDTO.product_price}원</span>
+							</c:if>
 			              </div>
 			              <div class="sel_wrap">
 			                <a href="#">상품상세보기</a>

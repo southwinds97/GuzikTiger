@@ -20,10 +20,10 @@
       <div class="com_content">
         <c:choose>
           <c:when test="${comment.secretYN == 'on'}">
-			<c:if test="${comment.name == sessionScope.name}">
+			<c:if test="${comment.member_id == sessionScope.id}">
 				<img src="/images/lock.gif" alt="비밀글"><p>${comment.comments}</p>
 			</c:if>
-			<c:if test="${comment.name != sessionScope.name}">
+			<c:if test="${comment.member_id != sessionScope.id}">
 	            <a id="comPassCheck" href="#" data-password="${comment.password}" data-comments="${comment.comments}">
 					<img src="/images/lock.gif" alt="비밀글">&nbsp;&nbsp;비밀댓글 입니다.</a>
 	        </c:if>
@@ -33,10 +33,12 @@
           </c:otherwise>
         </c:choose>
       </div>
-      <div class="com_edit">
-        <button onclick="editComment('${comment.idx}');">수정</button>
-        <button onclick="deleteComment('${comment.idx}');">삭제</button>
-      </div>
+	  <c:if test="${comment.member_id == sessionScope.id}">
+	      <div class="com_edit">
+	        <button onclick="editComment('${comment.idx}');">수정</button>
+	        <button onclick="deleteComment('${comment.idx}');">삭제</button>
+	      </div>
+	  </c:if>
     </div>
   </c:forEach>
 </div>

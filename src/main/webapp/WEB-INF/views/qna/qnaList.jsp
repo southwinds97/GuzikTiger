@@ -26,7 +26,7 @@
   </head>
 
   <script>
-	function checkSec(name, idx) {
+	function checkSec(id, idx) {
 		 var userId = '<%= session.getAttribute("id") != null ? session.getAttribute("id") : "" %>';
 		 var userName = '<%= session.getAttribute("name") != null ? session.getAttribute("name") : "" %>';
 		 let password = $('#qnaLink').data('password');
@@ -35,7 +35,7 @@
 			alert("회원에게만 읽기 권한이 있습니다.");
 		}
 		else {
-			if(userName == name || userName == "관리자") {
+			if(userId == id || userId == "admin") {
 				var href = "qnaView.do?idx=" + idx;
 				document.getElementById('qnaLink').href = href; // href 설정
 				window.location.href = href; // 페이지 이동
@@ -159,7 +159,7 @@
 										<c:choose>
 											<c:when test="${row.secretYN == 'y'}">
 												<img src="/images/lock.gif" alt="비밀글">&nbsp;
-					                      		<a id="qnaLink" onclick="checkSec('${row.name}', '${row.idx}')" href="#" data-password="${row.password}">${row.title}</a></td>
+					                      		<a id="qnaLink" onclick="checkSec('${row.member_id}', '${row.idx}')" href="#" data-password="${row.password}">${row.title}</a></td>
 											</c:when>
 											<c:otherwise>
 												<a id="qnaLink" onclick="checkLogin('${row.idx}')" href="#">${row.title}</a></td>
