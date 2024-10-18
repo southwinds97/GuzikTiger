@@ -313,7 +313,7 @@
                             <tbody class="add_products"></tbody>
                           </table>
                         </div>
-                        <div id="freeShipGuide" class>
+                        <div id="freeShipGuide" style="display: none;">
                           <div class="text1">
                             <strong class="insufficientPrice">50,000</strong>
                             원만 더 구매하면
@@ -577,6 +577,28 @@
                   </div>
                 </div>
               </div>
+
+
+
+
+<script>
+  $(document).ready(function () {
+    // 기본적으로 freeShipGuide 요소를 숨깁니다.
+    $('#freeShipGuide').hide();
+
+    // 옵션이 추가될 때 freeShipGuide 요소를 보이게 합니다.
+    $('#option1').on('change', function () {
+      if ($(this).val()) {
+        $('#freeShipGuide').show();
+      } else {
+        $('#freeShipGuide').hide();
+      }
+    });
+  });
+</script>
+
+
+
 
 
             </main>
