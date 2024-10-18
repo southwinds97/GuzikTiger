@@ -80,7 +80,7 @@
                   <div class="name_wrap info_wrap">
                     <p>이름</p>
                     <input type="text" id="userIdInput" value="" name="name">
-                  </div> 
+                  </div>
                   <div class="pass_wrap info_wrap">
                     <p>비밀번호</p>
                     <input type="password" name="password">
