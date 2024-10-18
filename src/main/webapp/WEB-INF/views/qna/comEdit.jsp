@@ -8,6 +8,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 >
   <input type="hidden" value="${comment.idx}" name="idx" />
   <input type="hidden" value="${comment.board_idx}" name="board_idx" />
+  <input type="hidden" value="${comment.member_id}" name="member_id" />
   <div class="comment_box">
     <textarea name="comments">${comment.comments}</textarea>
     <div class="comment_user">
@@ -27,9 +28,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
       </div>
       <div class="pass_com">
-        <input type="checkbox" name="secretYN" id="checkbox" ${comment.secretYN
-        == 'on' ? 'checked' : ''} />
-        <label for="checkbox">비밀댓글</label>
+        <input type="checkbox" name="secretYN" id="checkbox_${comment.idx}" ${comment.secretYN == 'on' ? 'checked="checked"' : ''} />
+        <label for="checkbox_${comment.idx}">비밀댓글</label>
         (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
         <button class="com_btn" type="submit">등록</button>
       </div>

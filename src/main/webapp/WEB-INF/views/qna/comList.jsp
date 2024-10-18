@@ -40,9 +40,9 @@
 	      </div>
 	  </c:if>
     </div>
+	<div id="editFormContainer_${comment.idx}"></div>
   </c:forEach>
 </div>
-<div id="editFormContainer"></div>
 <script>
 function editComment(idx) {
   $.ajax({
@@ -52,7 +52,7 @@ function editComment(idx) {
       idx: idx
     },
     success: function(response) {
-      $('#editFormContainer').html(response);
+      $('#editFormContainer_'+idx).html(response);
     },
     error: function(xhr, status, error) {
       console.error("댓글 수정 폼을 불러오는 중 오류 발생:", error);
