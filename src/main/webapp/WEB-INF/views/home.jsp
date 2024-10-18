@@ -86,17 +86,17 @@
                 const swiper = new Swiper('.swiper-container', {
                   grabCursor: true,
                   draggable: true,
-				  allowTouchMove: false,
+                  allowTouchMove: false,
                   speed: 1000,
                   loop: true,
                   effect: 'fade',
                   fadeEffect: { crossFade: true },
                   preloadImages: false,
-				  autoplay: {
-			        delay: 5000,
-			        // 슬라이더 내부 인터렉션발생시 자동재생 안멈추게
-			        disableOnInteraction: false,
-			      },
+                  autoplay: {
+                    delay: 5000,
+                    // 슬라이더 내부 인터렉션발생시 자동재생 안멈추게
+                    disableOnInteraction: false,
+                  },
                   lazy: {
                     loadOnTransitionStart: true,
                     loadPrevNext: true,
@@ -126,7 +126,7 @@
                           <div class="img_wrap">
                             <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
                             <input type="hidden" name="product_id" value="${row.product_id}" />
-                            <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
+                            <!-- <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button> -->
                             <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
                           </div>
                         </a>
@@ -197,7 +197,7 @@
                       <div class="swiper-wrapper">
 
                         <c:forEach items="${newLists }" var="row" varStatus="loop">
-                        
+
                           <div class="swiper-slide">
                             <a href="productView.do?product_id=${row.product_id}">
                               <div class="img_wrap">

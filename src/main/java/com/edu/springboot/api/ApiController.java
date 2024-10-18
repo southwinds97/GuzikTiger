@@ -135,6 +135,35 @@ public class ApiController extends CommonController {
 		return ResponseEntity.ok(response);
 	}
 
+	// 위시리스트 추가
+    @PostMapping("/wishListAdd")
+    public ResponseEntity<Map<String, String>> wishListInsert(@RequestBody Map<String, String> body) {
+        Map<String, String> resultMap = new HashMap<>();
+        String member_id = body.get("member_id");
+        String product_id = body.get("product_id");
+
+        WishListDTO wishListDTO = new WishListDTO();
+        wishListDTO.setMember_id(member_id);
+        wishListDTO.setProduct_id(product_id);
+
+        // 중복 확인
+        int check = myPagedao.wishListCheck(wishListDTO);
+        if (check > 0) {
+            resultMap.put("message", "이미 추가된 상품입니다.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(resultMap);
+        } else {
+            int result = myPagedao.wishListAdd(wishListDTO);
+            System.out.println("위시리스트 추가 결과: " + result);
+            if (result > 0) {
+                resultMap.put("message", "위시리스트에 추가되었습니다.");
+                return ResponseEntity.ok(resultMap);
+            } else {
+                resultMap.put("message", "위시리스트 추가에 실패했습니다.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMap);
+            }
+        }
+    }
+	
 
 		
 }

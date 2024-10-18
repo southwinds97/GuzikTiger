@@ -18,7 +18,7 @@
                                 <div class="item_img">
                                     <input type="hidden" name="product_id" value="${row.product_id}" />
                                     <img style="width : 500px" src="./images/productList/${row.img_id }" alt="상품리스트">
-                                    <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button>
+                                    <!-- <button class="cart_add_btn add_btn"><span class="blind">장바구니담기</span></button> -->
                                     <button class="wish_add_btn add_btn"><span class="blind">위시리스트추가</span></button>
                                 </div>
                                 <div class="item_info">
