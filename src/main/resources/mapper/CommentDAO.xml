@@ -40,8 +40,10 @@
 		UPDATE qna_comment
 		SET name = #{name},
 			comments = #{comments},
-			password = #{password},
-			secretYN = #{secretYN}
+			password = #{password}
+			<if test="secretYN != null">
+			, secretYN = #{secretYN}			
+			</if>
 		WHERE idx = #{idx}
 	</update>
 	
