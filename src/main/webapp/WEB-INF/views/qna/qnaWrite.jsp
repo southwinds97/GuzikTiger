@@ -47,6 +47,7 @@
 	          <h2>Q&A</h2>
 				  <form name="writeFrm" method="post" enctype="multipart/form-data" action="./qnaWrite.do">
 					<input type="hidden" value="${name}" name="name">
+					<input type="hidden" value="${id}" name="member_id">
 					<input type="hidden" id="product-hiddenname" value="" name="product">
 					<input type="hidden" id="product-hiddenimg" value="" name="product_img">
 					<input type="hidden" id="product-hiddenprice" value="" name="product_price">
@@ -129,9 +130,9 @@
 		              </tbody>
 		            </table>
 		            <div class="btn_wrap">
-		              <button href="qnaList.do">목록</button>
+		              <a href="qnaList.do">목록</a>
 		              <div class="write_btn_wrap">
-		                <button href="qnaList.do">취소</button>
+		                <a href="qnaList.do">취소</a>
 		                <button class="write_btn" type="submit">등록</button>
 		              </div>
 		            </div>

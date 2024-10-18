@@ -19,9 +19,9 @@
 	</select>  	
 	
 	<insert id="write" parameterType="com.edu.springboot.qna.CommentDTO">
-    INSERT INTO qna_comment (idx, board_idx, name, comments, password, secretYN)
+    INSERT INTO qna_comment (idx, board_idx, name, member_id, comments, password, secretYN)
     VALUES
-    (qna_comment_seq.nextval, #{board_idx, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{comments, jdbcType=VARCHAR},
+    (qna_comment_seq.nextval, #{board_idx, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR}, #{comments, jdbcType=VARCHAR},
     	#{password, jdbcType=VARCHAR}, #{secretYN, jdbcType=VARCHAR})
 	</insert>
 

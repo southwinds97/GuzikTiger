@@ -12,6 +12,7 @@ public class QNABoardDTO {
 	private String title;
 	private String content;
 	private String name;
+	private String member_id;
 	private String secretYN;
 	private Object ofile;
 	private String sfile;

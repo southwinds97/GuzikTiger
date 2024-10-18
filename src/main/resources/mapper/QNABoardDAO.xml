@@ -27,11 +27,11 @@
 	</select>   	
 	
 	<insert id="write" parameterType="com.edu.springboot.qna.QNABoardDTO">
-    INSERT INTO qna_board (idx, product, product_img, product_price, category, title, content, name, secretYN, ofile, sfile,
+    INSERT INTO qna_board (idx, product, product_img, product_price, category, title, content, name, member_id, secretYN, ofile, sfile,
         password, postdate, uccURL)
     VALUES
     (qna_board_seq.nextval, #{product, jdbcType=VARCHAR}, #{product_img, jdbcType=VARCHAR}, #{product_price, jdbcType=VARCHAR},
-    #{category, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, 
+    #{category, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR},
      #{secretYN, jdbcType=CHAR}, #{ofile, jdbcType=VARCHAR}, #{sfile, jdbcType=VARCHAR}, 
      #{password, jdbcType=VARCHAR}, sysdate, #{uccURL, jdbcType=VARCHAR})
 </insert>
@@ -44,8 +44,8 @@
 	<update id="edit" parameterType="com.edu.springboot.qna.QNABoardDTO">
 		UPDATE qna_board SET
 		product=#{product, jdbcType=VARCHAR}, product_img=#{product_img, jdbcType=VARCHAR}, product_price=#{product_price, jdbcType=VARCHAR},
-		category=#{category, jdbcType=VARCHAR}, content=#{content, jdbcType=VARCHAR},
-		password=#{password, jdbcType=VARCHAR}, uccURL=#{uccURL, jdbcType=VARCHAR},
+		category=#{category, jdbcType=VARCHAR}, content=#{content, jdbcType=VARCHAR}, name=#{name, jdbcType=VARCHAR},
+		member_id=#{member_id, jdbcType=VARCHAR}, password=#{password, jdbcType=VARCHAR}, uccURL=#{uccURL, jdbcType=VARCHAR},
 		secretYN=#{secretYN, jdbcType=VARCHAR}, ofile=#{ofile, jdbcType=VARCHAR}, sfile=#{sfile, jdbcType=VARCHAR}
 		WHERE idx=#{idx}
 	</update>
