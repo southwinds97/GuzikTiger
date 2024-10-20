@@ -30,7 +30,7 @@ import utils.PagingUtil;
 @RestController
 @RequestMapping("api")
 public class ApiController extends CommonController {
-	
+
 	@Autowired
 	private IMemberService memberDAO;
 
@@ -38,24 +38,24 @@ public class ApiController extends CommonController {
 	IProductService productDAO;
 
 	@Autowired
-    private IMyPageService myPagedao;
+	private IMyPageService myPagedao;
 
 	// 메인화면
 	@GetMapping("/")
 	public ResponseEntity<List<ProductDTO>> home(ParameterDTO parameterDTO) {
-    	ArrayList<ProductDTO> lists = productDAO.getAllSelect(parameterDTO);
-    	return ResponseEntity.ok(lists);
+		ArrayList<ProductDTO> lists = productDAO.getAllSelect(parameterDTO);
+		return ResponseEntity.ok(lists);
 	}
-	
+
 	// 로그인
 	@PostMapping("/login")
 	public ResponseEntity<MemberDTO> loginUser(@RequestBody MemberDTO loginRequest) {
-	    MemberDTO member = memberDAO.login(loginRequest.getId(), loginRequest.getPass());
-	    if (member != null) {
-	        return ResponseEntity.ok(member);
-	    } else {
-	        return ResponseEntity.status(401).body(null);
-	    }
+		MemberDTO member = memberDAO.login(loginRequest.getId(), loginRequest.getPass());
+		if (member != null) {
+			return ResponseEntity.ok(member);
+		} else {
+			return ResponseEntity.status(401).body(null);
+		}
 	}
 
 	// 카테고리
@@ -68,42 +68,41 @@ public class ApiController extends CommonController {
 		int listArray = 2;
 		int offset = 0; // 기본값 설정
 		int limit = 500; // 기본값 설정
-		
+
 		Map<String, Object> params = new HashMap<>();
 		params.put("code", code);
 		params.put("list_array", String.valueOf(listArray));
 		params.put("offset", offset);
 		params.put("limit", limit);
 		params.put("searchKeyword", searchKeyword);
-		
+
 		lists = productDAO.getSelectByKeyword(params);
-		
+
 		return ResponseEntity.ok(lists);
 	}
 
 	// 상품 상세
-    @PostMapping("/productDetail")
-    public ResponseEntity<Map<String, Object>> productDetail(@RequestBody Map<String, String> body) {
-        String product_id = body.get("product_id");
-        String member_id = body.get("member_id");
-        ArrayList<ProductDTO> productViewList = productDAO.getProductDtl(product_id);
-        ArrayList<ProductDTO> productRelateList = productDAO.getProductRelate(product_id);
+	@PostMapping("/productDetail")
+	public ResponseEntity<Map<String, Object>> productDetail(@RequestBody Map<String, String> body) {
+		String product_id = body.get("product_id");
+		String member_id = body.get("member_id");
+		ArrayList<ProductDTO> productViewList = productDAO.getProductDtl(product_id);
+		ArrayList<ProductDTO> productRelateList = productDAO.getProductRelate(product_id);
 
-        // 최근 본 상품 등록
-        if (member_id != null) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("product_id", product_id);
-            param.put("member_id", member_id);
-            myPagedao.recentViewInsert(param);
-        }
+		// 최근 본 상품 등록
+		if (member_id != null) {
+			Map<String, Object> param = new HashMap<>();
+			param.put("product_id", product_id);
+			param.put("member_id", member_id);
+			myPagedao.recentViewInsert(param);
+		}
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("productViewList", productViewList);
-        response.put("productRelateList", productRelateList);
+		Map<String, Object> response = new HashMap<>();
+		response.put("productViewList", productViewList);
+		response.put("productRelateList", productRelateList);
 
-        return ResponseEntity.ok(response);
-    }
-
+		return ResponseEntity.ok(response);
+	}
 
 	// 위시리스트
 	@GetMapping("/wishList")
@@ -114,7 +113,8 @@ public class ApiController extends CommonController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		}
 
-		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		int pageNum = (req.getParameter("pageNum") == null || req.getParameter("pageNum").equals("")) ? 1
+				: Integer.parseInt(req.getParameter("pageNum"));
 		int pageSize = 10; // 페이지당 항목 수
 		int start = (pageNum - 1) * pageSize + 1;
 		int end = pageNum * pageSize;
@@ -126,7 +126,8 @@ public class ApiController extends CommonController {
 
 		List<Map<String, Object>> wishListData = myPagedao.wishListSelect(wishListDTO);
 		int totalCount = myPagedao.getWishListTotalCount(memberId);
-		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum, req.getContextPath() + "/wishList.do?");
+		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum,
+				req.getContextPath() + "/wishList.do?");
 
 		Map<String, Object> response = new HashMap<>();
 		response.put("wishListData", wishListData);
@@ -136,34 +137,50 @@ public class ApiController extends CommonController {
 	}
 
 	// 위시리스트 추가
-    @PostMapping("/wishListAdd")
-    public ResponseEntity<Map<String, String>> wishListInsert(@RequestBody Map<String, String> body) {
-        Map<String, String> resultMap = new HashMap<>();
-        String member_id = body.get("member_id");
-        String product_id = body.get("product_id");
+	@PostMapping("/wishListAdd")
+	public ResponseEntity<Map<String, String>> wishListInsert(@RequestBody Map<String, String> body) {
+		Map<String, String> resultMap = new HashMap<>();
+		String member_id = body.get("member_id");
+		String product_id = body.get("product_id");
 
-        WishListDTO wishListDTO = new WishListDTO();
-        wishListDTO.setMember_id(member_id);
-        wishListDTO.setProduct_id(product_id);
+		WishListDTO wishListDTO = new WishListDTO();
+		wishListDTO.setMember_id(member_id);
+		wishListDTO.setProduct_id(product_id);
 
-        // 중복 확인
-        int check = myPagedao.wishListCheck(wishListDTO);
-        if (check > 0) {
-            resultMap.put("message", "이미 추가된 상품입니다.");
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(resultMap);
-        } else {
-            int result = myPagedao.wishListAdd(wishListDTO);
-            System.out.println("위시리스트 추가 결과: " + result);
-            if (result > 0) {
-                resultMap.put("message", "위시리스트에 추가되었습니다.");
-                return ResponseEntity.ok(resultMap);
-            } else {
-                resultMap.put("message", "위시리스트 추가에 실패했습니다.");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMap);
-            }
-        }
-    }
-	
+		// 중복 확인
+		int check = myPagedao.wishListCheck(wishListDTO);
+		if (check > 0) {
+			resultMap.put("message", "이미 추가된 상품입니다.");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(resultMap);
+		} else {
+			int result = myPagedao.wishListAdd(wishListDTO);
+			System.out.println("위시리스트 추가 결과: " + result);
+			if (result > 0) {
+				resultMap.put("message", "위시리스트에 추가되었습니다.");
+				return ResponseEntity.ok(resultMap);
+			} else {
+				resultMap.put("message", "위시리스트 추가에 실패했습니다.");
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(resultMap);
+			}
+		}
+	}
 
-		
+	// 회원 정보
+	@PostMapping("/myInfo")
+	public ResponseEntity<MemberDTO> myInfo(@RequestBody Map<String, String> body) {
+		String member_id = body.get("member_id");
+
+		try {
+			MemberDTO member = memberDAO.viewMember(member_id);
+			if (member != null) {
+				return ResponseEntity.ok(member);
+			} else {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+
 }

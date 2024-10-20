@@ -278,7 +278,7 @@
                 let countDelivered = parseInt($('.od_count').eq(3).text());
 
                 <c:forEach var="order" items="${orderList}">
-                  <c:choose>=
+                  <c:choose>
                     <c:when test="${order.deliv_prog == '배송준비중'}">
                       countReady++;
                     </c:when>
