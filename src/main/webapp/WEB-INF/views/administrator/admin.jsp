@@ -64,40 +64,79 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <div class="top_titlearea">
               <h2>상품 정보</h2>
             </div>
+            <!-- 상품 검색 -->
+            <div class="search_admin">
+              <input
+                type="text"
+                name="searchKey"
+                id="searchKey"
+                placeholder="상품명을 입력하세요"
+              />
+              <button
+                type="button"
+                id="searchButton"
+                style="
+                  margin-left: 20px;
+                  height: 40px;
+                  padding: 5px 20px;
+                  background: #ffce32;
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: white;
+                  border: 1px solid white;
+                  border-radius: 10px;
+                "
+              >
+                검색
+              </button>
+            </div>
             <div class="ajax-body"></div>
-          </div>
-          <!-- -----------------------------------  1서브메뉴 변경 끝---------------------------->
-          <script>
-            $(document).ready(function () {
-              function loadProductList(pageNum) {
-                $.ajax({
-                  url: "adminProductList.do",
-                  type: "GET",
-                  data: { pageNum: pageNum },
-                  success: function (data) {
-                    $("#productList .ajax-body").html(data);
-                  },
-                  error: function (xhr, status, error) {
-                    console.error("AJAX Error:", status, error);
-                  },
-                });
-              }
-
-              // 초기 로드
-              loadProductList(1);
-
-              // 페이지 네이션 링크 클릭 이벤트(페이지 이동 X)
-              $(document).on("click", ".paginate a", function (e) {
-                e.preventDefault();
-                var href = $(this).attr("href");
-                var pageNum = href.match(/pageNum=(\d+)/)[1];
-                // console.log(pageNum); // pageNum 값 확인
-                if (pageNum) {
-                  loadProductList(pageNum);
+            <!-- -----------------------------------  1서브메뉴 변경 끝---------------------------->
+            <script>
+              $(document).ready(function () {
+                function loadProductList(pageNum, searchKey) {
+                  $.ajax({
+                    url: "adminProductList.do",
+                    type: "GET",
+                    data: { pageNum: pageNum, searchKey: searchKey },
+                    success: function (data) {
+                      $("#productList .ajax-body").html(data);
+                    },
+                    error: function (xhr, status, error) {
+                      console.error("AJAX Error:", status, error);
+                    },
+                  });
                 }
+
+                // 초기 로드
+                loadProductList(1, "");
+
+                // 페이지 네이션 링크 클릭 이벤트(페이지 이동 X)
+                $(document).on("click", ".paginate a", function (e) {
+                  e.preventDefault();
+                  var href = $(this).attr("href");
+                  var pageNum = href.match(/pageNum=(\d+)/)[1];
+                  var searchKey = $("#searchKey").val();
+                  if (pageNum) {
+                    loadProductList(pageNum, searchKey);
+                  }
+                });
+
+                // 검색 버튼 클릭 이벤트
+                $("#searchButton").click(function () {
+                  var searchKey = $("#searchKey").val();
+                  loadProductList(1, searchKey);
+                });
+
+                // 엔터키로 검색
+                $("#searchKey").keypress(function (e) {
+                  if (e.keyCode == 13) {
+                    $("#searchButton").click();
+                  }
+                });
               });
-            });
-          </script>
+            </script>
+          </div>
           <!-- 상품 등록 메뉴 시작 -->
           <div id="productWrite" style="display: none">
             <div class="top_titlearea">

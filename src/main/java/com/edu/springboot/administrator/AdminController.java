@@ -64,6 +64,10 @@ public class AdminController extends CommonController {
 		parameterDTO.setStart(start);
 		parameterDTO.setEnd(end);
 
+		// 검색 키워드 설정
+		String searchKey = req.getParameter("searchKey");
+		parameterDTO.setSearchKeyword(searchKey);
+
 		ArrayList<ProductDTO> productList = dao.adminProductSelect(parameterDTO);
 		int totalCount = dao.getTotalCount(parameterDTO);
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, 5, pageNum,

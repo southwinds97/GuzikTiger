@@ -9,10 +9,9 @@
 <!-- 	<select id="adminGetTotalCount" resultType="int"
 	parameterType="com.edu.springboot.ParameterDTO">
 	select count(*) from product
-	<if test="searchKeyword!=null
-		and !searchKeyword.equals('')" >
-		where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
+	<if test="searchKeyword != null and searchKeyword != ''">
+				AND a.product_name LIKE '%' || #{searchKeyword} || '%'
+			</if>
 	</select> -->
 			 
 	 <!--all상품 -->		 
@@ -31,11 +30,13 @@
                    a.product_content as product_content,
                    b.img_id as img_id
             from product a, product_dtl b
-            where a.product_id = b.product_id
-            <if test="searchKeyword != null and !searchKeyword.equals('')">
-                and ${searchField} like '%' || #{searchKeyword} || '%'
-            </if>
-            order by a.product_name
+            where 1=1
+			and b.idx = 1
+			and a.product_id = b.product_id
+            <if test="searchKeyword != null and searchKeyword != ''">
+				AND a.product_name LIKE '%' || #{searchKeyword} || '%'
+			</if>
+            order by b.regidate
         ) tb
     )
     where rNum <![CDATA[>=]]> #{start}

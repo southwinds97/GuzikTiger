@@ -2,11 +2,9 @@ package com.edu.springboot;
 
 import com.edu.springboot.qna.QNABoardDTO;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class ParameterDTO {
 	private String searchField;
 	private String searchKeyword;

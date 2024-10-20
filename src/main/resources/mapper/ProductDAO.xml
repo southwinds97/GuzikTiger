@@ -7,13 +7,13 @@
 <mapper namespace="com.edu.springboot.product.IProductService">
 	 <!-- 수량체크 -->
 	<select id="getTotalCount" resultType="int"
-	parameterType="com.edu.springboot.ParameterDTO">
-	select count(*) from product
-	<if test="searchKeyword!=null
-		and !searchKeyword.equals('')" >
-		where ${searchField} like '%'||#{searchKeyword}||'%'
-		</if>
-	</select>
+        parameterType="com.edu.springboot.ParameterDTO">
+        SELECT COUNT(*) FROM product
+        WHERE 1=1
+        <if test="searchKeyword != null and searchKeyword != ''">
+            AND product_name LIKE '%' || #{searchKeyword} || '%'
+        </if>
+    </select>
 			 
 	 <!--all상품 -->		 
 	<select id="getAllSelect"
