@@ -1,49 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="구직타이거">
-    <meta property="og:description" content="엉뚱하고 사랑스러운 호랑이, 뚱랑이의 캐릭터 소품을 판매합니다">
-    <meta property="og:image"
-      content="https://contents.sixshop.com/uploadedFiles/56465/default/image_1710376929430.png">
-    <link rel="icon" href="images/common/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="images/common/favicon.png">
-    <title>GUZIK TIGER 구직타이거</title>
-  <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
-  <link rel="stylesheet" href="css/jquery-ui.min.css">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-<link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>">
-<link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>">
-<link rel="stylesheet" href="css/productWrite.css?v=<?php echo time(); ?>">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
-<!-- summernote 추가 -->
-  <script src="js/jquery-3.7.1.min.js"></script>
-  <script src="js/jquery-ui.min.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
-  <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
-</head>
-
-<body>
-  <div id="skip_navi">
-    <a href="#container">본문바로가기</a>
-  </div>
-  <div id="wrap">
-  <!-- 헤더 -->
-  <%@ include file="../header.jsp" %>
-    <main id="container">
       <div class="WritingWrap">
-				<div class="WritingHeader">
-					<h2 class="title"> 상품등록 </h2>
-        </div>
      <!--  --------------------------------------------form시작-----------------------------------------------      -->
         <form action="/productWrite.do" method="post" >
        
@@ -193,8 +150,6 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <!--  --------------------------------------------form종료-----------------------------------------------      -->
         </div>  
       </div>
-    </main>
-  </div>
 	
 <script>
 $(document).ready(function() {
@@ -374,8 +329,3 @@ $(document).ready(function() {
 				}
 				</style>
 			
-			
-	<!-- 푸터 -->
-    <%@ include file="../footer.jsp" %>
-</body>
-</html>

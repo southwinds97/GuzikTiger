@@ -79,45 +79,39 @@ public class AdminController extends CommonController {
 		return "administrator/productList_admin"; // JSP 페이지 경로 반환
 	}
 
-	@RequestMapping("/productReg.do")
-	public String productReg() {
-		return "administrator/productReg"; 
-	}
-	
 	// 상품등록진입
 	@RequestMapping("/productWrite.do")
 	public String productWrite() {
-		return "administrator/productWrite"; 
+		return "administrator/productWrite";
 	}
-	
-	 // 상품등록 처리
-    @PostMapping("/productWrite.do")
-    public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
-        // 데이터 확인
-    	productDTO.setOption_id("뚱랑이삼색이");
-    	productDTO.setOption_yn("N");
-    	productDTO.setImg_id("kk.jpg");
-        int result = dao.insertPorduct(productDTO);
-        
-        
-        String product_id = productDTO.getProduct_id();
-        
-        productDTO.setProduct_id(product_id);
-        productDTO.setIdx(1);
-        productDTO.setSell_count(0);
-        int result2 = dao.insertPorductDtl(productDTO);
 
-        if (result > 0) {
-            // 회원가입 성공 메세지
-            JSFunction.alertLocation(resp, "상품등록이 완료되었습니다.", "/");
-            return null;
-        } else {
-            // 회원가입 실패
-            JSFunction.alertBack(resp, "상품등록이 실패했습니다.");
-            return null;
-        }
-    }
-	
+	// 상품등록 처리
+	@PostMapping("/productWrite.do")
+	public String RegistProc(HttpServletRequest req, HttpServletResponse resp, ProductDTO productDTO, Model model) {
+		// 데이터 확인
+		productDTO.setOption_id("적호뚱랑이");
+		productDTO.setOption_yn("N");
+		productDTO.setImg_id("tiger_rug.jpg");
+		int result = dao.insertPorduct(productDTO);
+
+		String product_id = productDTO.getProduct_id();
+
+		productDTO.setProduct_id(product_id);
+		productDTO.setIdx(1);
+		productDTO.setSell_count(0);
+		int result2 = dao.insertPorductDtl(productDTO);
+
+		if (result > 0) {
+			// 회원가입 성공 메세지
+			JSFunction.alertLocation(resp, "상품등록이 완료되었습니다.", "/");
+			return null;
+		} else {
+			// 회원가입 실패
+			JSFunction.alertBack(resp, "상품등록이 실패했습니다.");
+			return null;
+		}
+	}
+
 	@RequestMapping("/chat")
 	public String chat() {
 		return "forward:/reactChat/index.html";

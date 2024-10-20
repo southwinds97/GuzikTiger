@@ -15,16 +15,30 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <link href="/reactChat/static/css/main.4c573039.css" rel="stylesheet" />
     <title>GUZIK TIGER 구직타이거</title>
     <!-- 라이브러리는 먼저 연결하는 것을 원칙으로 함 -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/common.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/main.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/sub.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/recentView.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/admin.css?v=<?php echo time(); ?>" />
+    <link
+      rel="stylesheet"
+      href="css/productWrite.css?v=<?php echo time(); ?>"
+    />
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/ui-common.js?v=<?php echo time(); ?>"></script>
   </head>
@@ -84,6 +98,14 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
               });
             });
           </script>
+          <!-- 상품 등록 메뉴 시작 -->
+          <div id="productWrite" style="display: none">
+            <div class="top_titlearea">
+              <h2>상품 등록</h2>
+            </div>
+            <div class="ajax-body"></div>
+          </div>
+
           <!-- -----------------------------------  2서브메뉴 변경 시작---------------------------->
           <div id="orderList" style="display: none">
             <div class="top_titlearea">
@@ -221,7 +243,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
                 <a href="#" onclick="listChk(listId.A)">상품 리스트</a>
               </li>
               <li>
-                <a href="/productWrite.do">상품 등록</a>
+                <a href="#" onclick="listChk(listId.B)">상품 등록</a>
               </li>
             </ul>
             <div class="subTitle">
@@ -229,7 +251,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             </div>
             <ul class="menu">
               <li>
-                <a href="#" onclick="listChk(listId.B)">주문 리스트</a>
+                <a href="#" onclick="listChk(listId.C)">주문 리스트</a>
               </li>
             </ul>
             <div class="subTitle">
@@ -237,10 +259,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             </div>
             <ul class="menu">
               <li>
-                <a href="#" onclick="listChk(listId.C)">회원 리스트</a>
-              </li>
-              <li>
-                <a href="#">회원정보 수정</a>
+                <a href="#" onclick="listChk(listId.D)">회원 리스트</a>
               </li>
             </ul>
             <div class="subTitle">
@@ -248,7 +267,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             </div>
             <ul class="menu">
               <li>
-                <a href="#" onclick="listChk(listId.D)">채팅 관리자</a>
+                <a href="#" onclick="listChk(listId.E)">채팅 관리자</a>
               </li>
             </ul>
           </div>

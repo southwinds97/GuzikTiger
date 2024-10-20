@@ -9,7 +9,7 @@
 }
 
 .top_titlearea h2 {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: var(--gray-600);
   margin: 0;
@@ -121,5 +121,5 @@ td {
 
 #orderList,
 #memberList {
-	min-height: 600px;
+  min-height: 600px;
 }

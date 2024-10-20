@@ -1,18 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-	// 상품 편집 버튼 클릭 시 처리할 로직
-	document.body.addEventListener("click", (event) => {
-		if (event.target.tagName === "BUTTON") {
-			alert("상품을 편집합니다.");
-			// 편집 로직 추가
-		}
-	});
+  // 상품등록 메뉴 클릭 시 ajax로 상품등록 페이지 불러오기
+  function loadProductWrite() {
+    $.ajax({
+      url: "productWrite.do",
+      type: "GET",
+      success: function (data) {
+        $("#productWrite .ajax-body").html(data);
+      },
+      error: function (xhr, status, error) {
+        console.error("AJAX Error:", status, error);
+      },
+    });
+  }
+
+  // 전역으로 노출할 객체와 함수
+  window.listId = {
+    A: "productList",
+    B: "productWrite",
+    C: "orderList",
+    D: "memberList",
+    E: "chatList",
+  };
+
+  window.listChk = function (id) {
+    Object.values(listId).forEach((list) => {
+      $("#" + list).hide();
+    });
+    $("#" + id).show();
+
+    // 상품 등록 메뉴 클릭 시 AJAX 호출
+    if (id === listId.B) {
+      loadProductWrite();
+    }
+  };
 });
-
-const listId = { A: 'productList', B: 'orderList', C: 'memberList', D: 'chatList' };
-
-function listChk(id) {
-	Object.values(listId).forEach(list => {
-		$('#' + list).hide();
-	});
-	$('#' + id).show();
-}
