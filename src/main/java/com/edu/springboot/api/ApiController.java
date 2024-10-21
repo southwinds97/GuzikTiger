@@ -21,6 +21,7 @@ import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.mypage.IMyPageService;
 import com.edu.springboot.mypage.WishListDTO;
+import com.edu.springboot.order.IOrderService;
 import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
 
@@ -35,10 +36,13 @@ public class ApiController extends CommonController {
 	private IMemberService memberDAO;
 
 	@Autowired
-	IProductService productDAO;
+	private IProductService productDAO;
 
 	@Autowired
 	private IMyPageService myPagedao;
+
+	@Autowired
+	private IOrderService orderDAO;
 
 	// 메인화면
 	@GetMapping("/")
@@ -182,5 +186,25 @@ public class ApiController extends CommonController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
+
+	 // 장바구니 리스트
+	 @PostMapping("/cartList")
+	 public ResponseEntity<List<ProductDTO>> cartList(@RequestBody Map<String, String> body) {
+		 String member_id = body.get("member_id");
+		 if (member_id == null) {
+			 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		 }
+ 
+		 ProductDTO productDTO = new ProductDTO();
+		 productDTO.setMember_id(member_id);
+ 
+		 try {
+			 ArrayList<ProductDTO> cartList = orderDAO.selectCart(productDTO);
+			 return ResponseEntity.ok(cartList);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+			 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		 }
+	 }
 
 }

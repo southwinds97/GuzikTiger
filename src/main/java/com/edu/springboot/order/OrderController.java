@@ -84,21 +84,6 @@ public class OrderController extends CommonController {
 
 		int result = orderService.insertCart(productList);
 		
-		//ajax 리턴값 만들기
-//	    ArrayList<String> productViewList = new ArrayList();
-//	    StringBuffer sb = new StringBuffer();
-//		for(ProductDTO dto :productList ) {
-//			
-//			String product_id = dto.getProduct_id();
-//			String idx = Integer.toString(dto.getIdx());
-//			sb.append(product_id);
-//			sb.append("_");
-//			sb.append(idx);
-//			productViewList.add(sb.toString());
-//			sb = new StringBuffer();
-//		}
-//		System.out.println("%%%%%%"+productViewList);
-
 		if (result > 0) {
 			// 장바구니 성공 메세지
 			JSFunction.alertBack(resp, "장바구니에 상품이 추가되었습니다.");
