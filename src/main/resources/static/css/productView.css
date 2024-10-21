@@ -382,6 +382,7 @@ td {
 .product_detail .option_table select {
   width: 100% !important;
   height: 45px;
+  padding: 10px;
 }
 
 select {
