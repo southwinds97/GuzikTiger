@@ -21,11 +21,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import utils.JSFunction;
 import utils.PagingUtil;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.edu.springboot.member.IMemberService;
+
+
 @Controller
 public class AdminController extends CommonController {
 
 	@Autowired
 	IProductService dao;
+
+	@Autowired
+	IMemberService memberDAO;
 
 	@RequestMapping("/admin.do")
 	public String adminPage(HttpServletRequest req, Model model, ParameterDTO parameterDTO, OrderDTO orderDTO,
@@ -128,6 +136,69 @@ public class AdminController extends CommonController {
 
 		model.addAttribute("id", id);
 		return "forward:/reactChat/index.html";
+	}
+
+	@GetMapping("/memberEdit.do")
+	public String memberEdit(@RequestParam("member_id") String member_id, Model model) {
+		String id = member_id;
+		MemberDTO dto = memberDAO.viewMember(id);
+
+		// 전화번호 나누기
+		if (dto.getTel() != null) {
+			String[] telParts = dto.getTel().split("-");
+			if (telParts.length == 3) {
+				model.addAttribute("tel1", telParts[0]);
+				model.addAttribute("tel2", telParts[1]);
+				model.addAttribute("tel3", telParts[2]);
+			}
+		}
+
+		// 생년월일 나누기
+		if (dto.getBirth() != null) {
+			String[] birthParts = dto.getBirth().split("-");
+			if (birthParts.length == 3) {
+				model.addAttribute("year", birthParts[0]);
+				model.addAttribute("month", birthParts[1]);
+				model.addAttribute("day", birthParts[2]);
+			}
+		}
+
+		model.addAttribute("member", dto);
+
+		return "administrator/memberEdit_admin";
+	}
+	
+	@PostMapping("/memberEdit.do")
+	public String memberEditProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDTO, Model model) {
+
+		int result = memberDAO.updateMember(memberDTO);
+
+		if (result > 0) {
+			// 회원가입 성공 메세지
+			JSFunction.alertLocation(resp, "회원정보 수정이 완료되었습니다.", "/admin.do");
+			return null;
+		} else {
+			// 회원가입 실패
+			JSFunction.alertBack(resp, "회원정보 수정이 실패했습니다.");
+			return null;
+		}
+	}
+
+	@GetMapping("/userDelete.do")
+	public String userDelete(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDTO, Model model) {
+		String member_id = req.getParameter("member_id");
+
+		int result = memberDAO.deleteMember(member_id);
+
+		if (result > 0) {
+			// 회원가입 성공 메세지
+			JSFunction.alertLocation(resp, "회원정보 삭제가 완료되었습니다.", "/admin.do");
+			return null;
+		} else {
+			// 회원가입 실패
+			JSFunction.alertBack(resp, "회원정보 삭제가 실패했습니다.");
+			return null;
+		}
 	}
 
 }

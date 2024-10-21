@@ -28,7 +28,7 @@
 
     <!-- 회원정보수정 처리 -->
     <update id="updateMember" parameterType="com.edu.springboot.member.MemberDTO">
-        UPDATE member SET name=#{name}, pass=#{pass}, hint=#{hint}, hintas=#{hintas}, tel=#{tel}, email=#{email}, postcode=#{postcode}, addr=#{addr}, detailaddr=#{detailaddr}, gen=#{gen}, birth=#{birth}, calendar=#{calendar}
+        UPDATE member SET name=#{name}, pass=#{pass}, hint=#{hint}, hintas=#{hintas}, tel=#{tel}, email=#{email}, postcode=#{postcode}, addr=#{addr}, detailaddr=#{detailaddr}, gen=#{gen}, birth=#{birth}, calendar=#{calendar}, user_level=#{user_level}
         WHERE id=#{id}
     </update>
     

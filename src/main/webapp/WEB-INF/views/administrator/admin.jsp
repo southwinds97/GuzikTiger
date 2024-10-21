@@ -217,7 +217,7 @@
                     </thead>
                     <tbody>
                       <c:forEach items="${memberList}" var="dto" varStatus="loop">
-                        <tr>
+                        <tr onclick="location.href='memberEdit.do?member_id=${dto.id}'" style="cursor: pointer;">
                           <td>${dto.id}</td>
                           <td>${dto.name}</td>
                           <td>${dto.pass}</td>

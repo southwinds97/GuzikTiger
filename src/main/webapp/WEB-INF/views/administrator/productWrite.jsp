@@ -164,7 +164,13 @@
 					</div>
 					<td><textarea id="summernote" name="product_content"></textarea></td>
 					<div class="btn_wrap">
-						<button href="admin.do">취소</button>
+						<button type="button" class="cancle">취소</button>
+						<script>
+							$('.cancle').click(function () {
+								location.href = "/admin.do";
+							});
+						</script>
+
 						<button class="write_btn" type="submit">등록</button>
 					</div>
 				</div>

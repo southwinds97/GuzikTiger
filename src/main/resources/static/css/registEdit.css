@@ -67,22 +67,22 @@
 }
 
 .basic th {
-  padding: 10px 30px;
-  text-align: left;
-  border-bottom: 1px solid #e5e5e5;
-  border-left: 1px solid #e5e5e5;
-  background-color: #f6f6f6;
-  height: 60px;
-  width: 190px;
-  line-height: 22px;
-  vertical-align: middle;
-  boder-top:none;
+    padding: 10px 30px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    background-color: #f6f6f6;
+    height: 60px;
+    width: 190px;
+    line-height: 22px;
+    vertical-align: middle;
+    boder-top: none;
 }
 
 .basic td {
-  padding: 10px 20px;
-  border-right: none;
-  border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    border-right: none;
+    border: 1px solid #e0e0e0;
 }
 
 
@@ -187,15 +187,15 @@
 }
 
 .more th {
-  padding: 10px 30px;
-  text-align: left;
-  border-bottom: 1px solid #e5e5e5;
-  background-color: #f6f6f6;
-  height: 60px;
-  width: 190px;
-  line-height: 15px;
-  vertical-align: middle;
-  border-left: 1px solid #e5e5e5;
+    padding: 10px 30px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f6f6f6;
+    height: 60px;
+    width: 190px;
+    line-height: 15px;
+    vertical-align: middle;
+    border-left: 1px solid #e5e5e5;
 }
 
 
@@ -218,11 +218,11 @@
 }
 
 .more td {
-   padding: 10px 20px;
-   border-right: none;
-   padding-left: 15px;
-   padding-right: 15px;
-   border: 1px solid #e0e0e0;
+    padding: 10px 20px;
+    border-right: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #e0e0e0;
 
 }
 
@@ -256,5 +256,17 @@
     height: 40px;
     color: #fff;
     background-color: #000;
+    font-weight: bold;
+}
+
+.bottom .delete_btn {
+    min-width: 135px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+    height: 40px;
+    color: #fff;
+    background-color: #ff0000;
+    border: 1px solid #ff0000;
     font-weight: bold;
 }
