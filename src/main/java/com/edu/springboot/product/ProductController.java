@@ -27,60 +27,59 @@ public class ProductController extends CommonController {
 	IMyPageService myPagedao;
 
 	@RequestMapping("/productList.do")
-	public String productList(Model model, @RequestParam("category") String category) {
-		// 메인 카테고리 리스트 조회
-		ArrayList<CodeListDTO> mainCategories = dao.mainCategoryList();
-		model.addAttribute("categories", mainCategories);
+public String productList(Model model, @RequestParam("category") String category) {
+    // 메인 카테고리 리스트 조회
+    ArrayList<CodeListDTO> mainCategories = dao.mainCategoryList();
+    model.addAttribute("categories", mainCategories);
 
-		// 서브 카테고리 리스트 조회
-		ArrayList<CodeListDTO> subCategories = dao.subCategoryList(category);
-		model.addAttribute("subCategories", subCategories);
+    // 서브 카테고리 리스트 조회
+    ArrayList<CodeListDTO> subCategories = dao.subCategoryList(category);
+    model.addAttribute("subCategories", subCategories);
 
-		// category가 'mainCate', 'BEST', 'NEW' 가 아닌 경우에만 code 조회
-		if (!"mainCate".equals(category) && !"BEST".equals(category) && !"NEW".equals(category)) {
-			// category를 cd_name으로 사용하여 code 찾기
-			String code = dao.getCodeByCdName(category);
-			if (code == null) {
-				// code가 null인 경우 처리
-				return "product/productList"; // 에러 페이지로 이동
-			}
+    // category가 'mainCate', 'BEST', 'NEW' 가 아닌 경우에만 code 조회
+    if (!"mainCate".equals(category) && !"BEST".equals(category) && !"NEW".equals(category) && !"Go".equals(category)) {
+        // category를 cd_name으로 사용하여 code 찾기
+        String code = dao.getCodeByCdName(category);
+        if (code == null) {
+            // code가 null인 경우 처리
+            return "product/productList"; // 에러 페이지로 이동
+        }
 
-			ArrayList<CodeListDTO> upCodeCategories;
-			// code가 'A'로 시작하는 경우에만 up_code로 변환
-			if (code.startsWith("A")) {
-				upCodeCategories = dao.getCategoriesByUpCode(code);
-			} else {
-				// code가 'A'로 시작하지 않는 경우, category를 사용하여 up_code 조회
-				String upCode = dao.getCategoriesByCdName(category).get(0).getUp_code();
-				// 조회된 up_code를 사용하여 일치하는 cd_name 리스트 조회
-				upCodeCategories = dao.getCategoriesByUpCode(upCode);
-			}
+        ArrayList<CodeListDTO> upCodeCategories;
+        // code가 'A'로 시작하는 경우에만 up_code로 변환
+        if (code.startsWith("A")) {
+            upCodeCategories = dao.getCategoriesByUpCode(code);
+        } else {
+            // code가 'A'로 시작하지 않는 경우, category를 사용하여 up_code 조회
+            String upCode = dao.getCategoriesByCdName(category).get(0).getUp_code();
+            // 조회된 up_code를 사용하여 일치하는 cd_name 리스트 조회
+            upCodeCategories = dao.getCategoriesByUpCode(upCode);
+        }
 
-			// upCodeCategories를 모델에 추가
-			model.addAttribute("upCodeCategories", upCodeCategories);
+        // upCodeCategories를 모델에 추가
+        model.addAttribute("upCodeCategories", upCodeCategories);
 
-			// code 값을 모델에 추가
-			model.addAttribute("code", code);
+        // code 값을 모델에 추가
+        model.addAttribute("code", code);
 
-			// code 값을 이용하여 결과 카운트 조회
-			int productCount = 0;
-			// int productCount = dao.getSelectByCodeMainCount(code);
-			if (code.startsWith("A")) {
-				productCount = dao.getSelectByCodeMainCount(code);
-			} else if (code.startsWith("B")) {
-				productCount = dao.getSelectByCodeSubCount(code);
-			}
-			model.addAttribute("productCount", productCount);
+        // code 값을 이용하여 결과 카운트 조회
+        int productCount = 0;
+        // int productCount = dao.getSelectByCodeMainCount(code);
+        if (code.startsWith("A")) {
+            productCount = dao.getSelectByCodeMainCount(code);
+        } else if (code.startsWith("B")) {
+            productCount = dao.getSelectByCodeSubCount(code);
+        }
+        model.addAttribute("productCount", productCount);
 
-			model.addAttribute("selectedCategory", category);
-		} else if ("mainCate".equals(category)) {
-			// category가 'mainCate'인 경우 메인 카테고리의 전체 카운트 조회
-			int mainCategoryCount = dao.getSelectByCodeAllCount();
-			model.addAttribute("productCount", mainCategoryCount);
-		}
+        model.addAttribute("selectedCategory", category);
+    } else if ("mainCate".equals(category) || "Go".equals(category)) {
+        int mainCategoryCount = dao.getSelectByCodeAllCount();
+        model.addAttribute("productCount", mainCategoryCount);
+    } 
 
-		return "product/productList";
-	}
+    return "product/productList";
+}
 
 	@RequestMapping("/productListContent.do")
 	public String productListContent(Model model, HttpServletRequest req, ParameterDTO parameterDTO,
