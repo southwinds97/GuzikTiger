@@ -347,6 +347,8 @@
 		and a.product_id = b.product_id
         and c.code(+) = b.option_cate
         and a.product_id = #{product_id} 
+		<!-- idx 순으로 정렬 -->
+		order by b.idx
 	</select>
 
 	<!-- 관련상품 리스트 -->
