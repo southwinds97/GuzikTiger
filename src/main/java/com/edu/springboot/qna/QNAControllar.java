@@ -91,9 +91,8 @@ public class QNAControllar extends CommonController {
     public void downloadFile(@RequestParam("sfile") String sfile,
                              @RequestParam("ofile") String ofile,
                              HttpServletRequest req, HttpServletResponse resp) {
-        String directory = "bin/main/static/uploads"; // 파일이 저장된 디렉토리
         try {
-            fileDownloadUtil.downloadFile(sfile, ofile, directory, req, resp);
+            fileDownloadUtil.downloadFile(sfile, ofile, uploadDir, req, resp);
         } catch (IOException e) {
             e.printStackTrace();
             // 에러 처리 (예: 에러 페이지로 리다이렉트)

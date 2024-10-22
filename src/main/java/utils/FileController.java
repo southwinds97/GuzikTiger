@@ -1,5 +1,6 @@
 package utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,9 @@ public class FileController {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @Autowired
+    private FileDownloadUtil fileDownloadUtil;
+
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file) {
         try {
@@ -31,11 +35,11 @@ public class FileController {
 
     @GetMapping("/download")
     public void downloadFile(@RequestParam("sfileName") String sfileName,
-            @RequestParam("ofileName") String ofileName,
-            @RequestParam("directory") String directory,
-            HttpServletRequest req, HttpServletResponse resp) {
+                             @RequestParam("ofileName") String ofileName,
+                             @RequestParam("directory") String directory,
+                             HttpServletRequest req, HttpServletResponse resp) {
         try {
-            FileDownloadUtil.downloadFile(sfileName, ofileName, directory, req, resp);
+            fileDownloadUtil.downloadFile(sfileName, ofileName, directory, req, resp);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,11 +12,10 @@ public class FileDownloadUtil {
 
     public void downloadFile(String sfileName, String ofileName, String directory, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         // 절대 경로를 직접 설정
-        String absolutePath = new File(directory).getAbsolutePath();
-        File file = new File(absolutePath, sfileName);
+        File file = new File(directory, sfileName);
 
         // 디버깅 로그 추가
-        System.out.println("Absolute Path: " + absolutePath);
+        System.out.println("Directory: " + directory);
         System.out.println("File Path: " + file.getAbsolutePath());
 
         if (!file.exists()) {
