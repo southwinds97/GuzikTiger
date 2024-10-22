@@ -56,6 +56,10 @@
             <h3>${qnaDTO.title}</h3>
             <p>${qnaDTO.name} <span>${qnaDTO.postdate}</span></p>
           </div>
+		  <div class="down_wrap">
+			<img src='./uploads/${qnaDTO.sfile}' style="width:400px;">
+			<a href="/qnaView.do?idx=${qnaDTO.idx}&sfile=${qnaDTO.sfile}&ofile=${qnaDTO.ofile}">${qnaDTO.ofile}</a>
+		  </div>
           <div class="content_wrap">
             ${qnaDTO.content}
           </div>

@@ -1,6 +1,7 @@
 package com.edu.springboot.qna;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
@@ -19,7 +21,9 @@ import com.edu.springboot.product.IProductService;
 import com.edu.springboot.product.ProductDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import utils.FileDownloadUtil;
 import utils.MyFunctions;
 import utils.PagingUtil;
 
@@ -57,8 +61,9 @@ public class QNAControllar extends CommonController {
 	}
 
 	@RequestMapping("/qnaView.do")
-	public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO) {
+	public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO, HttpServletRequest req, HttpServletResponse resp) {
 		String idx = qnaDTO.getIdx();
+		String ofile, sfile;
 		qnaDTO = dao.view(qnaDTO);
 		qnaDTO.setContent(qnaDTO.getContent().replace("\r\n", "<br/>"));
 
@@ -67,6 +72,19 @@ public class QNAControllar extends CommonController {
 		QNABoardDTO nextQna = dao.getNextQna(idx);
 		model.addAttribute("qnaDTO", qnaDTO);
 		model.addAttribute("board_idx", idx);
+		
+		String directory = "./static/uploads/"; // 파일이 저장된 디렉토리
+		if(req.getParameter("ofile") != null && req.getParameter("sfile") != null) {
+			ofile = req.getParameter("ofile");
+			sfile = req.getParameter("sfile");
+			try {
+				FileDownloadUtil.downloadFile(sfile, ofile, directory, req, resp);
+			} catch (IOException e) {
+				e.printStackTrace();
+				// 에러 처리 (예: 에러 페이지로 리다이렉트)
+			}
+		}
+        
 
 		// 관련 글 목록을 가져옴
 		ArrayList<QNABoardDTO> relatedQnaList = dao.getRelatedQnaList(qnaDTO.getCategory());

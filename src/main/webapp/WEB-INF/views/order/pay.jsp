@@ -316,7 +316,6 @@
           let paymentInfo = new Array();
           $(document).ready(function () {
 
-
             //주문 리스트 스크립트에서 변환 , 
             function fnIntl() {
               let orderArr = new Array();
@@ -334,25 +333,19 @@
                 , point : "${item.points}"
 	    });
               </c:forEach>
-              console.log('##주문리스트###', orderArr);
-
               //전역변수 설정
               intlOrder = orderArr;
-
               // 주문자정보 셋팅
               Basket.orderMember(orderArr);
 
               return orderArr;
             }
-
-
             //주문금액 정보
             let orderArr = fnIntl();
             paymentInfo = Basket.paymemtSetAmont(orderArr);
             console.log('##결제정보###', paymentInfo);
 
             //적립금 change event
-
             $('#usePoint').change(function (e) {
               let usePoint = Number(e.target.value);
 

@@ -373,6 +373,9 @@
   color: #6d6d6d;
 }
 
+.qna_view_wrap .down_wrap {
+	padding-top: 20px;
+}
 .qna_view_wrap .content_wrap {
   padding: 30px 20px;
 }
