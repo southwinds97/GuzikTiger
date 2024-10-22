@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.CommonController;
 import com.edu.springboot.ParameterDTO;
@@ -61,37 +62,37 @@ public class QNAControllar extends CommonController {
 	}
 
 	@RequestMapping("/qnaView.do")
-	public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO, HttpServletRequest req, HttpServletResponse resp) {
-		String idx = qnaDTO.getIdx();
-		String ofile, sfile;
-		qnaDTO = dao.view(qnaDTO);
-		qnaDTO.setContent(qnaDTO.getContent().replace("\r\n", "<br/>"));
+    public String qnaView(Model model, QNABoardDTO qnaDTO, CommentDTO comDTO) {
+        String idx = qnaDTO.getIdx();
+        qnaDTO = dao.view(qnaDTO);
+        qnaDTO.setContent(qnaDTO.getContent().replace("\r\n", "<br/>"));
 
-		// 이전 및 다음 글의 정보를 가져옴
-		QNABoardDTO prevQna = dao.getPrevQna(idx);
-		QNABoardDTO nextQna = dao.getNextQna(idx);
-		model.addAttribute("qnaDTO", qnaDTO);
-		model.addAttribute("board_idx", idx);
-		
-		String directory = "./static/uploads/"; // 파일이 저장된 디렉토리
-		if(req.getParameter("ofile") != null && req.getParameter("sfile") != null) {
-			ofile = req.getParameter("ofile");
-			sfile = req.getParameter("sfile");
-			try {
-				FileDownloadUtil.downloadFile(sfile, ofile, directory, req, resp);
-			} catch (IOException e) {
-				e.printStackTrace();
-				// 에러 처리 (예: 에러 페이지로 리다이렉트)
-			}
-		}
-        
+        // 이전 및 다음 글의 정보를 가져옴
+        QNABoardDTO prevQna = dao.getPrevQna(idx);
+        QNABoardDTO nextQna = dao.getNextQna(idx);
+        model.addAttribute("qnaDTO", qnaDTO);
+        model.addAttribute("board_idx", idx);
 
-		// 관련 글 목록을 가져옴
-		ArrayList<QNABoardDTO> relatedQnaList = dao.getRelatedQnaList(qnaDTO.getCategory());
-		model.addAttribute("relatedQnaList", relatedQnaList);
+        // 관련 글 목록을 가져옴
+        ArrayList<QNABoardDTO> relatedQnaList = dao.getRelatedQnaList(qnaDTO.getCategory());
+        model.addAttribute("relatedQnaList", relatedQnaList);
 
-		return "qna/qnaView";
-	}
+        return "qna/qnaView";
+    }
+
+    @GetMapping("/downloadFile")
+    @ResponseBody
+    public void downloadFile(@RequestParam("sfile") String sfile,
+                             @RequestParam("ofile") String ofile,
+                             HttpServletRequest req, HttpServletResponse resp) {
+        String directory = "./static/uploads/"; // 파일이 저장된 디렉토리
+        try {
+            FileDownloadUtil.downloadFile(sfile, ofile, directory, req, resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 에러 처리 (예: 에러 페이지로 리다이렉트)
+        }
+    }
 
 	@GetMapping("/qnaWrite.do")
 	public String qnaWriteGet(HttpServletRequest req, Model model) {
