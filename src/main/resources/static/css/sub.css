@@ -375,7 +375,11 @@
 
 .qna_view_wrap .down_wrap {
 	padding-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
 }
+
 .qna_view_wrap .content_wrap {
   padding: 30px 20px;
 }
