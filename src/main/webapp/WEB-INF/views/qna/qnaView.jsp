@@ -59,8 +59,10 @@
                   <p>${qnaDTO.name} <span>${qnaDTO.postdate}</span></p>
                 </div>
                 <div class="down_wrap">
-                  <img src='./uploads/${qnaDTO.sfile}' style="width:400px;">
-                  <a href="/downloadFile?sfile=${qnaDTO.sfile}&ofile=${qnaDTO.ofile}">${qnaDTO.ofile}</a>
+				  <c:if test="${not empty qnaDTO.sfile}">
+	                  <img src='./uploads/${qnaDTO.sfile}' style="width:400px;">
+	                  <a href="/downloadFile?sfile=${qnaDTO.sfile}&ofile=${qnaDTO.ofile}">${qnaDTO.ofile}</a>
+				  </c:if>
                 </div>
                 <div class="content_wrap">
                   ${qnaDTO.content}
